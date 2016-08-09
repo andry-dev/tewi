@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(tewi)
 
+add_subdirectory(lib/universal/glm)
+include_directories(lib/universal/glm)
+
 if(MSVC)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 else()
@@ -51,4 +54,4 @@ endif()
 
 include_directories(lib/universal)
 
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS} glm)
