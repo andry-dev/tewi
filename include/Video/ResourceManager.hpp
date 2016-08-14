@@ -6,23 +6,29 @@
 
 #include "Video/TextureCache.h"
 
-template <class CacheType>
-class ResourceManager
+namespace tewi
 {
-public:
-	static auto getResource(const std::string& path);
-private:
-	static CacheType m_cache;
-};
+	namespace Video
+	{
+		template <class CacheType>
+		class ResourceManager
+		{
+		public:
+			static auto getResource(const std::string& path);
+		private:
+			static CacheType m_cache;
+		};
 
 
-template <class CacheType>
-CacheType ResourceManager<CacheType>::m_cache;
+		template <class CacheType>
+		CacheType ResourceManager<CacheType>::m_cache;
 
-template <class CacheType>
-auto ResourceManager<CacheType>::getResource(const std::string& path)
-{
-	return m_cache.get(path);
+		template <class CacheType>
+		auto ResourceManager<CacheType>::getResource(const std::string& path)
+		{
+			return m_cache.get(path);
+		}
+	}
 }
 
 #endif /* RESOURCE_MANAGER_H */

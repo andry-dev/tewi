@@ -11,6 +11,7 @@ else()
 endif()
 
 set(SRC
+	src/Video/Camera2D.cpp
 	src/Video/Sprite.cpp
 	src/Video/Shader.cpp
 	src/Video/TextureCache.cpp

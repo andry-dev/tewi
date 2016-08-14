@@ -2,9 +2,14 @@
 #define UNIFORM_HELPERS_H
 
 #include <cstdint>
+
+
+#include "glm/glm.hpp"
 #include <GL/glew.h>
 
 #include <type_traits>
+
+#include "Log.h"
 
 namespace tewi
 {
@@ -45,6 +50,11 @@ namespace tewi
 		void setUniform<std::int32_t>(std::int32_t uniformID, std::int32_t uniformVal)
 		{
 			glUniform1i(uniformID, uniformVal);
+		}
+
+		void setUniform(std::int32_t uniformID, const glm::mat4& matrix)
+		{
+			glUniformMatrix4fv(uniformID, 1, GL_FALSE, &matrix[0][0]);
 		}
 	}
 }

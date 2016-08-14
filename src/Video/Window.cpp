@@ -52,6 +52,7 @@ namespace tewi
 			return *this;
 		}
 
+		/// I wouldn't use this
 		bool Window::isWindowClosed()
 		{
 			SDL_Event evnt;

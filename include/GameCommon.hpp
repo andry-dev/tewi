@@ -37,28 +37,50 @@ namespace tewi
 
 		void processInputs()
 		{
-			impl().processInputs();
+			while (SDL_PollEvent(&m_event))
+			{
+				switch (m_event.type)
+				{
+					case SDL_QUIT:
+						m_isWindowClosed = true;
+						break;
+
+					default:
+						impl().processInputs();
+				}
+			}
+		}
+
+		void update()
+		{
+			impl().update();
 		}
 
 		void draw()
 		{
+			glClearDepth(1.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			impl().draw();
 			m_window->swap();
 		}
 		
 		Utils::TickTimer m_tickTimer;
 		std::unique_ptr<Video::Window> m_window;
+		bool m_isWindowClosed = false;
+		SDL_Event m_event;
 	private:
 		inline Derived& impl() { return *static_cast<Derived*>(this); }
 
 		void run()
 		{
 			init();
-			while (!m_window->isWindowClosed())
+			while (!m_isWindowClosed)
 			{
 				m_tickTimer.update();
 
 				processInputs();
+
+				update();
 
 				draw();
 			}
