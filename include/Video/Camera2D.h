@@ -1,0 +1,56 @@
+#ifndef CAMERA_2D_H
+#define CAMERA_2D_H
+
+#include "glm/glm.hpp"
+
+#include "Log.h"
+#include <string>
+
+namespace tewi
+{
+	namespace Video
+	{
+		class Camera2D
+		{
+		public:
+			Camera2D(int screenWidth, int screenHeight);
+			~Camera2D();
+
+			Camera2D(const Camera2D& rhs);
+			Camera2D& operator=(const Camera2D& rhs);
+
+			Camera2D(Camera2D&& rhs);
+			Camera2D& operator=(Camera2D&& rhs);
+
+			void update();
+
+			inline float getScale() const { return m_scale; }
+			inline glm::vec2 getPosition() const { return m_pos; }
+			inline glm::mat4 getMatrix() const { return m_cameraMat; }
+
+			inline void setScale(float scale)
+			{
+				m_scale = scale;
+				m_needsMatUpdate = true;
+			}
+
+			inline void setPosition(const glm::vec2& pos)
+			{
+				m_pos = pos;
+				m_needsMatUpdate = true;
+			}
+		private:
+			bool m_needsMatUpdate;
+			int m_screenWidth;
+			int m_screenHeight;
+
+			float m_scale;
+			glm::vec2 m_pos;
+			glm::mat4 m_ortho;
+			glm::mat4 m_cameraMat;
+		};
+	}
+}
+
+
+#endif /* CAMERA_2D_H */
