@@ -4,22 +4,33 @@
 #include <array>
 #include <cstdint>
 
+#ifndef OLD_VERTEX_IMPLEMENTATION
+#include <glm/glm.hpp>
+#include <GL/glew.h>
+#endif
+
 namespace tewi
 {
 	namespace Video
 	{
-		struct Position
-		{
-			float x;
-			float y;
-		};
-
 		struct Color
 		{
+			Color(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a)
+				: r(r), g(g), b(b), a(a)
+			{
+			}
+
 			std::uint8_t r;
 			std::uint8_t g;
 			std::uint8_t b;
 			std::uint8_t a;
+		};
+
+#ifdef OLD_VERTEX_IMPLEMENTATION
+		struct Position
+		{
+			float x;
+			float y;
 		};
 
 		struct UV
@@ -56,17 +67,26 @@ namespace tewi
 				uv.v = v;
 			}
 		};
+#else
+		struct Vertex
+		{
+			glm::vec3 position;
+			Color color;
+			glm::vec2 uv;
+			GLuint textureID;
+		};
+#endif
 
-		std::uint32_t setColors(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a)
+		constexpr std::uint32_t setColors(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a)
 		{
 			return r << 24 | g << 16 | b << 8 | a;
 		}
 
 		// You really shouldn't use this function with other types
 		template <typename T>
-		std::uint32_t getColors(T, T, T, T) = delete;
+		constexpr std::uint32_t setColors(T, T, T, T) = delete;
 
-		std::array<std::uint8_t, 4> getColors(std::uint32_t color)
+		constexpr std::array<std::uint8_t, 4> getColors(std::uint32_t color)
 		{
 			// This may not seem obvious at first
 			// Basically, it bit-manipulate the 'hard-coded' colors into an array of single channels
@@ -80,7 +100,7 @@ namespace tewi
 
 		// Same as above
 		template <typename T>
-		std::array<std::uint8_t, 4> getColors(T) = delete;
+		constexpr std::array<std::uint8_t, 4> getColors(T) = delete;
 	}
 }
 

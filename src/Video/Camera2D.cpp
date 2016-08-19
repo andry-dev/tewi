@@ -79,7 +79,7 @@ namespace tewi
 				m_cameraMat = glm::translate(m_ortho, translation);
 
 				glm::vec3 scaling(m_scale, m_scale, 0.0f);
-				m_cameraMat *= glm::scale(glm::mat4(1.0f), scaling);
+				m_cameraMat = glm::scale(glm::mat4(1.0f), scaling) * m_cameraMat;
 				Logi("Matrix updated");
 
 				m_needsMatUpdate = false;

@@ -8,28 +8,28 @@
 #include <GL/glew.h>
 
 #include "Video/Texture.h"
+#include "Video/ResourceManager.hpp"
+#include "Video/TextureCache.h"
+
+#include "Video/Renderable2D.hpp"
 
 namespace tewi
 {
 	namespace Video
 	{
-		class Sprite
+		class Sprite : public Renderable2D
 		{
 		public:
-			Sprite(float x, float y, float w, float h, const std::string& path);
-			~Sprite();
-			
-			void draw();
+			Sprite(const glm::vec2& pos, const glm::vec2& size, const std::string& path)
+				: Renderable2D(glm::vec3(pos.x, pos.y, 0), size, Color(255, 255, 255, 255), ResourceManager<TextureCache>::getResource(path))
+			{
+			}
+
+			~Sprite()
+			{
+				
+			}
 		private:
-
-
-			float m_xpos = 0;
-			float m_ypos = 0;
-			float m_width = 0;
-			float m_height = 0;
-
-			std::uint32_t m_VBOID = 0;
-			Texture m_texture;
 		};
 	}
 }
