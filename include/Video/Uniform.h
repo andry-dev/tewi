@@ -8,6 +8,7 @@
 #include <GL/glew.h>
 
 #include <type_traits>
+#include <vector>
 
 #include "Log.h"
 
@@ -55,6 +56,11 @@ namespace tewi
 		void setUniform(std::int32_t uniformID, const glm::mat4& matrix)
 		{
 			glUniformMatrix4fv(uniformID, 1, GL_FALSE, &matrix[0][0]);
+		}
+
+		void setUniform(std::int32_t uniformID, const std::vector<int>& vec)
+		{
+			glUniform1iv(uniformID, vec.size(), vec.data());
 		}
 	}
 }

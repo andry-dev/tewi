@@ -73,7 +73,7 @@ namespace tewi
 			glm::vec3 position;
 			Color color;
 			glm::vec2 uv;
-			GLuint textureID;
+			float textureID;
 		};
 #endif
 

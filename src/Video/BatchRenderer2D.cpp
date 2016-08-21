@@ -24,7 +24,7 @@ namespace tewi
 
 			glVertexAttribPointer(g_posAttribPointer, 3, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(0));
 			glVertexAttribPointer(g_uvAttribPointer, 2, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, uv)));
-			glVertexAttribPointer(g_tidAttribPointer, 1, GL_UNSIGNED_INT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, textureID)));
+			glVertexAttribPointer(g_tidAttribPointer, 1, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, textureID)));
 			glVertexAttribPointer(g_colorAttribPointer, 4, GL_UNSIGNED_BYTE, GL_TRUE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, color)));
 
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -64,15 +64,16 @@ namespace tewi
 			const auto& size = renderable->getSize();
 			const auto tid = renderable->getTextureID();
 
-			auto ts = 0;
+			float ts = 0;
+			
 			if (tid > 0)
 			{
 				bool foundTextureID = false;
-				for (int i = 0; i < m_textureSlots.size(); ++i)
+				for (std::size_t i = 0; i < m_textureSlots.size(); ++i)
 				{
 					if (m_textureSlots[i] == tid)
 					{
-						ts = i + i;
+						ts = i + 1;
 						foundTextureID = true;
 						break;
 					}
@@ -88,17 +89,14 @@ namespace tewi
 					}
 
 					m_textureSlots.push_back(tid);
-					ts = m_textureSlots.size();
+					ts = m_textureSlots.size() - 1;
 				}
 			}
-
-			//Logi("Vertex position is " + std::to_string(position.x) + ", " + std::to_string(position.y));
-			//Logi("Size is " + std::to_string(size.x) + ", " + std::to_string(size.y));
-
 
 			m_buffer->position = glm::vec3(position.x, position.y + size.y, position.z);
 			m_buffer->color = color;
 			m_buffer->uv = glm::vec2(0.0f, 1.0f);
+			m_buffer->textureID = ts;
 			m_buffer++;
 
 			m_buffer->position = glm::vec3(position.x + size.x, position.y + size.y, position.z);
@@ -118,7 +116,6 @@ namespace tewi
 			m_buffer->uv = glm::vec2(0.0f, 0.0f);
 			m_buffer->textureID = ts;
 			m_buffer++;
-
 
 			m_indexCount += 6;
 		}

@@ -123,7 +123,8 @@ namespace tewi
 		void Shader::enable()
 		{
 			glUseProgram(m_programID);
-			for (int i = 0; i < m_attribNum; ++i) {
+			for (int i = 0; i < m_attribNum; ++i)
+			{
 				glEnableVertexAttribArray(i);
 			}
 		}
@@ -131,25 +132,26 @@ namespace tewi
 		void Shader::disable()
 		{
 			glUseProgram(0);
-			for (int i = 0; i < m_attribNum; ++i) {
+			for (int i = 0; i < m_attribNum; ++i)
+			{
 				glDisableVertexAttribArray(i);
 			}
 		}
 
-		std::int32_t Shader::getUniformLocation(const std::string& uniformName)
+		std::uint32_t Shader::getUniformLocation(const std::string& uniformName)
 		{
-			std::int32_t location = glGetUniformLocation(m_programID, uniformName.c_str());
+			std::uint32_t location = glGetUniformLocation(m_programID, uniformName.c_str());
 			Expects(location != GL_INVALID_INDEX, "Invalid uniform variable" + uniformName);
 			return location;
 		}
 
-		std::vector<std::int32_t> Shader::getUniformLocation(std::initializer_list<const std::string> uniformsName)
+		std::vector<std::uint32_t> Shader::getUniformLocation(std::initializer_list<const std::string> uniformsName)
 		{
-			std::vector<std::int32_t> vec;
+			std::vector<std::uint32_t> vec;
 
 			for (const auto& s : uniformsName)
 			{
-				std::int32_t location = glGetUniformLocation(m_programID, s.c_str());
+				std::uint32_t location = glGetUniformLocation(m_programID, s.c_str());
 				Expects(location != GL_INVALID_INDEX, "Invalid uniform variable " + s);
 				vec.push_back(location);
 			}

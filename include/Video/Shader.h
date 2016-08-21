@@ -19,8 +19,8 @@ namespace tewi
 			void addAttrib(const std::string& attrib);
 			void addAttrib(std::initializer_list<std::string> args);
 
-			std::int32_t getUniformLocation(const std::string& uniformName);
-			std::vector<std::int32_t> getUniformLocation(std::initializer_list<const std::string> uniformsName);
+			std::uint32_t getUniformLocation(const std::string& uniformName);
+			std::vector<std::uint32_t> getUniformLocation(std::initializer_list<const std::string> uniformsName);
 
 			void link();
 			void enable();
