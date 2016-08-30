@@ -11,9 +11,9 @@ else()
 endif()
 
 set(SRC
+	src/IO/InputManager.cpp
 	src/Video/BatchRenderer2D.cpp
 	src/Video/Camera2D.cpp
-	#src/Video/Sprite.cpp
 	src/Video/Shader.cpp
 	src/Video/TextureCache.cpp
 	src/Video/Window.cpp
