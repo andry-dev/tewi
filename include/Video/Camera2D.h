@@ -10,6 +10,8 @@ namespace tewi
 {
 	namespace Video
 	{
+		/// Long name
+
 		class Camera2D
 		{
 		public:
@@ -24,9 +26,11 @@ namespace tewi
 
 			void update();
 
-			inline float getScale() const { return m_scale; }
-			inline glm::vec2 getPosition() const { return m_pos; }
-			inline glm::mat4 getMatrix() const { return m_cameraMat; }
+			void getWorldCoordsFromScreenCoords(glm::vec2& coords);
+
+			inline auto getScale() const { return m_scale; }
+			inline auto getPosition() const { return m_pos; }
+			inline auto getMatrix() const { return m_cameraMat; }
 
 			inline void setScale(float scale)
 			{

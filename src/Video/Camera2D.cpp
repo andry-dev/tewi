@@ -85,5 +85,12 @@ namespace tewi
 				m_needsMatUpdate = false;
 			}
 		}
+
+		void Camera2D::getWorldCoordsFromScreenCoords(glm::vec2& coords)
+		{
+			coords -= glm::vec2(m_screenWidth / 2, m_screenHeight / 2);
+			coords /= m_scale;
+			coords += m_pos;
+		}
 	}
 }

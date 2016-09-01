@@ -1,8 +1,10 @@
 #ifndef GAME_COMMON_H
 #define GAME_COMMON_H
 
-#include "Video/Window.h"
+#include "IO/InputManager.h"
 #include "Utils/TickTimer.h"
+#include "Video/Window.h"
+
 #include "Log.h"
 
 #include <memory>
@@ -45,9 +47,28 @@ namespace tewi
 						m_isWindowClosed = true;
 						break;
 
-					default:
-						impl().processInputs();
+					case SDL_KEYDOWN:
+						m_inputManager.pressKey(m_event.key.keysym.sym);
+						break;
+
+					case SDL_KEYUP:
+						m_inputManager.releaseKey(m_event.key.keysym.sym);
+						break;
+
+					case SDL_MOUSEBUTTONDOWN:
+						m_inputManager.pressKey(m_event.button.button);
+						break;
+
+					case SDL_MOUSEBUTTONUP:
+						m_inputManager.releaseKey(m_event.button.button);
+						break;
+
+					case SDL_MOUSEMOTION:
+						m_inputManager.m_mouseCoords = glm::vec2(m_event.button.x, m_event.button.y);
+						break;
 				}
+
+				impl().processInputs();
 			}
 		}
 
@@ -65,9 +86,14 @@ namespace tewi
 		}
 		
 		Utils::TickTimer m_tickTimer;
+
 		std::unique_ptr<Video::Window> m_window;
+
 		bool m_isWindowClosed = false;
+
 		SDL_Event m_event;
+
+		IO::InputManager m_inputManager;
 	private:
 		inline Derived& impl() { return *static_cast<Derived*>(this); }
 
