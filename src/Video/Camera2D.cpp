@@ -88,6 +88,7 @@ namespace tewi
 
 		void Camera2D::getWorldCoordsFromScreenCoords(glm::vec2& coords)
 		{
+			coords.y = m_screenHeight - coords.y;
 			coords -= glm::vec2(m_screenWidth / 2, m_screenHeight / 2);
 			coords /= m_scale;
 			coords += m_pos;

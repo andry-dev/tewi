@@ -10,8 +10,6 @@ namespace tewi
 {
 	namespace Video
 	{
-		/// Long name
-
 		class Camera2D
 		{
 		public:
