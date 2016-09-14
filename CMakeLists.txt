@@ -12,13 +12,14 @@ endif()
 
 set(SRC
 	src/IO/InputManager.cpp
+	src/Physics/Collidable2D.cpp
+	src/Utils/Clock.cpp
+	src/Utils/TickTimer.cpp
 	src/Video/BatchRenderer2D.cpp
 	src/Video/Camera2D.cpp
 	src/Video/Shader.cpp
 	src/Video/TextureCache.cpp
-	src/Video/Window.cpp
-	src/Utils/Clock.cpp
-	src/Utils/TickTimer.cpp)
+	src/Video/Window.cpp)
 
 include_directories(include)
 
