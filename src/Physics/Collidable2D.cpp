@@ -34,9 +34,9 @@ namespace tewi
 			float distance_x = (m_refPos->x + m_radius) - (other->m_refPos->x + other->m_radius);
 			float distance_y = (m_refPos->y + m_radius) - (other->m_refPos->y + other->m_radius);
 
-			float distance = std::sqrt(distance_x * distance_x + distance_y * distance_y);
+			float distance = (distance_x * distance_x + distance_y * distance_y);
 
-			return distance < m_radius + other->m_radius;
+			return distance < (m_radius * m_radius + other->m_radius * other->m_radius);
 		}
 	}
 }

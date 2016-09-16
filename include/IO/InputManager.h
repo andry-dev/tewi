@@ -16,8 +16,10 @@ namespace tewi
 			void pressKey(std::uint32_t keycode);
 			void releaseKey(std::uint32_t keycode);
 			
-			bool isKeyPressed(std::uint32_t keycode);
+			bool isKeyDown(std::uint32_t keycode);
 			
+			bool isKeyReleased(std::uint32_t keycode);
+
 			// Getters and setters are useless in this case
 			glm::vec2 m_mouseCoords;
 

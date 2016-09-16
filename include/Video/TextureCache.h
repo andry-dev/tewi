@@ -18,6 +18,7 @@ namespace tewi
 
 		private:
 			Texture load(const std::string& path);
+			
 			std::map<std::string, Texture> m_map;
 		};
 	}

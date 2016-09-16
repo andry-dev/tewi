@@ -4,7 +4,8 @@
 
 #include <GL/glew.h>
 
-#include "lodepng/picopng.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb/stb_image.h>
 #include "IO/BasicIO.h"
 #include "Log.h"
 #include "Utils/DebugOnly.h"
@@ -43,21 +44,21 @@ namespace tewi
 		{
 			Texture tex = {};
 
-			std::vector<unsigned char> out;
-			std::vector<unsigned char> in;
-			DebugOnly<bool> loadedPNG = IO::fileToBuffer(path, in);
-			Expects(loadedPNG, "Failed to load PNG " + path);
+			int width = 0;
+			int height = 0;
+			int chan = 0;
 
-			unsigned long width, height;
+			std::uint8_t* imagePtr = stbi_load(path.c_str(), &width, &height, &chan, STBI_rgb_alpha);
+			Expects(imagePtr != nullptr, "Can't decode PNG " + path);
 
-			DebugOnly<int> errCode = decodePNG(out, width, height, &in[0], in.size());
-			Expects(errCode == 0, "Can't decode PNG " + path + " \nError code is " + std::to_string(errCode));
+			tex.width = width;
+			tex.height = height;
 
 			glGenTextures(1, &tex.id);
 
 			glBindTexture(GL_TEXTURE_2D, tex.id);
 
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &out[0]);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imagePtr);
 
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -68,8 +69,7 @@ namespace tewi
 
 			glBindTexture(GL_TEXTURE_2D, 0);
 
-			tex.width = width;
-			tex.height = height;
+			stbi_image_free(imagePtr);
 
 			return tex;
 		}

@@ -19,7 +19,7 @@ namespace tewi
 			m_keymap[keycode] = false;
 		}
 
-		bool InputManager::isKeyPressed(std::uint32_t keycode)
+		bool InputManager::isKeyDown(std::uint32_t keycode)
 		{
 
 			const auto it = m_keymap.find(keycode);
