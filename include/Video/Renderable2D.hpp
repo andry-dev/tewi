@@ -20,7 +20,13 @@ namespace tewi
 			}
 
 			Renderable2D(const glm::vec3& pos, const glm::vec2& size, const Color& color, Texture texture)
-				: m_pos(pos), m_size(size), m_color(color), m_texture(texture)
+				: m_texture(texture), m_pos(pos), m_size(size), m_color(color)
+			{
+
+			}
+
+			Renderable2D(const glm::vec3& pos, const Color& color, Texture texture)
+				: m_texture(texture), m_pos(pos), m_size(glm::vec2(texture.width, texture.height)), m_color(color)
 			{
 
 			}
@@ -36,10 +42,10 @@ namespace tewi
 			inline const auto& getTextureID() const noexcept { return m_texture.id; }
 
 		protected:
+			Texture m_texture;
 			glm::vec3 m_pos;
 			glm::vec2 m_size;
 			Color m_color;
-			Texture m_texture;
 		private:
 		};
 	}
