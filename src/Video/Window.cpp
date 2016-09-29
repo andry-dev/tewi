@@ -13,6 +13,13 @@ namespace tewi
 			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 			SDL_Init(SDL_INIT_EVERYTHING);
+
+			// FUCKING MESA
+			// THIS IS UNDER AMDGPU AND MESA-GIT, I DUNNO IF IT WORKS ON INTEL
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
 			m_window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_width, m_height, SDL_WINDOW_OPENGL);
 			Ensures(m_window != nullptr, "Window not initialized");
 
@@ -26,6 +33,8 @@ namespace tewi
 
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+			std::printf(" OpenGL Version: %s\n", glGetString(GL_VERSION));
 		}
 
 		Window::~Window()

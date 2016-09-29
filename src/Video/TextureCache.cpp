@@ -4,6 +4,8 @@
 
 #include <GL/glew.h>
 
+#include <cstdlib>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 #include "IO/BasicIO.h"
@@ -53,6 +55,9 @@ namespace tewi
 
 			tex.width = width;
 			tex.height = height;
+
+			tex.pixels.resize(width * height * 4);
+			memcpy(&tex.pixels[0], imagePtr, tex.pixels.size());
 
 			glGenTextures(1, &tex.id);
 
