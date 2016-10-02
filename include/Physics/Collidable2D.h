@@ -10,7 +10,7 @@ namespace tewi
 		class Collidable2D
 		{
 		public:
-			Collidable2D(glm::vec3& pos, glm::vec2& size);
+			Collidable2D(glm::vec2& pos, glm::vec2& size);
 
 			Collidable2D& operator=(Collidable2D& rhs);
 
@@ -19,7 +19,7 @@ namespace tewi
 			bool checkRadius(const Collidable2D* const other);
 
 		private:
-			glm::vec3* m_refPos;
+			glm::vec2* m_refPos;
 			glm::vec2* m_refSize;
 			float m_radius;
 		};

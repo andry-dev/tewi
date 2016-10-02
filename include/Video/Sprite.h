@@ -23,13 +23,13 @@ namespace tewi
 		{
 		public:
 			Sprite(const glm::vec2& pos, const std::string& path)
-				: Renderable2D(glm::vec3(pos.x, pos.y, 0), Color(255, 255, 255, 255), ResourceManager<TextureCache>::getResource(path)),
+				: Renderable2D(pos, Color(255, 255, 255, 255), ResourceManager<TextureCache>::getResource(path)),
 				Collidable2D(Renderable2D::m_pos, Renderable2D::m_size)
 			{
 			}
 
 			Sprite(const glm::vec2& pos, const glm::vec2& size, const std::string& path)
-				: Renderable2D(glm::vec3(pos.x, pos.y, 0), size, Color(255, 255, 255, 255), ResourceManager<TextureCache>::getResource(path)),
+				: Renderable2D(pos, size, Color(255, 255, 255, 255), ResourceManager<TextureCache>::getResource(path)),
 				Collidable2D(Renderable2D::m_pos, Renderable2D::m_size)
 			{
 			}

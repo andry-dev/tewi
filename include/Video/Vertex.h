@@ -70,7 +70,7 @@ namespace tewi
 #else
 		struct Vertex
 		{
-			glm::vec3 position;
+			glm::vec2 position;
 			Color color;
 			glm::vec2 uv;
 			float textureID;

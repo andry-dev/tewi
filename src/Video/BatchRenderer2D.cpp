@@ -93,19 +93,19 @@ namespace tewi
 				}
 			}
 
-			m_buffer->position = glm::vec3(position.x, position.y + size.y, position.z);
+			m_buffer->position = glm::vec2(position.x, position.y + size.y);
 			m_buffer->color = color;
 			m_buffer->uv = glm::vec2(0.0f, 1.0f);
 			m_buffer->textureID = ts;
 			m_buffer++;
 
-			m_buffer->position = glm::vec3(position.x + size.x, position.y + size.y, position.z);
+			m_buffer->position = glm::vec2(position.x + size.x, position.y + size.y);
 			m_buffer->color = color;
 			m_buffer->uv = glm::vec2(1.0f, 1.0f);
 			m_buffer->textureID = ts;
 			m_buffer++;
 
-			m_buffer->position = glm::vec3(position.x + size.x, position.y, position.z);
+			m_buffer->position = glm::vec2(position.x + size.x, position.y);
 			m_buffer->color = color;
 			m_buffer->uv = glm::vec2(1.0f, 0.0f);
 			m_buffer->textureID = ts;

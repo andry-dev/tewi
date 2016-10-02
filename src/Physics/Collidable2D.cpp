@@ -4,7 +4,7 @@ namespace tewi
 {
 	namespace Physics
 	{
-		Collidable2D::Collidable2D(glm::vec3& pos, glm::vec2& size)
+		Collidable2D::Collidable2D(glm::vec2& pos, glm::vec2& size)
 			: m_refPos(&pos), m_refSize(&size), m_radius(pos.x / 2.0f)
 		{
 
