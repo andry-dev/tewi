@@ -54,9 +54,14 @@ namespace tewi
 				m_clock.restartTimer();
 			}
 			
-			m_ticks++;
+			++m_ticks;
 
 			return reset;
+		}
+
+		double TickTimer::getDeltaTime(double desiredFramerate)
+		{
+			return m_deltaClock.restartTimer() / (1000.0 / desiredFramerate);
 		}
 	}
 }

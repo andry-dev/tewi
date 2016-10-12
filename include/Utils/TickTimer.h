@@ -24,6 +24,8 @@ namespace tewi
 
 			bool update(double freq = 1000);
 
+			double getDeltaTime(double desiredFramerate);
+
 			inline std::size_t getTickRate() const { return m_tickRate; }
 		private:
 			
@@ -31,6 +33,7 @@ namespace tewi
 			std::size_t m_tickRate = 0;
 
 			Clock m_clock;
+			Clock m_deltaClock;
 		};
 	}
 }
