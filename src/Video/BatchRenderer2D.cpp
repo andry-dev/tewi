@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <cstddef>
 #include "Log.h"
+#include <algorithm>
 
 namespace tewi
 {
@@ -143,6 +144,16 @@ namespace tewi
 
 		void BatchRenderer2D::end()
 		{
+			// Death flag for the engine
+			// TODO: Make it more possible to work on this
+			//std::qsort(m_buffer, g_bufferSize, sizeof(Vertex),
+			//	[] (const void* v1, const void* v2) -> int
+			//	{
+			//		if (((Vertex*)v1)->textureID > ((Vertex*)v2)->textureID) return 1;
+			//		if (((Vertex*)v1)->textureID == ((Vertex*)v2)->textureID) return 0;
+			//		if (((Vertex*)v1)->textureID < ((Vertex*)v2)->textureID) return -1;
+			//		return 0;
+			//	});
 			glUnmapBuffer(GL_ARRAY_BUFFER);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}

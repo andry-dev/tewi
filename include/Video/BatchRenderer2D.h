@@ -16,11 +16,11 @@ namespace tewi
 {
 	namespace Video
 	{
-		constexpr int g_maxTextures = 60000;
-		constexpr int g_vertexSize = sizeof(Video::Vertex);
-		constexpr int g_spriteSize = g_vertexSize * 4;
-		constexpr int g_bufferSize = g_spriteSize * g_maxTextures;
-		constexpr int g_indicesSize = g_maxTextures * 6;
+		constexpr size_t g_maxTextures = 64000;
+		constexpr size_t g_vertexSize = sizeof(Video::Vertex);
+		constexpr size_t g_spriteSize = g_vertexSize * 4;
+		constexpr size_t g_bufferSize = g_spriteSize * g_maxTextures;
+		constexpr size_t g_indicesSize = g_maxTextures * 6;
 
 		constexpr int g_posAttribPointer = 0;
 		constexpr int g_uvAttribPointer = 1;
