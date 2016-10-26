@@ -13,7 +13,7 @@ namespace tewi
 {
 	namespace Video
 	{
-		Shader::Shader(const std::string& vertPath, const std::string& fragPath)
+		Shader::Shader(const Utils::String& vertPath, const Utils::String& fragPath)
 			: m_vertShaderPath(vertPath), m_fragShaderPath(fragPath)
 		{
 			m_vertShaderID = glCreateShader(GL_VERTEX_SHADER);
@@ -26,23 +26,17 @@ namespace tewi
 			compile(m_fragShaderPath, m_fragShaderID);
 		}
 
-		Shader::Shader(const std::string& objPath)
-			: m_objPath(objPath)
-		{
-
-		}
-
 		Shader::~Shader()
 		{
 
 		}
 
-		void Shader::compile(const std::string& path, int id)
+		void Shader::compile(const Utils::String& path, int id)
 		{
 			m_programID = glCreateProgram();
 
 			std::ifstream shaderFile(path);
-			Expects(!shaderFile.fail(), "Can't open" + path);
+			Expects(!shaderFile.fail(), "Can't open " + std::string(path));
 
 			// Get the content of the file in a string
 			//
@@ -107,9 +101,9 @@ namespace tewi
 			glDeleteShader(m_fragShaderID);
 		}
 
-		void Shader::addAttrib(const std::string& attrib)
+		void Shader::addAttrib(const Utils::String& attrib)
 		{
-			glBindAttribLocation(m_programID, m_attribNum++, attrib.c_str());
+			glBindAttribLocation(m_programID, m_attribNum++, attrib);
 		}
 
 		void Shader::addAttrib(std::initializer_list<std::string> args)
@@ -138,21 +132,21 @@ namespace tewi
 			}
 		}
 
-		std::uint32_t Shader::getUniformLocation(const std::string& uniformName)
+		std::uint32_t Shader::getUniformLocation(const Utils::String& uniformName)
 		{
-			std::uint32_t location = glGetUniformLocation(m_programID, uniformName.c_str());
-			Expects(location != GL_INVALID_INDEX, "Invalid uniform variable" + uniformName);
+			std::uint32_t location = glGetUniformLocation(m_programID, uniformName);
+			Expects(location != GL_INVALID_INDEX, "Invalid uniform variable " + std::string(uniformName));
 			return location;
 		}
 
-		std::vector<std::uint32_t> Shader::getUniformLocation(std::initializer_list<const std::string> uniformsName)
+		std::vector<std::uint32_t> Shader::getUniformLocation(std::initializer_list<const Utils::String> uniformsName)
 		{
 			std::vector<std::uint32_t> vec;
 
 			for (const auto& s : uniformsName)
 			{
-				std::uint32_t location = glGetUniformLocation(m_programID, s.c_str());
-				Expects(location != GL_INVALID_INDEX, "Invalid uniform variable " + s);
+				std::uint32_t location = glGetUniformLocation(m_programID, s);
+				Expects(location != GL_INVALID_INDEX, "Invalid uniform variable " + std::string(s));
 				vec.push_back(location);
 			}
 

@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <vector>
 
+#include "Utils/String.hpp"
+
 namespace tewi
 {
 	namespace Video
@@ -12,22 +14,21 @@ namespace tewi
 		class Shader
 		{
 		public:
-			Shader(const std::string& vertPath, const std::string& fragPath);
-			Shader(const std::string& objPath);
+			Shader(const Utils::String& vertPath, const Utils::String& fragPath);
 			~Shader();
 			
-			void addAttrib(const std::string& attrib);
+			void addAttrib(const Utils::String& attrib);
 			void addAttrib(std::initializer_list<std::string> args);
 
-			std::uint32_t getUniformLocation(const std::string& uniformName);
-			std::vector<std::uint32_t> getUniformLocation(std::initializer_list<const std::string> uniformsName);
+			std::uint32_t getUniformLocation(const Utils::String& uniformName);
+			std::vector<std::uint32_t> getUniformLocation(std::initializer_list<const Utils::String> uniformsName);
 
 			void link();
 			void enable();
 			void disable();
 		private:
 
-			void compile(const std::string& path, int id);
+			void compile(const Utils::String& path, int id);
 			
 			std::uint32_t m_programID = 0;
 
@@ -36,10 +37,8 @@ namespace tewi
 
 			int m_attribNum = 0;
 
-			std::string m_vertShaderPath;
-			std::string m_fragShaderPath;
-
-			std::string m_objPath;
+			Utils::String m_vertShaderPath;
+			Utils::String m_fragShaderPath;
 		};
 	}
 }
