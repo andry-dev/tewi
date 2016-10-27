@@ -61,7 +61,7 @@ namespace tewi
 
 		double TickTimer::getDeltaTime(double desiredFramerate)
 		{
-			return m_deltaClock.restartTimer() / (1000.0 / desiredFramerate);
+			return m_deltaClock.restartTimer() / (1.0 / desiredFramerate);
 		}
 	}
 }

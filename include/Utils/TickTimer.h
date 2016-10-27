@@ -22,7 +22,7 @@ namespace tewi
 			TickTimer(TickTimer&& rhs);
 			TickTimer& operator=(TickTimer&& rhs);
 
-			bool update(double freq = 1000);
+			bool update(double freq = 1.0);
 
 			double getDeltaTime(double desiredFramerate);
 
