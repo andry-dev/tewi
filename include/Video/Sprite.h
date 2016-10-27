@@ -4,8 +4,9 @@
 #include <cstdint>
 #include <string>
 
-#include <SDL2/SDL.h>
 #include <GL/glew.h>
+
+#include <GLFW/glfw3.h>
 
 #include "Video/Texture.h"
 #include "Video/ResourceManager.hpp"

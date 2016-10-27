@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 
-#include <SDL2/SDL.h>
+#include <GLFW/glfw3.h>
 
 namespace tewi
 {
@@ -30,14 +30,14 @@ namespace tewi
 		#define Expects(cond, msg) \
 			if (!(cond)) { \
 				Log::error(msg); \
-				SDL_Quit();  \
+				glfwTerminate();  \
 				std::terminate(); \
 			}
 		
 		#define Ensures(cond, msg) \
 			if (!(cond)) { \
 				Log::error(msg); \
-				SDL_Quit();  \
+				glfwTerminate();  \
 				std::terminate(); \
 			}
 

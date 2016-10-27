@@ -1,3 +1,4 @@
 -Iinclude
 -Ilib/universal
 -Ilib/universal/glm
+-Ilib/universal/glew/include

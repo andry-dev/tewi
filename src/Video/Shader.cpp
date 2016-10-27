@@ -62,7 +62,7 @@ namespace tewi
 
 				glGetShaderInfoLog(id, maxLen, &maxLen, &errorLog[0]);
 				Log::warning(errorLog.data());
-				Expects(0, "Shader " + path + " failed to compile");
+				Expects(0, "Shader " + std::string(path) + " failed to compile");
 			}
 		}
 

@@ -11,6 +11,13 @@
 
 namespace tewi
 {
+	
+	template <class Derived>
+	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+	template <class Derived>
+	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
+
 	template <class Derived>
 	class GameCommon
 	{
@@ -19,6 +26,11 @@ namespace tewi
 		{
 			m_window = std::make_unique<Video::Window>(windowName, width, height);
 			Log::info("CALLED GameCommon::GameCommon");
+
+			glfwSetWindowUserPointer(m_window->getWindow(), this);
+
+			glfwSetKeyCallback(m_window->getWindow(), keyCallback<Derived>);
+			glfwSetMouseButtonCallback(m_window->getWindow(), mouseButtonCallback<Derived>);
 		}
 
 		~GameCommon()
@@ -39,41 +51,12 @@ namespace tewi
 
 		void processInputs()
 		{
-			while (SDL_PollEvent(&m_event))
-			{
-				switch (m_event.type)
-				{
-					case SDL_QUIT:
-						m_isWindowClosed = true;
-						break;
-
-					case SDL_KEYDOWN:
-						m_inputManager.pressKey(m_event.key.keysym.sym);
-						break;
-
-					case SDL_KEYUP:
-						m_inputManager.releaseKey(m_event.key.keysym.sym);
-						break;
-
-					case SDL_MOUSEBUTTONDOWN:
-						m_inputManager.pressKey(m_event.button.button);
-						break;
-
-					case SDL_MOUSEBUTTONUP:
-						m_inputManager.releaseKey(m_event.button.button);
-						break;
-
-					case SDL_MOUSEMOTION:
-						m_inputManager.m_mouseCoords = glm::vec2(m_event.button.x, m_event.button.y);
-						break;
-				}
-
-				impl().processInputs();
-			}
+			impl().processInputs();
 		}
 
 		void update()
 		{
+			glfwPollEvents();
 			impl().update();
 		}
 
@@ -91,8 +74,6 @@ namespace tewi
 
 		bool m_isWindowClosed = false;
 
-		SDL_Event m_event;
-
 		IO::InputManager m_inputManager;
 	private:
 		inline Derived& impl() { return *static_cast<Derived*>(this); }
@@ -100,7 +81,7 @@ namespace tewi
 		void run()
 		{
 			init();
-			while (!m_isWindowClosed)
+			while (!m_window->isWindowClosed())
 			{
 				m_tickTimer.update();
 
@@ -113,7 +94,33 @@ namespace tewi
 
 		}
 
+		friend void keyCallback<Derived>(GLFWwindow* window, int key, int scancode, int action, int mods);
+		friend void mouseButtonCallback<Derived>(GLFWwindow* window, int button, int action, int mods);
 	};
+
+	// Thanks GLFW
+	template <class Derived>
+	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	{
+		GameCommon<Derived>* gc = static_cast<GameCommon<Derived>*>(glfwGetWindowUserPointer(window));
+
+		if (action == GLFW_PRESS)
+			gc->m_inputManager.pressKey(key);
+		else if (action == GLFW_RELEASE)
+			gc->m_inputManager.releaseKey(key);
+	}
+
+	template <class Derived>
+	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+	{
+		GameCommon<Derived>* gc = static_cast<GameCommon<Derived>*>(glfwGetWindowUserPointer(window));
+
+		if (action == GLFW_PRESS)
+			gc->m_inputManager.pressKey(button);
+		else if (action == GLFW_RELEASE)
+			gc->m_inputManager.releaseKey(button);
+	}
+
 }
 
 #endif /* GAME_COMMON_H */

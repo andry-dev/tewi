@@ -41,7 +41,7 @@ namespace tewi
 
 		double Clock::restartTimer()
 		{
-			double currTime = SDL_GetTicks();
+			double currTime = glfwGetTime();
 			auto elapsed = currTime - m_startTime;
 			m_startTime = currTime;
 

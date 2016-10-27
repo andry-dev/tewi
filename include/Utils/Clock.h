@@ -1,7 +1,10 @@
 #ifndef CLOCK_H
 #define CLOCK_H
 
-#include "SDL2/SDL.h"
+#include <GL/glew.h>
+
+#define GLFW_INCLUDE_VULKAN
+#include "GLFW/glfw3.h"
 
 namespace tewi
 {
@@ -21,9 +24,9 @@ namespace tewi
 
 			double restartTimer();
 
-			inline double getCurrTime() const { return SDL_GetTicks() - m_startTime; }
+			inline double getCurrTime() const { return glfwGetTime() - m_startTime; }
 		private:
-			double m_startTime = SDL_GetTicks();
+			double m_startTime = glfwGetTime();
 		};
 	}
 }

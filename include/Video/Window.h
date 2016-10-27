@@ -1,8 +1,11 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <SDL2/SDL.h>
+
 #include <GL/glew.h>
+
+#define GLFW_INCLUDE_VULKAN
+#include "GLFW/glfw3.h"
 
 #include <string>
 
@@ -24,14 +27,14 @@ namespace tewi
 
 			bool isWindowClosed();
 
-			inline void swap() const noexcept { SDL_GL_SwapWindow(m_window); }
+			inline void swap() const noexcept { glfwSwapBuffers(m_window); }
 
 			inline int getWidth() const noexcept { return m_width; }
 			inline int getHeight() const noexcept { return m_height; }
 
-			inline SDL_Window* getWindow() const noexcept { return m_window; }
+			inline GLFWwindow* getWindow() const noexcept { return m_window; }
 		private:
-			SDL_Window* m_window;
+			GLFWwindow* m_window;
 			int m_width;
 			int m_height;
 			std::string m_windowName;
