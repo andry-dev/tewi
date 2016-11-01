@@ -1,6 +1,10 @@
 #ifndef STRING_LITERAL_H
 #define STRING_LITERAL_H
 
+// Obviously this doesn't work on MSVC so I need to wait another three years before I can use this
+// Thanks.
+#ifndef _WIN32
+
 #include <cstdint>
 
 namespace tewi
@@ -217,6 +221,8 @@ namespace tewi
 
 	}
 }
+
+#endif /* _WIN32 */
 
 
 #endif /* STRING_LITERAL_H */
