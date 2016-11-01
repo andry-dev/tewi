@@ -60,10 +60,11 @@ namespace tewi
 
 		void BatchRenderer2D::add(const Renderable2D* renderable)
 		{
-			const auto& position = renderable->getPosition();
-			const auto& color = renderable->getColor();
-			const auto& size = renderable->getSize();
-			const auto tid = renderable->getTextureID();
+			const auto& position = renderable->pos;
+			const auto& color = renderable->color;
+			const auto& size = renderable->texture.size;
+			const auto tid = renderable->texture.id;
+			const auto scale = renderable->scale;
 
 			float ts = 0;
 			
@@ -94,19 +95,19 @@ namespace tewi
 				}
 			}
 
-			m_buffer->position = glm::vec2(position.x, position.y + size.y);
+			m_buffer->position = glm::vec2(position.x, position.y + size.y * scale);
 			m_buffer->color = color;
 			m_buffer->uv = glm::vec2(0.0f, 1.0f);
 			m_buffer->textureID = ts;
 			m_buffer++;
 
-			m_buffer->position = glm::vec2(position.x + size.x, position.y + size.y);
+			m_buffer->position = glm::vec2(position.x + size.x * scale, position.y + size.y * scale);
 			m_buffer->color = color;
 			m_buffer->uv = glm::vec2(1.0f, 1.0f);
 			m_buffer->textureID = ts;
 			m_buffer++;
 
-			m_buffer->position = glm::vec2(position.x + size.x, position.y);
+			m_buffer->position = glm::vec2(position.x + size.x * scale, position.y);
 			m_buffer->color = color;
 			m_buffer->uv = glm::vec2(1.0f, 0.0f);
 			m_buffer->textureID = ts;

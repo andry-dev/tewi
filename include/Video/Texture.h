@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include <glm/glm.hpp>
+
 #include <cstdint>
 
 namespace tewi
@@ -12,8 +14,7 @@ namespace tewi
 		struct Texture
 		{
 			std::uint32_t id;
-			int width;
-			int height;
+			glm::vec2 size;
 
 			std::vector<std::uint8_t> pixels;
 		};

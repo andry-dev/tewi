@@ -53,8 +53,7 @@ namespace tewi
 			std::uint8_t* imagePtr = stbi_load(path.c_str(), &width, &height, &chan, STBI_rgb_alpha);
 			Expects(imagePtr != nullptr, "Can't decode PNG " + path);
 
-			tex.width = width;
-			tex.height = height;
+			tex.size = glm::vec2(width, height);
 
 			tex.pixels.resize(width * height * 4);
 			memcpy(&tex.pixels[0], imagePtr, tex.pixels.size());

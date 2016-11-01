@@ -4,10 +4,6 @@
 #include <cstdint>
 #include <string>
 
-#include <GL/glew.h>
-
-#include <GLFW/glfw3.h>
-
 #include "Video/Texture.h"
 #include "Video/ResourceManager.hpp"
 #include "Video/TextureCache.h"
@@ -20,27 +16,29 @@ namespace tewi
 {
 	namespace Video
 	{
-		class Sprite : public Renderable2D, public Physics::Collidable2D
+		struct Sprite
 		{
-		public:
 			Sprite(const glm::vec2& pos, const std::string& path)
-				: Renderable2D(pos, Color(255, 255, 255, 255), ResourceManager<TextureCache>::getResource(path)),
-				Collidable2D(Renderable2D::m_pos, Renderable2D::m_size)
+				: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
+				m_collidable(m_renderable.pos, m_renderable.texture.size)
 			{
 			}
 
-			Sprite(const glm::vec2& pos, const glm::vec2& size, const std::string& path)
-				: Renderable2D(pos, size, Color(255, 255, 255, 255), ResourceManager<TextureCache>::getResource(path)),
-				Collidable2D(Renderable2D::m_pos, Renderable2D::m_size)
+			Sprite(const glm::vec2& pos, float scale, const std::string& path)
+				: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
+				m_collidable(m_renderable.pos, m_renderable.texture.size)
 			{
+				m_renderable.scale = scale;
 			}
 
-			~Sprite()
-			{
-				
-			}
-		private:
-		
+			operator Renderable2D() { return m_renderable; }
+			operator Renderable2D*() { return &m_renderable; }
+
+			operator Physics::Collidable2D() { return m_collidable; }
+			operator Physics::Collidable2D*() { return &m_collidable; }
+
+			Renderable2D m_renderable;
+			Physics::Collidable2D m_collidable;
 		};
 	}
 }

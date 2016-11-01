@@ -39,7 +39,7 @@ namespace tewi
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			std::printf(" OpenGL Version: %s\n", glGetString(GL_VERSION));
+			std::printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
 		}
 
 		Window::~Window()
