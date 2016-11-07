@@ -34,11 +34,11 @@ namespace tewi
 			{
 				Texture tex = load(path);
 				m_map.insert(std::make_pair(path, tex));
-				Logi("Inserted texture " + path);
+				Log::debugInfo("Inserted texture " + path);
 				return tex;
 			}
 
-			Logi("Loaded cached texture " + path);
+			Log::debugInfo("Loaded cached texture " + path);
 			return it->second;
 		}
 

@@ -16,8 +16,9 @@ namespace tewi
 {
 	namespace Video
 	{
-		struct Sprite
+		class Sprite
 		{
+		public:
 			Sprite(const glm::vec2& pos, const std::string& path)
 				: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
 				m_collidable(m_renderable.pos, m_renderable.texture.size)
@@ -31,11 +32,16 @@ namespace tewi
 				m_renderable.scale = scale;
 			}
 
-			operator Renderable2D() { return m_renderable; }
-			operator Renderable2D*() { return &m_renderable; }
+			operator const Renderable2D() { return m_renderable; }
+			operator const Renderable2D*() { return &m_renderable; }
 
-			operator Physics::Collidable2D() { return m_collidable; }
-			operator Physics::Collidable2D*() { return &m_collidable; }
+			operator const Physics::Collidable2D() { return m_collidable; }
+			operator const Physics::Collidable2D*() { return &m_collidable; }
+
+			auto getRenderable() const { return m_renderable; }
+			auto getCollidable() const { return m_collidable; }
+
+		protected:
 
 			Renderable2D m_renderable;
 			Physics::Collidable2D m_collidable;

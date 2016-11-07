@@ -3,7 +3,7 @@
 
 #include <exception>
 #include <string>
-#include <iostream>
+#include <cstdio>
 
 #include <GLFW/glfw3.h>
 
@@ -13,49 +13,59 @@ namespace tewi
 	{
 		inline void warning(const std::string& str)
 		{
-			std::cout << "[W] " + str << '\n';
+			std::printf("[W] %s\n", str.c_str());
 		}
 
 		inline void error(const std::string& str)
 		{
-			std::cerr << "[E] " + str << '\n';
+			std::printf("[E] %s\n", str.c_str());
 		}
 
 		inline void info(const std::string& str)
 		{
-			std::cout << "[I] " + str << '\n';
+			std::printf("[I] %s\n", str.c_str());
+		}
+
+		inline void debugWarning(const std::string& str)
+		{
+			#ifndef NDEBUG
+			warning(str);
+			#endif
+		}
+
+		inline void debugError(const std::string& str)
+		{
+			#ifndef NDEBUG
+			error(str);
+			#endif
+		}
+
+		inline void debugInfo(const std::string& str)
+		{
+			#ifndef NDEBUG
+			info(str);
+			#endif
 		}
 
 #ifndef NDEBUG
 		#define Expects(cond, msg) \
 			if (!(cond)) { \
-				Log::error(msg); \
+				tewi::Log::error(msg); \
 				glfwTerminate();  \
 				std::terminate(); \
 			}
 		
 		#define Ensures(cond, msg) \
 			if (!(cond)) { \
-				Log::error(msg); \
+				tewi::Log::error(msg); \
 				glfwTerminate();  \
 				std::terminate(); \
 			}
 
-		#define Loge(msg) \
-			Log::error(msg);
-		#define Logw(msg) \
-			Log::warning(msg);
-		#define Logi(msg) \
-			Log::info(msg);
 #else
 		#define Expects(cond, msg)
 		#define Ensures(cond, msg)
-		#define Loge(msg)
-		#define Logw(msg)
-		#define Logi(msg)
 #endif
-
-#define STRINGIFY(x) #x
 	}
 }
 

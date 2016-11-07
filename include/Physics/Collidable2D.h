@@ -14,9 +14,9 @@ namespace tewi
 
 			Collidable2D& operator=(Collidable2D& rhs);
 
-			bool checkAABB(const Collidable2D* const other);
+			bool checkAABB(const Collidable2D& other) const;
 
-			bool checkRadius(const Collidable2D* const other);
+			bool checkRadius(const Collidable2D& other) const;
 
 		private:
 			glm::vec2* m_refPos;

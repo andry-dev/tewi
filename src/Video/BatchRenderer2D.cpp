@@ -58,13 +58,13 @@ namespace tewi
 			m_buffer = (Vertex*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 		}
 
-		void BatchRenderer2D::add(const Renderable2D* renderable)
+		void BatchRenderer2D::add(const Renderable2D& renderable)
 		{
-			const auto& position = renderable->pos;
-			const auto& color = renderable->color;
-			const auto& size = renderable->texture.size;
-			const auto tid = renderable->texture.id;
-			const auto scale = renderable->scale;
+			const auto& position = renderable.pos;
+			const auto& color = renderable.color;
+			const auto& size = renderable.texture.size;
+			const auto tid = renderable.texture.id;
+			const auto scale = renderable.scale;
 
 			float ts = 0;
 			

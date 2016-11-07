@@ -6,12 +6,6 @@ namespace tewi
 	{
 		namespace API
 		{
-			GLContext::GLContext(const Video::API::WindowProps& window)
-				: m_props(window)
-			{
-
-			}
-
 
 		}
 	}

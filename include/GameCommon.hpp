@@ -18,13 +18,13 @@ namespace tewi
 	template <class Derived>
 	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
-	template <class Derived>
+	template <class Derived, unsigned int APINum = Video::API::API_TYPE::OPENGL>
 	class GameCommon
 	{
 	public:
 		GameCommon(const std::string& windowName, int width, int height)
 		{
-			m_window = std::make_unique<Video::Window>(windowName, width, height);
+			m_window = std::make_unique<Video::Window<APINum>>(windowName, width, height);
 			Log::info("CALLED GameCommon::GameCommon");
 
 			glfwSetWindowUserPointer(m_window->getWindow(), this);
@@ -70,7 +70,7 @@ namespace tewi
 		
 		Utils::TickTimer m_tickTimer;
 
-		std::unique_ptr<Video::Window> m_window;
+		std::unique_ptr<Video::Window<APINum>> m_window;
 
 		bool m_isWindowClosed = false;
 

@@ -41,7 +41,7 @@ namespace tewi
 
 			void begin();
 
-			void add(const Renderable2D* renderable);
+			void add(const Renderable2D& renderable);
 			void draw();
 			
 			void end();

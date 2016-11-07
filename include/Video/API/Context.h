@@ -1,10 +1,7 @@
 #ifndef TEWI_API_CONTEXT_H
 #define TEWI_API_CONTEXT_H
 
-#include "Utils/String.hpp"
-
-// #include "Platform/OpenGL/VKContext.h"
-#include "Platform/OpenGL/GLContext.h"
+#include "Utils/WriteOnce.h"
 
 namespace tewi
 {
@@ -12,19 +9,31 @@ namespace tewi
 	{
 		namespace API
 		{
-			enum class API_TYPE
+			enum API_TYPE
 			{
 				NULL_RENDERER,
 				OPENGL,
-				VULKAN
+				VULKAN,
+				END
 			};
 
-			class ContextCreation
+			static WriteOnce<unsigned int> g_currentAPI;
+
+			template <unsigned int APINum>
+			class Context
 			{
-				public:
-					virtual void setHints() = 0;
-					virtual void create() = 0;
+			public:
+				Context()
+				{
+					static_assert(APINum >= API_TYPE::NULL_RENDERER && APINum < API_TYPE::END, "Invalid API number");
+				}
+
+				auto getAPI() const { return m_API; }
+
+			protected:
+				unsigned int m_API = APINum;
 			};
+
 		}
 	}
 }

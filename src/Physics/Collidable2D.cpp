@@ -21,22 +21,22 @@ namespace tewi
 			return *this;
 		}
 
-		bool Collidable2D::checkAABB(const Collidable2D* const other)
+		bool Collidable2D::checkAABB(const Collidable2D& other) const
 		{
-			return (m_refPos->x < other->m_refPos->x + other->m_refSize->x &&
-					m_refPos->x + m_refSize->x > other->m_refPos->x &&
-					m_refPos->y < other->m_refPos->y + other->m_refSize->y &&
-					m_refPos->y + m_refSize->y > other->m_refPos->y);
+			return (m_refPos->x < other.m_refPos->x + other.m_refSize->x &&
+					m_refPos->x + m_refSize->x > other.m_refPos->x &&
+					m_refPos->y < other.m_refPos->y + other.m_refSize->y &&
+					m_refPos->y + m_refSize->y > other.m_refPos->y);
 		}
 
-		bool Collidable2D::checkRadius(const Collidable2D* const other)
+		bool Collidable2D::checkRadius(const Collidable2D& other) const
 		{
-			float distance_x = (m_refPos->x + m_radius) - (other->m_refPos->x + other->m_radius);
-			float distance_y = (m_refPos->y + m_radius) - (other->m_refPos->y + other->m_radius);
+			float distance_x = (m_refPos->x + m_radius) - (other.m_refPos->x + other.m_radius);
+			float distance_y = (m_refPos->y + m_radius) - (other.m_refPos->y + other.m_radius);
 
 			float distance = (distance_x * distance_x + distance_y * distance_y);
 
-			return distance < (m_radius * m_radius + other->m_radius * other->m_radius);
+			return distance < (m_radius * m_radius + other.m_radius * other.m_radius);
 		}
 	}
 }

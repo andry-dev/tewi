@@ -5,19 +5,21 @@
 
 namespace tewi
 {
-	namespace Platform
+	namespace Video
 	{
 		namespace API
 		{
-			class GLContext : public Video::API::ContextCreation
+			template<>
+			class Context<API_TYPE::OPENGL>
 			{
 			public:
-				GLContext(const Video::API::WindowProps& window);
+				Context()
+				{
 
-				
-			private:
-				Video::API::WindowProps m_props;
+				}
 			};
+
+			using GLContext = Context<API_TYPE::OPENGL>;
 		}
 	}
 }

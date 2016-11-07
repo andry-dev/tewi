@@ -25,8 +25,7 @@ set(SRC
 	src/Video/BatchRenderer2D.cpp
 	src/Video/Camera2D.cpp
 	src/Video/Shader.cpp
-	src/Video/TextureCache.cpp
-	src/Video/Window.cpp)
+	src/Video/TextureCache.cpp)
 
 include_directories(include)
 
