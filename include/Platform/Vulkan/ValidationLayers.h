@@ -13,7 +13,7 @@ namespace tewi
 	{
 		namespace Vulkan
 		{
-			const std::vector<const char*> g_enabledValidationLayers =
+			const std::vector<const char*> g_validationLayerList =
 			{
 				"VK_LAYER_LUNARG_standard_validation"
 			};
@@ -32,7 +32,7 @@ namespace tewi
 				std::vector<VkLayerProperties> avaibleLayers(layerCount);
 				vkEnumerateInstanceLayerProperties(&layerCount, avaibleLayers.data());
 
-				for (const auto& layer : g_enabledValidationLayers)
+				for (const auto& layer : g_validationLayerList)
 				{
 					bool layerFound = false;
 

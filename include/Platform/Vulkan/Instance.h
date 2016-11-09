@@ -6,6 +6,7 @@
 #include "Utils/DebugOnly.h"
 #include <vector>
 #include "Platform/Vulkan/ValidationLayers.h"
+#include "Platform/Vulkan/Callbacks.h"
 
 namespace tewi
 {
@@ -33,14 +34,20 @@ namespace tewi
 					info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 					info.pApplicationInfo = &app;
 
-					unsigned int glfwExtensionCount = 0;
-					const char** glfwExtensions;
+					if (g_validationLayersEnabled)
+					{
+						info.enabledLayerCount = g_validationLayerList.size();
+						info.ppEnabledLayerNames = g_validationLayerList.data();
+					}
+					else
+					{
+						info.enabledLayerCount = 0;
+					}
 
-					glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+					auto exts = getExtensions();
 
-					info.enabledExtensionCount = glfwExtensionCount;
-					info.ppEnabledExtensionNames = glfwExtensions;
-					info.enabledLayerCount = 0;
+					info.enabledExtensionCount = exts.size();
+					info.ppEnabledExtensionNames = exts.data();
 
 					DebugOnly<VkResult> instanceErrorCode = vkCreateInstance(&info, nullptr, m_instance.replace());
 					Ensures(instanceErrorCode == VK_SUCCESS, "Failed to create a Vulkan instance");
@@ -49,12 +56,56 @@ namespace tewi
 					vkEnumerateInstanceExtensionProperties(nullptr, &extCount, nullptr);
 					std::vector<VkExtensionProperties> extensions(extCount);
 					vkEnumerateInstanceExtensionProperties(nullptr, &extCount, extensions.data());
+
+					setupDebugCallback();
 				}
 
 				auto getInstance() const { return m_instance; }
 
 			private:
 				VDeleter<VkInstance> m_instance{vkDestroyInstance};
+
+				std::vector<const char*> getExtensions()
+				{
+					std::vector<const char*> ext;
+
+					unsigned int glfwExtensionCount = 0;
+					const char** glfwExtensions;
+
+					glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+
+					for (std::size_t i = 0; i < glfwExtensionCount; ++i)
+					{
+						ext.push_back(glfwExtensions[i]);
+					}
+
+					if (g_validationLayersEnabled)
+					{
+						ext.push_back(VK_EXT_DEBUG_REPORT_EXTENSION_NAME);
+					}
+
+					return ext;
+				}
+
+				void setupDebugCallback()
+				{
+					if(!g_validationLayersEnabled)
+					{
+						return;
+					}
+
+					VkDebugReportCallbackCreateInfoEXT info = {};
+					info.sType = VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
+					info.flags = VK_DEBUG_REPORT_ERROR_BIT_EXT
+								| VK_DEBUG_REPORT_WARNING_BIT_EXT
+								| VK_DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT;
+					info.pfnCallback = Platform::Vulkan::debugCallback;
+
+					VDeleter<VkDebugReportCallbackEXT> callback{m_instance, destroyDebugReportCallbackEXT};
+
+					Expects(createDebugReportCallbackEXT(m_instance, &info, nullptr, callback.replace()) == VK_SUCCESS,
+							"Failed to setup debug callback");
+				}
 			};
 
 		}
