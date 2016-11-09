@@ -39,8 +39,12 @@ if(MSVC)
 	set(GLEW_LIBRARIES
 		${PROJECT_SOURCE_DIR}/lib/msvc/glew/lib/Release/x64/glew32.lib)
 
-
 	include_directories(${PROJECT_SOURCE_DIR}/lib/msvc/glew/include)
+
+	include_directories(${PROJECT_SOURCE_DIR}/lib/msvc/vulkan/include)
+
+	set(VULKAN_LIBS
+		${PROJECT_SOURCE_DIR}/lib/msvc/vulkan/lib/vulkan-1.lib)
 
 	set(WIN32_OPENGL_LIBS
 		opengl32.lib)
@@ -50,8 +54,11 @@ else()
 
 	pkg_search_module(GLEW REQUIRED glew)
 	include_directories(${GLEW_INCLUDE_DIRS})
+
+	set(VULKAN_LIBS
+		vulkan)
 endif()
 
 include_directories(lib/universal)
 
-target_link_libraries(${PROJECT_NAME} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS} glm glfw)
+target_link_libraries(${PROJECT_NAME} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS} ${VULKAN_LIBS} glm glfw)

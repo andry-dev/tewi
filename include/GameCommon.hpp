@@ -9,13 +9,17 @@
 
 #include <memory>
 
+#include "Video/API/Context.h"
+#include "Platform/Vulkan/Common.h"
+#include "Platform/OpenGL/GLContext.h"
+
 namespace tewi
 {
 	
-	template <class Derived>
+	template <class Derived, unsigned int APINum>
 	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-	template <class Derived>
+	template <class Derived, unsigned int APINum>
 	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
 	template <class Derived, unsigned int APINum = Video::API::API_TYPE::OPENGL>
@@ -29,8 +33,8 @@ namespace tewi
 
 			glfwSetWindowUserPointer(m_window->getWindow(), this);
 
-			glfwSetKeyCallback(m_window->getWindow(), keyCallback<Derived>);
-			glfwSetMouseButtonCallback(m_window->getWindow(), mouseButtonCallback<Derived>);
+			glfwSetKeyCallback(m_window->getWindow(), keyCallback<Derived, APINum>);
+			glfwSetMouseButtonCallback(m_window->getWindow(), mouseButtonCallback<Derived, APINum>);
 		}
 
 		~GameCommon()
@@ -62,8 +66,7 @@ namespace tewi
 
 		void draw()
 		{
-			glClearDepth(1.0f);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			m_window->getContext()->preDraw();
 			impl().draw();
 			m_window->swap();
 		}
@@ -94,15 +97,15 @@ namespace tewi
 
 		}
 
-		friend void keyCallback<Derived>(GLFWwindow* window, int key, int scancode, int action, int mods);
-		friend void mouseButtonCallback<Derived>(GLFWwindow* window, int button, int action, int mods);
+		friend void keyCallback<Derived, APINum>(GLFWwindow* window, int key, int scancode, int action, int mods);
+		friend void mouseButtonCallback<Derived, APINum>(GLFWwindow* window, int button, int action, int mods);
 	};
 
 	// Thanks GLFW
-	template <class Derived>
+	template <class Derived, unsigned int APINum>
 	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
-		GameCommon<Derived>* gc = static_cast<GameCommon<Derived>*>(glfwGetWindowUserPointer(window));
+		GameCommon<Derived, APINum>* gc = static_cast<GameCommon<Derived, APINum>*>(glfwGetWindowUserPointer(window));
 
 		if (action == GLFW_PRESS)
 			gc->m_inputManager.pressKey(key);
@@ -110,10 +113,10 @@ namespace tewi
 			gc->m_inputManager.releaseKey(key);
 	}
 
-	template <class Derived>
+	template <class Derived, unsigned int APINum>
 	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 	{
-		GameCommon<Derived>* gc = static_cast<GameCommon<Derived>*>(glfwGetWindowUserPointer(window));
+		GameCommon<Derived, APINum>* gc = static_cast<GameCommon<Derived, APINum>*>(glfwGetWindowUserPointer(window));
 
 		if (action == GLFW_PRESS)
 			gc->m_inputManager.pressKey(button);

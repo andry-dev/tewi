@@ -3,6 +3,8 @@
 
 #include "Video/API/Context.h"
 
+#include "Platform/Vulkan/Instance.h"
+
 namespace tewi
 {
 	namespace Video
@@ -15,8 +17,38 @@ namespace tewi
 			public:
 				Context()
 				{
+					
+				}
+
+				void setup()
+				{
+					glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+					glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+				}
+
+				void postInit()
+				{
+					
+				}
+
+				void preDraw()
+				{
 
 				}
+
+				void postDraw()
+				{
+
+				}
+
+				const char* getAPIVersion()
+				{
+					return "Vulkan";
+				}
+
+			private:
+
+				Platform::Vulkan::Instance m_instance;
 			};
 
 			using VkContext = Context<API_TYPE::VULKAN>;

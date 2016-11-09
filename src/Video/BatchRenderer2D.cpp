@@ -1,6 +1,5 @@
 #include "Video/BatchRenderer2D.h"
 
-#include <SDL2/SDL.h>
 #include <cstddef>
 #include "Log.h"
 #include <algorithm>

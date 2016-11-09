@@ -1,8 +1,6 @@
 #ifndef TEWI_API_CONTEXT_H
 #define TEWI_API_CONTEXT_H
 
-#include "Utils/WriteOnce.h"
-
 namespace tewi
 {
 	namespace Video
@@ -16,8 +14,6 @@ namespace tewi
 				VULKAN,
 				END
 			};
-
-			static WriteOnce<unsigned int> g_currentAPI;
 
 			template <unsigned int APINum>
 			class Context

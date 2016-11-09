@@ -7,7 +7,8 @@
 #include "GLFW/glfw3.h"
 
 #include <string>
-#include "Video/API/Context.h"
+#include "Platform/OpenGL/GLContext.h"
+#include "Platform/Vulkan/VkContext.h"
 #include "Log.h"
 #include "Utils/DebugOnly.h"
 #include "Utils/GLFWCallbacks.h"
@@ -25,12 +26,8 @@ namespace tewi
 			{
 				glfwInit();
 
-				// FUCKING MESA
-				// THIS IS UNDER AMDGPU AND MESA-GIT, I DUNNO IF IT WORKS ON INTEL
-				glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-				glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-				glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-				glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+				m_context.setup();
+
 				glfwSwapInterval(0);
 
 				m_window = glfwCreateWindow(m_width, m_height, windowName.c_str(), nullptr, nullptr);
@@ -39,15 +36,17 @@ namespace tewi
 				glfwMakeContextCurrent(m_window);
 				glfwSetWindowSizeCallback(m_window, windowResizeCallback);
 
-				DebugOnly<int> error = glewInit();
-				Ensures(error == GLEW_OK, "Failed GLEW initialization");
+				m_context.postInit();
 
-				glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+				//DebugOnly<int> error = glewInit();
+				//Ensures(error == GLEW_OK, "Failed GLEW initialization");
 
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-				std::printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
+				//glEnable(GL_BLEND);
+				//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+				std::printf("API Version: %s\n", m_context.getAPIVersion());
 			}
 
 			~Window()
@@ -91,6 +90,8 @@ namespace tewi
 			inline int getHeight() const noexcept { return m_height; }
 
 			inline GLFWwindow* getWindow() const noexcept { return m_window; }
+
+			inline auto* getContext() { return &m_context; }
 		private:
 			GLFWwindow* m_window;
 			int m_width;
