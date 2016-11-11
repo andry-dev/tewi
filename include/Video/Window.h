@@ -27,6 +27,7 @@ namespace tewi
 				glfwInit();
 
 				m_context.setup();
+				
 
 				glfwSwapInterval(0);
 
