@@ -40,11 +40,6 @@ namespace tewi
 					cleanup();
 				}
 
-				const T* operator &() const
-				{
-					return &object;
-				}
-
 				T* replace()
 				{
 					cleanup();

@@ -3,34 +3,31 @@
 
 namespace tewi
 {
-	namespace Video
+	namespace API
 	{
-		namespace API
+		enum API_TYPE
 		{
-			enum API_TYPE
+			NULL_RENDERER,
+			OPENGL,
+			VULKAN,
+			END
+		};
+
+		template <unsigned int APINum>
+		class Context
+		{
+		public:
+			Context()
 			{
-				NULL_RENDERER,
-				OPENGL,
-				VULKAN,
-				END
-			};
+				static_assert(APINum >= API_TYPE::NULL_RENDERER && APINum < API_TYPE::END, "Invalid API number");
+			}
 
-			template <unsigned int APINum>
-			class Context
-			{
-			public:
-				Context()
-				{
-					static_assert(APINum >= API_TYPE::NULL_RENDERER && APINum < API_TYPE::END, "Invalid API number");
-				}
+			auto getAPI() const { return m_API; }
 
-				auto getAPI() const { return m_API; }
+		protected:
+			unsigned int m_API = APINum;
+		};
 
-			protected:
-				unsigned int m_API = APINum;
-			};
-
-		}
 	}
 }
 

@@ -8,50 +8,47 @@
 
 namespace tewi
 {
-	namespace Video
+	class Camera2D
 	{
-		class Camera2D
+	public:
+		Camera2D(int screenWidth, int screenHeight);
+		~Camera2D();
+
+		Camera2D(const Camera2D& rhs);
+		Camera2D& operator=(const Camera2D& rhs);
+
+		Camera2D(Camera2D&& rhs);
+		Camera2D& operator=(Camera2D&& rhs);
+
+		void update();
+
+		void getWorldCoordsFromScreenCoords(glm::vec2& coords);
+
+		inline auto getScale() const { return m_scale; }
+		inline auto getPosition() const { return m_pos; }
+		inline auto getMatrix() const { return m_cameraMat; }
+
+		inline void setScale(float scale)
 		{
-		public:
-			Camera2D(int screenWidth, int screenHeight);
-			~Camera2D();
+			m_scale = scale;
+			m_needsMatUpdate = true;
+		}
 
-			Camera2D(const Camera2D& rhs);
-			Camera2D& operator=(const Camera2D& rhs);
+		inline void setPosition(const glm::vec2& pos)
+		{
+			m_pos = pos;
+			m_needsMatUpdate = true;
+		}
+	private:
+		bool m_needsMatUpdate;
+		int m_screenWidth;
+		int m_screenHeight;
 
-			Camera2D(Camera2D&& rhs);
-			Camera2D& operator=(Camera2D&& rhs);
-
-			void update();
-
-			void getWorldCoordsFromScreenCoords(glm::vec2& coords);
-
-			inline auto getScale() const { return m_scale; }
-			inline auto getPosition() const { return m_pos; }
-			inline auto getMatrix() const { return m_cameraMat; }
-
-			inline void setScale(float scale)
-			{
-				m_scale = scale;
-				m_needsMatUpdate = true;
-			}
-
-			inline void setPosition(const glm::vec2& pos)
-			{
-				m_pos = pos;
-				m_needsMatUpdate = true;
-			}
-		private:
-			bool m_needsMatUpdate;
-			int m_screenWidth;
-			int m_screenHeight;
-
-			float m_scale;
-			glm::vec2 m_pos;
-			glm::mat4 m_ortho;
-			glm::mat4 m_cameraMat;
-		};
-	}
+		float m_scale;
+		glm::vec2 m_pos;
+		glm::mat4 m_ortho;
+		glm::mat4 m_cameraMat;
+	};
 }
 
 

@@ -8,28 +8,25 @@
 
 namespace tewi
 {
-	namespace Video
+	struct Renderable2D final
 	{
-		struct Renderable2D final
+		Renderable2D(const glm::vec2& pos, const glm::vec2& size, const Color& color)
+			: pos(pos), texture(), color(color), scale(1.0f)
 		{
-			Renderable2D(const glm::vec2& pos, const glm::vec2& size, const Color& color)
-				: pos(pos), texture(), color(color), scale(1.0f)
-			{
-				texture.size = size;
-			}
+			texture.size = size;
+		}
 
-			Renderable2D(const glm::vec2& pos, Texture texture, const Color& color)
-				: pos(pos), texture(texture), color(color), scale(1.0f)
-			{
+		Renderable2D(const glm::vec2& pos, Texture texture, const Color& color)
+			: pos(pos), texture(texture), color(color), scale(1.0f)
+		{
 
-			}
+		}
 
-			glm::vec2 pos;
-			Texture texture;
-			Color color;
-			float scale;
-		};
-	}
+		glm::vec2 pos;
+		Texture texture;
+		Color color;
+		float scale;
+	};
 }
 
 

@@ -11,60 +11,57 @@
 
 namespace tewi
 {
-	namespace Video
+	namespace API
 	{
-		namespace API
+		template<>
+		class Context<API_TYPE::OPENGL>
 		{
-			template<>
-			class Context<API_TYPE::OPENGL>
+		public:
+			Context()
 			{
-			public:
-				Context()
-				{
 
-				}
+			}
 
-				void setup()
-				{
-					// FUCKING MESA
-					// THIS IS UNDER AMDGPU AND MESA-GIT, I DUNNO IF IT WORKS ON INTEL
-					glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-					glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-					glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-					glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+			void setup()
+			{
+				// FUCKING MESA
+				// THIS IS UNDER AMDGPU AND MESA-GIT, I DUNNO IF IT WORKS ON INTEL
+				glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+				glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+				glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+				glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-				}
+			}
 
-				void postInit()
-				{
-					DebugOnly<int> error = glewInit();
-					Ensures(error == GLEW_OK, "Failed GLEW initialization");
+			void postInit()
+			{
+				DebugOnly<int> error = glewInit();
+				Ensures(error == GLEW_OK, "Failed GLEW initialization");
 
-					glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+				glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-					glEnable(GL_BLEND);
-					glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				}
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			}
 
-				void preDraw()
-				{
-					glClearDepth(1.0f);
-					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-				}
+			void preDraw()
+			{
+				glClearDepth(1.0f);
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			}
 
-				void postDraw()
-				{
+			void postDraw()
+			{
 
-				}
+			}
 
-				const unsigned char* getAPIVersion()
-				{
-					return glGetString(GL_VERSION);
-				}
-			};
+			const unsigned char* getAPIVersion()
+			{
+				return glGetString(GL_VERSION);
+			}
+		};
 
-			using GLContext = Context<API_TYPE::OPENGL>;
-		}
+		using GLContext = Context<API_TYPE::OPENGL>;
 	}
 }
 

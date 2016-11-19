@@ -15,20 +15,19 @@
 
 namespace tewi
 {
-	
 	template <class Derived, unsigned int APINum>
 	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 	template <class Derived, unsigned int APINum>
 	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
-	template <class Derived, unsigned int APINum = Video::API::API_TYPE::OPENGL>
+	template <class Derived, unsigned int APINum = API::API_TYPE::OPENGL>
 	class GameCommon
 	{
 	public:
 		GameCommon(const std::string& windowName, int width, int height)
 		{
-			m_window = std::make_unique<Video::Window<APINum>>(windowName, width, height);
+			m_window = std::make_unique<Window<APINum>>(windowName, width, height);
 			Log::info("CALLED GameCommon::GameCommon");
 
 			glfwSetWindowUserPointer(m_window->getWindow(), this);
@@ -71,9 +70,9 @@ namespace tewi
 			m_window->swap();
 		}
 		
-		Utils::TickTimer m_tickTimer;
+		TickTimer m_tickTimer;
 
-		std::unique_ptr<Video::Window<APINum>> m_window;
+		std::unique_ptr<Window<APINum>> m_window;
 
 		bool m_isWindowClosed = false;
 

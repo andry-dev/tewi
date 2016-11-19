@@ -14,39 +14,36 @@
 
 namespace tewi
 {
-	namespace Video
+	class Sprite
 	{
-		class Sprite
+	public:
+		Sprite(const glm::vec2& pos, const std::string& path)
+			: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
+			m_collidable(m_renderable.pos, m_renderable.texture.size)
 		{
-		public:
-			Sprite(const glm::vec2& pos, const std::string& path)
-				: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
-				m_collidable(m_renderable.pos, m_renderable.texture.size)
-			{
-			}
+		}
 
-			Sprite(const glm::vec2& pos, float scale, const std::string& path)
-				: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
-				m_collidable(m_renderable.pos, m_renderable.texture.size)
-			{
-				m_renderable.scale = scale;
-			}
+		Sprite(const glm::vec2& pos, float scale, const std::string& path)
+			: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
+			m_collidable(m_renderable.pos, m_renderable.texture.size)
+		{
+			m_renderable.scale = scale;
+		}
 
-			operator const Renderable2D() { return m_renderable; }
-			operator const Renderable2D*() { return &m_renderable; }
+		operator const Renderable2D() { return m_renderable; }
+		operator const Renderable2D*() { return &m_renderable; }
 
-			operator const Physics::Collidable2D() { return m_collidable; }
-			operator const Physics::Collidable2D*() { return &m_collidable; }
+		operator const Physics::Collidable2D() { return m_collidable; }
+		operator const Physics::Collidable2D*() { return &m_collidable; }
 
-			auto getRenderable() const { return m_renderable; }
-			auto getCollidable() const { return m_collidable; }
+		auto getRenderable() const { return m_renderable; }
+		auto getCollidable() const { return m_collidable; }
 
-		protected:
+	protected:
 
-			Renderable2D m_renderable;
-			Physics::Collidable2D m_collidable;
-		};
-	}
+		Renderable2D m_renderable;
+		Physics::Collidable2D m_collidable;
+	};
 }
 
 

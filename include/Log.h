@@ -28,43 +28,43 @@ namespace tewi
 
 		inline void debugWarning(const std::string& str)
 		{
-			#ifndef NDEBUG
+#ifndef NDEBUG
 			warning(str);
-			#endif
+#endif
 		}
 
 		inline void debugError(const std::string& str)
 		{
-			#ifndef NDEBUG
+#ifndef NDEBUG
 			error(str);
-			#endif
+#endif
 		}
 
 		inline void debugInfo(const std::string& str)
 		{
-			#ifndef NDEBUG
+#ifndef NDEBUG
 			info(str);
-			#endif
+#endif
 		}
 
 #ifndef NDEBUG
-		#define Expects(cond, msg) \
-			if (!(cond)) { \
-				tewi::Log::error(msg); \
-				glfwTerminate();  \
-				std::terminate(); \
-			}
-		
-		#define Ensures(cond, msg) \
-			if (!(cond)) { \
-				tewi::Log::error(msg); \
-				glfwTerminate();  \
-				std::terminate(); \
-			}
+#define Expects(cond, msg) \
+		if (!(cond)) { \
+			tewi::Log::error(msg); \
+			glfwTerminate();  \
+			std::terminate(); \
+		}
+
+#define Ensures(cond, msg) \
+		if (!(cond)) { \
+			tewi::Log::error(msg); \
+			glfwTerminate();  \
+			std::terminate(); \
+		}
 
 #else
-		#define Expects(cond, msg)
-		#define Ensures(cond, msg)
+#define Expects(cond, msg)
+#define Ensures(cond, msg)
 #endif
 	}
 }

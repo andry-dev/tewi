@@ -7,52 +7,49 @@
 
 namespace tewi
 {
-	namespace Video
+	namespace API
 	{
-		namespace API
+		template<>
+		class Context<API_TYPE::VULKAN>
 		{
-			template<>
-			class Context<API_TYPE::VULKAN>
+		public:
+			Context()
 			{
-			public:
-				Context()
-				{
-					
-				}
+				
+			}
 
-				void setup()
-				{
-					glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-					glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-				}
+			void setup()
+			{
+				glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+				glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+			}
 
-				void postInit()
-				{
-					
-				}
+			void postInit()
+			{
+				
+			}
 
-				void preDraw()
-				{
+			void preDraw()
+			{
 
-				}
+			}
 
-				void postDraw()
-				{
+			void postDraw()
+			{
 
-				}
+			}
 
-				const char* getAPIVersion()
-				{
-					return "Vulkan";
-				}
+			const char* getAPIVersion()
+			{
+				return "Vulkan";
+			}
 
-			private:
+		private:
 
-				Platform::Vulkan::Instance m_instance;
-			};
+			Platform::Vulkan::Instance m_instance;
+		};
 
-			using VkContext = Context<API_TYPE::VULKAN>;
-		}
+		using VkContext = Context<API_TYPE::VULKAN>;
 	}
 }
 

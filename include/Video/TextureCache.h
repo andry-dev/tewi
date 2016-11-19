@@ -6,22 +6,19 @@
 
 namespace tewi
 {
-	namespace Video
+	class TextureCache
 	{
-		class TextureCache
-		{
-		public:
-			TextureCache();
-			~TextureCache();
+	public:
+		TextureCache();
+		~TextureCache();
 
-			Texture get(const std::string& path);
+		Texture get(const std::string& path);
 
-		private:
-			Texture load(const std::string& path);
-			
-			std::map<std::string, Texture> m_map;
-		};
-	}
+	private:
+		Texture load(const std::string& path);
+		
+		std::map<std::string, Texture> m_map;
+	};
 }
 
 

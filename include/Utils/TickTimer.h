@@ -8,34 +8,31 @@
 
 namespace tewi
 {
-	namespace Utils
+	class TickTimer
 	{
-		class TickTimer
-		{
-		public:
-			TickTimer();
-			~TickTimer();
+	public:
+		TickTimer();
+		~TickTimer();
 
-			TickTimer(const TickTimer& rhs);
-			TickTimer& operator=(const TickTimer& rhs);
+		TickTimer(const TickTimer& rhs);
+		TickTimer& operator=(const TickTimer& rhs);
 
-			TickTimer(TickTimer&& rhs);
-			TickTimer& operator=(TickTimer&& rhs);
+		TickTimer(TickTimer&& rhs);
+		TickTimer& operator=(TickTimer&& rhs);
 
-			bool update(double freq = 1.0);
+		bool update(double freq = 1.0);
 
-			double getDeltaTime(double desiredFramerate);
+		double getDeltaTime(double desiredFramerate);
 
-			inline std::size_t getTickRate() const { return m_tickRate; }
-		private:
-			
-			std::size_t m_ticks = 0;
-			std::size_t m_tickRate = 0;
+		inline std::size_t getTickRate() const { return m_tickRate; }
+	private:
+		
+		std::size_t m_ticks = 0;
+		std::size_t m_tickRate = 0;
 
-			Clock m_clock;
-			Clock m_deltaClock;
-		};
-	}
+		Clock m_clock;
+		Clock m_deltaClock;
+	};
 }
 
 

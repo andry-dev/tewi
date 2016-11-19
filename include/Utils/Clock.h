@@ -8,27 +8,24 @@
 
 namespace tewi
 {
-	namespace Utils
+	class Clock
 	{
-		class Clock
-		{
-		public:
-			Clock();
-			~Clock();
+	public:
+		Clock();
+		~Clock();
 
-			Clock(const Clock& rhs);
-			Clock& operator=(const Clock& rhs);
+		Clock(const Clock& rhs);
+		Clock& operator=(const Clock& rhs);
 
-			Clock(Clock&& rhs);
-			Clock& operator=(Clock&& rhs);
+		Clock(Clock&& rhs);
+		Clock& operator=(Clock&& rhs);
 
-			double restartTimer();
+		double restartTimer();
 
-			inline double getCurrTime() const { return glfwGetTime() - m_startTime; }
-		private:
-			double m_startTime = glfwGetTime();
-		};
-	}
+		inline double getCurrTime() const { return glfwGetTime() - m_startTime; }
+	private:
+		double m_startTime = glfwGetTime();
+	};
 }
 
 #endif /* CLOCK_H */

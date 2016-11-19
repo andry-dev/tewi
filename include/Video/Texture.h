@@ -9,16 +9,13 @@
 
 namespace tewi
 {
-	namespace Video
+	struct Texture
 	{
-		struct Texture
-		{
-			std::uint32_t id;
-			glm::vec2 size;
+		std::uint32_t id;
+		glm::vec2 size;
 
-			std::vector<std::uint8_t> pixels;
-		};
-	}
+		std::vector<std::uint8_t> pixels;
+	};
 }
 
 #endif /* OPENGL_TEXTURE_H */
