@@ -2,3 +2,6 @@
 -Ilib/universal
 -Ilib/universal/glm
 -Ilib/universal/glew/include
+
+compilation_database=../build
+flang=-Iinclude -Ilib/universal -Ilib/universal/glm -Ilib/universal/glew/include

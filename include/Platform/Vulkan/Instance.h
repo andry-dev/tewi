@@ -6,7 +6,7 @@
 #include "Utils/DebugOnly.h"
 #include "Platform/Vulkan/ValidationLayers.h"
 #include "Platform/Vulkan/Callbacks.h"
-#include "Platform/Vulkan/Devices.h"
+#include "Platform/Vulkan/PhysicalDevices.h"
 
 #include <vector>
 
@@ -108,7 +108,7 @@ namespace tewi
 							"Failed to setup debug callback");
 				}
 
-				Device m_devices;
+				PhysicalDevices m_devices;
 				VDeleter<VkInstance> m_instance{vkDestroyInstance};
 			};
 
