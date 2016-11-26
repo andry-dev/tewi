@@ -23,7 +23,7 @@ namespace tewi
 				}
 			};
 
-			QueueFamilyIndices findQueueFamilies(VkPhysicalDevice dev)
+			inline QueueFamilyIndices findQueueFamilies(VkPhysicalDevice dev)
 			{
 				QueueFamilyIndices indices;
 

@@ -1,5 +1,5 @@
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef TEWI_WINDOW_H
+#define TEWI_WINDOW_H
 
 #include <GL/glew.h>
 
@@ -15,6 +15,24 @@
 
 namespace tewi
 {
+	/** \brief Basic windowing system
+	 *
+	 * This class is the main windowing system.
+	 *
+	 * Basically manages the creation and instance of a window.
+	 * It registers GLFW's callbacks, etc...
+	 *
+	 * \a APINum is used to initialize the window with the choosen graphic API.
+	 *
+	 * \sa API::Context
+	 *
+	 * \code
+	 * using namespace tewi;
+	 * contexpr int api = API::API_TYPE::OPENGL;
+	 * Window<api> window("Title to your window", 800, 600);
+	 *
+	 * \endcode
+	 */
 	template <unsigned int APINum>
 	class Window
 	{
@@ -26,7 +44,6 @@ namespace tewi
 
 			m_context.setup();
 			
-
 			glfwSwapInterval(0);
 
 			m_window = glfwCreateWindow(m_width, m_height, windowName.c_str(), nullptr, nullptr);
@@ -70,18 +87,37 @@ namespace tewi
 			return *this;
 		}
 
+		/** Is the window closed?
+		 *
+		 */
 		bool isWindowClosed()
 		{
 			return glfwWindowShouldClose(m_window);
 		}
 
+		/** Swaps the window buffers
+		 *
+		 */
 		inline void swap() const noexcept { glfwSwapBuffers(m_window); }
 
+		/** Returns the width ofthe window
+		 *
+		 */
 		inline int getWidth() const noexcept { return m_width; }
+
+		/** Returns the height of the window
+		 *
+		 */
 		inline int getHeight() const noexcept { return m_height; }
 
+		/** Returns a pointer to the current instance of GLFWwindow
+		 *
+		 */
 		inline GLFWwindow* getWindow() const noexcept { return m_window; }
 
+		/** Returns a pointer to the current context used to initialize the API
+		 *
+		 */
 		inline auto* getContext() { return &m_context; }
 	private:
 		GLFWwindow* m_window;
@@ -92,4 +128,4 @@ namespace tewi
 	};
 }
 
-#endif /* WINDOW_H */
+#endif /* TEWI_WINDOW_H */

@@ -6,7 +6,7 @@
 #include "Utils/DebugOnly.h"
 #include "Platform/Vulkan/ValidationLayers.h"
 #include "Platform/Vulkan/Callbacks.h"
-#include "Platform/Vulkan/PhysicalDevices.h"
+#include "Platform/Vulkan/LogicalDevice.h"
 
 #include <vector>
 
@@ -60,7 +60,7 @@ namespace tewi
 					vkEnumerateInstanceExtensionProperties(nullptr, &extCount, extensions.data());
 
 					setupDebugCallback();
-					m_devices.init(&m_instance);
+					m_device.init(&m_instance);
 				}
 
 				auto getInstance() const { return m_instance; }
@@ -108,7 +108,7 @@ namespace tewi
 							"Failed to setup debug callback");
 				}
 
-				PhysicalDevices m_devices;
+				LogicalDevice m_device;
 				VDeleter<VkInstance> m_instance{vkDestroyInstance};
 			};
 

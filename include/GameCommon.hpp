@@ -15,13 +15,61 @@
 
 namespace tewi
 {
+	/** Callback for keyboard presses.
+	 *
+	 * **Internal use only.**
+	 */
 	template <class Derived, unsigned int APINum>
 	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
+	/** Callback for mouse presses.
+	 *
+	 * **Internal use only.**
+	 *
+	 */
 	template <class Derived, unsigned int APINum>
 	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
-	template <class Derived, unsigned int APINum = API::API_TYPE::OPENGL>
+	/** \brief Managed base game class.
+	 *
+	 * Inherit from this class to get a managed base game class.
+	 *
+	 * It basically sets up everything for you, so you don't need to lose time writing window creation and game loop management.
+	 *
+	 * This class uses the CRTP idiom to statically dispatch the function calls, so you **need to implement every function or your program will seg fault.**
+	 *
+	 * Example in your own code:
+	 *
+	 * \code
+	 *
+	 * #include "GameCommon.hpp"
+	 *
+	 * using namespace tewi;
+	 *
+	 * class MainGame : public GameCommon<MainGame, API::API_TYPE::OPENGL>
+	 * {
+	 * public:
+	 *    void init();
+	 *    void processInputs();
+	 *    void update();
+	 *    void draw();
+	 *
+	 * // Your functions
+	 * // [...]
+	 *
+	 *
+	 * private:
+	 *
+	 * // Your variables
+	 *
+	 * };
+	 *
+	 * \endcode
+	 *
+	 * Then, your code is exposed to the protected members of this class.
+	 *
+	 */
+	template <class Derived, unsigned int APINum>
 	class GameCommon
 	{
 	public:

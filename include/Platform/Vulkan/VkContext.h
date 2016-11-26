@@ -9,6 +9,17 @@ namespace tewi
 {
 	namespace API
 	{
+		/** \brief Vulkan Context.
+		 *
+		 *
+		 * Tries to initialize Vulkan.
+		 *
+		 * You shouldn't be reading this, by the way.
+		 *
+		 *
+		 * **Internal use only.**
+		 *
+		 */
 		template<>
 		class Context<API_TYPE::VULKAN>
 		{

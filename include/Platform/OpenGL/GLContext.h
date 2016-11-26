@@ -13,6 +13,13 @@ namespace tewi
 {
 	namespace API
 	{
+		/** \brief OpenGL Context.
+		 *
+		 *
+		 * Initializes OpenGL.
+		 *
+		 * **Internal use only.**
+		 */
 		template<>
 		class Context<API_TYPE::OPENGL>
 		{

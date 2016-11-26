@@ -23,12 +23,55 @@ namespace tewi
 	constexpr std::size_t g_bufferSize = g_spriteSize * g_maxTextures;
 	constexpr std::size_t g_indicesSize = g_maxTextures * 6;
 
-
 	constexpr int g_posAttribPointer = 0;
 	constexpr int g_uvAttribPointer = 1;
 	constexpr int g_tidAttribPointer = 2;
 	constexpr int g_colorAttribPointer = 3;
 
+	/** \brief Batch renderer for 2D objects.
+	 *
+	 * This is a batch renderer for 2D objects.
+	 * 
+	 * \a APINum is the number of the API that you want to use.
+	 *
+	 * To render a renderable:
+	 * * You first need to instantiate the class with the API number.
+	 * * Begin the batch with \a begin().
+	 * * Insert the renderables between \a begin() and \a end() with \a add().
+	 * * End the batch with \a end().
+	 * * Make the draw call with \a draw().
+	 *
+	 * Example:
+	 * \code
+	 *
+	 * using namespace tewi;
+	 * constexpr int api = API::API_TYPE::OPENGL;
+	 * BatchRenderer2D<api> batch;
+	 *
+	 * // Later in the code
+	 * // Let's assume that we have to render a sprite
+	 *
+	 * Sprite spr(glm::vec2(1.0f, 1.0f), "path/to/sprite.png");
+	 *
+	 * // In our draw function we do this:
+	 *
+	 * // First begin the batch
+	 * batch.begin();
+	 *
+	 * // ADD YOUR RENDERABLES HERE
+	 * batch.add(spr.getRenderable());
+	 *
+	 * // Then end the batch
+	 * batch.end();
+	 *
+	 * // And render it
+	 * batch.draw();
+	 *
+	 * \endcode
+	 *
+	 * Tips:
+	 * * \a add() additionally supports a vector of Renderable2D, so you can pack all the renderables in a vector and supply them to the renderer.
+	 */
 	template <std::size_t APINum>
 	class BatchRenderer2D
 	{
@@ -52,6 +95,7 @@ namespace tewi
 			glVertexAttribPointer(g_uvAttribPointer, 2, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, uv)));
 			glVertexAttribPointer(g_tidAttribPointer, 1, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, textureID)));
 			glVertexAttribPointer(g_colorAttribPointer, 4, GL_UNSIGNED_BYTE, GL_TRUE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, color)));
+
 
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -83,13 +127,35 @@ namespace tewi
 		BatchRenderer2D(BatchRenderer2D&& rhs) =  delete;
 		BatchRenderer2D& operator=(BatchRenderer2D&& rhs) = delete;
 
+		/** Begins the rendering by binding the buffers.
+		 *
+		 * That's the first function you need to call.
+		 *
+		 */
 		void begin()
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 			m_buffer = (Vertex*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 		}
 
-#ifdef TEWI_ENABLE_SINGLE_ELEMENT_BATCH
+		/** Add a **single** renderables to the buffer.
+		 *
+		 * Call this function one or multiple time **after** \a begin() and **before** \a end().
+		 * 
+		 * Example:
+		 *
+		 * \code
+		 * // Assuming a BatchRenderer named "batch"
+		 * // Also assuming a Sprite named "spr"
+		 *
+		 * batch.add(spr.getRenderable());
+		 *
+		 * // Or, if the Sprite supports implicit conversion to a Renderable2D
+		 *
+		 * batch.add(spr);
+		 *
+		 * \endcode
+		 */
 		void add(const Renderable2D& renderable)
 		{
 			const auto& position = renderable.pos;
@@ -153,7 +219,23 @@ namespace tewi
 
 			m_indexCount += 6;
 		}
-#endif
+
+		/** Add a **vector** of renderables to the buffer.
+		 *
+		 * Call this function one or multiple time **after** \a begin() and **before** \a end().
+		 * 
+		 * Example:
+		 *
+		 * \code
+		 * 
+		 * // Assuming a BatchRenderer named "batch"
+		 * // And assuming a std::vector of Renderable2Ds named "vec"
+		 *
+		 * batch.add(vec);
+		 *
+		 * \endcode
+		 *
+		 */
 		void add(const std::vector<Renderable2D>& renderableList)
 		{
 			for (const auto& renderable : renderableList)
@@ -221,6 +303,24 @@ namespace tewi
 			}
 		}
 
+		/** Unbinds the buffers.
+		 *
+		 * Call this after adding the renderables with \a add() and before \a draw().
+		 *
+		 */
+		void end()
+		{
+			glUnmapBuffer(GL_ARRAY_BUFFER);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+		}
+
+		/** Does the draw call and resets the buffer.
+		 *
+		 * You need to do this **after** \a end().
+		 *
+		 * This is the last function you need to call.
+		 *
+		 */
 		void draw()
 		{
 			for (std::size_t i = 0; i < m_textureSlots.size(); ++i)
@@ -242,11 +342,6 @@ namespace tewi
 			m_indexCount = 0;
 		}
 		
-		void end()
-		{
-			glUnmapBuffer(GL_ARRAY_BUFFER);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-		}
 	private:
 		GLuint m_VBO;
 		GLuint m_VAO;

@@ -8,6 +8,7 @@
 
 namespace tewi
 {
+	// Don't you ever try to inherit from this class
 	struct Renderable2D final
 	{
 		Renderable2D(const glm::vec2& pos, const glm::vec2& size, const Color& color)

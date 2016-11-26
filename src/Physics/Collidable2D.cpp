@@ -4,39 +4,64 @@ namespace tewi
 {
 	namespace Physics
 	{
-		Collidable2D::Collidable2D(glm::vec2& pos, glm::vec2& size)
-			: m_refPos(&pos), m_refSize(&size), m_radius(pos.x / 2.0f)
+		bool checkAABB(const Collidable2D& first, const Collidable2D& second)
 		{
-
+			return ((first.refPos->x < second.refPos->x + second.refSize->x) &
+					(first.refPos->x + first.refSize->x > second.refPos->x) &
+					(first.refPos->y < second.refPos->y + second.refSize->y) &
+					(first.refPos->y + first.refSize->y > second.refPos->y));
 		}
 
-		Collidable2D& Collidable2D::operator=(Collidable2D& rhs)
+		bool checkAABB(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup)
 		{
-			if (this != &rhs)
+			bool test = true;
+			for (const auto& first : firstGroup)
 			{
-				m_refPos = rhs.m_refPos;
-				m_refSize = rhs.m_refSize;
-				m_radius = rhs.m_radius;
+				for (const auto& second : secondGroup)
+				{
+					if (!((first.refPos->x < second.refPos->x + second.refSize->x) &
+						(first.refPos->x + first.refSize->x > second.refPos->x) &
+						(first.refPos->y < second.refPos->y + second.refSize->y) &
+						(first.refPos->y + first.refSize->y > second.refPos->y)))
+					{
+						test = false;
+					}
+				}
 			}
-			return *this;
+
+			return test;
 		}
 
-		bool Collidable2D::checkAABB(const Collidable2D& other) const
+		bool checkRadius(const Collidable2D& first, const Collidable2D& second)
 		{
-			return (m_refPos->x < other.m_refPos->x + other.m_refSize->x &&
-					m_refPos->x + m_refSize->x > other.m_refPos->x &&
-					m_refPos->y < other.m_refPos->y + other.m_refSize->y &&
-					m_refPos->y + m_refSize->y > other.m_refPos->y);
-		}
-
-		bool Collidable2D::checkRadius(const Collidable2D& other) const
-		{
-			float distance_x = (m_refPos->x + m_radius) - (other.m_refPos->x + other.m_radius);
-			float distance_y = (m_refPos->y + m_radius) - (other.m_refPos->y + other.m_radius);
+			float distance_x = (first.refPos->x + first.radius) - (second.refPos->x + second.radius);
+			float distance_y = (first.refPos->y + first.radius) - (second.refPos->y + second.radius);
 
 			float distance = (distance_x * distance_x + distance_y * distance_y);
 
-			return distance < (m_radius * m_radius + other.m_radius * other.m_radius);
+			return distance < (first.radius * first.radius + second.radius * second.radius);
+		}
+
+		bool checkRadius(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup)
+		{
+			bool test = true;
+			for (const auto& first : firstGroup)
+			{
+				for (const auto& second : secondGroup)
+				{
+					float distance_x = (first.refPos->x + first.radius) - (second.refPos->x + second.radius);
+					float distance_y = (first.refPos->y + first.radius) - (second.refPos->y + second.radius);
+
+					float distance = (distance_x * distance_x + distance_y * distance_y);
+
+					if (!(distance < (first.radius * first.radius + second.radius * second.radius)))
+					{
+						test = false;
+					}
+				}
+			}
+
+			return test;
 		}
 	}
 }

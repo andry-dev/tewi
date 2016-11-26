@@ -11,10 +11,13 @@ include_directories(lib/universal/glfw)
 add_subdirectory(lib/universal/glm)
 include_directories(lib/universal/glm)
 
+add_subdirectory(doc)
+
 if(MSVC)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 else()
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pipe")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pipe -flto")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto=8")
 endif()
 
 set(SRC

@@ -3,26 +3,24 @@
 
 #include <glm/glm.hpp>
 
+#include <vector>
+
 namespace tewi
 {
 	namespace Physics
 	{
-		class Collidable2D
+		struct Collidable2D
 		{
-		public:
-			Collidable2D(glm::vec2& pos, glm::vec2& size);
-
-			Collidable2D& operator=(Collidable2D& rhs);
-
-			bool checkAABB(const Collidable2D& other) const;
-
-			bool checkRadius(const Collidable2D& other) const;
-
-		private:
-			glm::vec2* m_refPos;
-			glm::vec2* m_refSize;
-			float m_radius;
+			glm::vec2* refPos;
+			glm::vec2* refSize;
+			float radius;
 		};
+
+		extern bool checkAABB(const Collidable2D& first, const Collidable2D& second);
+		extern bool checkAABB(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup);
+
+		extern bool checkRadius(const Collidable2D& first, const Collidable2D& second);
+		extern bool checkRadius(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup);
 	}
 }
 

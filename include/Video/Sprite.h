@@ -18,15 +18,17 @@ namespace tewi
 	{
 	public:
 		Sprite(const glm::vec2& pos, const std::string& path)
-			: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
-			m_collidable(m_renderable.pos, m_renderable.texture.size)
+			: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255))
 		{
+			m_collidable.refPos = &m_renderable.pos;
+			m_collidable.refSize = &m_renderable.texture.size;
 		}
 
 		Sprite(const glm::vec2& pos, float scale, const std::string& path)
-			: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
-			m_collidable(m_renderable.pos, m_renderable.texture.size)
+			: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255))
 		{
+			m_collidable.refPos = &m_renderable.pos;
+			m_collidable.refSize = &m_renderable.texture.size;
 			m_renderable.scale = scale;
 		}
 
