@@ -91,10 +91,10 @@ namespace tewi
 			glEnableVertexAttribArray(g_tidAttribPointer);
 			glEnableVertexAttribArray(g_colorAttribPointer);
 
-			glVertexAttribPointer(g_posAttribPointer, 3, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(0));
+			glVertexAttribPointer(g_posAttribPointer, 2, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(0));
 			glVertexAttribPointer(g_uvAttribPointer, 2, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, uv)));
-			glVertexAttribPointer(g_tidAttribPointer, 1, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, textureID)));
 			glVertexAttribPointer(g_colorAttribPointer, 4, GL_UNSIGNED_BYTE, GL_TRUE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, color)));
+			glVertexAttribPointer(g_tidAttribPointer, 1, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, textureID)));
 
 
 			glBindBuffer(GL_ARRAY_BUFFER, 0);

@@ -2,31 +2,23 @@
 
 namespace tewi
 {
-	namespace IO
+	void InputManager::pressKey(std::uint32_t keycode)
 	{
-		InputManager::InputManager()
-		{
+		m_keymap[keycode] = true;
+	}
 
-		}
+	void InputManager::releaseKey(std::uint32_t keycode)
+	{
+		m_keymap[keycode] = false;
+	}
 
-		void InputManager::pressKey(std::uint32_t keycode)
-		{
-			m_keymap[keycode] = true;
-		}
+	bool InputManager::isKeyDown(std::uint32_t keycode)
+	{
 
-		void InputManager::releaseKey(std::uint32_t keycode)
-		{
-			m_keymap[keycode] = false;
-		}
+		const auto it = m_keymap.find(keycode);
+		if (it != m_keymap.end())
+			return it->second;
 
-		bool InputManager::isKeyDown(std::uint32_t keycode)
-		{
-
-			const auto it = m_keymap.find(keycode);
-			if (it != m_keymap.end())
-				return it->second;
-
-			return false;
-		}
+		return false;
 	}
 }

@@ -1,17 +1,21 @@
-#ifndef TEXTURE_CACHE_H
-#define TEXTURE_CACHE_H
+#ifndef TEWI_TEXTURE_CACHE_H
+#define TEWI_TEXTURE_CACHE_H
 
 #include <map>
 #include "Video/Texture.h"
 
 namespace tewi
 {
+	/** \brief A cache-system for textures
+	 *
+	 * In particular, this uses an std::map to cache textures and retrieve them by path.
+	 *
+	 * \sa ResourceManager
+	 *
+	 */
 	class TextureCache
 	{
 	public:
-		TextureCache();
-		~TextureCache();
-
 		Texture get(const std::string& path);
 
 	private:
@@ -22,4 +26,4 @@ namespace tewi
 }
 
 
-#endif /* TEXTURE_CACHE_H */
+#endif /* TEWI_TEXTURE_CACHE_H */

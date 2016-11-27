@@ -69,10 +69,12 @@ namespace tewi
 	struct Vertex
 	{
 		glm::vec2 position;
-		Color color;
 		glm::vec2 uv;
+		Color color;
 		float textureID;
 	};
+
+	static_assert(sizeof(Vertex) <= 24, "Don't add other useless stuff that this may kill the cache");
 #endif
 
 	constexpr std::uint32_t setColors(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a)

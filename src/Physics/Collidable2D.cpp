@@ -4,6 +4,13 @@ namespace tewi
 {
 	namespace Physics
 	{
+
+		Collidable2D::Collidable2D(glm::vec2& pos, glm::vec2& size)
+			: refPos(&pos), refSize(&size), radius(0.0f)
+		{
+
+		}
+
 		bool checkAABB(const Collidable2D& first, const Collidable2D& second)
 		{
 			return ((first.refPos->x < second.refPos->x + second.refSize->x) &

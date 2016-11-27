@@ -1,5 +1,5 @@
-#ifndef CLOCK_H
-#define CLOCK_H
+#ifndef TEWI_CLOCK_H
+#define TEWI_CLOCK_H
 
 #include <GL/glew.h>
 
@@ -8,6 +8,11 @@
 
 namespace tewi
 {
+	/** \brief Simple timer class.
+	 *  
+	 * There isn't much to say.
+	 *
+	 */
 	class Clock
 	{
 	public:
@@ -20,12 +25,18 @@ namespace tewi
 		Clock(Clock&& rhs);
 		Clock& operator=(Clock&& rhs);
 
+		/** Restarts the timer.
+		 *
+		 */
 		double restartTimer();
 
+		/* Gets the current time.
+		 *
+		 */
 		inline double getCurrTime() const { return glfwGetTime() - m_startTime; }
 	private:
 		double m_startTime = glfwGetTime();
 	};
 }
 
-#endif /* CLOCK_H */
+#endif /* TEWI_CLOCK_H */

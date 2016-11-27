@@ -99,12 +99,14 @@ namespace tewi
 					vkGetPhysicalDeviceProperties(dev, &devProps);
 					vkGetPhysicalDeviceFeatures(dev, &devFeatures);
 
+					/*
 					DebugOnly<std::size_t> verMaj = VK_VERSION_MAJOR(devProps.apiVersion);
 					DebugOnly<std::size_t> verMin = VK_VERSION_MINOR(devProps.apiVersion);
 					DebugOnly<std::size_t> verPatch = VK_VERSION_PATCH(devProps.apiVersion);
 
 					Log::debugInfo("dev name: " + std::string(devProps.deviceName));
 					Log::debugInfo("dev api: " + std::to_string(verMaj) + "." + std::to_string(verMin));
+					*/
 
 					std::int64_t score = 0;
 

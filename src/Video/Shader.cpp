@@ -73,6 +73,7 @@ namespace tewi
 
 		int result = 0;
 		glGetProgramiv(m_programID, GL_LINK_STATUS, &result);
+
 		// I hate this.
 		if (result == GL_FALSE)
 		{
@@ -84,7 +85,7 @@ namespace tewi
 			glGetProgramInfoLog(m_programID, errorLog.size(), &maxLen, &errorLog[0]);
 
 			Log::warning(errorLog.data());
-			
+
 			glDeleteProgram(m_programID);
 			glDeleteShader(m_vertShaderID);
 			glDeleteShader(m_fragShaderID);

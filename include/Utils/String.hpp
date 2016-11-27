@@ -1,5 +1,5 @@
-#ifndef STRING_LITERAL_H
-#define STRING_LITERAL_H
+#ifndef TEWI_STRING_LITERAL_H
+#define TEWI_STRING_LITERAL_H
 
 // Obviously this doesn't work on MSVC so I need to wait another three years before I can use this
 // Thanks.
@@ -9,7 +9,13 @@
 
 namespace tewi
 {
-class String
+
+	/** \brief Compile-time string.
+	 *
+	 * Unfinished at the moment, don't use.
+	 *
+	 */
+	class String
 	{
 	public:
 
@@ -221,4 +227,4 @@ class String
 #endif /* _WIN32 */
 
 
-#endif /* STRING_LITERAL_H */
+#endif /* TEWI_STRING_LITERAL_H */

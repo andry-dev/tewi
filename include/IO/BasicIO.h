@@ -1,5 +1,5 @@
-#ifndef BASIC_IO_H
-#define BASIC_IO_H
+#ifndef TEWI_BASIC_IO_H
+#define TEWI_BASIC_IO_H
 
 #include <vector>
 #include <string>
@@ -53,4 +53,4 @@ namespace tewi
 	}
 }
 
-#endif /* BASIC_IO_H */
+#endif /* TEWI_BASIC_IO_H */

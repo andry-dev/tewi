@@ -14,16 +14,6 @@
 
 namespace tewi
 {
-	TextureCache::TextureCache()
-	{
-
-	}
-
-	TextureCache::~TextureCache()
-	{
-
-	}
-
 	Texture TextureCache::get(const std::string& path)
 	{
 		auto it = m_map.find(path);
@@ -53,8 +43,10 @@ namespace tewi
 
 		tex.size = glm::vec2(width, height);
 
+#ifdef TEWI_TEXTURE_ENABLE_PIXELS
 		tex.pixels.resize(width * height * 4);
 		memcpy(&tex.pixels[0], imagePtr, tex.pixels.size());
+#endif /* TEWI_TEXTURE_DISABLE_PIXELS */
 
 		glGenTextures(1, &tex.id);
 
