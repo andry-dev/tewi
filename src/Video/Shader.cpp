@@ -21,6 +21,8 @@ namespace tewi
 
 		compile(m_vertShaderPath, m_vertShaderID);
 		compile(m_fragShaderPath, m_fragShaderID);
+
+		m_programID = glCreateProgram();
 	}
 
 	Shader::~Shader()
@@ -30,8 +32,6 @@ namespace tewi
 
 	void Shader::compile(const std::string& path, int id)
 	{
-		m_programID = glCreateProgram();
-
 		std::ifstream shaderFile(path);
 		Expects(!shaderFile.fail(), "Can't open " + std::string(path));
 
@@ -78,11 +78,11 @@ namespace tewi
 		if (result == GL_FALSE)
 		{
 			int maxLen = 0;
-			glGetShaderiv(m_programID, GL_INFO_LOG_LENGTH, &maxLen);
+			glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLen);
 
 			std::vector<GLchar> errorLog(maxLen);
 
-			glGetProgramInfoLog(m_programID, errorLog.size(), &maxLen, &errorLog[0]);
+			glGetProgramInfoLog(m_programID, maxLen, &maxLen, &errorLog[0]);
 
 			Log::warning(errorLog.data());
 
