@@ -23,12 +23,12 @@ namespace tewi
 				}
 			};
 
-			inline QueueFamilyIndices findQueueFamilies(VkPhysicalDevice dev)
+			inline QueueFamilyIndices findQueueFamilies(VkPhysicalDevice& dev)
 			{
 				QueueFamilyIndices indices;
 
 				std::uint32_t queueFamilyCount = 0;
-				vkGetPhysicalDeviceQueueFamilyProperties(dev, &queueFamilyCount, nullptr);
+				vkGetPhysicalDeviceQueueFamilyProperties(dev, &queueFamilyCount, 0);
 
 				std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
 				vkGetPhysicalDeviceQueueFamilyProperties(dev, &queueFamilyCount, queueFamilies.data());
@@ -57,9 +57,9 @@ namespace tewi
 			class PhysicalDevices
 			{
 			public:
-				void init(VDeleter<VkInstance>* instance)
+				void init(VDeleter<VkInstance>& instance)
 				{
-					m_instance = instance;
+					m_instance = &instance;
 					findGPUs();
 				}
 

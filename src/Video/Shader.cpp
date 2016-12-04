@@ -65,7 +65,6 @@ namespace tewi
 
 	void Shader::link()
 	{
-
 		glAttachShader(m_programID, m_vertShaderID);
 		glAttachShader(m_programID, m_fragShaderID);
 

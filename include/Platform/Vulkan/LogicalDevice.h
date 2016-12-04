@@ -6,8 +6,6 @@
 
 #include "Platform/Vulkan/ValidationLayers.h"
 
-// TODO: This class is completely useless
-// PLEASE REMOVE.
 namespace tewi
 {
 	namespace Platform
@@ -17,9 +15,15 @@ namespace tewi
 			class LogicalDevice
 			{
 				public:
-					void init(VDeleter<VkInstance>* instance)
+					void init(VDeleter<VkInstance>& instance)
 					{
 						m_physicalDevices.init(instance);
+						createLogicalDevice();
+					}
+
+					auto inline getDevices() noexcept
+					{
+						return m_physicalDevices;
 					}
 
 				private:
@@ -59,10 +63,12 @@ namespace tewi
 						Expects(res == VK_SUCCESS, "Can't create Vulkan logical device");
 
 
+						vkGetDeviceQueue(m_logicalDevice, indices.graphicsFamily, 0, &m_queue);
 					}
 
 					VDeleter<VkDevice> m_logicalDevice{vkDestroyDevice};
 					PhysicalDevices m_physicalDevices;
+					VkQueue m_queue;
 			};
 		}
 

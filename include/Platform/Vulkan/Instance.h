@@ -60,7 +60,15 @@ namespace tewi
 					vkEnumerateInstanceExtensionProperties(nullptr, &extCount, extensions.data());
 
 					setupDebugCallback();
-					m_device.init(&m_instance);
+
+					pickPhysicalDevice();
+					createLogicalDevice();
+
+				}
+
+				~Instance()
+				{
+					vkDestroyDevice(m_device, NULL);
 				}
 
 				auto getInstance() const { return m_instance; }
@@ -108,10 +116,108 @@ namespace tewi
 							"Failed to setup debug callback");
 				}
 
-				LogicalDevice m_device;
-				VDeleter<VkInstance> m_instance{vkDestroyInstance};
-			};
+				void pickPhysicalDevice()
+				{
+					uint32_t deviceCount = 0;
+					vkEnumeratePhysicalDevices(m_instance, &deviceCount, nullptr);
 
+					Expects(deviceCount != 0, "failed to find GPUs with Vulkan support!");
+
+					std::vector<VkPhysicalDevice> devices(deviceCount);
+					vkEnumeratePhysicalDevices(m_instance, &deviceCount, devices.data());
+
+					for (const auto& device : devices)
+					{
+						if (isDeviceSuitable(device))
+						{
+							m_physicalDevice = device;
+							break;
+						}
+					}
+				}
+
+				void createLogicalDevice()
+				{
+					QueueFamilyIndices indices = findQueueFamilies(m_physicalDevice);
+
+					VkDeviceQueueCreateInfo queueCreateInfo = {};
+					queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+					queueCreateInfo.queueFamilyIndex = indices.graphicsFamily;
+					queueCreateInfo.queueCount = 1;
+
+					float queuePriority = 1.0f;
+					queueCreateInfo.pQueuePriorities = &queuePriority;
+
+					VkPhysicalDeviceFeatures deviceFeatures = {};
+
+					VkDeviceCreateInfo createInfo = {};
+					createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+
+					createInfo.pQueueCreateInfos = &queueCreateInfo;
+					createInfo.queueCreateInfoCount = 1;
+
+					createInfo.pEnabledFeatures = &deviceFeatures;
+
+					createInfo.enabledExtensionCount = 0;
+					
+					if (g_validationLayersEnabled)
+					{
+						createInfo.enabledLayerCount = g_validationLayerList.size();
+						createInfo.ppEnabledLayerNames = g_validationLayerList.data();
+					}
+					else
+					{
+						createInfo.enabledLayerCount = 0;
+					}
+
+					Ensures(vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_device) == VK_SUCCESS, "Failed to create logical device");
+
+					vkGetDeviceQueue(m_device, indices.graphicsFamily, 0, &m_queue);
+				}
+
+				bool isDeviceSuitable(VkPhysicalDevice device)
+				{
+					QueueFamilyIndices indices = findQueueFamilies(device);
+
+					return indices.isComplete();
+				}
+
+				QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device)
+				{
+					QueueFamilyIndices indices;
+
+					uint32_t queueFamilyCount = 0;
+					vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+
+					std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+					vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+
+					int i = 0;
+					for (const auto& queueFamily : queueFamilies)
+					{
+						if (queueFamily.queueCount > 0 && queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+						{
+							indices.graphicsFamily = i;
+						}
+
+						if (indices.isComplete()) {
+							break;
+						}
+
+						i++;
+					}
+
+					return indices;
+				}
+
+				VkPhysicalDevice m_physicalDevice = VK_NULL_HANDLE;
+				
+				// For some bullshit reasons the destructor for VDeleter won't be called here
+				VkDevice m_device;
+				VDeleter<VkInstance> m_instance{vkDestroyInstance};
+				VDeleter<VkSurfaceKHR> surface{m_instance, vkDestroySurfaceKHR};
+				VkQueue m_queue;
+			};
 		}
 	}
 }
