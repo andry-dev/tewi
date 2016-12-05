@@ -6,7 +6,7 @@
 #include "Utils/DebugOnly.h"
 #include "Platform/Vulkan/ValidationLayers.h"
 #include "Platform/Vulkan/Callbacks.h"
-#include "Platform/Vulkan/LogicalDevice.h"
+#include "Platform/Vulkan/QueueFamily.h"
 
 #include <vector>
 
@@ -20,6 +20,18 @@ namespace tewi
 			{
 			public:
 				Instance()
+				{
+				}
+
+				~Instance()
+				{
+					vkDestroyDevice(m_device, nullptr);
+					vkDestroySurfaceKHR(m_instance, m_surface, nullptr);
+				}
+
+				auto getInstance() const { return m_instance; }
+
+				void initVulkan()
 				{
 					Expects(g_validationLayersEnabled && checkValidationLayersAvaibility(), "Validation Layers are not supported");
 
@@ -63,25 +75,21 @@ namespace tewi
 
 					pickPhysicalDevice();
 					createLogicalDevice();
-
 				}
 
-				~Instance()
+				void createSurface(GLFWwindow* window)
 				{
-					vkDestroyDevice(m_device, NULL);
+					DebugOnly<VkResult> res = glfwCreateWindowSurface(m_instance, window, nullptr, &m_surface);
+					Ensures(res == VK_SUCCESS, "Can't create Vulkan video surface");
 				}
-
-				auto getInstance() const { return m_instance; }
 
 			private:
 				std::vector<const char*> getExtensions()
 				{
 					std::vector<const char*> ext;
 
-					unsigned int glfwExtensionCount = 0;
-					const char** glfwExtensions;
-
-					glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+					std::uint32_t glfwExtensionCount;
+					const char** glfwExtensions  = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
 					for (std::size_t i = 0; i < glfwExtensionCount; ++i)
 					{
@@ -215,8 +223,9 @@ namespace tewi
 				// For some bullshit reasons the destructor for VDeleter won't be called here
 				VkDevice m_device;
 				VDeleter<VkInstance> m_instance{vkDestroyInstance};
-				VDeleter<VkSurfaceKHR> surface{m_instance, vkDestroySurfaceKHR};
 				VkQueue m_queue;
+
+				VkSurfaceKHR m_surface;
 			};
 		}
 	}

@@ -5,6 +5,8 @@
 
 #include "Platform/Vulkan/Instance.h"
 
+#include "Platform/Vulkan/Common.h"
+
 namespace tewi
 {
 	namespace API
@@ -26,7 +28,6 @@ namespace tewi
 		public:
 			Context()
 			{
-				
 			}
 
 			void setup()
@@ -37,7 +38,7 @@ namespace tewi
 
 			void postInit()
 			{
-				
+				m_instance.initVulkan();
 			}
 
 			void preDraw()
@@ -48,6 +49,11 @@ namespace tewi
 			void postDraw()
 			{
 
+			}
+
+			void createSurface(GLFWwindow* window)
+			{
+				m_instance.createSurface(window);
 			}
 
 			const char* getAPIVersion()

@@ -51,8 +51,14 @@ namespace tewi
 
 			glfwMakeContextCurrent(m_window);
 			glfwSetWindowSizeCallback(m_window, windowResizeCallback);
+			glfwSetErrorCallback(glfwErrorCallback);
 
 			m_context.postInit();
+
+			if (APINum == API::API_TYPE::VULKAN)
+			{
+				m_context.createSurface(m_window);
+			}
 
 			std::printf("API Version: %s\n", m_context.getAPIVersion());
 		}
@@ -64,28 +70,6 @@ namespace tewi
 
 		Window(const Window& rhs) = delete;
 		Window& operator=(const Window& rhs) = delete;
-
-		Window(Window&& rhs)
-			: m_window(rhs.m_window), m_width(std::move(rhs.m_width)),
-			m_height(std::move(rhs.m_height)), m_windowName(std::move(rhs.m_windowName))
-		{
-			rhs.m_window = nullptr;
-		}
-
-		Window& operator=(Window&& rhs)
-		{	
-			if (this != &rhs)
-			{
-				glfwDestroyWindow(m_window);
-				m_window = rhs.m_window;
-				rhs.m_window = nullptr;
-
-				m_width = std::move(rhs.m_width);
-				m_height = std::move(rhs.m_height);
-				m_windowName = std::move(rhs.m_windowName);
-			}
-			return *this;
-		}
 
 		/** Is the window closed?
 		 *
