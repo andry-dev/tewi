@@ -1,5 +1,4 @@
 # Tewi
----
 
 Wannabe extensible, easy to use and somewhat fast engine.
 
@@ -19,7 +18,7 @@ This is not really a problem if you plan to use a single API (like only Vulkan o
 
 "Why use templates? Just use an abstract class and `virtual` functions"
 
-Well, there is the problem that `virtual` adds overhead and in an engine this is an issue. See, if it was only one or two classes, I can see the use of `virtual` (in that case, probably there wasn't much overhead), but here we're talking about the whole graphic system. This *can* kill performance. If you really want and easy one, [Sparky](https://github.com/TheCherno/Sparky/) did virtual-dispatch for API implementations.
+Well, there is the problem that `virtual` adds overhead and in an engine this is an issue. See, if it was only one or two classes, I can see the use of `virtual` (in that case, probably there wasn't much overhead), but here we're talking about the whole graphic system. This *can* kill performance. If you really want an easy one, [Sparky](https://github.com/TheCherno/Sparky/) did virtual-dispatch for API implementations.
 
 The side-effect is that the engine is still extensible: You just need to use another number and you can introduce your own API in the engine (if you really want).
 
