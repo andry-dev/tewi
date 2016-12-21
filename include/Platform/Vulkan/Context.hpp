@@ -1,9 +1,7 @@
 #ifndef TEWI_VULKAN_CONTEXT_H
 #define TEWI_VULKAN_CONTEXT_H
 
-#include "Video/API/Context.h"
-
-#include "Platform/Vulkan/Instance.h"
+#include "Video/API/Context.hpp"
 
 #include "Platform/Vulkan/Common.h"
 
@@ -38,7 +36,6 @@ namespace tewi
 
 			void postInit()
 			{
-				m_instance.initVulkan();
 			}
 
 			void preDraw()
@@ -53,17 +50,15 @@ namespace tewi
 
 			void createSurface(GLFWwindow* window)
 			{
-				m_instance.createSurface(window);
 			}
 
 			const char* getAPIVersion()
 			{
+				// wow.
 				return "Vulkan";
 			}
 
 		private:
-
-			Platform::Vulkan::Instance m_instance;
 		};
 
 		using VkContext = Context<API_TYPE::VULKAN>;

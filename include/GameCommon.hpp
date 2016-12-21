@@ -1,17 +1,20 @@
-#ifndef GAME_COMMON_H
-#define GAME_COMMON_H
+#pragma once
 
 #include "IO/InputManager.h"
 #include "Utils/TickTimer.h"
-#include "Video/Window.h"
+#include "Video/Window.hpp"
 
 #include "Log.h"
 
 #include <memory>
 
-#include "Video/API/Context.h"
+#include "Video/API/Context.hpp"
 #include "Platform/Vulkan/Common.h"
-#include "Platform/OpenGL/GLContext.h"
+#include "Platform/OpenGL/Context.hpp"
+#include "Platform/Vulkan/Instance.hpp"
+#include "Platform/Vulkan/Swapchain.hpp"
+
+#include "Common.h"
 
 namespace tewi
 {
@@ -125,9 +128,12 @@ namespace tewi
 	{
 	public:
 		GameCommon(const std::string& windowName, int width, int height)
+			: m_window(std::make_unique<Window<APINum>>(windowName, width, height))
 		{
-			m_window = std::make_unique<Window<APINum>>(windowName, width, height);
 			Log::info("CALLED GameCommon::GameCommon");
+
+			m_instance.init();
+			m_swapchain.init(m_instance, m_window.get());
 
 			glfwSetWindowUserPointer(m_window->getWindow(), this);
 
@@ -138,6 +144,8 @@ namespace tewi
 		~GameCommon()
 		{
 			Log::info("CALLED GameCommon::~GameCommon");
+			m_swapchain.cleanup();
+			m_instance.cleanup();
 		}
 
 
@@ -204,6 +212,9 @@ namespace tewi
 		bool m_isWindowClosed = false;
 
 		InputManager m_inputManager;
+		API::Instance<APINum> m_instance;
+		API::Swapchain<APINum> m_swapchain;
+
 	private:
 		inline Derived& impl() { return *static_cast<Derived*>(this); }
 
@@ -252,5 +263,3 @@ namespace tewi
 	}
 
 }
-
-#endif /* GAME_COMMON_H */

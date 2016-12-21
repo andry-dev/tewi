@@ -4,7 +4,7 @@
 #include <GL/glew.h>
 #include "GLFW/glfw3.h"
 
-#include "Video/API/Context.h"
+#include "Video/API/Context.hpp"
 
 #include "Log.h"
 #include "Utils/DebugOnly.h"

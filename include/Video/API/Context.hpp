@@ -1,9 +1,7 @@
-#ifndef TEWI_API_CONTEXT_H
-#define TEWI_API_CONTEXT_H
+#pragma once
 
 namespace tewi
 {
-
 	/** Common namespace for Graphic API related stuff like context, renderers, etc...
 	 *
 	 *
@@ -21,12 +19,20 @@ namespace tewi
 			END
 		};
 
+		/** Function that checks if an API is in a valid range
+		 *
+		 */
+		constexpr bool isAPIValid(int APINum)
+		{
+			return APINum >= API_TYPE::NULL_RENDERER && APINum != API_TYPE::END;
+		}
+
 		/** \brief Context initialization
 		 * Initializes graphic API for the window.
 		 *
 		 * Requires \a APINum that should be a value from the enum **API::API_TYPE**.
 		 *
-		 * You should *not* instantiate this class, only the Window uses this.
+		 * You should *not* instantiate this class without a valid API, only the Window uses this.
 		 *
 		 * 
 		 * \sa Context<API_TYPE::OPENGL>
@@ -39,7 +45,7 @@ namespace tewi
 		public:
 			Context()
 			{
-				static_assert(APINum >= API_TYPE::NULL_RENDERER && APINum < API_TYPE::END, "Invalid API number");
+				static_assert(isAPIValid(APINum), "Invalid API number for the context");
 			}
 
 			/** Steps before the window is initialized
@@ -65,10 +71,8 @@ namespace tewi
 			/** Returns API information
 			 *
 			 */
-			const unsigned char* getAPIVersion() { return "UNKOWN_CONTEXT"; }
+			const auto getAPIVersion() { return "UNKOWN_CONTEXT"; }
 		};
 
 	}
 }
-
-#endif /* TEWI_API_CONTEXT_H */

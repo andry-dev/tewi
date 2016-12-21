@@ -1,7 +1,4 @@
-#ifndef TEWI_LOG_H
-#define TEWI_LOG_H
-
-/** \file */
+#pragma once
 
 #include <exception>
 #include <string>
@@ -100,5 +97,3 @@ namespace tewi
 #endif
 	}
 }
-
-#endif /* TEWI_LOG_H */

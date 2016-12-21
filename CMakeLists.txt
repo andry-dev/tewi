@@ -5,8 +5,10 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
+include_directories(include)
+
 add_subdirectory(lib/universal/glfw)
-include_directories(lib/universal/glfw)
+include_directories(lib/universal/glfw/include)
 
 add_subdirectory(lib/universal/glm)
 include_directories(lib/universal/glm)
@@ -14,10 +16,13 @@ include_directories(lib/universal/glm)
 add_subdirectory(doc)
 
 if(MSVC)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /std:c++latest")
+	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2 /Ob2 /Ot /GR- /GL /sdl-")
+	set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} /LTCG")
 else()
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pipe -flto")
-	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto=8")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pipe -Wno-pragma-once-outside-header")
+	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -flto -fuse-linker-plugin")
+	set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} -flto -fuse-linker-plugin")
 endif()
 
 set(SRC
@@ -29,12 +34,13 @@ set(SRC
 	src/Video/Shader.cpp
 	src/Video/TextureCache.cpp)
 
-include_directories(include)
-
 add_library(${PROJECT_NAME} ${SRC})
+
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
 
-message(STATUS "The Flags are: ${CMAKE_CXX_FLAGS}")
+message(STATUS "[tewi] Common Flags are: ${CMAKE_CXX_FLAGS}")
+message(STATUS "[tewi] Debug Flags are: ${CMAKE_CXX_FLAGS_DEBUG}")
+message(STATUS "[tewi] Release Flags are: ${CMAKE_CXX_FLAGS_RELEASE}")
 
 if(MSVC)
 	# Add GLEW
@@ -63,4 +69,4 @@ endif()
 
 include_directories(lib/universal)
 
-target_link_libraries(${PROJECT_NAME} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS} ${VULKAN_LIBS} glm glfw)
+target_link_libraries(${PROJECT_NAME} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS} ${VULKAN_LIBS} glfw glm)

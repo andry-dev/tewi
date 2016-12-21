@@ -12,18 +12,19 @@ namespace tewi
 		namespace Vulkan
 		{
 			inline static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(
-				VkDebugReportFlagsEXT flags,
-				VkDebugReportObjectTypeEXT objType,
-				uint64_t obj,
-				size_t location,
-				int32_t code,
-				const char* layerPrefix,
+				VkDebugReportFlagsEXT,
+				VkDebugReportObjectTypeEXT,
+				uint64_t,
+				size_t,
+				int32_t,
+				const char*,
 				const char* msg,
-				void* userData) {
+				void* userData)
+			{
 
 				std::string strmsg = msg;
 
-				Log::info("Vulkan validation layer: " + strmsg);
+				Log::debugInfo("Vulkan validation layer: " + strmsg);
 
 				return VK_FALSE;
 			}

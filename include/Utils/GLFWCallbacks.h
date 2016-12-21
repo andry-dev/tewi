@@ -12,7 +12,7 @@
 namespace tewi
 {
 
-	inline void windowResizeCallback(GLFWwindow* window, int width, int height)
+	inline void windowResizeCallback(GLFWwindow*, int width, int height)
 	{
 		glViewport(0, 0, width, height);
 	}

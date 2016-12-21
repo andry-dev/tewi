@@ -1,5 +1,4 @@
-#ifndef TEWI_VULKAN_VALIDATION_LAYERS_H
-#define TEWI_VULKAN_VALIDATION_LAYERS_H
+#pragma once
 
 #include "Platform/Vulkan/Common.h"
 
@@ -54,4 +53,3 @@ namespace tewi
 		}
 	}
 }
-#endif /* TEWI_VULKAN_VALIDATION_LAYERS_H */

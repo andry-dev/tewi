@@ -1,8 +1,8 @@
 #ifndef TEWI_INPUT_MANAGER_H
 #define TEWI_INPUT_MANAGER_H
 
+#include "glm/glm.hpp"
 #include <unordered_map>
-#include <glm/glm.hpp>
 
 namespace tewi
 {
@@ -27,7 +27,14 @@ namespace tewi
 	 *
 	 * Meanwhile, in client code, under \a processInputs():
 	 *
-	 * if (m_inputManager.isKeyDown()
+	 * \code
+	 *
+	 * if (m_inputManager.isKeyDown( key_here ))
+	 * {
+	 *     // React to the event
+	 * }
+	 *
+	 * \endcode
 	 *
 	 * \todo Fix the mouse.
 	 * \todo Support for joysticks and controllers.

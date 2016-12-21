@@ -1,5 +1,4 @@
-#ifndef TEWI_WINDOW_H
-#define TEWI_WINDOW_H
+#pragma once
 
 #include <GL/glew.h>
 
@@ -7,8 +6,8 @@
 #include "GLFW/glfw3.h"
 
 #include <string>
-#include "Platform/OpenGL/GLContext.h"
-#include "Platform/Vulkan/VkContext.h"
+#include "Platform/OpenGL/Context.hpp"
+#include "Platform/Vulkan/Context.hpp"
 #include "Log.h"
 #include "Utils/DebugOnly.h"
 #include "Utils/GLFWCallbacks.h"
@@ -28,8 +27,8 @@ namespace tewi
 	 *
 	 * \code
 	 * using namespace tewi;
-	 * contexpr int api = API::API_TYPE::OPENGL;
-	 * Window<api> window("Title to your window", 800, 600);
+	 * constexpr int api = API::API_TYPE::OPENGL;
+	 * Window<api> window("Title for your window", 800, 600);
 	 *
 	 * \endcode
 	 */
@@ -54,12 +53,6 @@ namespace tewi
 			glfwSetErrorCallback(glfwErrorCallback);
 
 			m_context.postInit();
-
-			if (APINum == API::API_TYPE::VULKAN)
-			{
-				m_context.createSurface(m_window);
-			}
-
 			std::printf("API Version: %s\n", m_context.getAPIVersion());
 		}
 
@@ -111,5 +104,3 @@ namespace tewi
 		API::Context<APINum> m_context;
 	};
 }
-
-#endif /* TEWI_WINDOW_H */
