@@ -43,16 +43,13 @@ namespace tewi
 
 			m_context.setup();
 			
-			glfwSwapInterval(0);
-
 			m_window = glfwCreateWindow(m_width, m_height, windowName.c_str(), nullptr, nullptr);
 			Ensures(m_window != nullptr, "Window not initialized");
 
-			glfwMakeContextCurrent(m_window);
 			glfwSetWindowSizeCallback(m_window, windowResizeCallback);
 			glfwSetErrorCallback(glfwErrorCallback);
 
-			m_context.postInit();
+			m_context.postInit(m_window);
 			std::printf("API Version: %s\n", m_context.getAPIVersion());
 		}
 
@@ -75,7 +72,7 @@ namespace tewi
 		/** Swaps the window buffers
 		 *
 		 */
-		inline void swap() const noexcept { glfwSwapBuffers(m_window); }
+		inline void swap() noexcept { m_context.swap(m_window); }
 
 		/** Returns the width ofthe window
 		 *

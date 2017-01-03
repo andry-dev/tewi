@@ -1,5 +1,10 @@
 #pragma once
 
+#include <GL/glew.h>
+
+#define GLFW_INCLUDE_VULKAN
+#include "GLFW/glfw3.h"
+
 namespace tewi
 {
 	/** Common namespace for Graphic API related stuff like context, renderers, etc...
@@ -56,7 +61,7 @@ namespace tewi
 			/** Steps after the window is initialized
 			 *
 			 */
-			void postInit() {  }
+			void postInit(GLFWwindow*) {  }
 
 			/** Steps before drawing
 			 *
@@ -67,6 +72,11 @@ namespace tewi
 			 *
 			 */
 			void postDraw() {  }
+
+			/** Buffer Swap
+			 *
+			 */
+			void swap(GLFWwindow*) {  }
 
 			/** Returns API information
 			 *

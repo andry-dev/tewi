@@ -1,5 +1,4 @@
-#ifndef TEWI_OPENGL_CONTEXT_H
-#define TEWI_OPENGL_CONTEXT_H
+#pragma once
 
 #include <GL/glew.h>
 #include "GLFW/glfw3.h"
@@ -38,10 +37,13 @@ namespace tewi
 				glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 				glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+				glfwSwapInterval(0);
 			}
 
-			void postInit()
+			void postInit(GLFWwindow* window)
 			{
+				glfwMakeContextCurrent(window);
+
 				DebugOnly<int> error = glewInit();
 				Ensures(error == GLEW_OK, "Failed GLEW initialization");
 
@@ -62,6 +64,11 @@ namespace tewi
 
 			}
 
+			void swap(GLFWwindow* m_window)
+			{
+				glfwSwapBuffers(m_window);
+			}
+
 			const unsigned char* getAPIVersion()
 			{
 				return glGetString(GL_VERSION);
@@ -71,6 +78,3 @@ namespace tewi
 		using GLContext = Context<API_TYPE::OPENGL>;
 	}
 }
-
-
-#endif /* TEWI_OPENGL_CONTEXT_H */

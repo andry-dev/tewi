@@ -34,7 +34,7 @@ namespace tewi
 				glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 			}
 
-			void postInit()
+			void postInit(GLFWwindow*)
 			{
 			}
 
@@ -51,6 +51,8 @@ namespace tewi
 			void createSurface(GLFWwindow* window)
 			{
 			}
+
+			void swap(GLFWwindow*) {}
 
 			const char* getAPIVersion()
 			{
