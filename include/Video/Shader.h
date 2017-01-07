@@ -1,5 +1,4 @@
-#ifndef SHADER_H
-#define SHADER_H
+#pragma once
 
 #include <string>
 #include <cstdint>
@@ -37,5 +36,3 @@ namespace tewi
 		std::string m_fragShaderPath;
 	};
 }
-
-#endif /* SHADER_H */

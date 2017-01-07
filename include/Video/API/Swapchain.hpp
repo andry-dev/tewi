@@ -13,12 +13,7 @@ namespace tewi
 		class Swapchain
 		{
 		public:
-			Swapchain()
-			{
-				static_assert(isAPIValid(APINum), "Invalid API number for the swapchain");
-			}
-
-			~Swapchain() { }
+			static_assert(isAPIValid(APINum), "Invalid API number for the swapchain");
 
 			void init(Instance<APINum>& instance, Window<APINum>* window) { }
 			void cleanup() {  }

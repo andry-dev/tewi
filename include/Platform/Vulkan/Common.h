@@ -1,5 +1,4 @@
-#ifndef TEWI_VULKAN_COMMON
-#define TEWI_VULKAN_COMMON
+#pragma once
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
@@ -90,6 +89,3 @@ namespace tewi
 		}
 	}
 }
-
-
-#endif /* TEWI_VULKAN_COMMON */

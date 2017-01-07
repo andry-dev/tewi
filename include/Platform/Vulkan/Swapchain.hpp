@@ -42,6 +42,9 @@ namespace tewi
 				vkDestroySwapchainKHR(m_device, m_swapchain, nullptr);
 				vkDestroyDevice(m_device, nullptr);
 				vkDestroySurfaceKHR(m_instance, m_surface, nullptr);
+				m_device = VK_NULL_HANDLE;
+				m_instance = VK_NULL_HANDLE;
+				m_swapchain = VK_NULL_HANDLE;
 			}
 
 		private:
@@ -249,7 +252,7 @@ namespace tewi
 
 					glfwGetWindowSize(m_window, &width, &height);
 
-					VkExtent2D actualExtent = {width, height};
+					VkExtent2D actualExtent = { static_cast<std::uint32_t>(width), static_cast<std::uint32_t>(height) };
 
 					actualExtent.width = std::max(capabilities.minImageExtent.width, std::min(capabilities.maxImageExtent.width, actualExtent.width));
 					actualExtent.height = std::max(capabilities.minImageExtent.height, std::min(capabilities.maxImageExtent.height, actualExtent.height));
@@ -259,11 +262,10 @@ namespace tewi
 			}
 
 			VkInstance m_instance;
+			VkSurfaceKHR m_surface;
 			GLFWwindow* m_window;
 			VkDevice m_device;
 			VkPhysicalDevice m_physicalDevice = VK_NULL_HANDLE;
-
-			VkSurfaceKHR m_surface;
 
 			VkSwapchainKHR m_swapchain;
 			VkQueue m_queue;

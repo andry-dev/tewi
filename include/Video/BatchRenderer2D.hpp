@@ -15,6 +15,8 @@
 #include "Log.h"
 #include <algorithm>
 
+#include "Common.h"
+
 namespace tewi
 {
 	constexpr std::size_t g_maxTextures = 64000;
@@ -72,7 +74,7 @@ namespace tewi
 	 * Tips:
 	 * * \a add() additionally supports a vector of Renderable2D, so you can pack all the renderables in a vector and supply them to the renderer.
 	 */
-	template <std::size_t APINum>
+	template <int APINum>
 	class BatchRenderer2D
 	{
 	public:
@@ -341,14 +343,14 @@ namespace tewi
 			
 			m_indexCount = 0;
 		}
-		
+
 	private:
 		GLuint m_VBO;
 		GLuint m_VAO;
 		Vertex* m_buffer;
 		std::vector<GLuint> m_textureSlots;
 		std::unique_ptr<IndexBuffer<GLuint>> m_IBO;
-		std::size_t m_indexCount;
+		mut_sizei m_indexCount;
 	};
 }
 
