@@ -38,7 +38,6 @@
 	#endif
 #endif
 
-
 #if defined(_WIN32)
 	#define TEWI_WIN32
 #elif defined(__unix__) || defined(__linux__) || (defined(__APPLE__) && defined(__MACH__))

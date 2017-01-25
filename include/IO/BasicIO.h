@@ -126,8 +126,10 @@ namespace tewi
 			return str.substr(0, index);
 		}
 
-		template <unsigned long N>
-		std::string findCorrectFile(const std::string& path, const std::array<const char*, N>& acceptedExtensions)
+		using Path = std::pair<bool, std::string>;
+
+		template <sizei N>
+		Path findCorrectFile(const std::string& path, const std::array<const char*, N>& acceptedExtensions)
 		{
 			// TODO: This is too slow 07-01-2017
 			// Even if we optimized for the best case (path is generic, so
@@ -150,7 +152,7 @@ namespace tewi
 					auto pathWithNewExt = newPath + ext;
 					if (IO::fileExists(pathWithNewExt))
 					{
-						return pathWithNewExt;
+						return { true, pathWithNewExt };
 					}
 				}
 				
@@ -160,14 +162,35 @@ namespace tewi
 					auto pathWithNewExt = path + ext;
 					if (IO::fileExists(pathWithNewExt))
 					{
-						return pathWithNewExt;
+						return { true, pathWithNewExt };
 					}
 				}
 			}
 			else
 			{
-				return path;
+				return { true, path };
 			}
+
+			Expects(0, "Can't find file " + path);
+			return { false, "" };
 		}
+
+		template <sizei N1, sizei N2>
+		Path findCorrectFile(const std::string& path, const std::array<const char*, N1>& acceptedExtensions, const std::array<const char*, N2>& regexHelpers)
+		{
+			auto res = findCorrectFile(path, acceptedExtensions);
+
+			if (res.first)
+			{
+				return res;
+			}
+			else
+			{
+				Expects(0, "Not implemented yet");
+			}
+
+			return { false, "" };
+		}
+
 	} // namespace IO
 } // namespace tewi
