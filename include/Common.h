@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Utils/Types.h"
-#include "Utils/Functional.h"
+#include "asl/types"
 
 /** \file 
  * This is a common file for typedefs and useful functions.

@@ -29,8 +29,8 @@ namespace tewi
 				m_instance = instance.getInstance();
 				m_window = window->getWindow();
 
-				DebugOnly<VkResult> res = glfwCreateWindowSurface(m_instance, m_window, nullptr, &m_surface);
-				Ensures(res == VK_SUCCESS, "Can't create Vulkan surface");
+				asl::debug_only<VkResult> res = glfwCreateWindowSurface(m_instance, m_window, nullptr, &m_surface);
+				TEWI_ENSURES(res == VK_SUCCESS, "Can't create Vulkan surface");
 
 				pickPhysicalDevice();
 				createLogicalDevice();
@@ -53,7 +53,7 @@ namespace tewi
 				std::uint32_t deviceCount = 0;
 				vkEnumeratePhysicalDevices(m_instance, &deviceCount, nullptr);
 
-				Expects(deviceCount != 0, "failed to find GPUs with Vulkan support!");
+				TEWI_EXPECTS(deviceCount != 0, "failed to find GPUs with Vulkan support!");
 
 				std::vector<VkPhysicalDevice> devices(deviceCount);
 				vkEnumeratePhysicalDevices(m_instance, &deviceCount, devices.data());
@@ -108,8 +108,8 @@ namespace tewi
 					createInfo.enabledLayerCount = 0;
 				}
 
-				DebugOnly<VkResult> res = vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_device);
-				Ensures(res == VK_SUCCESS, "Failed to create logical device");
+				asl::debug_only<VkResult> res = vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_device);
+				TEWI_ENSURES(res == VK_SUCCESS, "Failed to create logical device");
 
 				vkGetDeviceQueue(m_device, indices.graphicsFamily, 0, &m_queue);
 				vkGetDeviceQueue(m_device, indices.graphicsFamily, 0, &m_presentQueue);
@@ -197,8 +197,8 @@ namespace tewi
 				createInfo.clipped = VK_TRUE;
 				createInfo.oldSwapchain = VK_NULL_HANDLE;
 
-				DebugOnly<VkResult> scresult = vkCreateSwapchainKHR(m_device, &createInfo, nullptr, &m_swapchain);
-				Expects(scresult == VK_SUCCESS, "Can't create swapchain");
+				asl::debug_only<VkResult> scresult = vkCreateSwapchainKHR(m_device, &createInfo, nullptr, &m_swapchain);
+				TEWI_EXPECTS(scresult == VK_SUCCESS, "Can't create swapchain");
 
 				vkGetSwapchainImagesKHR(m_device, m_swapchain, &imageCount, nullptr);
 				m_swapchainImages.resize(imageCount);

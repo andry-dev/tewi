@@ -9,7 +9,6 @@
 #include "Platform/OpenGL/Context.hpp"
 #include "Platform/Vulkan/Context.hpp"
 #include "Log.h"
-#include "Utils/DebugOnly.h"
 #include "Utils/GLFWCallbacks.h"
 
 namespace tewi
@@ -44,7 +43,7 @@ namespace tewi
 			m_context.setup();
 			
 			m_window = glfwCreateWindow(m_width, m_height, windowName.c_str(), nullptr, nullptr);
-			Ensures(m_window != nullptr, "Window not initialized");
+			TEWI_ENSURES(m_window != nullptr, "Window not initialized");
 
 			glfwSetWindowSizeCallback(m_window, windowResizeCallback);
 			glfwSetErrorCallback(glfwErrorCallback);

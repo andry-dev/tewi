@@ -73,9 +73,10 @@ namespace tewi
 		 *
 		 * I should probably change it.
 		 */
-#define Expects(cond, msg) \
+#define TEWI_EXPECTS(cond, msg) \
 		if (!(cond)) { \
 			tewi::Log::error(msg); \
+			std::printf("Assertion failed at line %d : %s\n", __LINE__, __FILE__); \
 			glfwTerminate();  \
 			std::terminate(); \
 		}
@@ -84,9 +85,10 @@ namespace tewi
 		 *
 		 * I should probably change it.
 		 */
-#define Ensures(cond, msg) \
+#define TEWI_ENSURES(cond, msg) \
 		if (!(cond)) { \
 			tewi::Log::error(msg); \
+			std::printf("Assertion failed at line %d : %s\n", __LINE__, __FILE__); \
 			glfwTerminate();  \
 			std::terminate(); \
 		}

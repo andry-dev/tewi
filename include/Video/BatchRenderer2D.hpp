@@ -350,7 +350,7 @@ namespace tewi
 		Vertex* m_buffer;
 		std::vector<GLuint> m_textureSlots;
 		std::unique_ptr<IndexBuffer<GLuint>> m_IBO;
-		mut_sizei m_indexCount;
+		asl::mut_sizei m_indexCount;
 	};
 }
 

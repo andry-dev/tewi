@@ -10,23 +10,57 @@ namespace tewi
 {
 	namespace API
 	{
-		namespace
+		template <>
+		class VertexShader<API_TYPE::VULKAN>
 		{
-			const std::array<const char*, 1> g_shaderExts = { {
-				".spirv"
-			} };
-		}
+		protected:
+			auto create(const std::string& path)
+			{
+				return IO::fileToBuffer<char>(path);
+			}
+
+			void compile()
+			{
+
+			}
+		};
 
 		template <>
-		class Shader<API_TYPE::VULKAN>
+		class FragmentShader<API_TYPE::VULKAN>
+		{
+		protected:
+			auto create(const std::string& path)
+			{
+				return IO::fileToBuffer<char>(path);
+			}
+
+			void compile()
+			{
+			}
+		};
+
+		template <>
+		class ShaderProgram<API_TYPE::VULKAN>
+		{
+
+		};
+
+		template <template <num> class ShaderTypePolicy,
+				 template <typename> class ShaderFindPolicy>
+		class Shader<API_TYPE::VULKAN, ShaderTypePolicy, ShaderFindPolicy>
+			: private ShaderTypePolicy<API_TYPE::VULKAN>
+			, private ShaderFindPolicy<ShaderTypePolicy<API_TYPE::VULKAN>>
 		{
 		public:
-			Shader(const std::string& vertPath, const std::string& fragPath)
-				: m_vertPath(IO::findCorrectFile(vertPath, g_shaderExts))
-				, m_fragPath(IO::findCorrectFile(fragPath, g_shaderExts))
+			using ShaderTypeImpl = ShaderTypePolicy<API_TYPE::VULKAN>;
+			using ShaderFindImpl = ShaderFindPolicy<ShaderTypeImpl>;
+
+			explicit Shader(const std::string& path)
+				: m_path(ShaderFindImpl::getShaderPath(path))
 			{
 				
 			}
+
 			~Shader() = default;
 		
 			Shader(const Shader& rhs) = default;
@@ -36,9 +70,7 @@ namespace tewi
 			Shader& operator=(Shader&& rhs) = default;
 
 		private:
-			
-			std::string m_vertPath;
-			std::string m_fragPath;
+			std::string m_path;
 		};
 	} // namespace API
 } // namespace tewi

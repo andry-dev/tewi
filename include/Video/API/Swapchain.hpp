@@ -10,7 +10,7 @@ namespace tewi
 {
 	namespace API
 	{
-		template <num APINum>
+		template <asl::num APINum>
 		class Swapchain
 		{
 		public:

@@ -6,77 +6,25 @@
 
 #include "Log.h"
 
-#include "Common.h"
-
-#if TEWI_CXX17_FILESYSTEM
-	#ifdef TEWI_CXX17_FILESYSTEM_EXPERIMENTAL
-		#include <experimental/filesystem>
-		namespace fs = std::experimental::filesystem;
-	#else
-		#include <filesystem>
-		namespace fs = std::filesystem;
-	#endif
-#else
-	#ifdef TEWI_WIN32
-		#define WIN32_LEAN_AND_MEAN
-		#include <windows.h>
-	#elif defined(TEWI_POSIX)
-		#include <sys/types.h>
-		#include <sys/stat.h>
-		#include <unistd.h>
-	#elif defined(TEWI_UNKNOWN_PLATFORM)
-		#error "[tewi/IO/BasicIO.h] Your platform is unsupported :("
-	#endif
-#endif
+#include "asl/filesystem"
+#include "asl/types"
 
 namespace tewi
 {
 	namespace IO
 	{
-		namespace details
-		{
-			#if !TEWI_CXX17_FILESYSTEM
-			inline bool fileExists(const std::string& path)
-			{
-				#if defined(TEWI_WIN32)
-
-					WIN32_FIND_DATA FindFileData;
-					HANDLE handle = FindFirstFile(path.c_str(), &FindFileData);
-					int found = handle != INVALID_HANDLE_VALUE;
-					if (found) 
-					{
-						FindClose(handle);
-					}
-					return found;
-
-				#elif defined(TEWI_POSIX)
-
-					struct stat status;
-					if(::stat(path.c_str(), &status) == 0)
-					{
-						return true;
-					}
-					else
-					{
-						return false;
-					}
-
-				#endif
-			}
-			#endif
-		} // namespace details
-
-		inline std::vector<unsigned char> fileToBuffer(const std::string& path)
+		template <typename T>
+		inline std::vector<T> fileToBuffer(const std::string& path)
 		{
 			std::ifstream file(path, std::ios::binary);
 
-			Expects(!file.fail(), "Can't open file " + path);
+			TEWI_EXPECTS(!file.fail(), "Can't open file " + path);
 
 			file.seekg(0, std::ios::end);
 
 			int fileSize = file.tellg();
 
-			std::vector<unsigned char> buffer(fileSize);
+			std::vector<T> buffer(fileSize);
 
 			// This cast.
 			file.read((char*)(&buffer[0]), fileSize);
@@ -84,10 +32,11 @@ namespace tewi
 			return buffer;
 		}
 
-		inline bool fileToBuffer(const std::string& path, std::vector<unsigned char>& buffer)
+		template <typename T>
+		inline bool fileToBuffer(const std::string& path, std::vector<T>& buffer)
 		{
 			std::ifstream file(path, std::ios::binary);
-			Expects(!file.fail(), "Can't open file " + path);
+			TEWI_EXPECTS(!file.fail(), "Can't open file " + path);
 
 			//seek to the end
 			file.seekg(0, std::ios::end);
@@ -106,29 +55,15 @@ namespace tewi
 			return true;
 		}
 
-		inline bool fileExists(const std::string& file)
-		{
-			#if TEWI_CXX17_FILESYSTEM
-
-			return fs::exists(file);
-
-			#else
-
-			return details::fileExists(file);
-
-			#endif
-		}
-
-
 		inline std::string removeExtension(const std::string& str)
 		{
-			sizei index = str.find_last_of(".");
+			asl::sizei index = str.find_last_of(".");
 			return str.substr(0, index);
 		}
 
 		using Path = std::pair<bool, std::string>;
 
-		template <sizei N>
+		template <asl::sizei N>
 		Path findCorrectFile(const std::string& path, const std::array<const char*, N>& acceptedExtensions)
 		{
 			// TODO: This is too slow 07-01-2017
@@ -142,7 +77,7 @@ namespace tewi
 			// If we match some words (like vert) then we should first try
 			// with related extension (so .vert in this case)
 
-			if (!fileExists(path))
+			if (!asl::fs::fileExists(path))
 			{
 				auto newPath = removeExtension(path);
 
@@ -150,7 +85,7 @@ namespace tewi
 				for (const auto& ext : acceptedExtensions)
 				{
 					auto pathWithNewExt = newPath + ext;
-					if (IO::fileExists(pathWithNewExt))
+					if (asl::fs::fileExists(pathWithNewExt))
 					{
 						return { true, pathWithNewExt };
 					}
@@ -160,7 +95,7 @@ namespace tewi
 				for (const auto& ext : acceptedExtensions)
 				{
 					auto pathWithNewExt = path + ext;
-					if (IO::fileExists(pathWithNewExt))
+					if (asl::fs::fileExists(pathWithNewExt))
 					{
 						return { true, pathWithNewExt };
 					}
@@ -171,11 +106,11 @@ namespace tewi
 				return { true, path };
 			}
 
-			Expects(0, "Can't find file " + path);
+			TEWI_EXPECTS(0, "Can't find file " + path);
 			return { false, "" };
 		}
 
-		template <sizei N1, sizei N2>
+		template <asl::sizei N1, asl::sizei N2>
 		Path findCorrectFile(const std::string& path, const std::array<const char*, N1>& acceptedExtensions, const std::array<const char*, N2>& regexHelpers)
 		{
 			auto res = findCorrectFile(path, acceptedExtensions);
@@ -186,7 +121,7 @@ namespace tewi
 			}
 			else
 			{
-				Expects(0, "Not implemented yet");
+				TEWI_EXPECTS(0, "Not implemented yet");
 			}
 
 			return { false, "" };

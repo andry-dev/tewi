@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 
-#include "Utils/Types.h"
+#include "asl/types"
 
 #include "GL/glew.h"
 
@@ -14,7 +14,7 @@
 #include "Log.h"
 #include "IO/BasicIO.h"
 
-#include "Utils/Functional.h"
+#include "asl/functional"
 
 namespace tewi
 {
@@ -22,7 +22,7 @@ namespace tewi
 	{
 		namespace
 		{
-			inline void compileGLShaders(const std::string& path, u32 id)
+			inline void compileGLShaders(const std::string& path, asl::u32 id)
 			{
 				std::ifstream shaderFile(path);
 
@@ -38,19 +38,19 @@ namespace tewi
 				glShaderSource(id, 1, &str_ptr, nullptr);
 				glCompileShader(id);
 
-				mut_num res = 0;
+				asl::mut_num res = 0;
 				glGetShaderiv(id, GL_COMPILE_STATUS, &res);
 
 				if (res == GL_FALSE)
 				{
-					mut_num maxLen = 0;
+					asl::mut_num maxLen = 0;
 					glGetShaderiv(id, GL_INFO_LOG_LENGTH, &maxLen);
 
 					std::vector<GLchar> errorLog(maxLen);
 
 					glGetShaderInfoLog(id, maxLen, &maxLen, errorLog.data());
 					Log::warning(errorLog.data());
-					Expects(false, "Shader " + path + " failed to compile");
+					TEWI_EXPECTS(false, "Shader " + path + " failed to compile");
 				}
 			}
 		}
@@ -61,14 +61,14 @@ namespace tewi
 		protected:
 			auto create()
 			{
-				u32 ret = glCreateShader(GL_VERTEX_SHADER);
+				asl::u32 ret = glCreateShader(GL_VERTEX_SHADER);
 
-				Expects(ret != 0, "Can't create OpenGL vertex shader");
+				TEWI_EXPECTS(ret != 0, "Can't create OpenGL vertex shader");
 
 				return ret;
 			}
 
-			void compile(const std::string& path, u32 id)
+			void compile(const std::string& path, asl::u32 id)
 			{
 				compileGLShaders(path, id);
 			}
@@ -80,14 +80,14 @@ namespace tewi
 		protected:
 			auto create()
 			{
-				u32 ret = glCreateShader(GL_FRAGMENT_SHADER);
+				asl::u32 ret = glCreateShader(GL_FRAGMENT_SHADER);
 
-				Expects(ret != 0, "Can't create OpenGL fragment shader");
+				TEWI_EXPECTS(ret != 0, "Can't create OpenGL fragment shader");
 
 				return ret;
 			}
 
-			void compile(const std::string& path, u32 id)
+			void compile(const std::string& path, asl::u32 id)
 			{
 				compileGLShaders(path, id);
 			}
@@ -102,7 +102,7 @@ namespace tewi
 				: m_id(glCreateProgram())
 				, m_attribNum(0)
 			{
-				for_each_tuple(pack, [this] (auto& shader)
+				asl::for_each_tuple(pack, [this] (auto& shader)
 				{
 					auto sid = shader.getID();
 					glAttachShader(m_id, sid);
@@ -110,7 +110,7 @@ namespace tewi
 
 				glLinkProgram(m_id);
 
-				mut_num res = 0;
+				asl::mut_num res = 0;
 				glGetShaderiv(m_id, GL_LINK_STATUS, &res);
 
 				if (res == GL_FALSE)
@@ -132,7 +132,7 @@ namespace tewi
 						glDeleteShader(sid);
 					});
 
-					Expects(0, "Shader failed to link");
+					TEWI_EXPECTS(0, "Shader failed to link");
 				}
 
 				for_each_tuple(pack, [this] (auto& shader)
@@ -151,7 +151,7 @@ namespace tewi
 			void enable()
 			{
 				glUseProgram(m_id);
-				for (mut_sizei i = 0; i < m_attribNum; ++i)
+				for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
 				{
 					glEnableVertexAttribArray(i);
 				}
@@ -160,7 +160,7 @@ namespace tewi
 			void disable()
 			{
 				glUseProgram(0);
-				for (mut_sizei i = 0; i < m_attribNum; ++i)
+				for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
 				{
 					glDisableVertexAttribArray(i);
 				}
@@ -180,22 +180,22 @@ namespace tewi
 				}
 			}
 
-			u32 getUniformLocation(const std::string& uniformName)
+			asl::u32 getUniformLocation(const std::string& uniformName)
 			{
-				u32 location = glGetUniformLocation(m_id, uniformName.c_str());
-				Expects(location != GL_INVALID_INDEX, "Invalid uniform variable " + uniformName);
+				asl::u32 location = glGetUniformLocation(m_id, uniformName.c_str());
+				TEWI_EXPECTS(location != GL_INVALID_INDEX, "Invalid uniform variable " + uniformName);
 				return location;
 			}
 
 			template <unsigned long N>
-			std::array<u32, N> getUniformLocation(const std::array<const char*, N>& uniformName)
+			std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName)
 			{
-				std::array<u32, N> arr;
+				std::array<asl::u32, N> arr;
 
 				for (int i = 0; i < N; ++i)
 				{
-					u32 location = glGetUniformLocation(m_id, uniformName[i]);
-					Expects(location != GL_INVALID_INDEX, "Invalid uniform variable " + uniformName);
+					asl::u32 location = glGetUniformLocation(m_id, uniformName[i]);
+					TEWI_EXPECTS(location != GL_INVALID_INDEX, "Invalid uniform variable " + uniformName);
 					arr[i] = location;
 				}
 
@@ -203,11 +203,11 @@ namespace tewi
 			}
 
 		private:
-			u32 m_id;
-			mut_sizei m_attribNum;
+			asl::u32 m_id;
+			asl::mut_sizei m_attribNum;
 		};
 
-		template <template <num> class ShaderTypePolicy,
+		template <template <asl::num> class ShaderTypePolicy,
 				 template <typename> class ShaderFindPolicy>
 		class Shader<API_TYPE::OPENGL, ShaderTypePolicy, ShaderFindPolicy>
 			: private ShaderTypePolicy<API_TYPE::OPENGL>
@@ -217,7 +217,7 @@ namespace tewi
 			using ShaderTypeImpl = ShaderTypePolicy<API_TYPE::OPENGL>;
 			using ShaderFindImpl = ShaderFindPolicy<ShaderTypeImpl>;
 
-			explicit Shader(const std::string& path)
+			explicit Shader(Device<API_TYPE::OPENGL>&, const std::string& path)
 				: m_path(ShaderFindImpl::getShaderPath(path))
 				, m_id(ShaderTypeImpl::create())
 			{
@@ -235,7 +235,7 @@ namespace tewi
 			auto getID() const { return m_id; }
 
 		private:
-			u32 m_id;
+			asl::u32 m_id;
 			std::string m_path;
 		};
 	} // namespace API

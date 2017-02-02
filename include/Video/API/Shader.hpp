@@ -4,15 +4,17 @@
 #include <string>
 
 #include "Common.h"
-#include "Utils/Types.h"
+#include "asl/types"
 
 #include "IO/BasicIO.h"
+
+#include "Video/API/Device.hpp"
 
 namespace tewi
 {
 	namespace API
 	{
-		template <num APINum>
+		template <asl::num APINum>
 		class VertexShader
 		{
 		protected:
@@ -20,15 +22,15 @@ namespace tewi
 			auto compile() { return 0; }
 		};
 
-		template <num APINum>
+		template <asl::num APINum>
 		class FragmentShader
 		{
 		protected:
 			auto create() { return 0; }
-			auto compile(const std::string& path, u32) { return 0; }
+			auto compile(const std::string& path, asl::u32) { return 0; }
 		};
 
-		template <template <num> class AnyShader>
+		template <template <asl::num> class AnyShader>
 		class SubstitutionFindPolicy
 		{
 		protected:
@@ -99,8 +101,8 @@ namespace tewi
 		 * \par
 		 * We do all of this because of API compatibility.
 		 */
-		template <num APINum,
-				 template <num> class ShaderTypePolicy,
+		template <asl::num APINum,
+				 template <asl::num> class ShaderTypePolicy,
 				 template <class> class ShaderFindPolicy = SubstitutionFindPolicy>
 		class Shader
 			: private ShaderTypePolicy<APINum>
@@ -110,21 +112,21 @@ namespace tewi
 			using ShaderTypeImpl = ShaderTypePolicy<APINum>;
 			using ShaderFindImpl = ShaderFindPolicy<ShaderTypePolicy<APINum>>;
 
-			explicit Shader(const char* path)
+			explicit Shader(Device<APINum>& dev, const char* path)
 				: m_path(ShaderFindImpl::getShaderPath(path))
 				, m_id(ShaderTypeImpl::create())
 			{
 				ShaderTypeImpl::compile(m_path, m_id);
 			}
 
-			constexpr static sizei api_num = APINum;
+			constexpr static asl::sizei api_num = APINum;
 
 		private:
-			u32 m_id;
+			asl::u32 m_id;
 			const char* m_path;
 		};
 
-		template <num APINum>
+		template <asl::num APINum>
 		class ShaderProgram
 		{
 		public:
@@ -134,17 +136,17 @@ namespace tewi
 
 			void addAttrib() { }
 
-			template <unsigned long N>
+			template <asl::sizei N>
 			void addAttrib(const std::array<const char*, N>& args) { }
 
-			u32 getUniformLocation(const std::string& uniformName) { return 0; }
+			asl::u32 getUniformLocation(const std::string& uniformName) { return 0; }
 
 			template <unsigned long N>
-			std::array<u32, N> getUniformLocation(const std::array<const char*, N>& uniformName) { }
+			std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName) { }
 
 		private:
-			u32 m_id;
-			mut_sizei m_attribNums;
+			asl::u32 m_id;
+			asl::mut_sizei m_attribNums;
 		};
 
 		template <typename... Shaders>
@@ -161,22 +163,21 @@ namespace tewi
 			template <typename... Shaders>
 			struct get_api
 			{
-				static constexpr num value = get_api<Shaders...>::value;
+				static constexpr asl::num value = get_api<Shaders...>::value;
 			};
 
 			template <typename S, typename... Rest>
 			struct get_api<S, Rest...>
 			{
-				static constexpr num value = std::decay_t<S>::api_num;
+				static constexpr asl::num value = std::decay_t<S>::api_num;
 			};
 
 		} // namespace detail
 
-		template <typename... Shaders, num APINum = detail::get_api<Shaders...>::value>
+		template <typename... Shaders, asl::num APINum = detail::get_api<Shaders...>::value>
 		inline ShaderProgram<APINum> make_shader_program(ShaderPack<Shaders...> pack)
 		{
-			ShaderProgram<APINum> p = {  };
-			return p;
+			return {  };
 		}
 	}
 }

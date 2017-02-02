@@ -13,6 +13,9 @@ include_directories(lib/universal/glfw/include)
 add_subdirectory(lib/universal/glm)
 include_directories(lib/universal/glm)
 
+add_subdirectory(lib/universal/asl)
+include_directories(lib/universal/asl/include)
+
 add_subdirectory(doc)
 
 if(MSVC)
@@ -68,4 +71,5 @@ endif()
 
 include_directories(lib/universal)
 
-target_link_libraries(${PROJECT_NAME} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS} ${VULKAN_LIBS} glfw glm)
+target_link_libraries(${PROJECT_NAME} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS}
+	${VULKAN_LIBS} glfw glm asl)

@@ -6,7 +6,7 @@
 #include "Video/API/Context.hpp"
 
 #include "Log.h"
-#include "Utils/DebugOnly.h"
+#include "asl/debug_only"
 
 namespace tewi
 {
@@ -44,8 +44,8 @@ namespace tewi
 			{
 				glfwMakeContextCurrent(window);
 
-				DebugOnly<int> error = glewInit();
-				Ensures(error == GLEW_OK, "Failed GLEW initialization");
+				asl::debug_only<unsigned int> error = glewInit();
+				TEWI_ENSURES(error == GLEW_OK, "Failed GLEW initialization");
 
 				glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 

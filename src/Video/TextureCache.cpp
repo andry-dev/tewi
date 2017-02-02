@@ -10,7 +10,7 @@
 #include <stb/stb_image.h>
 #include "IO/BasicIO.h"
 #include "Log.h"
-#include "Utils/DebugOnly.h"
+#include "asl/debug_only"
 
 namespace tewi
 {
@@ -39,7 +39,7 @@ namespace tewi
 		int chan = 0;
 
 		std::uint8_t* imagePtr = stbi_load(path.c_str(), &width, &height, &chan, STBI_rgb_alpha);
-		Expects(imagePtr != nullptr, "Can't decode PNG " + path);
+		TEWI_EXPECTS(imagePtr != nullptr, "Can't decode PNG " + path);
 
 		tex.size = glm::vec2(width, height);
 

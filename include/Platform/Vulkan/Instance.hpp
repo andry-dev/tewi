@@ -9,7 +9,7 @@
 #include "Platform/Vulkan/QueueFamily.h"
 #include "Platform/Vulkan/SwapChainDetails.h"
 #include "Log.h"
-#include "Utils/DebugOnly.h"
+#include "asl/debug_only"
 
 #include <array>
 #include <vector>
@@ -44,7 +44,7 @@ namespace tewi
 			{
 				using namespace Platform::Vulkan;
 
-				Expects(g_validationLayersEnabled && Platform::Vulkan::checkValidationLayersAvaibility(), "Validation Layers are not supported");
+				TEWI_EXPECTS(g_validationLayersEnabled && Platform::Vulkan::checkValidationLayersAvaibility(), "Validation Layers are not supported");
 
 				// Boilerplate code
 				VkApplicationInfo app = {};
@@ -74,8 +74,8 @@ namespace tewi
 				info.enabledExtensionCount = exts.size();
 				info.ppEnabledExtensionNames = exts.data();
 
-				DebugOnly<VkResult> instanceErrorCode = vkCreateInstance(&info, nullptr, &m_instance);
-				Ensures(instanceErrorCode == VK_SUCCESS, "Failed to create a Vulkan instance");
+				asl::debug_only<VkResult> instanceErrorCode = vkCreateInstance(&info, nullptr, &m_instance);
+				TEWI_ENSURES(instanceErrorCode == VK_SUCCESS, "Failed to create a Vulkan instance");
 
 				std::uint32_t extCount = 0;
 				vkEnumerateInstanceExtensionProperties(nullptr, &extCount, nullptr);
@@ -133,8 +133,8 @@ namespace tewi
 							| VK_DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT;
 				info.pfnCallback = debugCallback;
 
-				DebugOnly<VkResult> res = createDebugReportCallbackEXT(m_instance, &info, nullptr, &m_callback);
-				Ensures(res == VK_SUCCESS, "Failed to setup debug callback");
+				asl::debug_only<VkResult> res = createDebugReportCallbackEXT(m_instance, &info, nullptr, &m_callback);
+				TEWI_ENSURES(res == VK_SUCCESS, "Failed to setup debug callback");
 			}
 
 			VkInstance m_instance;
