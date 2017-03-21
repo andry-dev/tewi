@@ -20,7 +20,7 @@ namespace tewi
 		 * **Internal use only.**
 		 */
 		template<>
-		class Context<API_TYPE::OPENGL>
+		class Context<API::OpenGLTag>
 		{
 		public:
 			Context()
@@ -75,6 +75,6 @@ namespace tewi
 			}
 		};
 
-		using GLContext = Context<API_TYPE::OPENGL>;
+		using GLContext = Context<API::OpenGLTag>;
 	}
 }

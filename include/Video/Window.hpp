@@ -31,7 +31,7 @@ namespace tewi
 	 *
 	 * \endcode
 	 */
-	template <unsigned int APINum>
+	template <typename APINum>
 	class Window
 	{
 	public:

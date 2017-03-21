@@ -27,13 +27,12 @@ namespace tewi
 		 * \sa Context<API_TYPE::VULKAN>
 		 * \sa Window
 		 */
-		template <unsigned int APINum>
+		template <typename APINum>
 		class Context
 		{
 		public:
 			Context()
 			{
-				static_assert(isAPIValid(APINum), "Invalid API number for the context");
 			}
 
 			/** Steps before the window is initialized

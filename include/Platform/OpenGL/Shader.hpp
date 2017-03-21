@@ -56,7 +56,7 @@ namespace tewi
 		}
 
 		template <>
-		class VertexShader<API_TYPE::OPENGL>
+		class VertexShader<API::OpenGLTag>
 		{
 		protected:
 			auto create()
@@ -75,7 +75,7 @@ namespace tewi
 		};
 
 		template <>
-		class FragmentShader<API_TYPE::OPENGL>
+		class FragmentShader<API::OpenGLTag>
 		{
 		protected:
 			auto create()
@@ -94,7 +94,7 @@ namespace tewi
 		};
 
 		template <>
-		class ShaderProgram<API_TYPE::OPENGL>
+		class ShaderProgram<API::OpenGLTag>
 		{
 		public:
 			template <typename... Shaders>
@@ -207,17 +207,17 @@ namespace tewi
 			asl::mut_sizei m_attribNum;
 		};
 
-		template <template <asl::num> class ShaderTypePolicy,
+		template <template <typename> class ShaderTypePolicy,
 				 template <typename> class ShaderFindPolicy>
-		class Shader<API_TYPE::OPENGL, ShaderTypePolicy, ShaderFindPolicy>
-			: private ShaderTypePolicy<API_TYPE::OPENGL>
-			, private ShaderFindPolicy<ShaderTypePolicy<API_TYPE::OPENGL>>
+		class Shader<API::OpenGLTag, ShaderTypePolicy, ShaderFindPolicy>
+			: private ShaderTypePolicy<API::OpenGLTag>
+			, private ShaderFindPolicy<ShaderTypePolicy<API::OpenGLTag>>
 		{
 		public:
-			using ShaderTypeImpl = ShaderTypePolicy<API_TYPE::OPENGL>;
+			using ShaderTypeImpl = ShaderTypePolicy<API::OpenGLTag>;
 			using ShaderFindImpl = ShaderFindPolicy<ShaderTypeImpl>;
 
-			explicit Shader(Device<API_TYPE::OPENGL>&, const std::string& path)
+			explicit Shader(Device<API::OpenGLTag>&, const std::string& path)
 				: m_path(ShaderFindImpl::getShaderPath(path))
 				, m_id(ShaderTypeImpl::create())
 			{

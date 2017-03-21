@@ -1,24 +1,15 @@
 #pragma once
 
 #include "Video/API/Device.hpp"
+
+#include "Platform/Vulkan/Common.h"
+
+#include "Platform/Vulkan/Instance.hpp"
+#include "Log.h"
+
 namespace tewi
 {
 	namespace API
 	{
-		template <>
-		class Device<API_TYPE::VULKAN>
-		{
-		public:
-			void init(Instance<API_TYPE::VULKAN>& instance)
-			{
-			}
-
-			void cleanup()
-			{
-			}
-
-		private:
-			VkInstance m_instance;
-		};
 	}
 }

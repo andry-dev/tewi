@@ -15,6 +15,9 @@ namespace tewi
 			END
 		};
 
+		struct OpenGLTag {  };
+		struct VulkanTag {  };
+
 		/** Function that checks if an API is in a valid range
 		 *
 		 */

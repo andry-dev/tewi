@@ -6,19 +6,15 @@ namespace tewi
 {
 	namespace API
 	{
-		template <unsigned int APINum>
+		template <typename APINum>
 		class Instance
 		{
 		public:
 			Instance()
 			{
-				static_assert(isAPIValid(APINum), "Invalid API number for the instance");
 			}
 
 			~Instance() { }
-
-			void init() { } 
-			void cleanup() {  }
 		};
 	}
 }

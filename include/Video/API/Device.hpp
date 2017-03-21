@@ -7,17 +7,18 @@ namespace tewi
 {
 	namespace API
 	{
-		template <unsigned int APINum>
+		template <typename APINum>
 		class Device
 		{
 		public:
 			Device()
 			{
-				static_assert(isAPIValid(APINum), "Invalid API number for the device");
 			}
+			
+			~Device()
+			{
 
-			void init(Instance<APINum> instance) { }
-			void cleanup() { }
+			}
 		};
 	}
 }

@@ -3,6 +3,7 @@
 #include "Video/API/Context.hpp"
 #include "Video/API/Instance.hpp"
 #include "Video/API/Shader.hpp"
+#include "Video/API/Device.hpp"
 
 #include "Video/Window.hpp"
 
@@ -10,20 +11,17 @@ namespace tewi
 {
 	namespace API
 	{
-		template <asl::num APINum>
+		template <typename APINum>
 		class Swapchain
 		{
 		public:
-			static_assert(isAPIValid(APINum), "Invalid API number for the swapchain");
+			Swapchain(Instance<APINum>&, Window<APINum>*) {  }
 
-			void init(Instance<APINum>& instance, Window<APINum>* window) { }
+			void secondPhaseInit(Device<APINum>&) {  }
 
-			void createPipeline(ShaderProgram<APINum> shaders) { }
-
-			void cleanup() {  }
+			void createPipeline(ShaderProgram<APINum>& shaders) { }
 
 			void recreate() { }
-
 		};
 	}
 }

@@ -14,7 +14,7 @@ namespace tewi
 {
 	namespace API
 	{
-		template <asl::num APINum>
+		template <typename APINum>
 		class VertexShader
 		{
 		protected:
@@ -22,7 +22,7 @@ namespace tewi
 			auto compile() { return 0; }
 		};
 
-		template <asl::num APINum>
+		template <typename APINum>
 		class FragmentShader
 		{
 		protected:
@@ -30,7 +30,7 @@ namespace tewi
 			auto compile(const std::string& path, asl::u32) { return 0; }
 		};
 
-		template <template <asl::num> class AnyShader>
+		template <template <typename> class AnyShader>
 		class SubstitutionFindPolicy
 		{
 		protected:
@@ -101,8 +101,8 @@ namespace tewi
 		 * \par
 		 * We do all of this because of API compatibility.
 		 */
-		template <asl::num APINum,
-				 template <asl::num> class ShaderTypePolicy,
+		template <typename APINum,
+				 template <typename> class ShaderTypePolicy,
 				 template <class> class ShaderFindPolicy = SubstitutionFindPolicy>
 		class Shader
 			: private ShaderTypePolicy<APINum>
@@ -119,14 +119,14 @@ namespace tewi
 				ShaderTypeImpl::compile(m_path, m_id);
 			}
 
-			constexpr static asl::sizei api_num = APINum;
+			using api_num = APINum;
 
 		private:
 			asl::u32 m_id;
 			const char* m_path;
 		};
 
-		template <asl::num APINum>
+		template <typename APINum>
 		class ShaderProgram
 		{
 		public:
@@ -160,21 +160,15 @@ namespace tewi
 
 		namespace detail
 		{
-			template <typename... Shaders>
+			template <typename S, typename... Rest>
 			struct get_api
 			{
-				static constexpr asl::num value = get_api<Shaders...>::value;
-			};
-
-			template <typename S, typename... Rest>
-			struct get_api<S, Rest...>
-			{
-				static constexpr asl::num value = std::decay_t<S>::api_num;
+				using value = typename std::decay_t<S>::api_num;
 			};
 
 		} // namespace detail
 
-		template <typename... Shaders, asl::num APINum = detail::get_api<Shaders...>::value>
+		template <typename... Shaders, typename APINum = typename detail::get_api<Shaders...>::value>
 		inline ShaderProgram<APINum> make_shader_program(ShaderPack<Shaders...> pack)
 		{
 			return {  };

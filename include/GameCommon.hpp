@@ -9,10 +9,7 @@
 #include <memory>
 
 #include "Video/API/Context.hpp"
-#include "Platform/Vulkan/Common.h"
 #include "Platform/OpenGL/Context.hpp"
-#include "Platform/Vulkan/Instance.hpp"
-#include "Platform/Vulkan/Swapchain.hpp"
 
 #include "Common.h"
 
@@ -22,7 +19,7 @@ namespace tewi
 	 *
 	 * **Internal use only.**
 	 */
-	template <class Derived, unsigned int APINum>
+	template <class Derived, typename APINum>
 	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 	/** Callback for mouse presses.
@@ -30,7 +27,7 @@ namespace tewi
 	 * **Internal use only.**
 	 *
 	 */
-	template <class Derived, unsigned int APINum>
+	template <class Derived, typename APINum>
 	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
 	/** \brief Managed base game class.
@@ -123,17 +120,17 @@ namespace tewi
 	 * The main concern is the first, but that's the price I'm paying for not using virtual calls.
 	 *
 	 */
-	template <class Derived, unsigned int APINum>
+	template <class Derived, typename APINum>
 	class GameCommon
 	{
 	public:
 		GameCommon(const std::string& windowName, int width, int height)
 			: m_window(std::make_unique<Window<APINum>>(windowName, width, height))
+			, m_swapchain(m_instance, m_window.get())
 		{
 			Log::info("CALLED GameCommon::GameCommon");
 
-			m_instance.init();
-			m_swapchain.init(m_instance, m_window.get());
+			m_swapchain.secondPhaseInit(m_device);
 
 			glfwSetWindowUserPointer(m_window->getWindow(), this);
 
@@ -144,8 +141,6 @@ namespace tewi
 		~GameCommon()
 		{
 			Log::info("CALLED GameCommon::~GameCommon");
-			m_swapchain.cleanup();
-			m_instance.cleanup();
 		}
 
 
@@ -204,7 +199,7 @@ namespace tewi
 			impl().draw();
 			m_window->swap();
 		}
-		
+
 		TickTimer m_tickTimer;
 
 		std::unique_ptr<Window<APINum>> m_window;
@@ -214,6 +209,7 @@ namespace tewi
 		InputManager m_inputManager;
 		API::Instance<APINum> m_instance;
 		API::Swapchain<APINum> m_swapchain;
+		API::Device<APINum> m_device;
 
 	private:
 		inline Derived& impl() { return *static_cast<Derived*>(this); }
@@ -240,7 +236,7 @@ namespace tewi
 	};
 
 	// Thanks GLFW
-	template <class Derived, unsigned int APINum>
+	template <class Derived, typename APINum>
 	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		GameCommon<Derived, APINum>* gc = static_cast<GameCommon<Derived, APINum>*>(glfwGetWindowUserPointer(window));
@@ -251,7 +247,7 @@ namespace tewi
 			gc->m_inputManager.releaseKey(key);
 	}
 
-	template <class Derived, unsigned int APINum>
+	template <class Derived, typename APINum>
 	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 	{
 		GameCommon<Derived, APINum>* gc = static_cast<GameCommon<Derived, APINum>*>(glfwGetWindowUserPointer(window));
