@@ -4,6 +4,9 @@
 #include "Utils/TickTimer.h"
 #include "Video/Window.hpp"
 
+#include "Video/API/Instance.hpp"
+#include "Video/API/Swapchain.hpp"
+
 #include "Log.h"
 
 #include <memory>
@@ -227,7 +230,6 @@ namespace tewi
 
 				draw();
 			}
-
 		}
 
 		// yeah. GLFW.

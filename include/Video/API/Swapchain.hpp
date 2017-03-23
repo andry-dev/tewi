@@ -2,7 +2,7 @@
 
 #include "Video/API/Context.hpp"
 #include "Video/API/Instance.hpp"
-#include "Video/API/Shader.hpp"
+#include "Video/Shader.hpp"
 #include "Video/API/Device.hpp"
 
 #include "Video/Window.hpp"
@@ -19,9 +19,13 @@ namespace tewi
 
 			void secondPhaseInit(Device<APINum>&) {  }
 
-			void createPipeline(ShaderProgram<APINum>& shaders) { }
+			template <typename... Shaders>
+			void createPipeline(ShaderPack<Shaders...>& shaders) {  }
 
-			void recreate() { }
+			void recreate() {  }
+
+			template <typename... Shaders>
+			void replaceShaders(ShaderPack<Shaders...>& shaders) {  }
 		};
 	}
 }

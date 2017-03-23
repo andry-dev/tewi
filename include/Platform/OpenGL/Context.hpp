@@ -44,7 +44,7 @@ namespace tewi
 			{
 				glfwMakeContextCurrent(window);
 
-				asl::debug_only<unsigned int> error = glewInit();
+				asl::debug_only<GLenum> error = glewInit();
 				TEWI_ENSURES(error == GLEW_OK, "Failed GLEW initialization");
 
 				glClearColor(1.0f, 1.0f, 1.0f, 1.0f);

@@ -96,6 +96,9 @@ namespace tewi
 #else
 #define Expects(cond, msg)
 #define Ensures(cond, msg)
+
+#define TEWI_EXPECTS(cond, msg)
+#define TEWI_ENSURES(cond, msg)
 #endif
 	}
 }

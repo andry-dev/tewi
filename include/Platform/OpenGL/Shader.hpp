@@ -8,7 +8,7 @@
 
 #include "GL/glew.h"
 
-#include "Video/API/Shader.hpp"
+#include "Video/Shader.hpp"
 #include "Video/API/API.h"
 
 #include "Log.h"
@@ -18,225 +18,222 @@
 
 namespace tewi
 {
-	namespace API
+	namespace
 	{
-		namespace
+		inline void compileGLShaders(const std::string& path, asl::u32 id)
 		{
-			inline void compileGLShaders(const std::string& path, asl::u32 id)
+			std::ifstream shaderFile(path);
+
+			std::string content;
+
+			// Fuckery to read a file
+			shaderFile.seekg(0, std::ios::end);
+			content.resize(shaderFile.tellg());
+			shaderFile.seekg(0, std::ios::beg);
+			shaderFile.read(&content[0], content.size());
+
+			auto str_ptr = content.c_str();
+			glShaderSource(id, 1, &str_ptr, nullptr);
+			glCompileShader(id);
+
+			asl::mut_num res = 0;
+			glGetShaderiv(id, GL_COMPILE_STATUS, &res);
+
+			if (res == GL_FALSE)
 			{
-				std::ifstream shaderFile(path);
+				asl::mut_num maxLen = 0;
+				glGetShaderiv(id, GL_INFO_LOG_LENGTH, &maxLen);
 
-				std::string content;
-				
-				// Fuckery to read a file
-				shaderFile.seekg(0, std::ios::end);
-				content.resize(shaderFile.tellg());
-				shaderFile.seekg(0, std::ios::beg);
-				shaderFile.read(&content[0], content.size());
+				std::vector<GLchar> errorLog(maxLen);
 
-				auto str_ptr = content.c_str();
-				glShaderSource(id, 1, &str_ptr, nullptr);
-				glCompileShader(id);
+				glGetShaderInfoLog(id, maxLen, &maxLen, errorLog.data());
+				Log::warning(errorLog.data());
+				TEWI_EXPECTS(false, "Shader " + path + " failed to compile");
+			}
+		}
+	}
 
-				asl::mut_num res = 0;
-				glGetShaderiv(id, GL_COMPILE_STATUS, &res);
+	template <>
+	class VertexShader<API::OpenGLTag>
+	{
+	protected:
+		auto create()
+		{
+			asl::u32 ret = glCreateShader(GL_VERTEX_SHADER);
 
-				if (res == GL_FALSE)
+			TEWI_EXPECTS(ret != 0, "Can't create OpenGL vertex shader");
+
+			return ret;
+		}
+
+		void compile(const std::string& path, asl::u32 id)
+		{
+			compileGLShaders(path, id);
+		}
+	};
+
+	template <>
+	class FragmentShader<API::OpenGLTag>
+	{
+	protected:
+		auto create()
+		{
+			asl::u32 ret = glCreateShader(GL_FRAGMENT_SHADER);
+
+			TEWI_EXPECTS(ret != 0, "Can't create OpenGL fragment shader");
+
+			return ret;
+		}
+
+		void compile(const std::string& path, asl::u32 id)
+		{
+			compileGLShaders(path, id);
+		}
+	};
+
+	template <>
+	class ShaderProgram<API::OpenGLTag>
+	{
+	public:
+		template <typename... Shaders>
+		ShaderProgram(ShaderPack<Shaders...> pack)
+			: m_id(glCreateProgram())
+			, m_attribNum(0)
+		{
+			asl::for_each_tuple(pack, [this] (auto& shader)
+			{
+				auto sid = shader.getID();
+				glAttachShader(m_id, sid);
+			});
+
+			glLinkProgram(m_id);
+
+			asl::mut_num res = 0;
+			glGetProgramiv(m_id, GL_LINK_STATUS, &res);
+
+			if (res == GL_FALSE)
+			{
+				int maxLen = 0;
+				glGetProgramiv(m_id, GL_INFO_LOG_LENGTH, &maxLen);
+
+				std::vector<GLchar> errorLog(maxLen);
+
+				glGetProgramInfoLog(m_id, maxLen, &maxLen, &errorLog[0]);
+
+				Log::warning(errorLog.data());
+
+				glDeleteProgram(m_id);
+
+				asl::for_each_tuple(pack, [] (auto& shader)
 				{
-					asl::mut_num maxLen = 0;
-					glGetShaderiv(id, GL_INFO_LOG_LENGTH, &maxLen);
+					auto sid = shader.getID();
+					glDeleteShader(sid);
+				});
 
-					std::vector<GLchar> errorLog(maxLen);
+				TEWI_EXPECTS(0, "Shader failed to link");
+			}
 
-					glGetShaderInfoLog(id, maxLen, &maxLen, errorLog.data());
-					Log::warning(errorLog.data());
-					TEWI_EXPECTS(false, "Shader " + path + " failed to compile");
-				}
+			asl::for_each_tuple(pack, [this] (auto& shader)
+			{
+				auto sid = shader.getID();
+				glDetachShader(m_id, sid);
+				glDeleteShader(sid);
+			});
+		}
+
+		~ShaderProgram()
+		{
+			glDeleteProgram(m_id);
+		}
+
+		void enable()
+		{
+			glUseProgram(m_id);
+			for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
+			{
+				glEnableVertexAttribArray(i);
 			}
 		}
 
-		template <>
-		class VertexShader<API::OpenGLTag>
+		void disable()
 		{
-		protected:
-			auto create()
+			glUseProgram(0);
+			for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
 			{
-				asl::u32 ret = glCreateShader(GL_VERTEX_SHADER);
-
-				TEWI_EXPECTS(ret != 0, "Can't create OpenGL vertex shader");
-
-				return ret;
+				glDisableVertexAttribArray(i);
 			}
+		}
 
-			void compile(const std::string& path, asl::u32 id)
-			{
-				compileGLShaders(path, id);
-			}
-		};
-
-		template <>
-		class FragmentShader<API::OpenGLTag>
+		void addAtrib(const std::string& attribute)
 		{
-		protected:
-			auto create()
-			{
-				asl::u32 ret = glCreateShader(GL_FRAGMENT_SHADER);
+			glBindAttribLocation(m_id, m_attribNum++, attribute.c_str());
+		}
 
-				TEWI_EXPECTS(ret != 0, "Can't create OpenGL fragment shader");
-
-				return ret;
-			}
-
-			void compile(const std::string& path, asl::u32 id)
-			{
-				compileGLShaders(path, id);
-			}
-		};
-
-		template <>
-		class ShaderProgram<API::OpenGLTag>
+		template <unsigned long N>
+		void addAttrib(const std::array<const char*, N>& args)
 		{
-		public:
-			template <typename... Shaders>
-			ShaderProgram(ShaderPack<Shaders...> pack)
-				: m_id(glCreateProgram())
-				, m_attribNum(0)
+			for (const auto& attrib : args)
 			{
-				asl::for_each_tuple(pack, [this] (auto& shader)
-				{
-					auto sid = shader.getID();
-					glAttachShader(m_id, sid);
-				});
-
-				glLinkProgram(m_id);
-
-				asl::mut_num res = 0;
-				glGetShaderiv(m_id, GL_LINK_STATUS, &res);
-
-				if (res == GL_FALSE)
-				{
-					int maxLen = 0;
-					glGetProgramiv(m_id, GL_INFO_LOG_LENGTH, &maxLen);
-
-					std::vector<GLchar> errorLog(maxLen);
-
-					glGetProgramInfoLog(m_id, maxLen, &maxLen, &errorLog[0]);
-
-					Log::warning(errorLog.data());
-
-					glDeleteProgram(m_id);
-
-					for_each_tuple(pack, [this] (auto& shader)
-					{
-						auto sid = shader.getID();
-						glDeleteShader(sid);
-					});
-
-					TEWI_EXPECTS(0, "Shader failed to link");
-				}
-
-				for_each_tuple(pack, [this] (auto& shader)
-				{
-					auto sid = shader.getID();
-					glDetachShader(m_id, sid);
-					glDeleteShader(sid);
-				});
+				glBindAttribLocation(m_id, m_attribNum++, attrib);
 			}
+		}
 
-			~ShaderProgram()
-			{
-				glDeleteProgram(m_id);
-			}
+		asl::u32 getUniformLocation(const std::string& uniformName)
+		{
+			asl::u32 location = glGetUniformLocation(m_id, uniformName.c_str());
+			TEWI_EXPECTS(location != GL_INVALID_INDEX, "Invalid uniform variable " + uniformName);
+			return location;
+		}
 
-			void enable()
-			{
-				glUseProgram(m_id);
-				for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
-				{
-					glEnableVertexAttribArray(i);
-				}
-			}
+		template <unsigned long N>
+		std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName)
+		{
+			std::array<asl::u32, N> arr;
 
-			void disable()
+			for (int i = 0; i < N; ++i)
 			{
-				glUseProgram(0);
-				for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
-				{
-					glDisableVertexAttribArray(i);
-				}
-			}
-
-			void addAtrib(const std::string& attribute)
-			{
-				glBindAttribLocation(m_id, m_attribNum++, attribute.c_str());
-			}
-
-			template <unsigned long N>
-			void addAttrib(const std::array<const char*, N>& args)
-			{
-				for (const auto& attrib : args)
-				{
-					glBindAttribLocation(m_id, m_attribNum++, attrib);
-				}
-			}
-
-			asl::u32 getUniformLocation(const std::string& uniformName)
-			{
-				asl::u32 location = glGetUniformLocation(m_id, uniformName.c_str());
+				asl::u32 location = glGetUniformLocation(m_id, uniformName[i]);
 				TEWI_EXPECTS(location != GL_INVALID_INDEX, "Invalid uniform variable " + uniformName);
-				return location;
+				arr[i] = location;
 			}
 
-			template <unsigned long N>
-			std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName)
-			{
-				std::array<asl::u32, N> arr;
+			return arr;
+		}
 
-				for (int i = 0; i < N; ++i)
-				{
-					asl::u32 location = glGetUniformLocation(m_id, uniformName[i]);
-					TEWI_EXPECTS(location != GL_INVALID_INDEX, "Invalid uniform variable " + uniformName);
-					arr[i] = location;
-				}
+	private:
+		asl::u32 m_id;
+		asl::mut_sizei m_attribNum;
+	};
 
-				return arr;
-			}
+	template <template <typename> class ShaderTypePolicy,
+			 template <typename> class ShaderFindPolicy>
+	class Shader<API::OpenGLTag, ShaderTypePolicy, ShaderFindPolicy>
+		: private ShaderTypePolicy<API::OpenGLTag>
+		, private ShaderFindPolicy<ShaderTypePolicy<API::OpenGLTag>>
+	{
+	public:
+		using ShaderTypeImpl = ShaderTypePolicy<API::OpenGLTag>;
+		using ShaderFindImpl = ShaderFindPolicy<ShaderTypeImpl>;
 
-		private:
-			asl::u32 m_id;
-			asl::mut_sizei m_attribNum;
-		};
-
-		template <template <typename> class ShaderTypePolicy,
-				 template <typename> class ShaderFindPolicy>
-		class Shader<API::OpenGLTag, ShaderTypePolicy, ShaderFindPolicy>
-			: private ShaderTypePolicy<API::OpenGLTag>
-			, private ShaderFindPolicy<ShaderTypePolicy<API::OpenGLTag>>
+		explicit Shader(API::Device<API::OpenGLTag>&, const std::string& path)
+			: m_id(ShaderTypeImpl::create())
+			, m_path(ShaderFindImpl::getShaderPath(path).second)
 		{
-		public:
-			using ShaderTypeImpl = ShaderTypePolicy<API::OpenGLTag>;
-			using ShaderFindImpl = ShaderFindPolicy<ShaderTypeImpl>;
-
-			explicit Shader(Device<API::OpenGLTag>&, const std::string& path)
-				: m_path(ShaderFindImpl::getShaderPath(path))
-				, m_id(ShaderTypeImpl::create())
-			{
-				ShaderTypeImpl::compile(m_path, m_id);
-			}
-			
-			~Shader() = default;
+			ShaderTypeImpl::compile(m_path, m_id);
+		}
 		
-			Shader(const Shader& rhs) = default;
-			Shader& operator=(const Shader& rhs) = default;
-		
-			Shader(Shader&& rhs) = default;
-			Shader& operator=(Shader&& rhs) = default;
+		~Shader() = default;
+	
+		Shader(const Shader& rhs) = default;
+		Shader& operator=(const Shader& rhs) = default;
+	
+		Shader(Shader&& rhs) = default;
+		Shader& operator=(Shader&& rhs) = default;
 
-			auto getID() const { return m_id; }
+		auto getID() const { return m_id; }
 
-		private:
-			asl::u32 m_id;
-			std::string m_path;
-		};
-	} // namespace API
+	private:
+		asl::u32 m_id;
+		std::string m_path;
+	};
 } // namespace tewi

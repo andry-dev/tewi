@@ -4,27 +4,13 @@ namespace tewi
 {
 	namespace API
 	{
-		/** Enum for the various APIs supported in the engine.
-		 *
-		 */
-		enum API_TYPE
+		struct OpenGLTag
 		{
-			NULL_RENDERER,
-			OPENGL,
-			VULKAN,
-			END
+			enum { value = 1 };
 		};
-
-		struct OpenGLTag {  };
-		struct VulkanTag {  };
-
-		/** Function that checks if an API is in a valid range
-		 *
-		 */
-		constexpr bool isAPIValid(int APINum)
+		struct VulkanTag
 		{
-			return APINum >= API_TYPE::NULL_RENDERER && APINum != API_TYPE::END;
-		}
-
+			enum { value = 1 };
+		};
 	}
 }

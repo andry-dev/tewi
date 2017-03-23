@@ -1,5 +1,4 @@
-#ifndef BATCH_RENDERER_2D_H
-#define BATCH_RENDERER_2D_H
+#pragma once
 
 #include <glm/glm.hpp>
 
@@ -8,27 +7,30 @@
 #include "Video/Vertex.h"
 #include "Video/Renderable2D.hpp"
 #include "Video/IndexBuffer.hpp"
+#include "Log.h"
+#include "Common.h"
+
+#include "Video/BatchRenderer2D.hpp"
 
 #include <array>
 #include <memory>
 #include <cstddef>
-#include "Log.h"
 #include <algorithm>
 
-#include "Common.h"
+#include "asl/types"
 
 namespace tewi
 {
-	constexpr std::size_t g_maxTextures = 64000;
-	constexpr std::size_t g_vertexSize = sizeof(Vertex);
-	constexpr std::size_t g_spriteSize = g_vertexSize * 4;
-	constexpr std::size_t g_bufferSize = g_spriteSize * g_maxTextures;
-	constexpr std::size_t g_indicesSize = g_maxTextures * 6;
+	constexpr asl::sizei g_maxTextures = 64000;
+	constexpr asl::sizei g_vertexSize = sizeof(Vertex);
+	constexpr asl::sizei g_spriteSize = g_vertexSize * 4;
+	constexpr asl::sizei g_bufferSize = g_spriteSize * g_maxTextures;
+	constexpr asl::sizei g_indicesSize = g_maxTextures * 6;
 
-	constexpr int g_posAttribPointer = 0;
-	constexpr int g_uvAttribPointer = 1;
-	constexpr int g_tidAttribPointer = 2;
-	constexpr int g_colorAttribPointer = 3;
+	constexpr asl::num g_posAttribPointer = 0;
+	constexpr asl::num g_uvAttribPointer = 1;
+	constexpr asl::num g_tidAttribPointer = 2;
+	constexpr asl::num g_colorAttribPointer = 3;
 
 	/** \brief Batch renderer for 2D objects.
 	 *
@@ -74,10 +76,10 @@ namespace tewi
 	 * Tips:
 	 * * \a add() additionally supports a vector of Renderable2D, so you can pack all the renderables in a vector and supply them to the renderer.
 	 */
-	template <typename APINum, >
-	class BatchRenderer2D
+	template <>
+	struct BatchRenderer2D<API::OpenGLTag>
 	{
-	public:
+	protected:
 		BatchRenderer2D()
 			: m_indexCount(0)
 		{
@@ -102,7 +104,7 @@ namespace tewi
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 			std::vector<GLuint> indices(g_indicesSize);
-			for (std::size_t i = 0, offset = 0; i < indices.size(); i += 6, offset += 4)
+			for (asl::mut_sizei i = 0, offset = 0; i < indices.size(); i += 6, offset += 4)
 			{
 				indices[  i  ] = offset + 0;
 				indices[i + 1] = offset + 1;
@@ -114,20 +116,22 @@ namespace tewi
 			}
 
 			m_IBO = std::make_unique<IndexBuffer<GLuint>>(indices);
-			
+
 			glBindVertexArray(0);
+			Log::debugInfo("BatchRenderer2D<GL>::BatchRenderer2D");
 		}
 
 		~BatchRenderer2D()
 		{
+			Log::debugInfo("BatchRenderer2D<GL>::~BatchRenderer2D");
 			glDeleteBuffers(1, &m_VBO);
 		}
 
 		BatchRenderer2D(const BatchRenderer2D& rhs) = delete;
 		BatchRenderer2D& operator=(const BatchRenderer2D& rhs) = delete;
 
-		BatchRenderer2D(BatchRenderer2D&& rhs) =  delete;
-		BatchRenderer2D& operator=(BatchRenderer2D&& rhs) = delete;
+		BatchRenderer2D(BatchRenderer2D&& rhs) = default;
+		BatchRenderer2D& operator=(BatchRenderer2D&& rhs) = default;
 
 		/** Begins the rendering by binding the buffers.
 		 *
@@ -167,11 +171,11 @@ namespace tewi
 			const auto scale = renderable.scale;
 
 			float ts = 0;
-			
+
 			if (tid > 0)
 			{
 				bool foundTextureID = false;
-				for (std::size_t i = 0; i < m_textureSlots.size(); ++i)
+				for (asl::mut_sizei i = 0; i < m_textureSlots.size(); ++i)
 				{
 					if (m_textureSlots[i] == tid)
 					{
@@ -242,66 +246,7 @@ namespace tewi
 		{
 			for (const auto& renderable : renderableList)
 			{
-				const auto& position = renderable.pos;
-				const auto& color = renderable.color;
-				const auto& size = renderable.texture.size;
-				const auto tid = renderable.texture.id;
-				const auto scale = renderable.scale;
-
-				float ts = 0;
-				
-				if (tid > 0)
-				{
-					bool foundTextureID = false;
-					for (std::size_t i = 0; i < m_textureSlots.size(); ++i)
-					{
-						if (m_textureSlots[i] == tid)
-						{
-							ts = i + 1;
-							foundTextureID = true;
-							break;
-						}
-					}
-
-					if (!foundTextureID)
-					{
-						if (m_textureSlots.size() >= 32)
-						{
-							end();
-							draw();
-							begin();
-						}
-
-						m_textureSlots.push_back(tid);
-						ts = m_textureSlots.size() - 1;
-					}
-				}
-
-				m_buffer->position = glm::vec2(position.x, position.y + size.y * scale);
-				m_buffer->color = color;
-				m_buffer->uv = glm::vec2(0.0f, 1.0f);
-				m_buffer->textureID = ts;
-				m_buffer++;
-
-				m_buffer->position = glm::vec2(position.x + size.x * scale, position.y + size.y * scale);
-				m_buffer->color = color;
-				m_buffer->uv = glm::vec2(1.0f, 1.0f);
-				m_buffer->textureID = ts;
-				m_buffer++;
-
-				m_buffer->position = glm::vec2(position.x + size.x * scale, position.y);
-				m_buffer->color = color;
-				m_buffer->uv = glm::vec2(1.0f, 0.0f);
-				m_buffer->textureID = ts;
-				m_buffer++;
-
-				m_buffer->position = position;
-				m_buffer->color = color;
-				m_buffer->uv = glm::vec2(0.0f, 0.0f);
-				m_buffer->textureID = ts;
-				m_buffer++;
-
-				m_indexCount += 6;
+				add(renderable);
 			}
 		}
 
@@ -325,7 +270,7 @@ namespace tewi
 		 */
 		void draw()
 		{
-			for (std::size_t i = 0; i < m_textureSlots.size(); ++i)
+			for (asl::mut_sizei i = 0; i < m_textureSlots.size(); ++i)
 			{
 				glActiveTexture(GL_TEXTURE0 + i);
 				glBindTexture(GL_TEXTURE_2D, m_textureSlots[i]);
@@ -340,7 +285,7 @@ namespace tewi
 			glBindVertexArray(0);
 
 			glBindTexture(GL_TEXTURE_2D, 0);
-			
+
 			m_indexCount = 0;
 		}
 
@@ -353,5 +298,3 @@ namespace tewi
 		asl::mut_sizei m_indexCount;
 	};
 }
-
-#endif /* BATCH_RENDERER_2D_H */
