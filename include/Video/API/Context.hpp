@@ -15,20 +15,17 @@ namespace tewi
 	 */
 	namespace API
 	{
-		/** \brief Context initialization
-		 * Initializes graphic API for the window.
-		 *
-		 * Requires \a APINum that should be a value from the enum **API::API_TYPE**.
+		/** \brief Context initialization; initializes a graphic API for the window.
 		 *
 		 * You should *not* instantiate this class without a valid API, only the Window uses this.
 		 *
-		 * 
-		 * \sa Context<API_TYPE::OPENGL>
-		 * \sa Context<API_TYPE::VULKAN>
-		 * \sa Window
+		 * \tparam APIType The type of the API you want to use. Use one of the
+		 * structs in API.h or create your own.
+		 *
+		 i* \sa Window
 		 */
-		template <typename APINum>
-		class Context
+		template <typename APIType>
+		class Context final
 		{
 		public:
 			Context()

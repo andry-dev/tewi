@@ -25,7 +25,7 @@ namespace tewi
 	{
 	protected:
 		auto create() { return 0; }
-		auto compile(const std::string& path, asl::u32) { return 0; }
+		auto compile() { return 0; }
 	};
 
 	template <typename AnyShader>
@@ -77,13 +77,18 @@ namespace tewi
 	};
 	
 
-	/** \brief A shader
+	/** \brief A shader, either vertex, fragment, compute or an user-defined one.
 	 *
-	 * Requires the number of the API that you want to use
 	 *
+	 * \tparam APIType The API that you want to use.
+	 * \tparam ShaderTypePolicy The type of shader that you want to instantiate,
+	 * this can be either a VertexShader, FragmentShader or a custom struct. See
+	 * VertexShader for the interface.
+	 * \tparam ShaderFindPolicy How we want to find the shader path, by default it
+	 * tries to automatically deduce the extension
 	 *
 	 * \note
-	 * Different graphics APIs requries different extensions for the
+	 * Different graphics APIs requires different extensions for the
 	 * various shaders.
 	 * For example, OpenGL requires a GLSL source, while Vulkan requires a
 	 * pre-compiled SPIR-V binary.
@@ -99,62 +104,30 @@ namespace tewi
 	 * \par
 	 * We do all of this because of API compatibility.
 	 */
-	template <typename APINum,
+	template <typename APIType,
 			 template <typename> class ShaderTypePolicy,
 			 template <class> class ShaderFindPolicy = SubstitutionFindPolicy>
-	class Shader
-		: private ShaderTypePolicy<APINum>
-		, private ShaderFindPolicy<ShaderTypePolicy<APINum>>
+	class Shader final
+		: private ShaderTypePolicy<APIType>
+		, private ShaderFindPolicy<ShaderTypePolicy<APIType>>
 	{
 	public:
-		using ShaderTypeImpl = ShaderTypePolicy<APINum>;
-		using ShaderFindImpl = ShaderFindPolicy<ShaderTypePolicy<APINum>>;
+		using ShaderTypeImpl = ShaderTypePolicy<APIType>;
+		using ShaderFindImpl = ShaderFindPolicy<ShaderTypePolicy<APIType>>;
 
-		explicit Shader(API::Device<APINum>& dev, const char* path)
+		explicit Shader(API::Device<APIType>& dev, const char* path)
 			: m_path(ShaderFindImpl::getShaderPath(path))
 			, m_id(ShaderTypeImpl::create())
 		{
 			ShaderTypeImpl::compile(m_path, m_id);
 		}
 
-		using api_num = APINum;
+		using api_num = APIType;
 
 	private:
 		asl::u32 m_id;
 		const char* m_path;
 	};
-
-	template <typename APINum>
-	class ShaderProgram
-	{
-	public:
-		void enable() { }
-
-		void disable() { }
-
-		void addAttrib() { }
-
-		template <asl::sizei N>
-		void addAttrib(const std::array<const char*, N>& args) { }
-
-		asl::u32 getUniformLocation(const std::string& uniformName) { return 0; }
-
-		template <unsigned long N>
-		std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName) { }
-
-	private:
-		asl::u32 m_id;
-		asl::mut_sizei m_attribNums;
-	};
-
-	template <typename... Shaders>
-	using ShaderPack = std::tuple<Shaders...>;
-
-	template <typename... Shaders>
-	constexpr inline ShaderPack<Shaders...> make_shader_pack(Shaders... s)
-	{
-		return { std::forward<Shaders>(s)... };
-	}
 
 	namespace detail
 	{
@@ -163,12 +136,92 @@ namespace tewi
 		{
 			using value = typename std::decay_t<S>::api_num;
 		};
-
 	} // namespace detail
 
-	template <typename... Shaders, typename APINum = typename detail::get_api<Shaders...>::value>
-	inline ShaderProgram<APINum> make_shader_program(ShaderPack<Shaders...> pack)
+	template <typename... Shaders>
+	using ShaderPack = std::tuple<Shaders...>;
+
+	/** Creates a ShaderPack out of some shaders.
+	 *
+	 */
+	template <typename... Shaders>
+	constexpr inline ShaderPack<Shaders...> make_shader_pack(Shaders... s)
 	{
-		return {  };
+		return { std::forward<Shaders>(s)... };
 	}
+
+	/** \brief A shader program
+	 *
+	 * The shader program is the final "shader executable", where we link all
+	 * the other shaders together.
+	 * This is the class you use to manipulate shaders, like adding attributes
+	 * or retrieving uniforms.
+	 *
+	 * \tparam APIType The type of the API you want.
+	 *
+	 */
+	template <typename APIType>
+	class ShaderProgram
+	{
+	public:
+		template <typename... Shaders>
+		ShaderProgram(ShaderPack<Shaders...>& s) {  }
+
+		/** Enables the shader.
+		 *
+		 */
+		void enable() { }
+
+		/** Disables the shader.
+		 *
+		 */
+		void disable() { }
+
+		/** Adds a single attribute to the shader.
+		 *
+		 */
+		void addAttrib(const std::string& attrib) { }
+
+		/** Adds a group of attributes to the shader.
+		 *
+		 */
+		template <asl::sizei N>
+		void addAttrib(const std::array<const char*, N>& attrib) { }
+
+		/** Returns the index of an uniform.
+		 *
+		 */
+		asl::u32 getUniformLocation(const std::string& uniformName) { return 0; }
+
+		/** Returns an array of indices of various uniforms.
+		 *
+		 */
+		template <asl::sizei N>
+		std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName) { }
+
+	private:
+		asl::u32 m_id;
+		asl::mut_sizei m_attribNums;
+	};
+
+
+	/** Creates a ShaderProgram out of some shaders; basically it allows to skip
+	 * the intermediate ShaderPack creation.
+	 *
+	 */
+	template <typename... Shaders, typename APINum = typename detail::get_api<Shaders...>::value>
+	constexpr inline ShaderProgram<APINum> make_shader_program(Shaders... pack)
+	{
+		return { make_shader_pack(pack...) };
+	}
+
+
+	/** \example shader_creation.cpp
+	 *
+	 * Shows how to create a shader program.
+	 */
 }
+
+
+#include "Platform/OpenGL/Shader.hpp"
+#include "Platform/Vulkan/Shader.hpp"

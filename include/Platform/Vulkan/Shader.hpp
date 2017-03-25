@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Video/API/API.h"
-#include "Video/API/Shader.hpp"
+#include "Video/Shader.hpp"
 
 #include "IO/BasicIO.h"
 
