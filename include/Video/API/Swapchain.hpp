@@ -27,6 +27,8 @@ namespace tewi
 			template <typename... Shaders>
 			void createPipeline(ShaderPack<Shaders...>& shaders) {  }
 
+			void secondPhaseInit(const Device<APINum>&) {  }
+
 			void recreate() {  }
 
 			template <typename... Shaders>

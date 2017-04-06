@@ -65,21 +65,20 @@ namespace tewi
 	 * This is just a common interface that I built to simplify my work, nothing stops you from not using it.
 	 *
 	 */
-	template <class CacheType>
+	template <typename APIType, template <typename> class CacheType>
 	class ResourceManager
 	{
 	public:
 		static auto getResource(const std::string& path);
 	private:
-		static CacheType m_cache;
+		static CacheType<APIType> m_cache;
 	};
 
+	template <typename APIType, template <typename> class CacheType>
+	CacheType<APIType> ResourceManager<APIType, CacheType>::m_cache;
 
-	template <class CacheType>
-	CacheType ResourceManager<CacheType>::m_cache;
-
-	template <class CacheType>
-	auto ResourceManager<CacheType>::getResource(const std::string& path)
+	template <typename APIType, template <typename> class CacheType>
+	auto ResourceManager<APIType, CacheType>::getResource(const std::string& path)
 	{
 		return m_cache.get(path);
 	}

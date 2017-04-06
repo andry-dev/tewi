@@ -1,9 +1,8 @@
-#ifndef TEWI_TEXTURE_H
-#define TEWI_TEXTURE_H
+#pragma once
 
 #include <vector>
 
-#include <glm/glm.hpp>
+#include "glm/glm.hpp"
 
 #include <cstdint>
 
@@ -19,6 +18,7 @@ namespace tewi
 	 * TODO: Actually fix this that it's unacceptable.
 	 *
 	 */
+	template <typename APINum>
 	struct Texture
 	{
 		std::uint32_t id;
@@ -29,5 +29,3 @@ namespace tewi
 #endif /* TEWI_TEXTURE_DISABLE_PIXELS */
 	};
 }
-
-#endif /* TEWI_TEXTURE_H */

@@ -145,7 +145,7 @@ namespace tewi
 	 *
 	 */
 	template <typename... Shaders>
-	constexpr inline ShaderPack<Shaders...> make_shader_pack(Shaders... s)
+	constexpr inline ShaderPack<Shaders...> make_shader_pack(Shaders&&... s)
 	{
 		return { std::forward<Shaders>(s)... };
 	}
@@ -164,8 +164,8 @@ namespace tewi
 	class ShaderProgram
 	{
 	public:
-		template <typename... Shaders>
-		ShaderProgram(ShaderPack<Shaders...>& s) {  }
+		template <asl::sizei N, typename... Shaders>
+		ShaderProgram(const std::array<const char*, N> attribs, ShaderPack<Shaders...>& s) {  }
 
 		/** Enables the shader.
 		 *
@@ -176,17 +176,6 @@ namespace tewi
 		 *
 		 */
 		void disable() { }
-
-		/** Adds a single attribute to the shader.
-		 *
-		 */
-		void addAttrib(const std::string& attrib) { }
-
-		/** Adds a group of attributes to the shader.
-		 *
-		 */
-		template <asl::sizei N>
-		void addAttrib(const std::array<const char*, N>& attrib) { }
 
 		/** Returns the index of an uniform.
 		 *
@@ -209,12 +198,11 @@ namespace tewi
 	 * the intermediate ShaderPack creation.
 	 *
 	 */
-	template <typename... Shaders, typename APINum = typename detail::get_api<Shaders...>::value>
-	constexpr inline ShaderProgram<APINum> make_shader_program(Shaders... pack)
+	template <asl::sizei N, typename... Shaders, typename APINum = typename detail::get_api<Shaders...>::value>
+	constexpr inline ShaderProgram<APINum> make_shader_program(const std::array<const char*, N>& attribs, Shaders... pack)
 	{
-		return { make_shader_pack(pack...) };
+		return { attribs, make_shader_pack(pack...) };
 	}
-
 
 	/** \example shader_creation.cpp
 	 *

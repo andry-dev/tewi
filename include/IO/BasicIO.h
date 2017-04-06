@@ -77,15 +77,15 @@ namespace tewi
 			// If we match some words (like vert) then we should first try
 			// with related extension (so .vert in this case)
 
-			if (!asl::fs::fileExists(path))
+			if (!asl::fs::fileExists(path.c_str()))
 			{
 				auto newPath = removeExtension(path);
 
 				// First we try by removing the extension
 				for (const auto& ext : acceptedExtensions)
 				{
-					auto pathWithNewExt = newPath + ext;
-					if (asl::fs::fileExists(pathWithNewExt))
+					std::string pathWithNewExt = newPath + ext;
+					if (asl::fs::fileExists(pathWithNewExt.c_str()))
 					{
 						return { true, pathWithNewExt };
 					}
@@ -94,12 +94,14 @@ namespace tewi
 				// If it fails we just try to append the extension
 				for (const auto& ext : acceptedExtensions)
 				{
-					auto pathWithNewExt = path + ext;
-					if (asl::fs::fileExists(pathWithNewExt))
+					std::string pathWithNewExt = path + ext;
+					if (asl::fs::fileExists(pathWithNewExt.c_str()))
 					{
 						return { true, pathWithNewExt };
 					}
 				}
+
+				return { false, "" };
 			}
 			else
 			{

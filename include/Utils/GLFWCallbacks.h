@@ -1,5 +1,4 @@
-#ifndef TEWI_GLFW_CALLBACKS_H
-#define TEWI_GLFW_CALLBACKS_H
+#pragma once
 
 
 #include <GL/glew.h>
@@ -23,5 +22,3 @@ namespace tewi
 	}
 
 }
-
-#endif /* TEWI_GLFW_CALLBACKS_H */

@@ -20,11 +20,11 @@ namespace tewi
 		{
 		}
 
-		void add(const Renderable2D& renderable)
+		void add(const Renderable2D<APIType>& renderable)
 		{
 		}
 
-		void add(const std::vector<Renderable2D>& renderableList)
+		void add(const std::vector<Renderable2D<APIType>>& renderableList)
 		{
 		}
 

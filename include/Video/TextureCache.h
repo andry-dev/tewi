@@ -13,17 +13,20 @@ namespace tewi
 	 * \sa ResourceManager
 	 *
 	 */
+	template <typename APIType>
 	class TextureCache
 	{
 	public:
-		Texture get(const std::string& path);
+		Texture<APIType> get(const std::string& path);
 
 	private:
-		Texture load(const std::string& path);
+		Texture<APIType> load(const std::string& path);
 		
-		std::map<std::string, Texture> m_map;
+		std::map<std::string, Texture<APIType>> m_map;
 	};
 }
 
+
+#include "TextureCache.hxx"
 
 #endif /* TEWI_TEXTURE_CACHE_H */

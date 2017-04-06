@@ -1,4 +1,4 @@
-#include "Video/BatchRenderer2D.hpp"
+#include "../../include/Video/BatchRenderer2D.hpp"
 
 using namespace tewi;
 using namespace tewi::API;

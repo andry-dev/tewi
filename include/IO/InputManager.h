@@ -1,8 +1,8 @@
-#ifndef TEWI_INPUT_MANAGER_H
-#define TEWI_INPUT_MANAGER_H
+#pragma once
+
+#include <unordered_map>
 
 #include "glm/glm.hpp"
-#include <unordered_map>
 
 namespace tewi
 {
@@ -74,6 +74,3 @@ namespace tewi
 		std::unordered_map<std::uint32_t, bool> m_keymap;
 	};
 }
-
-
-#endif /* TEWI_INPUT_MANAGER_H */

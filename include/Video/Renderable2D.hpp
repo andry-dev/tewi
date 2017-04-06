@@ -5,8 +5,8 @@
 
 #define TEWI_TEXTURE_DISABLE_PIXELS
 #include "Video/Texture.h"
-#include <glm/glm.hpp>
 #include <array>
+#include "glm/glm.hpp"
 #include <type_traits>
 
 namespace tewi
@@ -53,6 +53,7 @@ namespace tewi
 	 * Inheritance leads to sloppy design which leads to cache misses; and we want to abuse that cache, right?
 	 *
 	 */
+	template <typename APIType>
 	struct Renderable2D final
 	{
 		Renderable2D(const glm::vec2& pos, const glm::vec2& size, const Color& color)
@@ -61,19 +62,19 @@ namespace tewi
 			texture.size = size;
 		}
 
-		Renderable2D(const glm::vec2& pos, Texture texture, const Color& color)
+		Renderable2D(const glm::vec2& pos, Texture<APIType> texture, const Color& color)
 			: pos(pos), texture(texture), color(color), scale(1.0f)
 		{
 
 		}
 
 		glm::vec2 pos;
-		Texture texture;
+		Texture<APIType> texture;
 		Color color;
 		float scale;
 	};
 
-	static_assert(sizeof(Renderable2D) == 28 || sizeof(Renderable2D) == 24 || sizeof(Renderable2D) >= 56, "The size of the Texture struct is not common, neither a normal value (24 | 28) nor an extremely large value (>=56, most likely due to TEWI_TEXTURE_ENABLE_PIXELS defined).");
+	//static_assert(sizeof(Renderable2D) == 28 || sizeof(Renderable2D) == 24 || sizeof(Renderable2D) >= 56, "The size of the Texture struct is not common, neither a normal value (24 | 28) nor an extremely large value (>=56, most likely due to TEWI_TEXTURE_ENABLE_PIXELS defined).");
 }
 
 

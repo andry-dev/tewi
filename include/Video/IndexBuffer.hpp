@@ -1,5 +1,4 @@
-#ifndef INDEX_BUFFER_H
-#define INDEX_BUFFER_H
+#pragma once
 
 #include <vector>
 #include <GL/glew.h>
@@ -37,6 +36,3 @@ namespace tewi
 		GLuint m_bufferID;
 	};
 }
-
-
-#endif /* INDEX_BUFFER_H */

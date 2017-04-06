@@ -162,7 +162,7 @@ namespace tewi
 		 *
 		 * \endcode
 		 */
-		void add(const Renderable2D& renderable)
+		void add(const Renderable2D<API::OpenGLTag>& renderable)
 		{
 			const auto& position = renderable.pos;
 			const auto& color = renderable.color;
@@ -242,8 +242,9 @@ namespace tewi
 		 * \endcode
 		 *
 		 */
-		void add(const std::vector<Renderable2D>& renderableList)
+		void add(const std::vector<Renderable2D<API::OpenGLTag>>& renderableList)
 		{
+			// TODO: Refactor this to make it actually work, like it did before the vulkan shitshow
 			for (const auto& renderable : renderableList)
 			{
 				add(renderable);

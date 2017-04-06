@@ -2,6 +2,7 @@
 
 #include <utility>
 #include <fstream>
+#include <cstdio>
 #include <string>
 
 #include "asl/types"
@@ -22,17 +23,18 @@ namespace tewi
 	{
 		inline void compileGLShaders(const std::string& path, asl::u32 id)
 		{
-			std::ifstream shaderFile(path);
+			FILE* shaderFile = std::fopen(path.c_str(), "r");
+			std::fseek(shaderFile, 0, SEEK_END);
+			asl::sizei length = std::ftell(shaderFile);
 
-			std::string content;
+			std::string content(length, '\0');
 
-			// Fuckery to read a file
-			shaderFile.seekg(0, std::ios::end);
-			content.resize(shaderFile.tellg());
-			shaderFile.seekg(0, std::ios::beg);
-			shaderFile.read(&content[0], content.size());
+			std::fseek(shaderFile, 0, SEEK_SET);
+			std::fread(&content[0], 1, length, shaderFile);
+			std::fclose(shaderFile);
 
 			auto str_ptr = content.c_str();
+
 			glShaderSource(id, 1, &str_ptr, nullptr);
 			glCompileShader(id);
 
@@ -68,6 +70,7 @@ namespace tewi
 
 		void compile(const std::string& path, asl::u32 id)
 		{
+			tewi::Log::debugInfo("Vertex shader path is: " + path);
 			compileGLShaders(path, id);
 		}
 	};
@@ -87,6 +90,7 @@ namespace tewi
 
 		void compile(const std::string& path, asl::u32 id)
 		{
+			tewi::Log::debugInfo("Fragment shader path is: " + path);
 			compileGLShaders(path, id);
 		}
 	};
@@ -95,8 +99,8 @@ namespace tewi
 	class ShaderProgram<API::OpenGLTag>
 	{
 	public:
-		template <typename... Shaders>
-		ShaderProgram(ShaderPack<Shaders...> pack)
+		template <asl::sizei N, typename... Shaders>
+		ShaderProgram(const std::array<const char*, N> attribs, const ShaderPack<Shaders...>& pack)
 			: m_id(glCreateProgram())
 			, m_attribNum(0)
 		{
@@ -105,6 +109,11 @@ namespace tewi
 				auto sid = shader.getID();
 				glAttachShader(m_id, sid);
 			});
+
+			for (asl::mut_sizei i = 0; i < attribs.size(); ++i)
+			{
+				glBindAttribLocation(m_id, i, attribs[i]);
+			}
 
 			glLinkProgram(m_id);
 
@@ -143,11 +152,13 @@ namespace tewi
 
 		~ShaderProgram()
 		{
+			Log::debugInfo("ShaderProgram<GL>::~ShaderProgram");
 			glDeleteProgram(m_id);
 		}
 
 		void enable()
 		{
+			Log::debugInfo("ShaderProgram<GL>::enable");
 			glUseProgram(m_id);
 			for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
 			{
@@ -157,6 +168,7 @@ namespace tewi
 
 		void disable()
 		{
+			Log::debugInfo("ShaderProgram<OGL>::disable");
 			glUseProgram(0);
 			for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
 			{
@@ -164,28 +176,14 @@ namespace tewi
 			}
 		}
 
-		void addAtrib(const std::string& attribute)
-		{
-			glBindAttribLocation(m_id, m_attribNum++, attribute.c_str());
-		}
-
-		template <unsigned long N>
-		void addAttrib(const std::array<const char*, N>& args)
-		{
-			for (const auto& attrib : args)
-			{
-				glBindAttribLocation(m_id, m_attribNum++, attrib);
-			}
-		}
-
 		asl::u32 getUniformLocation(const std::string& uniformName)
 		{
 			asl::u32 location = glGetUniformLocation(m_id, uniformName.c_str());
-			TEWI_EXPECTS(location != GL_INVALID_INDEX, "Invalid uniform variable " + uniformName);
+			TEWI_EXPECTS(location != GL_INVALID_INDEX, "Invalid uniform variable \"" + uniformName + "\"");
 			return location;
 		}
 
-		template <unsigned long N>
+		template <asl::sizei N>
 		std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName)
 		{
 			std::array<asl::u32, N> arr;
@@ -231,6 +229,8 @@ namespace tewi
 		Shader& operator=(Shader&& rhs) = default;
 
 		auto getID() const { return m_id; }
+
+		using api_num = API::OpenGLTag;
 
 	private:
 		asl::u32 m_id;

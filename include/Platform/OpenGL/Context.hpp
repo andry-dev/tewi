@@ -42,8 +42,6 @@ namespace tewi
 
 			void postInit(GLFWwindow* window)
 			{
-				glfwMakeContextCurrent(window);
-
 				asl::debug_only<GLenum> error = glewInit();
 				TEWI_ENSURES(error == GLEW_OK, "Failed GLEW initialization");
 

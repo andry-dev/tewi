@@ -19,17 +19,18 @@ namespace tewi
 	 * Use it if you don't want to mess around resources and just want a basic Sprite class.
 	 *
 	 */
+	template <typename APIType>
 	class Sprite
 	{
 	public:
 		Sprite(const glm::vec2& pos, const std::string& path)
-			: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
+			: m_renderable(pos, ResourceManager<APIType, TextureCache>::getResource(path), Color(255, 255, 255, 255)),
 			m_collidable(m_renderable.pos, m_renderable.texture.size)
 		{
 		}
 
 		Sprite(const glm::vec2& pos, float scale, const std::string& path)
-			: m_renderable(pos, ResourceManager<TextureCache>::getResource(path), Color(255, 255, 255, 255)),
+			: m_renderable(pos, ResourceManager<APIType, TextureCache>::getResource(path), Color(255, 255, 255, 255)),
 			m_collidable(m_renderable.pos, m_renderable.texture.size)
 		{
 			m_renderable.scale = scale;
@@ -40,12 +41,12 @@ namespace tewi
 		 * Just in case you're too lazy to write \a getRenderable().
 		 *
 		 */
-		operator const Renderable2D() { return m_renderable; }
+		operator const Renderable2D<APIType>() { return m_renderable; }
 
 		/** Returns a pointer to the renderable in the form of an implicit conversion.
 		 *
 		 */
-		operator const Renderable2D*() { return &m_renderable; }
+		operator const Renderable2D<APIType>*() { return &m_renderable; }
 
 		/** Returns the collidable in the form of an implicit conversion.
 		 *
@@ -73,7 +74,7 @@ namespace tewi
 
 	protected:
 
-		Renderable2D m_renderable;
+		Renderable2D<APIType> m_renderable;
 		Physics::Collidable2D m_collidable;
 	};
 }

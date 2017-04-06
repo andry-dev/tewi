@@ -61,7 +61,7 @@ namespace tewi
 		 *
 		 * \pre You must call this function after \a begin() and before \a end().
 		 */
-		void add(const std::vector<Renderable2D>& renderables)
+		void add(const std::vector<Renderable2D<APIType>>& renderables)
 		{
 			RenderPolicyImpl::add(renderables);
 		}
@@ -84,7 +84,7 @@ namespace tewi
 		 *
 		 * \pre You must call this function after \a begin() and before \a end().
 		 */
-		void add(const Renderable2D& renderable)
+		void add(const Renderable2D<APIType>& renderable)
 		{
 			RenderPolicyImpl::add(renderable);
 		}
