@@ -11,18 +11,25 @@ void simple_creation()
 	Shader<OpenGLTag, VertexShader> vert("path/to/shader");
 	Shader<OpenGLTag, FragmentShader> frag("path/to/shader");
 
-	// Then we create the program by creating a ShaderPack and passing it to the
-	// program
-	ShaderProgram<OpenGLTag> program(make_shader_pack(vert, frag));
+	// Then we create the program by passing the attributes and the shaders
+	
+	// You can use any other container that has operator[] and any type that
+	// implements the function "c_str()"
+	const std::array<const char*, 2> attribs =
+	{{
+		"vertexPos",
+		"vertexCol"
+	}};
+
+	// You can also create the container in-line with the brace initialization
+	// syntax
+	ShaderProgram<OpenGLTag> program(attribs, vert, frag);
 
 	// OR:
-	// auto program = make_shader_program(vert, frag);
+	// auto program = make_shader_program(attribs, vert, frag);
 
 	// Enables the program
 	program.enable();
-
-	// Add an attribute to the program
-	program.addAttrib("vertex_position");
 
 	// Disables it
 	program.disable();
@@ -35,7 +42,7 @@ void deallocation()
 	auto* vertPtr = new Shader<OpenGLTag, VertexShader>("path/to/shader");
 	auto* fragPtr = new Shader<OpenGLTag, FragmentShader>("path/to/shader");
 
-	auto program = make_shader_program(*vertPtr, *fragPtr);
+	auto program = make_shader_program(/* attribs */, *vertPtr, *fragPtr);
 
 	delete vertPtr;
 	delete fragPtr;
@@ -51,9 +58,9 @@ void deallocation()
 	 * file. For example in OpenGL it just compiles the shader, it doesn't link
 	 * it.
 	 *
-	 * The constructor of ShaderProgram takes all the single shaders (as a
-	 * std::tuple), links them and keeps only the final program, not the single
-	 * shaders; this should not use much resources.
+	 * The constructor of ShaderProgram takes all the shaders, links them and
+	 * keeps only the final program, not the single shaders; this should not use
+	 * much resources.
 	 *
 	 * tl;dr: ShaderProgram doesn't owns any Shader, it just uses them to
 	 * compile the final program.
@@ -134,7 +141,7 @@ void use_my_shader()
 {
 	Shader<OpenGLTag, MyShader> sh("path/to/shader");
 
-	auto program = make_shader_program(sh);
+	auto program = make_shader_program(/* attribs */, sh);
 
 	// You should know the gist.
 }

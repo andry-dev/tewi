@@ -164,8 +164,8 @@ namespace tewi
 		 */
 		void add(const Renderable2D<API::OpenGLTag>& renderable)
 		{
-			const auto& position = renderable.pos;
-			const auto& color = renderable.color;
+			//const auto& position = renderable.pos;
+			//const auto& color = renderable.color;
 			const auto& size = renderable.texture.size;
 			const auto tid = renderable.texture.id;
 			const auto scale = renderable.scale;
@@ -199,26 +199,26 @@ namespace tewi
 				}
 			}
 
-			m_buffer->position = glm::vec2(position.x, position.y + size.y * scale);
-			m_buffer->color = color;
+			m_buffer->position = glm::vec2(renderable.pos.x, renderable.pos.y + size.y * scale);
+			m_buffer->color = renderable.color;
 			m_buffer->uv = glm::vec2(0.0f, 1.0f);
 			m_buffer->textureID = ts;
 			m_buffer++;
 
-			m_buffer->position = glm::vec2(position.x + size.x * scale, position.y + size.y * scale);
-			m_buffer->color = color;
+			m_buffer->position = glm::vec2(renderable.pos.x + size.x * scale, renderable.pos.y + size.y * scale);
+			m_buffer->color = renderable.color;
 			m_buffer->uv = glm::vec2(1.0f, 1.0f);
 			m_buffer->textureID = ts;
 			m_buffer++;
 
-			m_buffer->position = glm::vec2(position.x + size.x * scale, position.y);
-			m_buffer->color = color;
+			m_buffer->position = glm::vec2(renderable.pos.x + size.x * scale, renderable.pos.y);
+			m_buffer->color = renderable.color;
 			m_buffer->uv = glm::vec2(1.0f, 0.0f);
 			m_buffer->textureID = ts;
 			m_buffer++;
 
-			m_buffer->position = position;
-			m_buffer->color = color;
+			m_buffer->position = renderable.pos;
+			m_buffer->color = renderable.color;
 			m_buffer->uv = glm::vec2(0.0f, 0.0f);
 			m_buffer->textureID = ts;
 			m_buffer++;
@@ -242,8 +242,13 @@ namespace tewi
 		 * \endcode
 		 *
 		 */
-		void add(const std::vector<Renderable2D<API::OpenGLTag>>& renderableList)
+		template <typename Container>
+		void add(const Container& renderableList)
 		{
+			static_assert(std::is_same<typename Container::value_type,
+					Renderable2D<API::OpenGLTag>>::value,
+					"You're trying to add something to the batchrenderer"
+					"that is not a Renderable2D");
 			// TODO: Refactor this to make it actually work, like it did before the vulkan shitshow
 			for (const auto& renderable : renderableList)
 			{

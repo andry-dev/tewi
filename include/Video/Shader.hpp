@@ -164,8 +164,8 @@ namespace tewi
 	class ShaderProgram
 	{
 	public:
-		template <asl::sizei N, typename... Shaders>
-		ShaderProgram(const std::array<const char*, N> attribs, ShaderPack<Shaders...>& s) {  }
+		template <typename Container, typename... Shaders>
+		ShaderProgram(const Container& attribs, Shaders&&... s) {  }
 
 		/** Enables the shader.
 		 *
@@ -188,6 +188,19 @@ namespace tewi
 		template <asl::sizei N>
 		std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName) { }
 
+		/** Returns an array of indices of various uniforms.
+		 *
+		 */
+		template <asl::sizei N, typename StringType>
+		std::array<asl::u32, N> getUniformLocation(const std::array<StringType, N>& uniformName) { }
+
+		/** Returns an array of indices of various uniforms.
+		 *
+		 */
+		template <typename Container, bool = !std::is_same<typename Container::value_type, const char*>::value>
+		std::vector<asl::mut_u32> getUniformLocation(const Container& uniformName) { return {}; }
+
+
 	private:
 		asl::u32 m_id;
 		asl::mut_sizei m_attribNums;
@@ -198,10 +211,10 @@ namespace tewi
 	 * the intermediate ShaderPack creation.
 	 *
 	 */
-	template <asl::sizei N, typename... Shaders, typename APINum = typename detail::get_api<Shaders...>::value>
-	constexpr inline ShaderProgram<APINum> make_shader_program(const std::array<const char*, N>& attribs, Shaders... pack)
+	template <typename Container, typename... Shaders, typename APINum = typename detail::get_api<Shaders...>::value>
+	constexpr inline ShaderProgram<APINum> make_shader_program(const Container& attribs, Shaders&&... pack)
 	{
-		return { attribs, make_shader_pack(pack...) };
+		return { attribs, std::forward<Shaders>(pack)... };
 	}
 
 	/** \example shader_creation.cpp
@@ -209,7 +222,6 @@ namespace tewi
 	 * Shows how to create a shader program.
 	 */
 }
-
 
 #include "Platform/OpenGL/Shader.hpp"
 #include "Platform/Vulkan/Shader.hpp"

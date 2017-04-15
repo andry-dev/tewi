@@ -24,8 +24,11 @@ namespace tewi
 		{
 		}
 
-		void add(const std::vector<Renderable2D<APIType>>& renderableList)
+		template <typename Container>
+		void add(const Container& renderableList)
 		{
+			static_assert(std::is_same<typename Container::value_type,
+					Renderable2D<APIType>>::value, "");
 		}
 
 		void end()
