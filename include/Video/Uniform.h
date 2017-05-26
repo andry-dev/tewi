@@ -12,6 +12,8 @@
 
 #include "Log.h"
 
+#include "Common.h"
+
 namespace tewi
 {
 	namespace detail
@@ -22,41 +24,41 @@ namespace tewi
 	}
 
 	template<typename T>
-	void setUniform(std::int32_t, T)
+	/* TEWI_EXPORT */ void setUniform(std::int32_t, T)
 	{
 		static_assert(detail::disable_type<T>::value, "Tried to pass an unsupported value");
 	}
 
 	template<>
-	void setUniform<float>(std::int32_t uniformID, float uniformVal)
+	/* TEWI_EXPORT */ void setUniform<float>(std::int32_t uniformID, float uniformVal)
 	{
 		glUniform1f(uniformID, uniformVal);
 	}
 
 	template<>
-	void setUniform<double>(std::int32_t uniformID, double uniformVal)
+	/* TEWI_EXPORT */ void setUniform<double>(std::int32_t uniformID, double uniformVal)
 	{
 		glUniform1d(uniformID, uniformVal);
 	}
 
 	template<>
-	void setUniform<std::uint32_t>(std::int32_t uniformID, std::uint32_t uniformVal)
+	/* TEWI_EXPORT */ void setUniform<std::uint32_t>(std::int32_t uniformID, std::uint32_t uniformVal)
 	{
 		glUniform1ui(uniformID, uniformVal);
 	}
 
 	template<>
-	void setUniform<std::int32_t>(std::int32_t uniformID, std::int32_t uniformVal)
+	/* TEWI_EXPORT */ void setUniform<std::int32_t>(std::int32_t uniformID, std::int32_t uniformVal)
 	{
 		glUniform1i(uniformID, uniformVal);
 	}
 
-	void setUniform(std::int32_t uniformID, const glm::mat4& matrix)
+	/* TEWI_EXPORT */ void setUniform(std::int32_t uniformID, const glm::mat4& matrix)
 	{
 		glUniformMatrix4fv(uniformID, 1, GL_FALSE, &matrix[0][0]);
 	}
 
-	void setUniform(std::int32_t uniformID, const std::vector<int>& vec)
+	/* TEWI_EXPORT */ void setUniform(std::int32_t uniformID, const std::vector<int>& vec)
 	{
 		glUniform1iv(uniformID, vec.size(), vec.data());
 	}

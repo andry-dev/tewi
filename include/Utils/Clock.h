@@ -1,10 +1,11 @@
-#ifndef TEWI_CLOCK_H
-#define TEWI_CLOCK_H
+#pragma once
 
 #include <GL/glew.h>
 
 #define GLFW_INCLUDE_VULKAN
 #include "GLFW/glfw3.h"
+
+#include "Common.h"
 
 namespace tewi
 {
@@ -13,7 +14,7 @@ namespace tewi
 	 * There isn't much to say.
 	 *
 	 */
-	class Clock
+	class TEWI_EXPORT Clock
 	{
 	public:
 		Clock();
@@ -38,5 +39,3 @@ namespace tewi
 		double m_startTime = glfwGetTime();
 	};
 }
-
-#endif /* TEWI_CLOCK_H */

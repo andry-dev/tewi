@@ -1,9 +1,13 @@
 cmake_minimum_required(VERSION 2.8)
 project(tewi)
 
+option(TEWI_SHARED_LIB "Build tewi as a shared library" OFF)
+
+
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
 
 add_subdirectory(lib/universal/glfw)
 add_subdirectory(lib/universal/asl)
@@ -27,7 +31,13 @@ set(SRC
 	src/Utils/TickTimer.cpp
 	src/Video/Camera2D.cpp)
 
-add_library(${PROJECT_NAME} ${SRC})
+if (TEWI_SHARED_LIB)
+	add_library(${PROJECT_NAME} SHARED ${SRC})
+	message(STATUS "[tewi] Building as DLL/so")
+	target_compile_definitions(${PROJECT_NAME} PRIVATE TEWI_SHARED_LIB=1)
+else()
+	add_library(${PROJECT_NAME} STATIC ${SRC})
+endif()
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
 
@@ -52,7 +62,7 @@ if(WIN32)
 		opengl32.lib)
 
 else()
-	INCLUDE(FindPkgConfig)
+	include(FindPkgConfig)
 
 	pkg_search_module(GLEW REQUIRED glew)
 	target_include_directories(${PROJECT_NAME} PUBLIC ${GLEW_INCLUDE_DIRS})

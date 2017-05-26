@@ -11,6 +11,8 @@
 #include "Log.h"
 #include "Utils/GLFWCallbacks.h"
 
+#include "Common.h"
+
 namespace tewi
 {
 	/** \brief Basic windowing system
@@ -32,7 +34,7 @@ namespace tewi
 	 * \endcode
 	 */
 	template <typename APINum>
-	class Window
+	class TEWI_EXPORT Window
 	{
 	public:
 		Window(const std::string& windowName, int width, int height)

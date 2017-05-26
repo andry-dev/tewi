@@ -9,6 +9,8 @@
 
 #include "gsl/not_null"
 
+#include "Common.h"
+
 namespace tewi
 {
 	namespace API
@@ -19,10 +21,10 @@ namespace tewi
 		 *
 		 */
 		template <typename APINum>
-		class Swapchain
+		class TEWI_EXPORT Swapchain
 		{
 		public:
-			Swapchain(Instance<APINum>&, gsl::not_null<Window<APINum>*>) {  }
+			Swapchain(Instance<APINum>&, Window<APINum>&) {  }
 
 			template <typename... Shaders>
 			void createPipeline(ShaderPack<Shaders...>& shaders) {  }

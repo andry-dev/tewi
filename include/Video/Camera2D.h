@@ -6,9 +6,11 @@
 #include "Log.h"
 #include <string>
 
+#include "Common.h"
+
 namespace tewi
 {
-	class Camera2D
+	class TEWI_EXPORT Camera2D
 	{
 	public:
 		Camera2D(int screenWidth, int screenHeight);

@@ -2,6 +2,20 @@
 
 #include "asl/types"
 
+#ifdef _WIN32
+	#ifdef TEWI_SHARED_LIB
+	#define TEWI_EXPORT __declspec(dllexport)
+	#else
+	#define TEWI_EXPORT __declspec(dllimport)
+	#endif
+#else
+	#define TEWI_EXPORT
+#endif
+
+#ifdef TUA_MAMMA_PUTTANA
+#error ORA FUNZIONA DIO CANE
+#endif
+
 /** \file 
  * This is a common file for typedefs and useful functions.
  * 

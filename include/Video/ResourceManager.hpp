@@ -6,6 +6,8 @@
 
 #include "Video/TextureCache.h"
 
+#include "Common.h"
+
 namespace tewi
 {
 	/** \brief Generic resource manager
@@ -78,7 +80,7 @@ namespace tewi
 	CacheType<APIType> ResourceManager<APIType, CacheType>::m_cache;
 
 	template <typename APIType, template <typename> class CacheType>
-	auto ResourceManager<APIType, CacheType>::getResource(const std::string& path)
+	inline auto ResourceManager<APIType, CacheType>::getResource(const std::string& path)
 	{
 		return m_cache.get(path);
 	}

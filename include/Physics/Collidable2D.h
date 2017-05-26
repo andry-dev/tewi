@@ -5,6 +5,8 @@
 
 #include <vector>
 
+#include "Common.h"
+
 namespace tewi
 {
 	/** Namespace for physics.
@@ -77,7 +79,7 @@ namespace tewi
 		 * AND, we're passing small objects (two pointers + 4 bytes), so we shouldn't get much cache misses (even if there are pointers and we need to dereference them...).
 		 *
 		 */
-		struct Collidable2D
+		struct TEWI_EXPORT Collidable2D
 		{
 
 			/** Constructor for the class.
@@ -104,7 +106,7 @@ namespace tewi
 		/** Checks AABB collision between single collidables.
 		 *
 		 */
-		extern bool checkAABB(const Collidable2D& first, const Collidable2D& second);
+		extern TEWI_EXPORT bool checkAABB(const Collidable2D& first, const Collidable2D& second);
 
 		/** Checks AABB collision between a vector of collidables.
 		 *
@@ -112,12 +114,12 @@ namespace tewi
 		 * \return true if **ALL** the elements in the first vector **collided** with **ALL** the elements in the second vector.
 		 *
 		 */
-		extern bool checkAABB(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup);
+		extern TEWI_EXPORT bool checkAABB(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup);
 
 		/** Checks collision via radius between single collidables.
 		 *
 		 */
-		extern bool checkRadius(const Collidable2D& first, const Collidable2D& second);
+		extern TEWI_EXPORT bool checkRadius(const Collidable2D& first, const Collidable2D& second);
 
 		/** Checks collision via radius between a vector of collidables.
 		 *
@@ -125,12 +127,7 @@ namespace tewi
 		 * \return true if **ALL** the elements in the first vector **collided** with **ALL** the elements in the second vector.
 		 *
 		 */
-		extern bool checkRadius(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup);
-
-		/** Creates a Collidable2D
-		 *
-		 */
-		extern Collidable2D makeCollidable2D(glm::vec2& pos, glm::vec2& size);
+		extern TEWI_EXPORT bool checkRadius(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup);
 	}
 }
 

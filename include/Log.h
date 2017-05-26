@@ -6,6 +6,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include "Common.h"
+
 namespace tewi
 {
 	/** Log-related functions.
@@ -17,7 +19,7 @@ namespace tewi
 		/** Prints a warning.
 		 *
 		 */
-		inline void warning(const std::string& str)
+		inline TEWI_EXPORT void warning(const std::string& str)
 		{
 			std::printf("[W] %s\n", str.c_str());
 		}
@@ -25,7 +27,7 @@ namespace tewi
 		/** Prints an error.
 		 *
 		 */
-		inline void error(const std::string& str)
+		inline TEWI_EXPORT void error(const std::string& str)
 		{
 			std::printf("[E] %s\n", str.c_str());
 		}
@@ -33,7 +35,7 @@ namespace tewi
 		/** Prints an informational message.
 		 *
 		 */
-		inline void info(const std::string& str)
+		inline TEWI_EXPORT void info(const std::string& str)
 		{
 			std::printf("[I] %s\n", str.c_str());
 		}
@@ -41,7 +43,7 @@ namespace tewi
 		/** Non-macro debug-only version of \a warning().
 		 *
 		 */
-		inline void debugWarning(const std::string& str)
+		inline TEWI_EXPORT void debugWarning(const std::string& str)
 		{
 #ifndef NDEBUG
 			warning(str);
@@ -51,7 +53,7 @@ namespace tewi
 		/** Non-macro debug-only version of \a error().
 		 *
 		 */
-		inline void debugError(const std::string& str)
+		inline TEWI_EXPORT void debugError(const std::string& str)
 		{
 #ifndef NDEBUG
 			error(str);

@@ -8,15 +8,17 @@
 
 #include "Log.h"
 
+#include "Common.h"
+
 namespace tewi
 {
 
-	inline void windowResizeCallback(GLFWwindow*, int width, int height)
+	inline TEWI_EXPORT void windowResizeCallback(GLFWwindow*, int width, int height)
 	{
 		glViewport(0, 0, width, height);
 	}
 
-	inline void glfwErrorCallback(int error, const char* description)
+	inline TEWI_EXPORT void glfwErrorCallback(int error, const char* description)
 	{
 		Log::error(std::to_string(error) + " " + description);
 	}

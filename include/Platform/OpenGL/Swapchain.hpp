@@ -7,6 +7,7 @@ namespace tewi
 {
 	namespace API
 	{
+		/*
 		template <>
 		class Swapchain<API::OpenGLTag>
 		{
@@ -24,5 +25,6 @@ namespace tewi
 			void replaceShaders(ShaderPack<Shaders...>& shaders) {  }
 		private:
 		};
+		*/
 	}
 }

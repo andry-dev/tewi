@@ -2,6 +2,8 @@
 
 #include "Video/API/Context.hpp"
 
+#include "Common.h"
+
 namespace tewi
 {
 	namespace API
@@ -16,7 +18,7 @@ namespace tewi
 		 * \warning API and ABI instable.
 		 */
 		template <typename APINum>
-		class Instance
+		class TEWI_EXPORT Instance
 		{
 		public:
 			Instance()

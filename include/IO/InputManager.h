@@ -4,6 +4,8 @@
 
 #include "glm/glm.hpp"
 
+#include "Common.h"
+
 namespace tewi
 {
 	/** \brief Basic input management class.
@@ -40,31 +42,31 @@ namespace tewi
 	 * \todo Support for joysticks and controllers.
 	 *
 	 */
-	class InputManager
+	class TEWI_EXPORT InputManager
 	{
 	public:
 
 		/** Registers a key in the keymap
 		 *
 		 */
-		void pressKey(std::uint32_t keycode);
+		void pressKey(asl::u32 keycode);
 
 		/** Releases a key in the keymap
 		 *
 		 */
-		void releaseKey(std::uint32_t keycode);
+		void releaseKey(asl::u32 keycode);
 		
 		/** Checks if the a key is down or not
 		 *
 		 * \return true if the key associated to the keycode is pressed.
 		 */
-		bool isKeyDown(std::uint32_t keycode);
+		bool isKeyDown(asl::u32 keycode);
 		
 		/** Checks if a key is released
 		 *
 		 * \return true if the key associated to the keycode is released.
 		 */
-		bool isKeyReleased(std::uint32_t keycode);
+		bool isKeyReleased(asl::u32 keycode);
 
 		// Getters and setters are useless in this case
 		glm::vec2 m_mouseCoords;

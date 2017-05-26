@@ -12,6 +12,8 @@
 
 #include "Physics/Collidable2D.h"
 
+#include "Common.h"
+
 namespace tewi
 {
 	/** \brief Facility to create a basic sprite
@@ -20,7 +22,7 @@ namespace tewi
 	 *
 	 */
 	template <typename APIType>
-	class Sprite
+	class TEWI_EXPORT Sprite
 	{
 	public:
 		Sprite(const glm::vec2& pos, const std::string& path)

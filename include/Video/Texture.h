@@ -6,6 +6,8 @@
 
 #include <cstdint>
 
+#include "Common.h"
+
 namespace tewi
 {
 
@@ -19,7 +21,7 @@ namespace tewi
 	 *
 	 */
 	template <typename APINum>
-	struct Texture
+	struct TEWI_EXPORT Texture
 	{
 		std::uint32_t id;
 		glm::vec2 size;

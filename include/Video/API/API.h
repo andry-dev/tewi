@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Common.h"
+
 namespace tewi
 {
 	namespace API
@@ -11,7 +13,7 @@ namespace tewi
 		 * The "value" is for future use.
 		 *
 		 */
-		struct OpenGLTag
+		struct TEWI_EXPORT OpenGLTag
 		{
 			enum { value = 1 };
 		};
@@ -23,7 +25,7 @@ namespace tewi
 		 * The "value" is for future use.
 		 *
 		 */
-		struct VulkanTag
+		struct TEWI_EXPORT VulkanTag
 		{
 			enum { value = 1 };
 		};

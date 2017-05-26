@@ -9,6 +9,10 @@
 #include "glm/glm.hpp"
 #include <type_traits>
 
+#include <utility>
+
+#include "Common.h"
+
 namespace tewi
 {
 	/** \brief Struct that describes an object that can be rendered.
@@ -54,7 +58,7 @@ namespace tewi
 	 *
 	 */
 	template <typename APIType>
-	struct Renderable2D final
+	struct TEWI_EXPORT Renderable2D final
 	{
 		Renderable2D(const glm::vec2& pos, const glm::vec2& size, const Color& color)
 			: pos(pos), texture(), color(color), scale(1.0f)
@@ -63,7 +67,7 @@ namespace tewi
 		}
 
 		Renderable2D(const glm::vec2& pos, Texture<APIType> texture, const Color& color)
-			: pos(pos), texture(texture), color(color), scale(1.0f)
+			: pos(pos), texture(std::move(texture)), color(color), scale(1.0f)
 		{
 
 		}

@@ -4,10 +4,12 @@
 #include <array>
 #include <vector>
 
+#include "Common.h"
+
 namespace tewi
 {
 	template <typename APIType>
-	struct BatchRenderer2D
+	struct TEWI_EXPORT BatchRenderer2D
 	{
 	protected:
 		BatchRenderer2D(const BatchRenderer2D& rhs) = delete;

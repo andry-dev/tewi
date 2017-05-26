@@ -10,10 +10,12 @@
 
 #include "Video/API/Device.hpp"
 
+#include "Common.h"
+
 namespace tewi
 {
 	template <typename APIType>
-	class VertexShader
+	class TEWI_EXPORT VertexShader
 	{
 	protected:
 		auto create() { return 0; }
@@ -21,7 +23,7 @@ namespace tewi
 	};
 
 	template <typename APIType>
-	class FragmentShader
+	class TEWI_EXPORT FragmentShader
 	{
 	protected:
 		auto create() { return 0; }
@@ -29,7 +31,7 @@ namespace tewi
 	};
 
 	template <typename AnyShader>
-	class SubstitutionFindPolicy
+	class TEWI_EXPORT SubstitutionFindPolicy
 	{
 	protected:
 		IO::Path getShaderPath(const std::string&) const
@@ -39,7 +41,7 @@ namespace tewi
 	};
 
 	template <typename APIType>
-	class SubstitutionFindPolicy<VertexShader<APIType>>
+	class TEWI_EXPORT SubstitutionFindPolicy<VertexShader<APIType>>
 	{
 	protected:
 		IO::Path getShaderPath(const std::string& path) const
@@ -58,7 +60,7 @@ namespace tewi
 	};
 
 	template <typename APIType>
-	class SubstitutionFindPolicy<FragmentShader<APIType>>
+	class TEWI_EXPORT SubstitutionFindPolicy<FragmentShader<APIType>>
 	{
 	protected:
 		IO::Path getShaderPath(const std::string& path) const
@@ -107,7 +109,7 @@ namespace tewi
 	template <typename APIType,
 			 template <typename> class ShaderTypePolicy,
 			 template <class> class ShaderFindPolicy = SubstitutionFindPolicy>
-	class Shader final
+	class TEWI_EXPORT Shader final
 		: private ShaderTypePolicy<APIType>
 		, private ShaderFindPolicy<ShaderTypePolicy<APIType>>
 	{
@@ -132,7 +134,7 @@ namespace tewi
 	namespace detail
 	{
 		template <typename S, typename... Rest>
-		struct get_api
+		struct TEWI_EXPORT get_api
 		{
 			using value = typename std::decay_t<S>::api_num;
 		};
@@ -145,7 +147,7 @@ namespace tewi
 	 *
 	 */
 	template <typename... Shaders>
-	constexpr inline ShaderPack<Shaders...> make_shader_pack(Shaders&&... s)
+	constexpr inline TEWI_EXPORT ShaderPack<Shaders...> make_shader_pack(Shaders&&... s)
 	{
 		return { std::forward<Shaders>(s)... };
 	}
@@ -161,7 +163,7 @@ namespace tewi
 	 *
 	 */
 	template <typename APIType>
-	class ShaderProgram
+	class TEWI_EXPORT ShaderProgram
 	{
 	public:
 		template <typename Container, typename... Shaders>
@@ -212,7 +214,7 @@ namespace tewi
 	 *
 	 */
 	template <typename Container, typename... Shaders, typename APINum = typename detail::get_api<Shaders...>::value>
-	constexpr inline ShaderProgram<APINum> make_shader_program(const Container& attribs, Shaders&&... pack)
+	constexpr inline TEWI_EXPORT ShaderProgram<APINum> make_shader_program(const Container& attribs, Shaders&&... pack)
 	{
 		return { attribs, std::forward<Shaders>(pack)... };
 	}

@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "asl/types"
+#include "Common.h"
 
 #include "GL/glew.h"
 
@@ -22,7 +22,7 @@ namespace tewi
 {
 	namespace
 	{
-		inline void compileGLShaders(const std::string& path, asl::u32 id)
+		inline TEWI_EXPORT void compileGLShaders(const std::string& path, asl::u32 id)
 		{
 			FILE* shaderFile = std::fopen(path.c_str(), "r");
 			std::fseek(shaderFile, 0, SEEK_END);
@@ -57,7 +57,7 @@ namespace tewi
 	}
 
 	template <>
-	class VertexShader<API::OpenGLTag>
+	class TEWI_EXPORT VertexShader<API::OpenGLTag>
 	{
 	protected:
 		auto create()
@@ -77,7 +77,7 @@ namespace tewi
 	};
 
 	template <>
-	class FragmentShader<API::OpenGLTag>
+	class TEWI_EXPORT FragmentShader<API::OpenGLTag>
 	{
 	protected:
 		auto create()
@@ -97,7 +97,7 @@ namespace tewi
 	};
 
 	template <>
-	class ShaderProgram<API::OpenGLTag>
+	class TEWI_EXPORT ShaderProgram<API::OpenGLTag>
 	{
 	public:
 		template <typename Container,
@@ -302,7 +302,7 @@ namespace tewi
 
 	template <template <typename> class ShaderTypePolicy,
 			 template <typename> class ShaderFindPolicy>
-	class Shader<API::OpenGLTag, ShaderTypePolicy, ShaderFindPolicy>
+	class TEWI_EXPORT Shader<API::OpenGLTag, ShaderTypePolicy, ShaderFindPolicy>
 		: private ShaderTypePolicy<API::OpenGLTag>
 		, private ShaderFindPolicy<ShaderTypePolicy<API::OpenGLTag>>
 	{

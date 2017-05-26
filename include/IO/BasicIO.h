@@ -9,12 +9,14 @@
 #include "asl/filesystem"
 #include "asl/types"
 
+#include "Common.h"
+
 namespace tewi
 {
 	namespace IO
 	{
 		template <typename T>
-		inline std::vector<T> fileToBuffer(const std::string& path)
+		inline TEWI_EXPORT std::vector<T> fileToBuffer(const std::string& path)
 		{
 			std::ifstream file(path, std::ios::binary);
 
@@ -33,7 +35,7 @@ namespace tewi
 		}
 
 		template <typename T>
-		inline bool fileToBuffer(const std::string& path, std::vector<T>& buffer)
+		inline TEWI_EXPORT bool fileToBuffer(const std::string& path, std::vector<T>& buffer)
 		{
 			std::ifstream file(path, std::ios::binary);
 			TEWI_EXPECTS(!file.fail(), "Can't open file " + path);
@@ -55,16 +57,16 @@ namespace tewi
 			return true;
 		}
 
-		inline std::string removeExtension(const std::string& str)
+		inline TEWI_EXPORT std::string removeExtension(const std::string& str)
 		{
-			asl::sizei index = str.find_last_of(".");
+			asl::sizei index = str.find_last_of('.');
 			return str.substr(0, index);
 		}
 
 		using Path = std::pair<bool, std::string>;
 
-		template <asl::sizei N>
-		Path findCorrectFile(const std::string& path, const std::array<const char*, N>& acceptedExtensions)
+		template <typename Container>
+		inline TEWI_EXPORT Path findCorrectFile(const std::string& path, const Container& acceptedExtensions)
 		{
 			// TODO: This is too slow 07-01-2017
 			// Even if we optimized for the best case (path is generic, so
@@ -112,8 +114,8 @@ namespace tewi
 			return { false, "" };
 		}
 
-		template <asl::sizei N1, asl::sizei N2>
-		Path findCorrectFile(const std::string& path, const std::array<const char*, N1>& acceptedExtensions, const std::array<const char*, N2>& regexHelpers)
+		template <typename Container1, typename Container2>
+		inline TEWI_EXPORT Path findCorrectFile(const std::string& path, const Container1& acceptedExtensions, const Container2& regexHelpers)
 		{
 			auto res = findCorrectFile(path, acceptedExtensions);
 

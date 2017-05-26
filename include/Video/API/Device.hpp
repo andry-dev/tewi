@@ -3,6 +3,8 @@
 #include "Video/API/Context.hpp"
 #include "Video/API/Instance.hpp"
 
+#include "Common.h"
+
 namespace tewi
 {
 	namespace API
@@ -13,7 +15,7 @@ namespace tewi
 		 *
 		 */
 		template <typename APINum>
-		class Device
+		class TEWI_EXPORT Device
 		{
 		public:
 			Device()

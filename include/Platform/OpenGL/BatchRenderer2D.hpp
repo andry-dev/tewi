@@ -19,6 +19,8 @@
 
 #include "asl/types"
 
+#include "Common.h"
+
 namespace tewi
 {
 	constexpr asl::sizei g_maxTextures = 64000;
@@ -77,7 +79,7 @@ namespace tewi
 	 * * \a add() additionally supports a vector of Renderable2D, so you can pack all the renderables in a vector and supply them to the renderer.
 	 */
 	template <>
-	struct BatchRenderer2D<API::OpenGLTag>
+	struct TEWI_EXPORT BatchRenderer2D<API::OpenGLTag>
 	{
 	protected:
 		BatchRenderer2D()
@@ -141,7 +143,7 @@ namespace tewi
 		void begin()
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-			m_buffer = (Vertex*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+			m_buffer = reinterpret_cast<Vertex*>(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
 		}
 
 		/** Add a **single** renderables to the buffer.

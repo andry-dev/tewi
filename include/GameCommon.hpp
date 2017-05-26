@@ -124,12 +124,12 @@ namespace tewi
 	 *
 	 */
 	template <class Derived, typename APINum>
-	class GameCommon
+	class TEWI_EXPORT GameCommon
 	{
 	public:
 		GameCommon(const std::string& windowName, int width, int height)
 			: m_window(std::make_unique<Window<APINum>>(windowName, width, height))
-			, m_swapchain(m_instance, m_window.get())
+			, m_swapchain(m_instance, *m_window)
 		{
 			Log::info("CALLED GameCommon::GameCommon");
 
@@ -260,8 +260,12 @@ namespace tewi
 		auto* gc = static_cast<GameCommon<Derived, APINum>*>(glfwGetWindowUserPointer(window));
 
 		if (action == GLFW_PRESS)
+		{
 			gc->m_inputManager.pressKey(button);
+		}
 		else if (action == GLFW_RELEASE)
+		{
 			gc->m_inputManager.releaseKey(button);
+		}
 	}
 }

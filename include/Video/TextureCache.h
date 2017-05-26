@@ -4,6 +4,8 @@
 #include <map>
 #include "Video/Texture.h"
 
+#include "Common.h"
+
 namespace tewi
 {
 	/** \brief A cache-system for textures

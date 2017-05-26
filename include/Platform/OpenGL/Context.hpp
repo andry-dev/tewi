@@ -8,6 +8,8 @@
 #include "Log.h"
 #include "asl/debug_only"
 
+#include "Common.h"
+
 namespace tewi
 {
 	namespace API
@@ -20,7 +22,7 @@ namespace tewi
 		 * **Internal use only.**
 		 */
 		template<>
-		class Context<API::OpenGLTag>
+		class TEWI_EXPORT Context<API::OpenGLTag>
 		{
 		public:
 			Context()

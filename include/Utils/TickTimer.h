@@ -1,10 +1,11 @@
-#ifndef TICK_TIMER_H
-#define TICK_TIMER_H
+#pragma once
 
 #include "Utils/Clock.h"
 
 #include <cstdint>
 #include <cstddef>
+
+#include "Common.h"
 
 namespace tewi
 {
@@ -15,7 +16,7 @@ namespace tewi
 	 * I honestly can't think of the client using it.
 	 *
 	 */
-	class TickTimer
+	class TEWI_EXPORT TickTimer
 	{
 	public:
 		TickTimer();
@@ -54,6 +55,3 @@ namespace tewi
 		Clock m_deltaClock;
 	};
 }
-
-
-#endif /* TIMER_H */

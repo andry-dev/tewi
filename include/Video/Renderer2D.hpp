@@ -6,6 +6,8 @@
 
 #include "Log.h"
 
+#include "Common.h"
+
 namespace tewi
 {
 	/** \brief A generic 2D renderer.
@@ -21,7 +23,7 @@ namespace tewi
 	 */
 	template <typename APIType,
 			 template <typename> class RenderPolicy>
-	class Renderer2D final
+	class TEWI_EXPORT Renderer2D final
 		: public RenderPolicy<APIType>
 	{
 		using RenderPolicyImpl = RenderPolicy<APIType>;

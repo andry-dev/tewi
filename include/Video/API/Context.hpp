@@ -2,6 +2,8 @@
 
 #include "Video/API/API.h"
 
+#include "Common.h"
+
 #include <GL/glew.h>
 
 #define GLFW_INCLUDE_VULKAN
@@ -25,7 +27,7 @@ namespace tewi
 		 i* \sa Window
 		 */
 		template <typename APIType>
-		class Context final
+		class TEWI_EXPORT Context final
 		{
 		public:
 			Context()
