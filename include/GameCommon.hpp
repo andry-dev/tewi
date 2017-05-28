@@ -269,3 +269,5 @@ namespace tewi
 		}
 	}
 }
+
+#include "Platform/NullRenderer/GameCommon.hpp"

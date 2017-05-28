@@ -29,5 +29,18 @@ namespace tewi
 		{
 			enum { value = 1 };
 		};
+
+		/** \brief Null Renderer Tag
+		 *
+		 * Struct used for API switch.
+		 *
+		 * This in particular is used for server stuff where you don't want a
+		 * window.
+		 *
+		 */
+		struct TEWI_EXPORT NullRendererTag
+		{
+			enum { value = 2 };
+		};
 	}
 }

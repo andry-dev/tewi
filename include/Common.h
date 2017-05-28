@@ -2,8 +2,16 @@
 
 #include "asl/types"
 
+/** \file 
+ * This is a common file for typedefs and useful functions.
+ * 
+ * \note The typedefs are **const by default**.
+ */
+
 #ifdef _WIN32
-	#ifdef TEWI_SHARED_LIB
+	#ifdef TEWI_STATIC_LIB
+	#define TEWI_EXPORT
+	#elif defined(TEWI_SHARED_LIB)
 	#define TEWI_EXPORT __declspec(dllexport)
 	#else
 	#define TEWI_EXPORT __declspec(dllimport)
@@ -11,16 +19,6 @@
 #else
 	#define TEWI_EXPORT
 #endif
-
-#ifdef TUA_MAMMA_PUTTANA
-#error ORA FUNZIONA DIO CANE
-#endif
-
-/** \file 
- * This is a common file for typedefs and useful functions.
- * 
- * \note The typedefs are **const by default**.
- */
 
 // Detect game
 

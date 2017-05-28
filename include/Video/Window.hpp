@@ -5,6 +5,7 @@
 #define GLFW_INCLUDE_VULKAN
 #include "GLFW/glfw3.h"
 
+#include <utility>
 #include <string>
 #include "Platform/OpenGL/Context.hpp"
 #include "Platform/Vulkan/Context.hpp"
@@ -37,8 +38,8 @@ namespace tewi
 	class TEWI_EXPORT Window
 	{
 	public:
-		Window(const std::string& windowName, int width, int height)
-			: m_width(width), m_height(height), m_windowName(windowName)
+		Window(std::string windowName, int width, int height)
+			: m_width(width), m_height(height), m_windowName(std::move(windowName))
 		{
 			glfwInit();
 
@@ -104,3 +105,7 @@ namespace tewi
 		API::Context<APINum> m_context;
 	};
 }
+
+
+// well
+#include "Platform/NullRenderer/Window.hpp"

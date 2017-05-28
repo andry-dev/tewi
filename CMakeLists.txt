@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(tewi)
 
-option(TEWI_SHARED_LIB "Build tewi as a shared library" OFF)
-
-
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
@@ -31,13 +28,18 @@ set(SRC
 	src/Utils/TickTimer.cpp
 	src/Video/Camera2D.cpp)
 
-if (TEWI_SHARED_LIB)
-	add_library(${PROJECT_NAME} SHARED ${SRC})
+add_library(${PROJECT_NAME} ${SRC})
+
+if (BUILD_SHARED_LIBS)
 	message(STATUS "[tewi] Building as DLL/so")
-	target_compile_definitions(${PROJECT_NAME} PRIVATE TEWI_SHARED_LIB=1)
+	target_compile_definitions(${PROJECT_NAME} PUBLIC TEWI_SHARED_LIB=1)
+	add_definitions(-DGLEW_BUILD)
 else()
-	add_library(${PROJECT_NAME} STATIC ${SRC})
+	message(STATUS "[tewi] Building as LIB/a")
+	target_compile_definitions(${PROJECT_NAME} PUBLIC TEWI_STATIC_LIB=1)
+	add_definitions(-DGLEW_STATIC)
 endif()
+
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
 

@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 
-#include "Common.h"
 
 #include "GL/glew.h"
 
@@ -17,6 +16,8 @@
 #include "IO/BasicIO.h"
 
 #include "asl/functional"
+
+#include "Common.h"
 
 namespace tewi
 {
@@ -302,7 +303,7 @@ namespace tewi
 
 	template <template <typename> class ShaderTypePolicy,
 			 template <typename> class ShaderFindPolicy>
-	class TEWI_EXPORT Shader<API::OpenGLTag, ShaderTypePolicy, ShaderFindPolicy>
+	class TEWI_EXPORT Shader<API::OpenGLTag, ShaderTypePolicy, ShaderFindPolicy> final
 		: private ShaderTypePolicy<API::OpenGLTag>
 		, private ShaderFindPolicy<ShaderTypePolicy<API::OpenGLTag>>
 	{

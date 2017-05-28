@@ -227,3 +227,4 @@ namespace tewi
 
 #include "Platform/OpenGL/Shader.hpp"
 #include "Platform/Vulkan/Shader.hpp"
+#include "Platform/NullRenderer/Shader.hpp"
