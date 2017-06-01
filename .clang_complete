@@ -2,3 +2,5 @@
 -Ilib/universal
 -Ilib/universal/glm
 -Ilib/universal/glew/include
+-Ilib/universal/asl/include
+-Itests/Catch/include

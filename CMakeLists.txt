@@ -1,15 +1,21 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.3)
 project(tewi)
+
+option(TEWI_BUILD_TESTS "Build tewi's tests" OFF)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
-
 add_subdirectory(lib/universal/glfw)
 add_subdirectory(lib/universal/asl)
 add_subdirectory(lib/universal/glm)
 add_subdirectory(doc)
+
+if (TEWI_BUILD_TESTS)
+	enable_testing()
+	add_subdirectory(tests)
+endif()
 
 if(MSVC)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /std:c++latest")
@@ -41,8 +47,6 @@ else()
 endif()
 
 
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
-
 message(STATUS "[tewi] Common Flags are: ${CMAKE_CXX_FLAGS}")
 message(STATUS "[tewi] Debug Flags are: ${CMAKE_CXX_FLAGS_DEBUG}")
 message(STATUS "[tewi] Release Flags are: ${CMAKE_CXX_FLAGS_RELEASE}")
@@ -54,7 +58,6 @@ if(WIN32)
 		${PROJECT_SOURCE_DIR}/lib/msvc/glew/lib/Release/x64/glew32.lib)
 
 	target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/lib/msvc/glew/include)
-
 	target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/lib/msvc/vulkan/include)
 
 	set(VULKAN_LIBS
@@ -78,6 +81,19 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/lib/univ
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/lib/universal/glm)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/lib/universal/stb)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+set_target_properties(${PROJECT_NAME}
+	PROPERTIES
+	CXX_STANDARD 14
+	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+
+set_target_properties(glfw
+	PROPERTIES
+	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 target_link_libraries(${PROJECT_NAME} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS}
 	${VULKAN_LIBS} glm glfw asl)

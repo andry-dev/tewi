@@ -187,7 +187,7 @@ namespace tewi
 		 */
 		void update()
 		{
-			glfwPollEvents();
+			m_window->pollEvents();
 			impl().update();
 		}
 

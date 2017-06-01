@@ -68,9 +68,19 @@ namespace tewi
 		/** Is the window closed?
 		 *
 		 */
-		bool isWindowClosed()
+		inline bool isWindowClosed()
 		{
 			return glfwWindowShouldClose(m_window);
+		}
+
+		inline void forceClose()
+		{
+			glfwSetWindowShouldClose(m_window, true);
+		}
+
+		inline void pollEvents()
+		{
+			glfwPollEvents();
 		}
 
 		/** Swaps the window buffers

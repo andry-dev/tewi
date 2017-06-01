@@ -1,6 +1,6 @@
 #pragma once
 
-#include "API/API.h"
+#include "Video/API/API.h"
 #include "Common.h"
 
 #include "Video/Window.hpp"
@@ -18,6 +18,7 @@ namespace tewi
 			: m_windowName(windowName)
 			, m_width(width)
 			, m_height(height)
+			, m_windowClosed(false)
 		{
 		}
 
@@ -28,7 +29,9 @@ namespace tewi
 		Window(Window&& rhs) = default;
 		Window& operator=(Window&& rhs) = default;
 
-		inline bool isWindowClosed() { return false; }
+		inline bool isWindowClosed() { return m_windowClosed; }
+		inline void forceClose() { m_windowClosed = true; }
+		inline void pollEvents() { }
 
 		inline void swap() noexcept { }
 		inline int getWidth() const noexcept { return m_width; }
@@ -42,5 +45,6 @@ namespace tewi
 		int m_width;
 		int m_height;
 		API::Context<API::NullRendererTag> m_context;
+		bool m_windowClosed;
 	};
 } // namespace tewi
