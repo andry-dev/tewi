@@ -17,14 +17,14 @@ namespace tewi
 	class TEWI_EXPORT Clock
 	{
 	public:
-		Clock();
-		~Clock();
+		Clock() = default;
+		~Clock() = default;
 
-		Clock(const Clock& rhs);
-		Clock& operator=(const Clock& rhs);
+		Clock(const Clock& rhs) = default;
+		Clock& operator=(const Clock& rhs) = default;
 
-		Clock(Clock&& rhs);
-		Clock& operator=(Clock&& rhs);
+		Clock(Clock&& rhs) = default;
+		Clock& operator=(Clock&& rhs) = default;
 
 		/** Restarts the timer.
 		 *
@@ -38,4 +38,4 @@ namespace tewi
 	private:
 		double m_startTime = glfwGetTime();
 	};
-}
+} // namespace tewi

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.6)
 project(tewi)
 
 option(TEWI_BUILD_TESTS "Build tewi's tests" OFF)
@@ -17,15 +17,6 @@ if (TEWI_BUILD_TESTS)
 	add_subdirectory(tests)
 endif()
 
-if(MSVC)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /std:c++latest")
-	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2 /Ob2 /Ot /GR- /GL /sdl- /LTCG")
-	set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} /LTCG")
-else()
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pipe -Wno-pragma-once-outside-header -fno-rtti -fno-omit-frame-pointer")
-	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -flto -fuse-linker-plugin")
-	set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} -flto -fuse-linker-plugin")
-endif()
 
 set(SRC
 	src/IO/InputManager.cpp
@@ -34,7 +25,32 @@ set(SRC
 	src/Utils/TickTimer.cpp
 	src/Video/Camera2D.cpp)
 
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 add_library(${PROJECT_NAME} ${SRC})
+
+if(MSVC)
+	# Common
+	target_compile_options(${PROJECT_NAME}
+		PRIVATE
+		/W4 /std:c++latest)
+
+	# Release
+	# target_compile_options(${PROJECT_NAME}
+	# 	PRIVATE
+	# 	$<$<CONFIG:RELEASE>:/Ob2 /Ot /GR- /GL /sdl- /LTCG)
+else()
+	# Common
+	target_compile_options(${PROJECT_NAME}
+		PRIVATE
+		-Wall -pipe -Wno-pragma-once-outside-header -fno-rtti -fno-omit-frame-pointer)
+
+	# Release
+	target_compile_options(${PROJECT_NAME}
+		PRIVATE
+		$<$<CONFIG:RELEASE>:-O3>)
+endif()
+
 
 if (BUILD_SHARED_LIBS)
 	message(STATUS "[tewi] Building as DLL/so")
@@ -46,11 +62,10 @@ else()
 	add_definitions(-DGLEW_STATIC)
 endif()
 
-
-message(STATUS "[tewi] Common Flags are: ${CMAKE_CXX_FLAGS}")
-message(STATUS "[tewi] Debug Flags are: ${CMAKE_CXX_FLAGS_DEBUG}")
-message(STATUS "[tewi] Release Flags are: ${CMAKE_CXX_FLAGS_RELEASE}")
-message(STATUS "[tewi] Linker Flags are: ${CMAKE_EXE_LINKER_FLAGS_RELEASE}")
+set_target_properties(${PROJECT_NAME}
+	PROPERTIES
+	CXX_STANDARD 14
+	CXX_STANDARD_REQUIRED ON)
 
 if(WIN32)
 	# Add GLEW
@@ -76,24 +91,28 @@ else()
 		vulkan)
 endif()
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/lib/universal/asl/include)
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/lib/universal/glfw/include)
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/lib/universal/glm)
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/lib/universal/stb)
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(${PROJECT_NAME}
+	PUBLIC
+	${PROJECT_SOURCE_DIR}/lib/universal/asl/include
+	${PROJECT_SOURCE_DIR}/lib/universal/glfw/include
+	${PROJECT_SOURCE_DIR}/lib/universal/glm
+	${PROJECT_SOURCE_DIR}/lib/universal/stb
+	${PROJECT_SOURCE_DIR}/include)
 
-set_target_properties(${PROJECT_NAME}
-	PROPERTIES
-	CXX_STANDARD 14
-	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+target_link_libraries(${PROJECT_NAME}
+	${GLEW_LIBRARIES}
+	${WIN32_OPENGL_LIBS}
+	${VULKAN_LIBS}
+	glm
+	glfw
+	asl)
 
-set_target_properties(glfw
-	PROPERTIES
-	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-
-target_link_libraries(${PROJECT_NAME} ${GLEW_LIBRARIES} ${WIN32_OPENGL_LIBS}
-	${VULKAN_LIBS} glm glfw asl)
+find_program(CLANG_TIDY_EXE NAMES "clang-tidy" DOC "Path to clang-tidy executable")
+if(CLANG_TIDY_EXE)
+	message(STATUS "[tewi] clang-tidy found: ${CLANG_TIDY_EXE}")
+	set(EXECUTE_CLANG_TIDY "${CLANG_TIDY_EXE}"
+		"-header-filter=\"${PROJECT_SOURCE_DIR}/include/*\" -checks=*,-clang-analyzer-alpha.*,-cppcoreguidelines-pro-type-union-access")
+	set_target_properties(${PROJECT_NAME}
+		PROPERTIES
+		CXX_CLANG_TIDY "${EXECUTE_CLANG_TIDY}")
+endif()

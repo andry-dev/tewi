@@ -38,7 +38,7 @@ namespace tewi
 	class TEWI_EXPORT Window
 	{
 	public:
-		Window(std::string windowName, int width, int height)
+		Window(std::string windowName, int width, int height, void* usrptr)
 			: m_width(width), m_height(height), m_windowName(std::move(windowName))
 		{
 			glfwInit();
@@ -55,6 +55,8 @@ namespace tewi
 
 			m_context.postInit(m_window);
 			std::printf("API Version: %s\n", m_context.getAPIVersion());
+
+			glfwSetWindowUserPointer(m_window, usrptr);
 		}
 
 		~Window()
@@ -106,7 +108,18 @@ namespace tewi
 		/** Returns a pointer to the current context used to initialize the API
 		 *
 		 */
-		inline auto* getContext() { return &m_context; }
+		inline auto& getContext() { return m_context; }
+
+		void setKeyboardCallback(GLFWkeyfun callback)
+		{
+			glfwSetKeyCallback(m_window, callback);
+		}
+
+		void setMouseButtonCallback(GLFWmousebuttonfun callback)
+		{
+			glfwSetMouseButtonCallback(m_window, callback);
+		}
+
 	private:
 		GLFWwindow* m_window;
 		int m_width;
@@ -114,8 +127,9 @@ namespace tewi
 		std::string m_windowName;
 		API::Context<APINum> m_context;
 	};
-}
 
+
+}
 
 // well
 #include "Platform/NullRenderer/Window.hpp"

@@ -128,17 +128,15 @@ namespace tewi
 	{
 	public:
 		GameCommon(const std::string& windowName, int width, int height)
-			: m_window(std::make_unique<Window<APINum>>(windowName, width, height))
+			: m_window(std::make_unique<Window<APINum>>(windowName, width, height, this))
 			, m_swapchain(m_instance, *m_window)
 		{
 			Log::info("CALLED GameCommon::GameCommon");
 
 			m_swapchain.secondPhaseInit(m_device);
 
-			glfwSetWindowUserPointer(m_window->getWindow(), this);
-
-			glfwSetKeyCallback(m_window->getWindow(), keyCallback<Derived, APINum>);
-			glfwSetMouseButtonCallback(m_window->getWindow(), mouseButtonCallback<Derived, APINum>);
+			m_window->setKeyboardCallback(keyCallback<Derived, APINum>);
+			m_window->setMouseButtonCallback(mouseButtonCallback<Derived, APINum>);
 		}
 
 		~GameCommon()
@@ -198,22 +196,18 @@ namespace tewi
 		 */
 		void draw()
 		{
-			m_window->getContext()->preDraw();
+			m_window->getContext().preDraw();
 			impl().draw();
-			m_window->getContext()->postDraw();
+			m_window->getContext().postDraw();
 			m_window->swap();
 		}
 
-		TickTimer m_tickTimer;
-
-		std::unique_ptr<Window<APINum>> m_window;
-
-		bool m_isWindowClosed = false;
-
-		InputManager m_inputManager;
-		API::Instance<APINum> m_instance;
-		API::Swapchain<APINum> m_swapchain;
-		API::Device<APINum> m_device;
+		auto& getTimer() { return m_tickTimer; }
+		auto& getWindow() { return *m_window.get(); }
+		auto& getInputManager() { return m_inputManager; }
+		auto& getAPIInstance() { return m_instance; }
+		auto& getSwapchain() { return m_swapchain; }
+		auto& getDevice() { return m_device; }
 
 	private:
 		inline Derived& impl() { return *static_cast<Derived*>(this); }
@@ -232,6 +226,17 @@ namespace tewi
 				draw();
 			}
 		}
+
+		TickTimer m_tickTimer;
+
+		std::unique_ptr<Window<APINum>> m_window;
+
+		bool m_isWindowClosed = false;
+
+		InputManager m_inputManager;
+		API::Instance<APINum> m_instance;
+		API::Swapchain<APINum> m_swapchain;
+		API::Device<APINum> m_device;
 
 		// yeah. GLFW.
 		friend void keyCallback<Derived, APINum>(GLFWwindow* window, int key, int scancode, int action, int mods);

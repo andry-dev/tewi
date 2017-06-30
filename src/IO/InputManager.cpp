@@ -16,14 +16,16 @@ namespace tewi
 	{
 		const auto it = m_keymap.find(keycode);
 		if (it != m_keymap.end())
+		{
 			return it->second;
+		}
 
 		return false;
 	}
 
-	// TODO
+	// TODO(andry): Implement this.
 	bool InputManager::isKeyReleased(asl::u32 keycode)
 	{
 		return false;
 	}
-}
+} // namespace tewi

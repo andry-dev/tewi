@@ -70,5 +70,5 @@ namespace tewi
 
 			return test;
 		}
-	}
-}
+	} // namespace Physics
+} // namespace tewi

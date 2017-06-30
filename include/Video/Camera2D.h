@@ -1,5 +1,4 @@
-#ifndef CAMERA_2D_H
-#define CAMERA_2D_H
+#pragma once
 
 #include "glm/glm.hpp"
 
@@ -14,13 +13,13 @@ namespace tewi
 	{
 	public:
 		Camera2D(int screenWidth, int screenHeight);
-		~Camera2D();
+		~Camera2D() = default;
 
-		Camera2D(const Camera2D& rhs);
-		Camera2D& operator=(const Camera2D& rhs);
+		Camera2D(const Camera2D& rhs) = default;
+		Camera2D& operator=(const Camera2D& rhs) = default;
 
-		Camera2D(Camera2D&& rhs);
-		Camera2D& operator=(Camera2D&& rhs);
+		Camera2D(Camera2D&& rhs) = default;
+		Camera2D& operator=(Camera2D&& rhs) = default;
 
 		void update();
 
@@ -51,7 +50,4 @@ namespace tewi
 		glm::mat4 m_ortho;
 		glm::mat4 m_cameraMat;
 	};
-}
-
-
-#endif /* CAMERA_2D_H */
+} // namespace tewi

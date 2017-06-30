@@ -75,4 +75,4 @@ namespace tewi
 		
 		std::unordered_map<std::uint32_t, bool> m_keymap;
 	};
-}
+} // namespace tewi

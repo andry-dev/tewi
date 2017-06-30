@@ -19,14 +19,14 @@ namespace tewi
 	class TEWI_EXPORT TickTimer
 	{
 	public:
-		TickTimer();
-		~TickTimer();
+		TickTimer() = default;
+		~TickTimer() = default;
 
-		TickTimer(const TickTimer& rhs);
-		TickTimer& operator=(const TickTimer& rhs);
+		TickTimer(const TickTimer& rhs) = default;
+		TickTimer& operator=(const TickTimer& rhs) = default;
 
-		TickTimer(TickTimer&& rhs);
-		TickTimer& operator=(TickTimer&& rhs);
+		TickTimer(TickTimer&& rhs) = default;
+		TickTimer& operator=(TickTimer&& rhs) = default;
 
 		/** Updates the clock every \a freq seconds.
 		 *
@@ -54,4 +54,4 @@ namespace tewi
 		Clock m_clock;
 		Clock m_deltaClock;
 	};
-}
+} // namespace tewi

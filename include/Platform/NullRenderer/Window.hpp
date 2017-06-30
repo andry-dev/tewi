@@ -14,7 +14,7 @@ namespace tewi
 	class TEWI_EXPORT Window<API::NullRendererTag>
 	{
 	public:
-		Window(std::string windowName, int width, int height)
+		Window(std::string windowName, int width, int height, void* usrptr)
 			: m_windowName(windowName)
 			, m_width(width)
 			, m_height(height)
@@ -29,7 +29,7 @@ namespace tewi
 		Window(Window&& rhs) = default;
 		Window& operator=(Window&& rhs) = default;
 
-		inline bool isWindowClosed() { return m_windowClosed; }
+		bool isWindowClosed() { return m_windowClosed; }
 		inline void forceClose() { m_windowClosed = true; }
 		inline void pollEvents() { }
 

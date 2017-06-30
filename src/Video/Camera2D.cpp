@@ -18,56 +18,6 @@ namespace tewi
 		m_ortho = glm::ortho(0.0f, static_cast<float>(screenWidth), 0.0f, static_cast<float>(screenHeight));
 	}
 
-	Camera2D::~Camera2D()
-	{
-
-	}
-
-	Camera2D::Camera2D(const Camera2D& rhs)
-		: m_needsMatUpdate(rhs.m_needsMatUpdate),
-		m_screenWidth(rhs.m_screenWidth),
-		m_screenHeight(rhs.m_screenHeight),
-		m_scale(rhs.m_scale),
-		m_pos(rhs.m_pos),
-		m_ortho(rhs.m_ortho),
-		m_cameraMat(rhs.m_cameraMat)
-	{
-	}
-
-	Camera2D& Camera2D::operator=(const Camera2D& rhs)
-	{
-		m_needsMatUpdate = rhs.m_needsMatUpdate;
-		m_screenWidth = rhs.m_screenWidth;
-		m_screenHeight = rhs.m_screenHeight;
-		m_scale = rhs.m_scale;
-		m_pos = rhs.m_pos;
-		m_ortho = rhs.m_ortho;
-		m_cameraMat = rhs.m_cameraMat;
-		return *this;
-	}
-
-	Camera2D::Camera2D(Camera2D&& rhs)
-		: m_needsMatUpdate(std::move(rhs.m_needsMatUpdate)),
-		m_screenWidth(std::move(rhs.m_screenWidth)),
-		m_screenHeight(std::move(rhs.m_screenHeight)),
-		m_scale(std::move(rhs.m_scale)),
-		m_pos(std::move(rhs.m_pos)),
-		m_ortho(std::move(rhs.m_ortho)),
-		m_cameraMat(std::move(rhs.m_cameraMat))
-	{
-	}
-
-	Camera2D& Camera2D::operator=(Camera2D&& rhs)
-	{
-		m_needsMatUpdate = std::move(rhs.m_needsMatUpdate);
-		m_screenWidth = std::move(rhs.m_screenWidth);
-		m_screenHeight = std::move(rhs.m_screenHeight);
-		m_scale = std::move(rhs.m_scale);
-		m_pos = std::move(rhs.m_pos);
-		m_ortho = std::move(rhs.m_ortho);
-		m_cameraMat = std::move(rhs.m_cameraMat);
-		return *this;
-	}
 
 	void Camera2D::update()
 	{
@@ -91,4 +41,4 @@ namespace tewi
 		coords /= m_scale;
 		coords += m_pos;
 	}
-}
+} // namespace tewi

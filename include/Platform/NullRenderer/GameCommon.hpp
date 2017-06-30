@@ -7,12 +7,14 @@
 
 namespace tewi
 {
-
 	template <class Derived>
 	class TEWI_EXPORT GameCommon<Derived, API::NullRendererTag>
 	{
 	public:
 		GameCommon(const std::string& windowName, int width, int height)
+			: m_swapchain(m_instance, *m_window)
+			, m_window(std::make_unique<Window<API::NullRendererTag>>(
+						windowName, width, height, this))
 		{
 		}
 
@@ -42,10 +44,12 @@ namespace tewi
 			impl().draw();
 		}
 
-		TickTimer m_tickTimer;
-		InputManager m_inputManager;
-		std::unique_ptr<Window<API::NullRendererTag>> m_window;
-		bool m_isWindowClosed = false;
+		auto& getTimer() { return m_tickTimer; }
+		auto& getWindow() { return *m_window.get(); }
+		auto& getInputManager() { return m_inputManager; }
+		auto& getAPIInstance() { return m_instance; }
+		auto& getSwapchain() { return m_swapchain; }
+		auto& getDevice() { return m_device; }
 
 	private:
 		inline Derived& impl()
@@ -67,6 +71,15 @@ namespace tewi
 				// draw();
 			}
 		}
+
+		TickTimer m_tickTimer;
+		InputManager m_inputManager;
+		API::Instance<API::NullRendererTag> m_instance;
+		API::Swapchain<API::NullRendererTag> m_swapchain;
+		API::Device<API::NullRendererTag> m_device;
+		std::unique_ptr<Window<API::NullRendererTag>> m_window;
+		bool m_isWindowClosed = false;
+
 	};
 
 }
