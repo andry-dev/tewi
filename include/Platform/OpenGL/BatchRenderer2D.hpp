@@ -37,7 +37,7 @@ namespace tewi
 	/** \brief Batch renderer for 2D objects.
 	 *
 	 * This is a batch renderer for 2D objects.
-	 * 
+	 *
 	 * \a APINum is the number of the API that you want to use.
 	 *
 	 * To render a renderable:
@@ -164,7 +164,8 @@ namespace tewi
 		 *
 		 * \endcode
 		 */
-		void add(const Renderable2D<API::OpenGLTag>& renderable)
+		template <typename T>
+		void add(const Renderable2D<T>& renderable)
 		{
 			//const auto& position = renderable.pos;
 			//const auto& color = renderable.color;
@@ -247,10 +248,6 @@ namespace tewi
 		template <typename Container>
 		void add(const Container& renderableList)
 		{
-			static_assert(std::is_same<typename Container::value_type,
-					Renderable2D<API::OpenGLTag>>::value,
-					"You're trying to add something to the batchrenderer"
-					"that is not a Renderable2D");
 			// TODO: Refactor this to make it actually work, like it did before the vulkan shitshow
 			for (const auto& renderable : renderableList)
 			{
@@ -306,3 +303,5 @@ namespace tewi
 		asl::mut_sizei m_indexCount;
 	};
 }
+
+

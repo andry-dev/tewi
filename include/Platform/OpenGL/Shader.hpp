@@ -60,6 +60,8 @@ namespace tewi
 	template <>
 	class TEWI_EXPORT VertexShader<API::OpenGLTag>
 	{
+	public:
+		using api_type = API::OpenGLTag;
 	protected:
 		auto create()
 		{
@@ -80,6 +82,8 @@ namespace tewi
 	template <>
 	class TEWI_EXPORT FragmentShader<API::OpenGLTag>
 	{
+	public:
+		using api_type = API::OpenGLTag;
 	protected:
 		auto create()
 		{
@@ -310,6 +314,7 @@ namespace tewi
 	public:
 		using ShaderTypeImpl = ShaderTypePolicy<API::OpenGLTag>;
 		using ShaderFindImpl = ShaderFindPolicy<ShaderTypeImpl>;
+		using api_type = API::OpenGLTag;
 
 		explicit Shader(API::Device<API::OpenGLTag>&, const std::string& path)
 			: m_id(ShaderTypeImpl::create())

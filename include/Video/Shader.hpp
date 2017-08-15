@@ -17,6 +17,9 @@ namespace tewi
 	template <typename APIType>
 	class TEWI_EXPORT VertexShader
 	{
+	public:
+		using api_type = APIType;
+
 	protected:
 		auto create() { return 0; }
 		auto compile() { return 0; }
@@ -25,6 +28,8 @@ namespace tewi
 	template <typename APIType>
 	class TEWI_EXPORT FragmentShader
 	{
+	public:
+		using api_type = APIType;
 	protected:
 		auto create() { return 0; }
 		auto compile() { return 0; }
@@ -124,7 +129,7 @@ namespace tewi
 			ShaderTypeImpl::compile(m_path, m_id);
 		}
 
-		using api_num = APIType;
+		using api_type = APIType;
 
 	private:
 		asl::u32 m_id;
@@ -136,7 +141,8 @@ namespace tewi
 		template <typename S, typename... Rest>
 		struct TEWI_EXPORT get_api
 		{
-			using value = typename std::decay_t<S>::api_num;
+			using value = typename std::decay_t<S>::api_type;
+			static_assert(is_api_compatible_v<S, Rest...>, "You're mixing incompatible API tags");
 		};
 	} // namespace detail
 
@@ -166,6 +172,8 @@ namespace tewi
 	class TEWI_EXPORT ShaderProgram
 	{
 	public:
+		using api_type = APIType;
+
 		template <typename Container, typename... Shaders>
 		ShaderProgram(const Container& attribs, Shaders&&... s) {  }
 
@@ -200,7 +208,7 @@ namespace tewi
 		 *
 		 */
 		template <typename Container, bool = !std::is_same<typename Container::value_type, const char*>::value>
-		std::vector<asl::mut_u32> getUniformLocation(const Container& uniformName) { return {}; }
+		std::vector<asl::mut_u32> getUniformLocation(const Container& uniformName) {  }
 
 
 	private:

@@ -3,18 +3,17 @@
 #include "asl/types"
 
 /** \file 
- * This is a common file for typedefs and useful functions.
+ * This is a common file used all over the project.
  * 
- * \note The typedefs are **const by default**.
  */
 
 #ifdef _WIN32
 	#ifdef TEWI_STATIC_LIB
-	#define TEWI_EXPORT
+		#define TEWI_EXPORT
 	#elif defined(TEWI_SHARED_LIB)
-	#define TEWI_EXPORT __declspec(dllexport)
+		#define TEWI_EXPORT __declspec(dllexport)
 	#else
-	#define TEWI_EXPORT __declspec(dllimport)
+		#define TEWI_EXPORT __declspec(dllimport)
 	#endif
 #else
 	#define TEWI_EXPORT
@@ -56,3 +55,35 @@
 #else
 	#define TEWI_UNKNOWN_PLATFORM
 #endif
+
+
+// Type traits
+namespace tewi
+{
+	namespace detail
+	{
+        template <typename T, typename U>
+        constexpr bool api_compatible_cond =
+                (std::is_base_of<T, U>::value ||
+				std::is_base_of<T, U>::value ||
+				std::is_same<T, U>::value);
+	}
+
+    template <typename T, typename U, typename... Ts>
+    struct is_api_compatible
+    {
+        constexpr static bool value =
+            detail::api_compatible_cond<T, U> &&
+            is_api_compatible<U, Ts...>::value;
+    };
+    
+    template <typename T, typename U>
+    struct is_api_compatible<T, U>
+    {
+        constexpr static bool value = detail::api_compatible_cond<T, U>;
+    };
+    
+	template <typename... Ts>
+	constexpr bool is_api_compatible_v = is_api_compatible<Ts...>::value;
+
+} // namespace tewi

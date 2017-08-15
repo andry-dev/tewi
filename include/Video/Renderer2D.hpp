@@ -48,26 +48,6 @@ namespace tewi
 			RenderPolicyImpl::begin();
 		}
 
-		/** Add a **vector** of renderables to the buffer.
-		 *
-		 * Example:
-		 *
-		 * \code
-		 *
-		 * // Assuming a Renderer named "renderer"
-		 * // And assuming a std::vector of Renderable2Ds named "vec"
-		 *
-		 * renderer.add(vec);
-		 *
-		 * \endcode
-		 *
-		 * \pre You must call this function after \a begin() and before \a end().
-		 */
-		void add(const std::vector<Renderable2D<APIType>>& renderables)
-		{
-			RenderPolicyImpl::add(renderables);
-		}
-
 		/** Add a **single** renderables to the buffer.
 		 * 
 		 * Example:
@@ -86,9 +66,39 @@ namespace tewi
 		 *
 		 * \pre You must call this function after \a begin() and before \a end().
 		 */
-		void add(const Renderable2D<APIType>& renderable)
+		template <typename T>
+		void add(const Renderable2D<T>& renderable)
 		{
+			static_assert(tewi::is_api_compatible_v<APIType, T>,
+						"You're passing a renderable with an"
+						"API that is neither the same as the renderer's"
+						"nor derived from it.");
 			RenderPolicyImpl::add(renderable);
+		}
+
+		/** Add a **vector** of renderables to the buffer.
+		 *
+		 * Example:
+		 *
+		 * \code
+		 *
+		 * // Assuming a Renderer named "renderer"
+		 * // And assuming a std::vector of Renderable2Ds named "vec"
+		 *
+		 * renderer.add(vec);
+		 *
+		 * \endcode
+		 *
+		 * \pre You must call this function after \a begin() and before \a end().
+		 */
+		template <typename Container, typename T = typename Container::value_type::api_type>
+		void add(const Container& renderables)
+		{
+			static_assert(tewi::is_api_compatible_v<APIType, T>,
+						"You're passing a collection of renderables with an"
+						"API that is neither the same as the renderer's"
+						"nor derived from it.");
+			RenderPolicyImpl::add(renderables);
 		}
 
 		/** Unbinds the buffers.
@@ -112,7 +122,6 @@ namespace tewi
 		{
 			RenderPolicyImpl::draw();
 		}
-
 	private:
 	};
 

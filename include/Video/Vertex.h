@@ -91,7 +91,7 @@ namespace tewi
 	constexpr TEWI_EXPORT std::array<std::uint8_t, 4> getColors(std::uint32_t color)
 	{
 		// This may not seem obvious at first
-		// Basically, it bit-manipulate the 'hard-coded' colors into an array of single channels
+		// Basically, it bit-manipulates the 'hard-coded' colors into an array of single channels
 		return {{
 			static_cast<std::uint8_t> ((color >> 24) & 0xFF), // R
 			static_cast<std::uint8_t> ((color >> 16) & 0xFF), // G

@@ -72,6 +72,8 @@ namespace tewi
 
 		}
 
+		using api_type = APIType;
+
 		glm::vec2 pos;
 		Texture<APIType> texture;
 		Color color;

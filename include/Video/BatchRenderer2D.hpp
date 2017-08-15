@@ -8,6 +8,7 @@
 
 namespace tewi
 {
+
 	template <typename APIType>
 	struct TEWI_EXPORT BatchRenderer2D
 	{
@@ -23,15 +24,14 @@ namespace tewi
 		{
 		}
 
-		void add(const Renderable2D<APIType>& renderable)
+		template <typename T>
+		void add(const Renderable2D<T>& renderable)
 		{
 		}
 
 		template <typename Container>
 		void add(const Container& renderableList)
 		{
-			static_assert(std::is_same<typename Container::value_type,
-					Renderable2D<APIType>>::value, "");
 		}
 
 		void end()

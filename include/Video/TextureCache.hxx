@@ -16,7 +16,9 @@ namespace tewi
 	namespace API
 	{
 		template <typename APIType>
-		void genAPITexture(Texture<APIType>&) {}
+		void genAPITexture(Texture<APIType>& tex, asl::mut_u8* imagePtr, asl::num width, asl::num height)
+		{
+		}
 	} // namespace API
 
 	template <typename APIType>
@@ -57,10 +59,12 @@ namespace tewi
 		memcpy(&tex.pixels[0], imagePtr, tex.pixels.size());
 #endif /* TEWI_TEXTURE_ENABLE_PIXELS */
 
-		API::genAPITexture<APIType>(tex);
+		API::genAPITexture(tex, imagePtr, width, height);
 
 		stbi_image_free(imagePtr);
 
 		return tex;
 	}
 } // namespace tewi
+
+#include "Platform/OpenGL/TextureCache.hpp"
