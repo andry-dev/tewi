@@ -13,123 +13,96 @@
 
 namespace tewi
 {
-	namespace IO
-	{
-		template <typename T>
-		inline TEWI_EXPORT std::vector<T> fileToBuffer(const std::string& path)
-		{
-			std::ifstream file(path, std::ios::binary);
+    namespace IO
+    {
+        inline TEWI_EXPORT std::string readFileContents(const std::string& path)
+        {
+            FILE* shaderFile = std::fopen(path.c_str(), "r");
+            std::fseek(shaderFile, 0, SEEK_END);
+            asl::sizei length = std::ftell(shaderFile);
 
-			TEWI_EXPECTS(!file.fail(), "Can't open file " + path);
+            std::string content(length, '\0');
 
-			file.seekg(0, std::ios::end);
+            std::fseek(shaderFile, 0, SEEK_SET);
+            std::fread(&content[0], 1, length, shaderFile);
+            std::fclose(shaderFile);
 
-			int fileSize = file.tellg();
+            return content;
+        }
 
-			std::vector<T> buffer(fileSize);
+        inline TEWI_EXPORT std::string removeExtension(const std::string& str)
+        {
+            asl::sizei index = str.find_last_of('.');
+            return str.substr(0, index);
+        }
 
-			// This cast.
-			file.read((char*)(&buffer[0]), fileSize);
+        using Path = std::pair<bool, std::string>;
 
-			return buffer;
-		}
+        template <typename Container>
+        inline TEWI_EXPORT Path findCorrectFile(const std::string& path, const Container& acceptedExtensions)
+        {
+            // TODO: This is too slow 07-01-2017
+            // Even if we optimized for the best case (path is generic, so
+            // it doesn't exist), this is still too slow (becase this is
+            // basically a bruteforce)
+            //
+            // The calls are identical, maybe I can fix them in some way
+            //
+            // We should go with a regex:
+            // If we match some words (like vert) then we should first try
+            // with related extension (so .vert in this case)
 
-		template <typename T>
-		inline TEWI_EXPORT bool fileToBuffer(const std::string& path, std::vector<T>& buffer)
-		{
-			std::ifstream file(path, std::ios::binary);
-			TEWI_EXPECTS(!file.fail(), "Can't open file " + path);
+            if (!asl::fs::fileExists(path.c_str()))
+            {
+                auto newPath = removeExtension(path);
 
-			//seek to the end
-			file.seekg(0, std::ios::end);
+                // First we try by removing the extension
+                for (const auto& ext : acceptedExtensions)
+                {
+                    std::string pathWithNewExt = newPath + ext;
+                    if (asl::fs::fileExists(pathWithNewExt.c_str()))
+                    {
+                        return { true, pathWithNewExt };
+                    }
+                }
+                
+                // If it fails we just try to append the extension
+                for (const auto& ext : acceptedExtensions)
+                {
+                    std::string pathWithNewExt = path + ext;
+                    if (asl::fs::fileExists(pathWithNewExt.c_str()))
+                    {
+                        return { true, pathWithNewExt };
+                    }
+                }
 
-			//Get the file size
-			int fileSize = file.tellg();
-			file.seekg(0, std::ios::beg);
+                return { false, "" };
+            }
+            else
+            {
+                return { true, path };
+            }
 
-			//Reduce the file size by any header bytes that might be present
-			fileSize -= file.tellg();
+            TEWI_EXPECTS(0, "Can't find file " + path);
+            return { false, "" };
+        }
 
-			buffer.resize(fileSize);
-			file.read((char *)&(buffer[0]), fileSize);
-			file.close();
+        template <typename Container1, typename Container2>
+        inline TEWI_EXPORT Path findCorrectFile(const std::string& path, const Container1& acceptedExtensions, const Container2& regexHelpers)
+        {
+            auto res = findCorrectFile(path, acceptedExtensions);
 
-			return true;
-		}
+            if (res.first)
+            {
+                return res;
+            }
+            else
+            {
+                TEWI_EXPECTS(0, "Not implemented yet");
+            }
 
-		inline TEWI_EXPORT std::string removeExtension(const std::string& str)
-		{
-			asl::sizei index = str.find_last_of('.');
-			return str.substr(0, index);
-		}
+            return { false, "" };
+        }
 
-		using Path = std::pair<bool, std::string>;
-
-		template <typename Container>
-		inline TEWI_EXPORT Path findCorrectFile(const std::string& path, const Container& acceptedExtensions)
-		{
-			// TODO: This is too slow 07-01-2017
-			// Even if we optimized for the best case (path is generic, so
-			// it doesn't exist), this is still too slow (becase this is
-			// basically a bruteforce)
-			//
-			// The calls are identical, maybe I can fix them in some way
-			//
-			// We should go with a regex:
-			// If we match some words (like vert) then we should first try
-			// with related extension (so .vert in this case)
-
-			if (!asl::fs::fileExists(path.c_str()))
-			{
-				auto newPath = removeExtension(path);
-
-				// First we try by removing the extension
-				for (const auto& ext : acceptedExtensions)
-				{
-					std::string pathWithNewExt = newPath + ext;
-					if (asl::fs::fileExists(pathWithNewExt.c_str()))
-					{
-						return { true, pathWithNewExt };
-					}
-				}
-				
-				// If it fails we just try to append the extension
-				for (const auto& ext : acceptedExtensions)
-				{
-					std::string pathWithNewExt = path + ext;
-					if (asl::fs::fileExists(pathWithNewExt.c_str()))
-					{
-						return { true, pathWithNewExt };
-					}
-				}
-
-				return { false, "" };
-			}
-			else
-			{
-				return { true, path };
-			}
-
-			TEWI_EXPECTS(0, "Can't find file " + path);
-			return { false, "" };
-		}
-
-		template <typename Container1, typename Container2>
-		inline TEWI_EXPORT Path findCorrectFile(const std::string& path, const Container1& acceptedExtensions, const Container2& regexHelpers)
-		{
-			auto res = findCorrectFile(path, acceptedExtensions);
-
-			if (res.first)
-			{
-				return res;
-			}
-			else
-			{
-				TEWI_EXPECTS(0, "Not implemented yet");
-			}
-
-			return { false, "" };
-		}
-
-	} // namespace IO
+    } // namespace IO
 } // namespace tewi

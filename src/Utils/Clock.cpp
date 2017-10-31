@@ -4,12 +4,12 @@
 
 namespace tewi
 {
-	double Clock::restartTimer()
-	{
-		double currTime = glfwGetTime();
-		auto elapsed = currTime - m_startTime;
-		m_startTime = currTime;
+    double Clock::restartTimer()
+    {
+        double currTime = glfwGetTime();
+        auto elapsed = currTime - m_startTime;
+        m_startTime = currTime;
 
-		return elapsed;
-	}
+        return elapsed;
+    }
 } // namespace tewi

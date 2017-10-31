@@ -2,11 +2,11 @@
 
 namespace tewi
 {
-	namespace Platform
-	{
-		namespace API
-		{
+    namespace Platform
+    {
+        namespace API
+        {
 
-		}
-	}
+        }
+    }
 }

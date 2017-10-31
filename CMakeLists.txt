@@ -68,7 +68,7 @@ set_target_properties(${PROJECT_NAME}
 	CXX_STANDARD_REQUIRED ON)
 
 if(WIN32)
-	# Add GLEW
+    # Add GLEW
 	set(GLEW_LIBRARIES
 		${PROJECT_SOURCE_DIR}/lib/msvc/glew/lib/Release/x64/glew32.lib)
 

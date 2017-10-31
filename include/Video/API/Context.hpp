@@ -11,59 +11,61 @@
 
 namespace tewi
 {
-	/** Common namespace for Graphic API related stuff like context, renderers, etc...
-	 *
-	 *
-	 */
-	namespace API
-	{
-		/** \brief Context initialization; initializes a graphic API for the window.
-		 *
-		 * You should *not* instantiate this class without a valid API, only the Window uses this.
-		 *
-		 * \tparam APIType The type of the API you want to use. Use one of the
-		 * structs in API.h or create your own.
-		 *
-		 i* \sa Window
-		 */
-		template <typename APIType>
-		class TEWI_EXPORT Context final
-		{
-		public:
-			Context()
-			{
-			}
+    /** Common namespace for Graphic API related stuff like context, renderers, etc...
+     *
+     *
+     */
+    namespace API
+    {
+        /** \brief Context initialization; initializes a graphic API for the window.
+         *
+         * You should *not* instantiate this class without a valid API, only the Window uses this.
+         *
+         * \tparam APIType The type of the API you want to use. Use one of the
+         * structs in API.h or create your own.
+         *
+         i* \sa Window
+         */
+        template <typename APIType>
+        class TEWI_EXPORT Context final
+        {
+        public:
+            using interface_only = void;
 
-			/** Steps before the window is initialized
-			 *
-			 */
-			void setup() {  }
+            Context();
 
-			/** Steps after the window is initialized
-			 *
-			 */
-			void postInit(GLFWwindow*) {  }
+            /** Steps before the window is initialized
+             *
+             */
+            void setup();
 
-			/** Steps before drawing
-			 *
-			 */
-			void preDraw() {  }
-			
-			/** Steps after drawing
-			 *
-			 */
-			void postDraw() {  }
+            /** Steps after the window is initialized
+             *
+             */
+            void postInit(GLFWwindow*);
 
-			/** Buffer Swap
-			 *
-			 */
-			void swap(GLFWwindow*) {  }
+            /** Steps before drawing
+             *
+             */
+            void preDraw();
+            
+            /** Steps after drawing
+             *
+             */
+            void postDraw();
 
-			/** Returns API information
-			 *
-			 */
-			const auto getAPIVersion() { return "UNKOWN_CONTEXT"; }
-		};
+            /** Buffer Swap
+             *
+             */
+            void swap(GLFWwindow*);
 
-	}
+            /** Returns API information
+             *
+             */
+            const auto getAPIVersion();
+        };
+
+    }
 }
+
+#include "Platform/NullRenderer/Context.hpp"

@@ -7,34 +7,37 @@
 
 #include "Video/Window.hpp"
 
-#include "gsl/not_null"
-
 #include "Common.h"
 
 namespace tewi
 {
-	namespace API
-	{
-		/** \brief A swapchain.
-		 *
-		 * \warning API and ABI instable.
-		 *
-		 */
-		template <typename APINum>
-		class TEWI_EXPORT Swapchain
-		{
-		public:
-			Swapchain(Instance<APINum>&, Window<APINum>&) {  }
+    namespace API
+    {
+        /** \brief A swapchain.
+         *
+         * \warning API and ABI instable.
+         *
+         */
+        template <typename APIType>
+        class TEWI_EXPORT Swapchain
+        {
+        public:
+            using interface_only = void;
 
-			template <typename... Shaders>
-			void createPipeline(ShaderPack<Shaders...>& shaders) {  }
+            Swapchain(Instance<APIType>&, Window<APIType>&);
 
-			void secondPhaseInit(const Device<APINum>&) {  }
+            void secondPhaseInit(const Device<APIType>&);
 
-			void recreate() {  }
+            template <typename... Shaders>
+            void createPipeline(ShaderPack<Shaders...>& shaders);
 
-			template <typename... Shaders>
-			void replaceShaders(ShaderPack<Shaders...>& shaders) {  }
-		};
-	}
+            void recreate();
+
+            template <typename... Shaders>
+            void replaceShaders(ShaderPack<Shaders...>& shaders);
+        };
+    }
 }
+
+#include "Platform/OpenGL/Swapchain.hpp"
+#include "Platform/NullRenderer/Swapchain.hpp"

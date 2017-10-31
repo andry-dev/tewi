@@ -4,7 +4,15 @@
 
 namespace tewi
 {
-	namespace API
-	{
-	}
-}
+    namespace API
+    {
+        template <>
+        class TEWI_EXPORT Device<OpenGLTag>
+        {
+        public:
+            Device() {}
+        };
+
+
+    } // namespace API
+} // namespace tewi

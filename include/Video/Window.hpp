@@ -16,119 +16,124 @@
 
 namespace tewi
 {
-	/** \brief Basic windowing system
-	 *
-	 * This class is the main windowing system.
-	 *
-	 * Basically manages the creation and instance of a window.
-	 * It registers GLFW's callbacks, etc...
-	 *
-	 * \a APINum is used to initialize the window with the choosen graphic API.
-	 *
-	 * \sa API::Context
-	 *
-	 * \code
-	 * using namespace tewi;
-	 * constexpr int api = API::API_TYPE::OPENGL;
-	 * Window<api> window("Title for your window", 800, 600);
-	 *
-	 * \endcode
-	 */
-	template <typename APINum>
-	class TEWI_EXPORT Window
-	{
-	public:
-		Window(std::string windowName, int width, int height, void* usrptr)
-			: m_width(width), m_height(height), m_windowName(std::move(windowName))
-		{
-			glfwInit();
 
-			m_context.setup();
-			
-			m_window = glfwCreateWindow(m_width, m_height, windowName.c_str(), nullptr, nullptr);
-			TEWI_ENSURES(m_window != nullptr, "Window not initialized");
+    /** \brief Basic windowing system
+     *
+     * This class is the main windowing system.
+     *
+     * Basically manages the creation and instance of a window.
+     * It registers GLFW's callbacks, etc...
+     *
+     * \a APIType is used to initialize the window with the choosen graphic API.
+     *
+     * \sa API::Context
+     *
+     */
+    template <typename APIType>
+    class TEWI_EXPORT Window
+    {
+    public:
+        /**
+         *
+         * \param windowName The name of the window.
+         * \param width The width of the window.
+         * \param height The height of the window.
+         * \param usrptr GLFW's window pointer. See the example page to understand why you __may__ need this.
+         */ 
+        Window(std::string windowName, int width, int height, void* usrptr = nullptr)
+            : m_width(width), m_height(height), m_windowName(std::move(windowName))
+        {
+            glfwInit();
 
-			glfwMakeContextCurrent(m_window);
+            m_context.setup();
+            
+            m_window = glfwCreateWindow(m_width, m_height, windowName.c_str(), nullptr, nullptr);
+            TEWI_ENSURES(m_window != nullptr, "Window not initialized");
 
-			glfwSetWindowSizeCallback(m_window, windowResizeCallback);
-			glfwSetErrorCallback(glfwErrorCallback);
+            glfwMakeContextCurrent(m_window);
 
-			m_context.postInit(m_window);
-			std::printf("API Version: %s\n", m_context.getAPIVersion());
+            glfwSetWindowSizeCallback(m_window, windowResizeCallback);
+            glfwSetErrorCallback(glfwErrorCallback);
 
-			glfwSetWindowUserPointer(m_window, usrptr);
-		}
+            m_context.postInit(m_window);
+            std::printf("API Version: %s\n", m_context.getAPIVersion());
 
-		~Window()
-		{
-			glfwDestroyWindow(m_window);
-		}
+            glfwSetWindowUserPointer(m_window, usrptr);
+        }
 
-		Window(const Window& rhs) = delete;
-		Window& operator=(const Window& rhs) = delete;
+        ~Window()
+        {
+            glfwDestroyWindow(m_window);
+        }
 
-		/** Is the window closed?
-		 *
-		 */
-		inline bool isWindowClosed()
-		{
-			return glfwWindowShouldClose(m_window);
-		}
+        Window(const Window& rhs) = delete;
+        Window& operator=(const Window& rhs) = delete;
 
-		inline void forceClose()
-		{
-			glfwSetWindowShouldClose(m_window, true);
-		}
+        /** Is the window closed?
+         *
+         */
+        inline bool isWindowClosed()
+        {
+            return glfwWindowShouldClose(m_window);
+        }
 
-		inline void pollEvents()
-		{
-			glfwPollEvents();
-		}
+        inline void forceClose()
+        {
+            glfwSetWindowShouldClose(m_window, true);
+        }
 
-		/** Swaps the window buffers
-		 *
-		 */
-		inline void swap() noexcept { m_context.swap(m_window); }
+        inline void pollEvents()
+        {
+            glfwPollEvents();
+        }
 
-		/** Returns the width ofthe window
-		 *
-		 */
-		inline int getWidth() const noexcept { return m_width; }
+        /** Swaps the window buffers
+         *
+         */
+        inline void swap() noexcept { m_context.swap(m_window); }
 
-		/** Returns the height of the window
-		 *
-		 */
-		inline int getHeight() const noexcept { return m_height; }
+        /** Returns the width ofthe window
+         *
+         */
+        inline int getWidth() const noexcept { return m_width; }
 
-		/** Returns a pointer to the current instance of GLFWwindow
-		 *
-		 */
-		inline GLFWwindow* getWindow() const noexcept { return m_window; }
+        /** Returns the height of the window
+         *
+         */
+        inline int getHeight() const noexcept { return m_height; }
 
-		/** Returns a pointer to the current context used to initialize the API
-		 *
-		 */
-		inline auto& getContext() { return m_context; }
+        /** Returns a pointer to the current instance of GLFWwindow
+         *
+         */
+        inline GLFWwindow* getWindow() const noexcept { return m_window; }
 
-		void setKeyboardCallback(GLFWkeyfun callback)
-		{
-			glfwSetKeyCallback(m_window, callback);
-		}
+        /** Returns a pointer to the current context used to initialize the API
+         *
+         */
+        inline auto& getContext() { return m_context; }
 
-		void setMouseButtonCallback(GLFWmousebuttonfun callback)
-		{
-			glfwSetMouseButtonCallback(m_window, callback);
-		}
+        void setKeyboardCallback(GLFWkeyfun callback)
+        {
+            glfwSetKeyCallback(m_window, callback);
+        }
 
-	private:
-		GLFWwindow* m_window;
-		int m_width;
-		int m_height;
-		std::string m_windowName;
-		API::Context<APINum> m_context;
-	};
+        void setMouseButtonCallback(GLFWmousebuttonfun callback)
+        {
+            glfwSetMouseButtonCallback(m_window, callback);
+        }
 
+    private:
+        GLFWwindow* m_window;
+        int m_width;
+        int m_height;
+        std::string m_windowName;
+        API::Context<APIType> m_context;
+    };
 
+    /** \example window_usage.cpp
+     *
+     * Shows the usage of the Window class.
+     */
 }
 
 // well

@@ -5,26 +5,23 @@
 
 namespace tewi
 {
-	namespace API
-	{
-		/*
-		template <>
-		class Swapchain<API::OpenGLTag>
-		{
-		public:
-			Swapchain(Instance<API::OpenGLTag>&, Window<API::OpenGLTag>*) {  }
+    namespace API
+    {
+        template <>
+        class TEWI_EXPORT Swapchain<API::OpenGLTag>
+        {
+        public:
+            Swapchain(Instance<API::OpenGLTag>&, Window<API::OpenGLTag>&) {  }
 
-			void secondPhaseInit(Device<API::OpenGLTag>&) {  }
+            void secondPhaseInit(Device<API::OpenGLTag>&) {  }
 
-			template <typename... Shaders>
-			void createPipeline(ShaderPack<Shaders...>& shaders) {  }
+            template <typename... Shaders>
+            void createPipeline(ShaderPack<Shaders...>& shaders) {  }
 
-			void recreate() {  }
+            void recreate() {  }
 
-			template <typename... Shaders>
-			void replaceShaders(ShaderPack<Shaders...>& shaders) {  }
-		private:
-		};
-		*/
-	}
-}
+            template <typename... Shaders>
+            void replaceShaders(ShaderPack<Shaders...>& shaders) {  }
+        };
+    } // namespace API
+} // namespace tewi

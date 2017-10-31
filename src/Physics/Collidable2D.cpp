@@ -2,73 +2,73 @@
 
 namespace tewi
 {
-	namespace Physics
-	{
+    namespace Physics
+    {
 
-		Collidable2D::Collidable2D(glm::vec2& pos, glm::vec2& size)
-			: refPos(&pos), refSize(&size), radius(0.0f)
-		{
+        Collidable2D::Collidable2D(glm::vec2& pos, glm::vec2& size)
+            : refPos(&pos), refSize(&size), radius(0.0f)
+        {
 
-		}
+        }
 
-		bool checkAABB(const Collidable2D& first, const Collidable2D& second)
-		{
-			return ((first.refPos->x < second.refPos->x + second.refSize->x) &
-					(first.refPos->x + first.refSize->x > second.refPos->x) &
-					(first.refPos->y < second.refPos->y + second.refSize->y) &
-					(first.refPos->y + first.refSize->y > second.refPos->y));
-		}
+        bool checkAABB(const Collidable2D& first, const Collidable2D& second)
+        {
+            return ((first.refPos->x < second.refPos->x + second.refSize->x) &
+                    (first.refPos->x + first.refSize->x > second.refPos->x) &
+                    (first.refPos->y < second.refPos->y + second.refSize->y) &
+                    (first.refPos->y + first.refSize->y > second.refPos->y));
+        }
 
-		bool checkAABB(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup)
-		{
-			bool test = true;
-			for (const auto& first : firstGroup)
-			{
-				for (const auto& second : secondGroup)
-				{
-					if (!((first.refPos->x < second.refPos->x + second.refSize->x) &
-						(first.refPos->x + first.refSize->x > second.refPos->x) &
-						(first.refPos->y < second.refPos->y + second.refSize->y) &
-						(first.refPos->y + first.refSize->y > second.refPos->y)))
-					{
-						test = false;
-					}
-				}
-			}
+        bool checkAABB(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup)
+        {
+            bool test = true;
+            for (const auto& first : firstGroup)
+            {
+                for (const auto& second : secondGroup)
+                {
+                    if (!((first.refPos->x < second.refPos->x + second.refSize->x) &
+                        (first.refPos->x + first.refSize->x > second.refPos->x) &
+                        (first.refPos->y < second.refPos->y + second.refSize->y) &
+                        (first.refPos->y + first.refSize->y > second.refPos->y)))
+                    {
+                        test = false;
+                    }
+                }
+            }
 
-			return test;
-		}
+            return test;
+        }
 
-		bool checkRadius(const Collidable2D& first, const Collidable2D& second)
-		{
-			float distance_x = (first.refPos->x + first.radius) - (second.refPos->x + second.radius);
-			float distance_y = (first.refPos->y + first.radius) - (second.refPos->y + second.radius);
+        bool checkRadius(const Collidable2D& first, const Collidable2D& second)
+        {
+            float distance_x = (first.refPos->x + first.radius) - (second.refPos->x + second.radius);
+            float distance_y = (first.refPos->y + first.radius) - (second.refPos->y + second.radius);
 
-			float distance = (distance_x * distance_x + distance_y * distance_y);
+            float distance = (distance_x * distance_x + distance_y * distance_y);
 
-			return distance < (first.radius * first.radius + second.radius * second.radius);
-		}
+            return distance < (first.radius * first.radius + second.radius * second.radius);
+        }
 
-		bool checkRadius(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup)
-		{
-			bool test = true;
-			for (const auto& first : firstGroup)
-			{
-				for (const auto& second : secondGroup)
-				{
-					float distance_x = (first.refPos->x + first.radius) - (second.refPos->x + second.radius);
-					float distance_y = (first.refPos->y + first.radius) - (second.refPos->y + second.radius);
+        bool checkRadius(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup)
+        {
+            bool test = true;
+            for (const auto& first : firstGroup)
+            {
+                for (const auto& second : secondGroup)
+                {
+                    float distance_x = (first.refPos->x + first.radius) - (second.refPos->x + second.radius);
+                    float distance_y = (first.refPos->y + first.radius) - (second.refPos->y + second.radius);
 
-					float distance = (distance_x * distance_x + distance_y * distance_y);
+                    float distance = (distance_x * distance_x + distance_y * distance_y);
 
-					if (!(distance < (first.radius * first.radius + second.radius * second.radius)))
-					{
-						test = false;
-					}
-				}
-			}
+                    if (!(distance < (first.radius * first.radius + second.radius * second.radius)))
+                    {
+                        test = false;
+                    }
+                }
+            }
 
-			return test;
-		}
-	} // namespace Physics
+            return test;
+        }
+    } // namespace Physics
 } // namespace tewi

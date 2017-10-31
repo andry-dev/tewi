@@ -4,43 +4,49 @@
 
 namespace tewi
 {
-	namespace API
-	{
-		/** \brief OpenGL Tag
-		 *
-		 * Struct used for API switch.
-		 *
-		 * The "value" is for future use.
-		 *
-		 */
-		struct TEWI_EXPORT OpenGLTag
-		{
-			enum { value = 1 };
-		};
+    /** \brief Tells the library that a specific API has no base API.
+     *
+     */
+    struct NoBase {};
 
-		/** \brief Vulkan Tag
-		 *
-		 * Struct used for API switch.
-		 *
-		 * The "value" is for future use.
-		 *
-		 */
-		struct TEWI_EXPORT VulkanTag
-		{
-			enum { value = 1 };
-		};
+    /**
+     * \sa examples/api_intro.cpp
+     */ 
+    namespace API
+    {
+        /** \brief OpenGL Tag
+         *
+         * Struct used for API-dependent code.
+         *
+         */
+        struct TEWI_EXPORT OpenGLTag
+        {
+            using base = NoBase;
+        };
 
-		/** \brief Null Renderer Tag
-		 *
-		 * Struct used for API switch.
-		 *
-		 * This in particular is used for server stuff where you don't want a
-		 * window.
-		 *
-		 */
-		struct TEWI_EXPORT NullRendererTag
-		{
-			enum { value = 2 };
-		};
-	}
-}
+        /** \brief Vulkan Tag
+         *
+         * Struct used for API-dependent code.
+         *
+         * The "value" is for future use.
+         *
+         */
+        struct TEWI_EXPORT VulkanTag
+        {
+            using base = NoBase;
+        };
+
+        /** \brief Null Renderer Tag
+         *
+         * Struct used for API-dependent code.
+         *
+         * This in particular is used for server stuff where you don't want a
+         * window.
+         *
+         */
+        struct TEWI_EXPORT NullRendererTag
+        {
+            using base = NoBase;
+        };
+    } // namespace API
+} // namespace tewi

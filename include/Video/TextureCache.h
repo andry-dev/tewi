@@ -8,24 +8,24 @@
 
 namespace tewi
 {
-	/** \brief A cache-system for textures
-	 *
-	 * In particular, this uses an std::map to cache textures and retrieve them by path.
-	 *
-	 * \sa ResourceManager
-	 *
-	 */
-	template <typename APIType>
-	class TextureCache
-	{
-	public:
-		Texture<APIType> get(const std::string& path);
+    /** \brief A cache-system for textures
+     *
+     * In particular, this uses an std::map to cache textures and retrieve them by path.
+     *
+     * \sa ResourceManager
+     *
+     */
+    template <typename APIType>
+    class TextureCache
+    {
+    public:
+        Texture<APIType> get(const std::string& path);
 
-	private:
-		Texture<APIType> load(const std::string& path);
-		
-		std::map<std::string, Texture<APIType>> m_map;
-	};
+    private:
+        Texture<APIType> load(const std::string& path);
+        
+        std::map<std::string, Texture<APIType>> m_map;
+    };
 }
 
 

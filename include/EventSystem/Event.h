@@ -7,27 +7,27 @@
 
 namespace tewi
 {
-	namespace EventSystem
-	{
-		class Event
-		{
-		public:
+    namespace EventSystem
+    {
+        class Event
+        {
+        public:
 
-			auto getType() { return m_eventType; }
+            auto getType() { return m_eventType; }
 
-		protected:
+        protected:
 
-			Event(std::uint32_t eventType)
-				: m_eventType(eventType)
-			{
-				
-			}
+            Event(std::uint32_t eventType)
+                : m_eventType(eventType)
+            {
+                
+            }
 
-			
-		private:
-			std::uint32_t m_eventType = EventType::Null_event;
-		};
-	}
+            
+        private:
+            std::uint32_t m_eventType = EventType::Null_event;
+        };
+    }
 }
 
 

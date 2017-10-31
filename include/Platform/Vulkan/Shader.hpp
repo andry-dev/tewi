@@ -9,7 +9,7 @@
 
 namespace tewi
 {
-	namespace API
-	{
-	} // namespace API
+    namespace API
+    {
+    } // namespace API
 } // namespace tewi

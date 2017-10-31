@@ -3,23 +3,23 @@
 
 namespace tewi
 {
-	namespace EventSystem
-	{
-		enum EventType
-		{
-			Null_event,
+    namespace EventSystem
+    {
+        enum EventType
+        {
+            Null_event,
 
-			Mouse_moved,
-			Mouse_button_pressed,
-			Mouse_wheel_moved,
-			
-			Key_pressed,
+            Mouse_moved,
+            Mouse_button_pressed,
+            Mouse_wheel_moved,
+            
+            Key_pressed,
 
-			Object_collided,
+            Object_collided,
 
-			Last_event
-		};
-	}
+            Last_event
+        };
+    }
 }
 
 #endif /* EVENT_SYSTEM_EVENT_TYPE_H */
