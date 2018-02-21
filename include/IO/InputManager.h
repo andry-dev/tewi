@@ -61,18 +61,26 @@ namespace tewi
          * \return true if the key associated to the keycode is pressed.
          */
         bool isKeyDown(asl::u32 keycode);
-        
+
         /** Checks if a key is released
          *
          * \return true if the key associated to the keycode is released.
          */
         bool isKeyReleased(asl::u32 keycode);
 
-        // Getters and setters are useless in this case
-        glm::vec2 m_mouseCoords;
+        void setMouseCoords(const glm::vec2& coords)
+        {
+            m_mouseCoords = coords;
+        }
+
+        auto getMouseCoords() const
+        {
+            return m_mouseCoords;
+        }
 
     private:
-        
+
+        glm::vec2 m_mouseCoords;
         std::unordered_map<std::uint32_t, bool> m_keymap;
     };
 } // namespace tewi

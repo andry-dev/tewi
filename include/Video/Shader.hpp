@@ -5,6 +5,7 @@
 
 #include "Common.h"
 #include "asl/types"
+#include "gsl/string_span"
 
 #include "IO/BasicIO.h"
 
@@ -45,7 +46,7 @@ namespace tewi
     public:
         using interface_only = void;
     protected:
-        std::string getShader(const std::string& loc)
+        std::string getShader(gsl::string_span loc)
         {
             return loc;
         }
@@ -57,14 +58,14 @@ namespace tewi
     public:
         using interface_only = void;
     protected:
-        std::string getShader(const std::string&) const;
+        std::string getShader(gsl::string_span) const;
     };
 
     template <typename APIType>
     class TEWI_EXPORT SubstitutionFindPolicy<VertexShader<APIType>>
     {
     protected:
-        std::string getShader(const std::string& path) const
+        std::string getShader(gsl::string_span path) const
         {
             const auto finalPath = IO::findCorrectFile(path, shaderExts).second;
             return IO::readFileContents(finalPath);
@@ -86,7 +87,7 @@ namespace tewi
     class TEWI_EXPORT SubstitutionFindPolicy<FragmentShader<APIType>>
     {
     protected:
-        std::string getShader(const std::string& path) const
+        std::string getShader(gsl::string_span path) const
         {
             const auto finalPath = IO::findCorrectFile(path, shaderExts).second;
             return IO::readFileContents(finalPath);
@@ -140,7 +141,7 @@ namespace tewi
         using STypeImpl = ShaderTypePolicy<APIType>;
         using SFindImpl = ShaderFindPolicy<STypeImpl>;
 
-        explicit Shader(API::Device<APIType>& dev, const std::string& path)
+        explicit Shader(const API::Device<APIType>& dev, const std::string& path)
             : m_id(STypeImpl::create())
         {
             STypeImpl::compile(SFindImpl::getShader(path), m_id);
@@ -214,24 +215,22 @@ namespace tewi
         /** Returns the index of an uniform.
          *
          */
-        asl::u32 getUniformLocation(const std::string& uniformName);
+        asl::u32 getUniformLocation(gsl::string_span uniformName);
 
         /** Returns an array of indices of various uniforms.
          *
          */
         template <asl::sizei N>
-        std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName);
+        std::array<asl::u32, N> getUniformLocation(const std::array<gsl::string_span, N>& uniformName);
 
         /** Returns an array of indices of various uniforms.
          *
          */
-        template <asl::sizei N, typename StringType>
-        std::array<asl::u32, N> getUniformLocation(const std::array<StringType, N>& uniformName);
-
-        /** Returns an array of indices of various uniforms.
-         *
-         */
-        template <typename Container, bool = !std::is_same<typename Container::value_type, const char*>::value>
+        template <typename Container,
+                     std::enable_if_t<
+                         !std::is_same<Container, gsl::string_span>::value
+                     >
+                 >
         std::vector<asl::mut_u32> getUniformLocation(const Container& uniformName);
 
 

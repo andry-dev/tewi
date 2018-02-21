@@ -1,38 +1,24 @@
 #pragma once
 
-#include "IO/InputManager.h"
-#include "Utils/TickTimer.h"
-#include "Video/Window.hpp"
-
-#include "Video/API/Instance.hpp"
-#include "Video/API/Swapchain.hpp"
-
-#include "Log.h"
-
 #include <memory>
-
-#include "Video/API/Context.hpp"
-#include "Platform/OpenGL/Context.hpp"
 
 #include "Common.h"
 
+#include "IO/InputManager.h"
+#include "Utils/TickTimer.h"
+#include "Utils/GLFWCallbacks.h"
+
+#include "Video/Window.hpp"
+#include "Video/API/Context.hpp"
+#include "Video/API/Instance.hpp"
+#include "Video/API/Swapchain.hpp"
+#include "Platform/OpenGL/Context.hpp"
+
+#include "Log.h"
+
+
 namespace tewi
 {
-    /** Callback for keyboard presses.
-     *
-     * **Internal use only.**
-     */
-    template <class Derived, typename APINum>
-    static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-
-    /** Callback for mouse presses.
-     *
-     * **Internal use only.**
-     *
-     */
-    template <class Derived, typename APINum>
-    static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
-
     /** \brief Managed base game class.
      *
      * Inherit from this class to get a managed base game class.
@@ -136,8 +122,9 @@ namespace tewi
 
             m_swapchain.secondPhaseInit(m_device);
 
-            m_window->setKeyboardCallback(keyCallback<Derived, APINum>);
-            m_window->setMouseButtonCallback(mouseButtonCallback<Derived, APINum>);
+            m_window->setKeyboardCallback(tewi::glfwKeyboardCallback<Derived, APINum>);
+            m_window->setMouseButtonCallback(tewi::glfwMouseCallback<Derived, APINum>);
+            m_window->setMouseCursorPosCallback(tewi::glfwCursorPosCallback<Derived, APINum>);
         }
 
         ~GameCommon()
@@ -240,40 +227,10 @@ namespace tewi
         API::Device<APINum> m_device;
 
         // yeah. GLFW.
-        friend void keyCallback<Derived, APINum>(GLFWwindow* window, int key, int scancode, int action, int mods);
-        friend void mouseButtonCallback<Derived, APINum>(GLFWwindow* window, int button, int action, int mods);
+        friend void tewi::glfwKeyboardCallback<Derived, APINum>(GLFWwindow* window, int key, int scancode, int action, int mods);
+        friend void tewi::glfwMouseCallback<Derived, APINum>(GLFWwindow* window, int button, int action, int mods);
+        friend void tewi::glfwCursorPosCallback<Derived, APINum>(GLFWwindow* window, double xpos, double ypos);
     };
-
-    // Thanks GLFW
-    template <class Derived, typename APINum>
-    static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
-    {
-        auto* gc = static_cast<GameCommon<Derived, APINum>*>(glfwGetWindowUserPointer(window));
-
-        if (action == GLFW_PRESS)
-        {
-            gc->m_inputManager.pressKey(key);
-        }
-        else if (action == GLFW_RELEASE)
-        {
-            gc->m_inputManager.releaseKey(key);
-        }
-    }
-
-    template <class Derived, typename APINum>
-    static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
-    {
-        auto* gc = static_cast<GameCommon<Derived, APINum>*>(glfwGetWindowUserPointer(window));
-
-        if (action == GLFW_PRESS)
-        {
-            gc->m_inputManager.pressKey(button);
-        }
-        else if (action == GLFW_RELEASE)
-        {
-            gc->m_inputManager.releaseKey(button);
-        }
-    }
 }
 
 #include "Platform/NullRenderer/GameCommon.hpp"

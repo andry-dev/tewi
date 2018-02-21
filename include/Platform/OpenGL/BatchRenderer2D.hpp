@@ -9,7 +9,7 @@
 #include "Video/IndexBuffer.hpp"
 #include "Log.h"
 #include "Common.h"
-#include "API/Device.hpp"
+#include "Video/API/Device.hpp"
 
 #include "Video/BatchRenderer2D.hpp"
 
@@ -35,7 +35,7 @@ namespace tewi
     constexpr asl::num g_tidAttribPointer = 2;
     constexpr asl::num g_colorAttribPointer = 3;
 
-    constexpr const std::array<asl::sizei, 21> g_texIndices =
+    constexpr const std::array<asl::sizei, 22> g_texIndices =
     {
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
         11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -304,7 +304,7 @@ namespace tewi
 
         static ShaderProgram<API::OpenGLTag> createShaderProgram()
         {
-            constexpr const char* vertstr =
+            constexpr gsl::string_span vertstr =
             R"(
             #version 400
 
@@ -334,7 +334,7 @@ namespace tewi
                 fragmentTID = vertexTID;
             })";
 
-            constexpr const char* fragstr =
+            constexpr gsl::string_span fragstr =
             R"(
             #version 400
 
@@ -353,7 +353,7 @@ namespace tewi
                 color = fragmentColor * textureColor;
             })";
 
-            constexpr const std::array<const char*, 4> attribs
+            constexpr const std::array<gsl::string_span, 4> attribs
             {
                 "vertexPosition",
                 "vertexUV",

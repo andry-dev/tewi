@@ -46,7 +46,7 @@ namespace tewi
             glfwInit();
 
             m_context.setup();
-            
+
             m_window = glfwCreateWindow(m_width, m_height, windowName.c_str(), nullptr, nullptr);
             TEWI_ENSURES(m_window != nullptr, "Window not initialized");
 
@@ -120,6 +120,11 @@ namespace tewi
         void setMouseButtonCallback(GLFWmousebuttonfun callback)
         {
             glfwSetMouseButtonCallback(m_window, callback);
+        }
+
+        void setMouseCursorPosCallback(GLFWcursorposfun callback)
+        {
+            glfwSetCursorPosCallback(m_window, callback);
         }
 
     private:

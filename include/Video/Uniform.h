@@ -62,6 +62,12 @@ namespace tewi
     {
         glUniform1iv(uniformID, vec.size(), vec.data());
     }
+
+    template <asl::sizei N> 
+    /* TEWI_EXPORT */ void setUniform(std::int32_t uniformID, const std::array<int, N>& arr)
+    {
+        glUniform1iv(uniformID, arr.size(), arr.data());
+    }
 }
 
 

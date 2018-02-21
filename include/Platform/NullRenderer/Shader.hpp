@@ -35,23 +35,17 @@ namespace tewi
         }
 
         template <typename Container,
-                 std::enable_if_t<
-                     !std::is_same<
-                        typename Container::value_type, const char*>::value,
-                 bool> = false>
+                     std::enable_if_t<
+                         !std::is_same<Container, gsl::string_span>::value
+                     >
+                 >
         std::vector<asl::mut_u32> getUniformLocation(const Container& uniformName)
         {
             return { 0 };
         }
 
-        template <asl::sizei N>
-        std::array<asl::u32, N> getUniformLocation(const std::array<const char*, N>& uniformName)
-        {
-            return { 0 };
-        }
-
         template <asl::sizei N, typename StringType>
-        std::array<asl::u32, N> getUniformLocation(const std::array<StringType, N>& uniformName)
+        std::array<asl::u32, N> getUniformLocation(const std::array<gsl::string_span, N>& uniformName)
         {
             return { 0 };
         }
@@ -67,7 +61,7 @@ namespace tewi
         using ShaderTypeImpl = ShaderTypePolicy<API::NullRendererTag>;
         using ShaderFindImpl = ShaderFindPolicy<ShaderTypePolicy<API::NullRendererTag>>;
 
-        explicit Shader(API::Device<API::NullRendererTag>& dev, const char* path)
+        explicit Shader(const API::Device<API::NullRendererTag>& dev, const char* path)
         {
         }
 
