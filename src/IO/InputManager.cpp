@@ -1,4 +1,4 @@
-#include "IO/InputManager.h"
+#include "tewi/IO/InputManager.h"
 
 namespace tewi
 {

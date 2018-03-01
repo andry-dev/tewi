@@ -302,7 +302,7 @@ Renderable2D<OpenGLTag> a{ /* ... */ };
 
 Renderer2D<MyCustomTag, BatchRenderer2D> renderer;
 
-renderere.add(a);
+renderer.add(a);
 ```
 
 If you want to statically switch the tags used for a class, then you can use
