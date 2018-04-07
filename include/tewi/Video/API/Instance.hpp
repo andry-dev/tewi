@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Video/API/Context.hpp"
+#include "tewi/Video/API/Context.hpp"
 
-#include "Common.h"
+#include "tewi/Common.h"
 
 namespace tewi
 {
@@ -28,6 +28,6 @@ namespace tewi
     } // namespace API
 } // namespace tewi
 
-#include "Platform/NullRenderer/Instance.hpp"
-#include "Platform/OpenGL/Instance.hpp"
-#include "Platform/Vulkan/Instance.hpp"
+#include "tewi/Platform/NullRenderer/Instance.hpp"
+#include "tewi/Platform/OpenGL/Instance.hpp"
+#include "tewi/Platform/Vulkan/Instance.hpp"

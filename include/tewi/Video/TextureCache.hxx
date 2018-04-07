@@ -10,6 +10,7 @@
 #include "tewi/Utils/Log.h"
 
 #include "asl/debug_only"
+#include "asl/meta"
 
 namespace tewi
 {
@@ -19,6 +20,16 @@ namespace tewi
         template <typename APIType>
         void genAPITexture(Texture<APIType>& tex, asl::mut_u8* imagePtr, asl::num width, asl::num height)
         {
+            static_assert(asl::disable_type_v<APIType>, "\n"
+                    "You need to override this function to load textures. The correct and only way to do so is to specialize it with the following signature: \n"
+                    "\n"
+                    "template <> \n"
+                    "void genAPITexture(Texture<~YourTagHere~>& tex, ~the other parameters here~) \n"
+                    "{ ... } \n"
+                    "\n"
+                    "Specifying the first 'template <>' is extremely important: failing to do so will result in some compilers discarding your function and you trying to figure out why your function is not getting called.\n"
+                    "Yes, this sucks.");
+
         }
     } // namespace API
 
@@ -44,14 +55,15 @@ namespace tewi
     {
         Texture<APIType> tex = {};
 
-        int width = 0;
-        int height = 0;
-        int chan = 0;
+        asl::mut_num width = 0;
+        asl::mut_num height = 0;
+        asl::mut_num chan = 0;
 
         asl::mut_u8* imagePtr = stbi_load(path.c_str(), &width, &height,
                                          &chan, STBI_rgb_alpha);
 
-        TEWI_EXPECTS(imagePtr != nullptr, "Can't decode PNG " + path);
+
+        TEWI_ENSURES(imagePtr != nullptr, "[TextureCache<T>::load] Can't decode PNG " + path);
 
         tex.size = glm::vec2(width, height);
 

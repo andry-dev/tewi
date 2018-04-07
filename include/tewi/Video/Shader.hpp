@@ -3,15 +3,13 @@
 #include <array>
 #include <string>
 
-#include "Common.h"
+#include "tewi/Common.h"
 #include "asl/types"
 #include "gsl/string_span"
 
-#include "IO/BasicIO.h"
+#include "tewi/IO/BasicIO.h"
 
-#include "Video/API/Device.hpp"
-
-#include "Common.h"
+#include "tewi/Video/API/Device.hpp"
 
 namespace tewi
 {
@@ -256,6 +254,6 @@ namespace tewi
      */
 }
 
-#include "Platform/OpenGL/Shader.hpp"
-#include "Platform/Vulkan/Shader.hpp"
-#include "Platform/NullRenderer/Shader.hpp"
+#include "tewi/Platform/OpenGL/Shader.hpp"
+#include "tewi/Platform/Vulkan/Shader.hpp"
+#include "tewi/Platform/NullRenderer/Shader.hpp"

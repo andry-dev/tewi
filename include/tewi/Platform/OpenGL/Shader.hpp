@@ -150,13 +150,11 @@ namespace tewi
 
         ~ShaderProgram()
         {
-            Log::debugInfo("ShaderProgram<GL>::~ShaderProgram");
             glDeleteProgram(m_id);
         }
 
         void enable()
         {
-            Log::debugInfo("ShaderProgram<GL>::enable");
             glUseProgram(m_id);
             for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
             {
@@ -166,7 +164,6 @@ namespace tewi
 
         void disable()
         {
-            Log::debugInfo("ShaderProgram<OGL>::disable");
             glUseProgram(0);
             for (asl::mut_sizei i = 0; i < m_attribNum; ++i)
             {

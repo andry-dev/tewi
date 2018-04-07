@@ -1,6 +1,6 @@
-#include "Common.h"
-#include "Video/API/API.h"
-#include "Video/Shader.hpp"
+#include "tewi/Common.h"
+#include "tewi/Video/API/API.h"
+#include "tewi/Video/Shader.hpp"
 
 
 namespace tewi

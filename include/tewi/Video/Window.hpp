@@ -16,7 +16,6 @@
 
 namespace tewi
 {
-
     /** \brief Basic windowing system
      *
      * This class is the main windowing system.
@@ -56,7 +55,6 @@ namespace tewi
             glfwSetErrorCallback(glfwErrorCallback);
 
             m_context.postInit(m_window);
-            std::printf("API Version: %s\n", m_context.getAPIVersion());
 
             glfwSetWindowUserPointer(m_window, usrptr);
         }
@@ -142,4 +140,4 @@ namespace tewi
 }
 
 // well
-#include "Platform/NullRenderer/Window.hpp"
+#include "tewi/Platform/NullRenderer/Window.hpp"

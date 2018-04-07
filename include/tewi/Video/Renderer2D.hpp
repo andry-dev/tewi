@@ -6,6 +6,7 @@
 #include "tewi/Common.h"
 #include "tewi/Utils/Log.h"
 #include "tewi/Video/API/API.h"
+#include "tewi/Video/Shader.hpp"
 #include "tewi/Video/Renderable2D.hpp"
 
 namespace tewi
@@ -28,7 +29,7 @@ namespace tewi
     {
         using RenderPolicyImpl = RenderPolicy<APIType>;
     public:
-        Renderer2D(ShaderProgram<APIType> shader = RenderPolicyImpl::createShaderProgram())
+        Renderer2D()
         {
             
         }

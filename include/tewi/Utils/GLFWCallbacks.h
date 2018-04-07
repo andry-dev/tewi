@@ -7,7 +7,9 @@
 
 #include "Log.h"
 
-#include "Common.h"
+#include "tewi/Common.h"
+
+#include "glm/glm.hpp"
 
 namespace tewi
 {

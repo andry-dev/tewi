@@ -12,7 +12,7 @@
 #include "tewi/Platform/Vulkan/ValidationLayers.h"
 #include "tewi/Platform/Vulkan/Callbacks.h"
 #include "tewi/Platform/Vulkan/QueueFamily.h"
-#include "tewi/Platform/Vulkan/SwapChainDetails.h"
+#include "tewi/Platform/Vulkan/SwapchainDetails.h"
 #include "tewi/Utils/Log.h"
 
 #include "asl/debug_only"

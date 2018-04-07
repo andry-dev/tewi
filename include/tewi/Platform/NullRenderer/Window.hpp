@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Video/API/API.h"
-#include "Common.h"
+#include "tewi/Video/API/API.h"
+#include "tewi/Common.h"
 
-#include "Video/Window.hpp"
-#include "Video/API/Context.hpp"
+#include "tewi/Video/Window.hpp"
+#include "tewi/Video/API/Context.hpp"
 
 #include <string>
 

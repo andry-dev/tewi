@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Video/API/Swapchain.hpp"
-#include "Video/API/API.h"
+#include "tewi/Video/API/Swapchain.hpp"
+#include "tewi/Video/API/API.h"
 
 namespace tewi
 {

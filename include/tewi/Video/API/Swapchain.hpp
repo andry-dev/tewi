@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Video/API/Context.hpp"
-#include "Video/API/Instance.hpp"
-#include "Video/Shader.hpp"
-#include "Video/API/Device.hpp"
+#include "tewi/Video/API/Context.hpp"
+#include "tewi/Video/API/Instance.hpp"
+#include "tewi/Video/Shader.hpp"
+#include "tewi/Video/API/Device.hpp"
 
-#include "Video/Window.hpp"
+#include "tewi/Video/Window.hpp"
 
-#include "Common.h"
+#include "tewi/Common.h"
 
 namespace tewi
 {
@@ -39,5 +39,5 @@ namespace tewi
     }
 }
 
-#include "Platform/OpenGL/Swapchain.hpp"
-#include "Platform/NullRenderer/Swapchain.hpp"
+#include "tewi/Platform/OpenGL/Swapchain.hpp"
+#include "tewi/Platform/NullRenderer/Swapchain.hpp"

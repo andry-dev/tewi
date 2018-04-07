@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Video/API/Device.hpp"
+#include "tewi/Video/API/Device.hpp"
 
 namespace tewi
 {

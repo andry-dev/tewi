@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Video/API/API.h"
-#include "Common.h"
+#include "tewi/Video/API/API.h"
+#include "tewi/Common.h"
 
-#include "GameCommon.hpp"
+#include "tewi/GameCommon.hpp"
 
 namespace tewi
 {

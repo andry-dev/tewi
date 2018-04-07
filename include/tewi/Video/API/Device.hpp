@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Video/API/Context.hpp"
-#include "Video/API/Instance.hpp"
-#include "Video/API/API.h"
+#include "tewi/Video/API/Context.hpp"
+#include "tewi/Video/API/Instance.hpp"
+#include "tewi/Video/API/API.h"
 
-#include "Common.h"
+#include "tewi/Common.h"
 
 namespace tewi
 {
@@ -26,5 +26,5 @@ namespace tewi
     }
 } // namespace API
 
-#include "Platform/OpenGL/Device.hpp"
-#include "Platform/NullRenderer/Device.hpp"
+#include "tewi/Platform/OpenGL/Device.hpp"
+#include "tewi/Platform/NullRenderer/Device.hpp"

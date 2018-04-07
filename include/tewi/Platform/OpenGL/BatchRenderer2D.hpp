@@ -103,8 +103,8 @@ namespace tewi
 
             glVertexAttribPointer(g_posAttribPointer, 2, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(0));
             glVertexAttribPointer(g_uvAttribPointer, 2, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, uv)));
-            glVertexAttribPointer(g_colorAttribPointer, 4, GL_UNSIGNED_BYTE, GL_TRUE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, color)));
             glVertexAttribPointer(g_tidAttribPointer, 1, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, textureID)));
+            glVertexAttribPointer(g_colorAttribPointer, 4, GL_UNSIGNED_BYTE, GL_TRUE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, color)));
 
 
             glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -302,7 +302,7 @@ namespace tewi
         {
             constexpr gsl::string_span vertstr =
             R"(
-            #version 400
+            #version 400 core
 
             layout(location = 0) in vec2 vertexPosition;
             layout(location = 1) in vec2 vertexUV;
@@ -314,13 +314,11 @@ namespace tewi
             out vec4 fragmentColor;
             out vec2 fragmentUV;
 
-            uniform mat4 ml_matrix;
-            uniform mat4 vw_matrix;
-            uniform mat4 pr_matrix;
+            uniform mat4 MVP;
 
             void main() {
                 //Set the x,y position on the screen
-                gl_Position = (pr_matrix * vw_matrix * ml_matrix * vec4(vertexPosition, 0.0, 1.0));
+                gl_Position = (MVP * vec4(vertexPosition, 0.0, 1.0));
 
                 fragmentPosition = vertexPosition;
 
@@ -332,7 +330,7 @@ namespace tewi
 
             constexpr gsl::string_span fragstr =
             R"(
-            #version 400
+            #version 400 core
 
             in vec2 fragmentPosition;
             in vec2 fragmentUV;
