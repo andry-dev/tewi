@@ -124,12 +124,25 @@ else()
 	# Common
 	target_compile_options(${PROJECT_NAME}
 		PRIVATE
-		-Wall -pipe -Wno-pragma-once-outside-header -fno-rtti -fno-omit-frame-pointer)
+        -Wall -Wextra -pedantic -pipe -Wno-pragma-once-outside-header
+        -Weffc++ -Wno-c++98-compat -Wno-unused-const-variable
+        -Wno-missing-prototypes -fno-rtti)
+
+    if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        target_compile_options(${PROJECT_NAME}
+            PRIVATE
+            -Weverything)
+    endif()
 
 	# Release
 	target_compile_options(${PROJECT_NAME}
 		PRIVATE
 		$<$<CONFIG:RELEASE>:-O3>)
+
+    # Debug
+    target_compile_options(${PROJECT_NAME}
+        PRIVATE
+        $<$<CONFIG:DEBUG>:-fno-omit-frame-pointer>)
 endif()
 
 
