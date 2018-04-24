@@ -1,7 +1,7 @@
-#define CATCH_CONFIG_MAIN
-#include "catch.hpp"
 
-#include "Video/Window.hpp"
+#include "tewi/Video/Window.hpp"
+#include "asl/meta"
+#include "asl/testing"
 #include <chrono>
 
 namespace
@@ -10,45 +10,32 @@ namespace
 	const auto g_windowCloseTimeout = 2s;
 }
 
-TEST_CASE("Create a window (OpenGL)", "[Unit][OpenGL]")
+
+template <typename Tag>
+void win_creation()
 {
-	tewi::Window<tewi::API::OpenGLTag> win("Test", 800, 600, nullptr);
+    std::printf("\tWindow creation \n");
+	tewi::Window<Tag> win("Test", 800, 600, nullptr);
 	while (!win.isWindowClosed())
 	{
 		win.forceClose();
 	}
+    std::printf("\tPASSED\n");
 }
 
-TEST_CASE("Create a window (Vulkan)", "[Unit][Vulkan]")
-{
-	tewi::Window<tewi::API::VulkanTag> win("Test", 800, 600, nullptr);
-	while (!win.isWindowClosed())
-	{
-		win.forceClose();
-	}
-}
 
-TEST_CASE("Create a window (Null)", "[Unit][NullRenderer]")
+template <typename Tag>
+void poll_events()
 {
-	tewi::Window<tewi::API::NullRendererTag> win("Test", 800, 600, nullptr);
-	while (!win.isWindowClosed())
-	{
-		win.forceClose();
-	}
-}
+    std::printf("\tPoll events \n");
 
-TEST_CASE("Poll events (OpenGL)", "[Unit][OpenGL]")
-{
-	auto keycallback = [] (GLFWwindow* window, int key, int scancode, int action, int mods)
-	{
+	tewi::Window<Tag> win("Test", 800, 600, nullptr);
+	win.setKeyboardCallback([](GLFWwindow* window, int key, int scancode, int action, int mods) {
 		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		{
 			glfwWindowShouldClose(window);
 		}
-	};
-
-	tewi::Window<tewi::API::OpenGLTag> win("Test", 800, 600, nullptr);
-	glfwSetKeyCallback(win.getWindow(), keycallback);
+    });
 
 	const auto start = std::chrono::system_clock::now();
 
@@ -68,39 +55,25 @@ TEST_CASE("Poll events (OpenGL)", "[Unit][OpenGL]")
 
 		win.swap();
 	}
+    std::printf("\tPASSED\n");
 }
 
-TEST_CASE("Poll events (Vulkan)", "[Unit][Vulkan]")
+void opengl()
 {
-	auto keycallback = [] (GLFWwindow* window, int key, int scancode, int action, int mods)
-	{
-		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		{
-			glfwWindowShouldClose(window);
-		}
-		
-		std::printf("key = %d", key);
-	};
+    std::printf("[Window] OpenGL tests...\n");
+    { win_creation<tewi::API::OpenGLTag>(); }
+    { poll_events<tewi::API::OpenGLTag>(); }
+}
 
-	tewi::Window<tewi::API::VulkanTag> win("Test", 800, 600, nullptr);
-	glfwSetKeyCallback(win.getWindow(), keycallback);
+void nullrend()
+{
+    std::printf("[Window] Null API tests...\n");
+    win_creation<tewi::API::NullRendererTag>();
+    poll_events<tewi::API::NullRendererTag>();
+}
 
-	const auto start = std::chrono::system_clock::now();
-
-	while (!win.isWindowClosed())
-	{
-		const auto now = std::chrono::system_clock::now();
-
-		if (now - start >= g_windowCloseTimeout)
-		{
-			win.forceClose();
-		}
-
-		win.pollEvents();
-
-		win.getContext().preDraw();
-		win.getContext().postDraw();
-
-		win.swap();
-	}
+int main()
+{
+    opengl();
+    nullrend();
 }

@@ -8,14 +8,16 @@ add_executable(test-window src/window.cpp)
 
 set_target_properties(test-window
 	PROPERTIES
-	CXX_STANDARD 14)
+	CXX_STANDARD 14
+    RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin"
+    RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_BINARY_DIR}/bin"
+    RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_BINARY_DIR}/bin"
+    )
 
-target_include_directories(test-window
-	PRIVATE
-	${PROJECT_SOURCE_DIR}/Catch/include)
+
 
 add_test(
 	NAME Window
-	COMMAND tewi-window)
+    COMMAND $<TARGET_FILE:test-window>)
 
 target_link_libraries(test-window tewi)

@@ -52,7 +52,7 @@ namespace tewi
             glfwMakeContextCurrent(m_window);
 
             glfwSetWindowSizeCallback(m_window, windowResizeCallback);
-            glfwSetErrorCallback(glfwErrorCallback);
+            glfwSetErrorCallback(tewi::glfwErrorCallback);
 
             m_context.postInit(m_window);
 
@@ -61,7 +61,9 @@ namespace tewi
 
         ~Window()
         {
+            glfwMakeContextCurrent(0);
             glfwDestroyWindow(m_window);
+            glfwTerminate();
         }
 
         Window(const Window& rhs) = delete;

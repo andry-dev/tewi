@@ -38,7 +38,11 @@ namespace tewi
         inline int getHeight() const noexcept { return m_height; }
         inline GLFWwindow* getWindow() const noexcept { return nullptr; }
         
-        inline auto getContext() { return &m_context; }
+        inline auto& getContext() { return m_context; }
+
+        void setKeyboardCallback(GLFWkeyfun callback) { }
+        void setMouseButtonCallback(GLFWmousebuttonfun callback) { }
+        void setMouseCursorPosCallback(GLFWcursorposfun callback) { }
 
     private:
         std::string m_windowName;
