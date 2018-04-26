@@ -1,7 +1,6 @@
 #pragma once
 
 #include <utility>
-#include <string>
 
 #include <GL/glew.h>
 
@@ -12,6 +11,9 @@
 #include "tewi/Platform/Vulkan/Context.hpp"
 #include "tewi/Utils/Log.h"
 #include "tewi/Utils/GLFWCallbacks.h"
+#include "tewi/Utils/Types.h"
+
+#include "asl/string_view"
 
 
 namespace tewi
@@ -29,9 +31,8 @@ namespace tewi
      *
      */
     template <typename APIType>
-    class TEWI_EXPORT Window
+    struct TEWI_EXPORT Window
     {
-    public:
         /**
          *
          * \param windowName The name of the window.
@@ -39,101 +40,118 @@ namespace tewi
          * \param height The height of the window.
          * \param usrptr GLFW's window pointer. See the example page to understand why you __may__ need this.
          */ 
-        Window(std::string windowName, int width, int height, void* usrptr = nullptr)
-            : m_width(width), m_height(height), m_windowName(std::move(windowName))
+        Window(asl::string_view windowName, Width width, Height height, void* usrptr = nullptr)
         {
             glfwInit();
 
-            m_context.setup();
+            context.setup();
 
-            m_window = glfwCreateWindow(m_width, m_height, windowName.c_str(), nullptr, nullptr);
-            TEWI_ENSURES(m_window != nullptr, "Window not initialized");
+            windowPtr = glfwCreateWindow(width.value(), height.value(), windowName.data(), nullptr, nullptr);
+            TEWI_ENSURES(windowPtr != nullptr, "Window not initialized");
 
-            glfwMakeContextCurrent(m_window);
+            glfwMakeContextCurrent(windowPtr);
 
-            glfwSetWindowSizeCallback(m_window, windowResizeCallback);
+            glfwSetWindowSizeCallback(windowPtr, windowResizeCallback);
             glfwSetErrorCallback(tewi::glfwErrorCallback);
 
-            m_context.postInit(m_window);
+            context.postInit(windowPtr);
 
-            glfwSetWindowUserPointer(m_window, usrptr);
+            glfwSetWindowUserPointer(windowPtr, usrptr);
         }
 
         ~Window()
         {
             glfwMakeContextCurrent(0);
-            glfwDestroyWindow(m_window);
+            glfwDestroyWindow(windowPtr);
             glfwTerminate();
         }
 
         Window(const Window& rhs) = delete;
         Window& operator=(const Window& rhs) = delete;
 
-        /** Is the window closed?
-         *
-         */
-        inline bool isWindowClosed()
-        {
-            return glfwWindowShouldClose(m_window);
-        }
 
-        inline void forceClose()
-        {
-            glfwSetWindowShouldClose(m_window, true);
-        }
-
-        inline void pollEvents()
-        {
-            glfwPollEvents();
-        }
-
-        /** Swaps the window buffers
-         *
-         */
-        inline void swap() noexcept { m_context.swap(m_window); }
-
-        /** Returns the width ofthe window
-         *
-         */
-        inline int getWidth() const noexcept { return m_width; }
-
-        /** Returns the height of the window
-         *
-         */
-        inline int getHeight() const noexcept { return m_height; }
-
-        /** Returns a pointer to the current instance of GLFWwindow
-         *
-         */
-        inline GLFWwindow* getWindow() const noexcept { return m_window; }
-
-        /** Returns a pointer to the current context used to initialize the API
-         *
-         */
-        inline auto& getContext() { return m_context; }
-
-        void setKeyboardCallback(GLFWkeyfun callback)
-        {
-            glfwSetKeyCallback(m_window, callback);
-        }
-
-        void setMouseButtonCallback(GLFWmousebuttonfun callback)
-        {
-            glfwSetMouseButtonCallback(m_window, callback);
-        }
-
-        void setMouseCursorPosCallback(GLFWcursorposfun callback)
-        {
-            glfwSetCursorPosCallback(m_window, callback);
-        }
-
-    private:
-        GLFWwindow* m_window;
-        int m_width;
-        int m_height;
-        std::string m_windowName;
-        API::Context<APIType> m_context;
+        GLFWwindow* windowPtr;
+        API::Context<APIType> context;
     };
+
+    template <typename APITag>
+    inline bool isWindowClosed(const Window<APITag>& win) noexcept
+    {
+        return glfwWindowShouldClose(win.windowPtr);
+    }
+
+    template <typename APITag>
+    inline void forceCloseWindow(Window<APITag>& win) noexcept
+    {
+        glfwSetWindowShouldClose(win.windowPtr, true);
+    }
+
+    template <typename APITag>
+    inline void pollWindowEvents(Window<APITag>& win) noexcept
+    {
+        glfwPollEvents();
+    }
+
+    /** Swaps the window buffers
+     *
+     */
+    template <typename APITag>
+    inline void swapWindowBuffers(Window<APITag>& win) noexcept
+    {
+        win.context.swap(win.windowPtr);
+    }
+
+    /** Returns the width ofthe window
+     *
+     */
+    template <typename APITag>
+    inline tewi::Width getWindowWidth(const Window<APITag>& win) noexcept
+    {
+        tewi::Width w(0);
+        glfwGetWindowSize(win.windowPtr, &w.value(), 0);
+
+        return w;
+    }
+
+    /** Returns the height of the window
+     *
+     */
+    template <typename APITag>
+    inline tewi::Height getWindowHeight(const Window<APITag>& win) noexcept
+    {
+        tewi::Height h(0);
+        glfwGetWindowSize(win.windowPtr, 0, &h.value());
+
+        return h;
+    }
+
+    /** Sets the window keyboard callback
+     *
+     */
+    template <typename APITag>
+    inline void setWindowKeyboardCallback(Window<APITag>& win, GLFWkeyfun callback) noexcept
+    {
+        glfwSetKeyCallback(win.windowPtr, callback);
+    }
+
+    /** Sets the window mouse button callback
+     *
+     */
+    template <typename APITag>
+    inline void setWindowMouseButtonCallback(Window<APITag>& win, GLFWmousebuttonfun callback) noexcept
+    {
+        glfwSetMouseButtonCallback(win.windowPtr, callback);
+    }
+
+    /** Sets the window mouse cursor callback
+     *
+     */
+    template <typename APITag>
+    inline void setWindowMouseCursorPosCallback(Window<APITag>& win, GLFWcursorposfun callback) noexcept
+    {
+        glfwSetCursorPosCallback(win.windowPtr, callback);
+    }
+
 
     /** \example window_usage.cpp
      *

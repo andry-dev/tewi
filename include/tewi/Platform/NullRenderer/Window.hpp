@@ -6,19 +6,16 @@
 #include "tewi/Video/Window.hpp"
 #include "tewi/Video/API/Context.hpp"
 
-#include <string>
+#include "tewi/Utils/Types.h"
+
 
 namespace tewi
 {
     template <>
-    class TEWI_EXPORT Window<API::NullRendererTag>
+    struct TEWI_EXPORT Window<API::NullRendererTag>
     {
     public:
-        Window(std::string windowName, int width, int height, void* usrptr)
-            : m_windowName(windowName)
-            , m_width(width)
-            , m_height(height)
-            , m_windowClosed(false)
+        Window(asl::string_view windowName, Width width, Height height, void* usrptr)
         {
         }
 
@@ -29,26 +26,46 @@ namespace tewi
         Window(Window&& rhs) = default;
         Window& operator=(Window&& rhs) = default;
 
-        bool isWindowClosed() { return m_windowClosed; }
-        inline void forceClose() { m_windowClosed = true; }
-        inline void pollEvents() { }
 
-        inline void swap() noexcept { }
-        inline int getWidth() const noexcept { return m_width; }
-        inline int getHeight() const noexcept { return m_height; }
-        inline GLFWwindow* getWindow() const noexcept { return nullptr; }
-        
-        inline auto& getContext() { return m_context; }
-
-        void setKeyboardCallback(GLFWkeyfun callback) { }
-        void setMouseButtonCallback(GLFWmousebuttonfun callback) { }
-        void setMouseCursorPosCallback(GLFWcursorposfun callback) { }
-
-    private:
-        std::string m_windowName;
-        int m_width;
-        int m_height;
-        API::Context<API::NullRendererTag> m_context;
-        bool m_windowClosed;
+        API::Context<API::NullRendererTag> context;
+        bool windowClosed = false;
     };
+
+    inline bool isWindowClosed(const Window<API::NullRendererTag>& win) noexcept
+    {
+        return win.windowClosed;
+    }
+
+    inline void forceCloseWindow(Window<API::NullRendererTag>& win) noexcept
+    {
+        win.windowClosed = true;
+    }
+
+    inline void pollWindowEvents(Window<API::NullRendererTag>&) noexcept
+    { }
+
+    inline void swapWindowBuffers(Window<API::NullRendererTag>&) noexcept
+    { }
+
+    inline tewi::Width getWindowWidth(const Window<API::NullRendererTag>&) noexcept
+    {
+        return tewi::Width{0};
+    }
+
+    inline tewi::Height getWindowHeight(const Window<API::NullRendererTag>&) noexcept
+    {
+        return tewi::Height{0};
+    }
+
+    void setWindowKeyboardCallback(Window<API::NullRendererTag>&, GLFWkeyfun) noexcept
+    { }
+
+    void setWindowMouseButtonCallback(Window<API::NullRendererTag>&, GLFWmousebuttonfun) noexcept
+    { }
+
+    void setWindowMouseCursorPosCallback(Window<API::NullRendererTag>&, GLFWcursorposfun) noexcept
+    { }
+
+
+
 } // namespace tewi

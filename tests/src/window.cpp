@@ -15,10 +15,10 @@ template <typename Tag>
 void win_creation()
 {
     std::printf("\tWindow creation \n");
-	tewi::Window<Tag> win("Test", 800, 600, nullptr);
-	while (!win.isWindowClosed())
+	tewi::Window<Tag> win("Test", tewi::Width{800}, tewi::Height{600}, nullptr);
+	while (!tewi::isWindowClosed(win))
 	{
-		win.forceClose();
+        tewi::forceCloseWindow(win);
 	}
     std::printf("\tPASSED\n");
 }
@@ -29,8 +29,11 @@ void poll_events()
 {
     std::printf("\tPoll events \n");
 
-	tewi::Window<Tag> win("Test", 800, 600, nullptr);
-	win.setKeyboardCallback([](GLFWwindow* window, int key, int scancode, int action, int mods) {
+	tewi::Window<Tag> win("Test", tewi::Width{800}, tewi::Height{600}, nullptr);
+    tewi::setWindowKeyboardCallback(win,
+                                    [](GLFWwindow* window, int key,
+                                       int scancode, int action, int mods)
+    {
 		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		{
 			glfwWindowShouldClose(window);
@@ -39,21 +42,21 @@ void poll_events()
 
 	const auto start = std::chrono::system_clock::now();
 
-	while (!win.isWindowClosed())
+	while (!tewi::isWindowClosed(win))
 	{
 		const auto now = std::chrono::system_clock::now();
 
 		if (now - start >= g_windowCloseTimeout)
 		{
-			win.forceClose();
+            tewi::forceCloseWindow(win);
 		}
 
-		win.pollEvents();
+        tewi::pollWindowEvents(win);
 
-		win.getContext().preDraw();
-		win.getContext().postDraw();
+		win.context.preDraw();
+		win.context.postDraw();
 
-		win.swap();
+        tewi::swapWindowBuffers(win);
 	}
     std::printf("\tPASSED\n");
 }
