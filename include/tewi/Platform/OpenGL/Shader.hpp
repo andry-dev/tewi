@@ -20,9 +20,9 @@
 
 namespace tewi
 {
-    inline TEWI_EXPORT void compileGLSL(gsl::string_span shadertext, asl::u32 id)
+    inline TEWI_EXPORT void compileGLSL(asl::string_view shadertext, asl::u32 id)
     {
-        auto str_ptr = shadertext.c_str();
+        auto str_ptr = shadertext.data();
 
         glShaderSource(id, 1, &str_ptr, nullptr);
         glCompileShader(id);
@@ -59,7 +59,7 @@ namespace tewi
             return ret;
         }
 
-        void compile(gsl::string_span shadertext, asl::u32 id)
+        void compile(asl::string_view shadertext, asl::u32 id)
         {
             compileGLSL(shadertext, id);
         }
@@ -80,10 +80,43 @@ namespace tewi
             return ret;
         }
 
-        void compile(gsl::string_span path, asl::u32 id)
+        void compile(asl::string_view path, asl::u32 id)
         {
             compileGLSL(path, id);
         }
+    };
+
+    template <template <typename> class ShaderTypePolicy,
+             template <typename> class ShaderFindPolicy>
+    class TEWI_EXPORT Shader<API::OpenGLTag, ShaderTypePolicy, ShaderFindPolicy> final
+        : private ShaderTypePolicy<API::OpenGLTag>
+        , private ShaderFindPolicy<ShaderTypePolicy<API::OpenGLTag>>
+    {
+    public:
+        using STypeImpl = ShaderTypePolicy<API::OpenGLTag>;
+        using SFindImpl = ShaderFindPolicy<STypeImpl>;
+        using api_type = API::OpenGLTag;
+
+        explicit Shader(const API::Device<API::OpenGLTag>&, asl::string_view path)
+            : m_id(STypeImpl::create())
+        {
+            STypeImpl::compile(SFindImpl::getShader(path), m_id);
+        }
+
+        ~Shader() = default;
+
+        Shader(const Shader& rhs) = default;
+        Shader& operator=(const Shader& rhs) = default;
+    
+        Shader(Shader&& rhs) = default;
+        Shader& operator=(Shader&& rhs) = default;
+
+        auto getID() const { return m_id; }
+
+        using api_num = API::OpenGLTag;
+
+    private:
+        asl::u32 m_id;
     };
 
     template <>
@@ -104,7 +137,7 @@ namespace tewi
 
             for (asl::mut_sizei i = 0; i < attribs.size(); ++i)
             {
-                glBindAttribLocation(m_id, i, attribs[i].c_str());
+                glBindAttribLocation(m_id, i, attribs[i].data());
             }
 
             glLinkProgram(m_id);
@@ -171,16 +204,16 @@ namespace tewi
             }
         }
 
-        asl::u32 getUniformLocation(gsl::string_span uniformName)
+        asl::u32 getUniformLocation(asl::string_view uniformName)
         {
-            asl::u32 location = glGetUniformLocation(m_id, uniformName.c_str());
+            asl::u32 location = glGetUniformLocation(m_id, uniformName.data());
             TEWI_EXPECTS(location != GL_INVALID_INDEX,
-                         "Invalid uniform variable \"" + uniformName + "\"");
+                         "Invalid uniform variable \"" + asl::to_string(uniformName) + "\"");
             return location;
         }
 
         template <asl::sizei N>
-        std::array<asl::u32, N> getUniformLocation(const std::array<gsl::string_span, N>& uniformName)
+        std::array<asl::u32, N> getUniformLocation(const std::array<asl::string_view, N>& uniformName)
         {
             std::array<asl::u32, N> arr;
 
@@ -197,7 +230,7 @@ namespace tewi
 
         template <typename Container,
                      std::enable_if_t<
-                         !std::is_same<Container, gsl::string_span>::value
+                         !std::is_same<Container, asl::string_view>::value
                      >
                  >
         std::vector<asl::mut_u32> getUniformLocation(const Container& uniformName)
@@ -219,36 +252,20 @@ namespace tewi
         asl::mut_sizei m_attribNum;
     };
 
-    template <template <typename> class ShaderTypePolicy,
-             template <typename> class ShaderFindPolicy>
-    class TEWI_EXPORT Shader<API::OpenGLTag, ShaderTypePolicy, ShaderFindPolicy> final
-        : private ShaderTypePolicy<API::OpenGLTag>
-        , private ShaderFindPolicy<ShaderTypePolicy<API::OpenGLTag>>
+
+    template <>
+    auto translateVertexLayoutType<API::OpenGLTag>(VertexLayout::Types type)
     {
-    public:
-        using STypeImpl = ShaderTypePolicy<API::OpenGLTag>;
-        using SFindImpl = ShaderFindPolicy<STypeImpl>;
-        using api_type = API::OpenGLTag;
-
-        explicit Shader(const API::Device<API::OpenGLTag>&, gsl::string_span path)
-            : m_id(STypeImpl::create())
+        switch (type)
         {
-            STypeImpl::compile(SFindImpl::getShader(path), m_id);
-        }
-
-        ~Shader() = default;
-
-        Shader(const Shader& rhs) = default;
-        Shader& operator=(const Shader& rhs) = default;
-    
-        Shader(Shader&& rhs) = default;
-        Shader& operator=(Shader&& rhs) = default;
-
-        auto getID() const { return m_id; }
-
-        using api_num = API::OpenGLTag;
-
-    private:
-        asl::u32 m_id;
-    };
+        case VertexLayout::Types::Float32: return GL_FLOAT;
+        case VertexLayout::Types::Float64: return GL_DOUBLE;
+        case VertexLayout::Types::UInt8: return GL_UNSIGNED_BYTE;
+        case VertexLayout::Types::Int8: return GL_BYTE;
+        case VertexLayout::Types::UInt16: return GL_UNSIGNED_SHORT;
+        case VertexLayout::Types::Int16: return GL_SHORT;
+        case VertexLayout::Types::UInt32: return GL_UNSIGNED_INT;
+        case VertexLayout::Types::Int32: return GL_INT;
+        };
+    }
 } // namespace tewi

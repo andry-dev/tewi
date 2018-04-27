@@ -3,6 +3,7 @@
 #include <utility>
 
 #include "glm/gtc/matrix_transform.hpp"
+#include "tewi/Utils/Types.h"
 
 namespace tewi
 {

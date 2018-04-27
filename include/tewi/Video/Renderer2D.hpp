@@ -29,10 +29,10 @@ namespace tewi
     {
         using RenderPolicyImpl = RenderPolicy<APIType>;
     public:
+
         Renderer2D()
-        {
-            
-        }
+            : RenderPolicyImpl()
+        { }
 
         ~Renderer2D() = default;
 

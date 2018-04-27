@@ -14,29 +14,13 @@
 #include "tewi/Video/IndexBuffer.hpp"
 #include "tewi/Video/API/Device.hpp"
 #include "tewi/Video/BatchRenderer2D.hpp"
+#include "tewi/Video/Uniform.h"
 #include "tewi/Utils/Log.h"
 
 #include "asl/types"
 
 namespace tewi
 {
-    constexpr asl::sizei g_maxTextures = 64000;
-    constexpr asl::sizei g_vertexSize = sizeof(Vertex);
-    constexpr asl::sizei g_spriteSize = g_vertexSize * 4;
-    constexpr asl::sizei g_bufferSize = g_spriteSize * g_maxTextures;
-    constexpr asl::sizei g_indicesSize = g_maxTextures * 6;
-
-    constexpr asl::num g_posAttribPointer = 0;
-    constexpr asl::num g_uvAttribPointer = 1;
-    constexpr asl::num g_tidAttribPointer = 2;
-    constexpr asl::num g_colorAttribPointer = 3;
-
-    constexpr const std::array<asl::sizei, 22> g_texIndices =
-    {
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        11, 12, 13, 14, 15, 16, 17, 18, 19,
-        20, 21
-    };
 
     /** \brief Batch renderer for 2D objects.
      *
@@ -86,50 +70,17 @@ namespace tewi
     struct TEWI_EXPORT BatchRenderer2D<API::OpenGLTag>
     {
     protected:
+
         BatchRenderer2D()
             : m_indexCount(0)
         {
-            glGenVertexArrays(1, &m_VAO);
-            glGenBuffers(1, &m_VBO);
-
-            glBindVertexArray(m_VAO);
-            glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-            glBufferData(GL_ARRAY_BUFFER, g_bufferSize, 0, GL_DYNAMIC_DRAW);
-
-            glEnableVertexAttribArray(g_posAttribPointer);
-            glEnableVertexAttribArray(g_uvAttribPointer);
-            glEnableVertexAttribArray(g_tidAttribPointer);
-            glEnableVertexAttribArray(g_colorAttribPointer);
-
-            glVertexAttribPointer(g_posAttribPointer, 2, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(0));
-            glVertexAttribPointer(g_uvAttribPointer, 2, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, uv)));
-            glVertexAttribPointer(g_tidAttribPointer, 1, GL_FLOAT, GL_FALSE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, textureID)));
-            glVertexAttribPointer(g_colorAttribPointer, 4, GL_UNSIGNED_BYTE, GL_TRUE, g_vertexSize, reinterpret_cast<const void*>(offsetof(Vertex, color)));
-
-
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-            std::vector<GLuint> indices(g_indicesSize);
-            for (asl::mut_sizei i = 0, offset = 0; i < indices.size(); i += 6, offset += 4)
-            {
-                indices[  i  ] = offset + 0;
-                indices[i + 1] = offset + 1;
-                indices[i + 2] = offset + 2;
-
-                indices[i + 3] = offset + 2;
-                indices[i + 4] = offset + 3;
-                indices[i + 5] = offset + 0;
-            }
-
-            m_IBO = std::make_unique<IndexBuffer<API::OpenGLTag>>(indices);
-
-            glBindVertexArray(0);
-            Log::debugInfo("BatchRenderer2D<GL>::BatchRenderer2D");
+            initBuffers();
+            bindAttribPointers();
+            finalInit();
         }
 
         ~BatchRenderer2D()
         {
-            Log::debugInfo("BatchRenderer2D<GL>::~BatchRenderer2D");
             glDeleteBuffers(1, &m_VBO);
         }
 
@@ -146,6 +97,7 @@ namespace tewi
          */
         void begin()
         {
+            tewi::setUniform(1, g_texIndices);
             glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
             m_buffer = reinterpret_cast<Vertex*>(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
         }
@@ -300,9 +252,9 @@ namespace tewi
 
         static ShaderProgram<API::OpenGLTag> createShaderProgram()
         {
-            constexpr gsl::string_span vertstr =
+            constexpr asl::string_view vertstr =
             R"(
-            #version 400 core
+            #version 430 core
 
             layout(location = 0) in vec2 vertexPosition;
             layout(location = 1) in vec2 vertexUV;
@@ -328,9 +280,9 @@ namespace tewi
                 fragmentTID = vertexTID;
             })";
 
-            constexpr gsl::string_span fragstr =
+            constexpr asl::string_view fragstr =
             R"(
-            #version 400 core
+            #version 430 core
 
             in vec2 fragmentPosition;
             in vec2 fragmentUV;
@@ -339,7 +291,7 @@ namespace tewi
 
             out vec4 color;
 
-            uniform sampler2D textures[16];
+            layout(location = 1) uniform sampler2D textures[16];
 
             void main() {
                 int tid = int(fragmentTID - 0.5);
@@ -347,7 +299,7 @@ namespace tewi
                 color = fragmentColor * textureColor;
             })";
 
-            constexpr const std::array<gsl::string_span, 4> attribs
+            constexpr const std::array<asl::string_view, 4> attribs
             {
                 "vertexPosition",
                 "vertexUV",
@@ -363,13 +315,78 @@ namespace tewi
         }
 
     private:
+        void initBuffers()
+        {
+            glGenVertexArrays(1, &m_VAO);
+            glGenBuffers(1, &m_VBO);
+
+            glBindVertexArray(m_VAO);
+            glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+            glBufferData(GL_ARRAY_BUFFER, g_bufferSize, 0, GL_DYNAMIC_DRAW);
+
+        }
+
+        void bindAttribPointers()
+        {
+            // Position
+            glEnableVertexAttribArray(0);
+            glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex), (const void*)(0));
+
+            // UV
+            glEnableVertexAttribArray(1);
+            glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex), (const void*)(offsetof(Vertex, uv)));
+
+            // TID
+            glEnableVertexAttribArray(2);
+            glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex), (const void*)(offsetof(Vertex, textureID)));
+
+            // Color
+            glEnableVertexAttribArray(3);
+            glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(tewi::Vertex), (const void*)(offsetof(Vertex, color)));
+        }
+
+        void finalInit()
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+            std::vector<GLuint> indices(g_indicesSize);
+            for (asl::mut_sizei i = 0, offset = 0; i < indices.size(); i += 6, offset += 4)
+            {
+                indices[  i  ] = offset + 0;
+                indices[i + 1] = offset + 1;
+                indices[i + 2] = offset + 2;
+
+                indices[i + 3] = offset + 2;
+                indices[i + 4] = offset + 3;
+                indices[i + 5] = offset + 0;
+            }
+
+            m_IBO = std::make_unique<IndexBuffer<API::OpenGLTag>>(indices);
+
+            glBindVertexArray(0);
+        }
+
         GLuint m_VBO;
         GLuint m_VAO;
-        Vertex* m_buffer;
+        tewi::Vertex* m_buffer;
         std::vector<GLuint> m_textureSlots;
-        std::unique_ptr<IndexBuffer<API::OpenGLTag>> m_IBO;
+        std::unique_ptr<tewi::IndexBuffer<API::OpenGLTag>> m_IBO;
         asl::mut_sizei m_indexCount;
+
+        static constexpr asl::sizei g_maxTextures = 64000;
+        static constexpr asl::sizei g_vertexSize = sizeof(Vertex);
+        static constexpr asl::sizei g_spriteSize = g_vertexSize * 4;
+        static constexpr asl::sizei g_bufferSize = g_spriteSize * g_maxTextures;
+        static constexpr asl::sizei g_indicesSize = g_maxTextures * 6;
+
+        static constexpr std::array<int, 16> g_texIndices =
+        {
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+            11, 12, 13, 14, 15
+        };
+
     };
+
 }
 
 

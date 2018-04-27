@@ -44,9 +44,9 @@ namespace tewi
     public:
         using interface_only = void;
     protected:
-        std::string getShader(gsl::string_span loc)
+        std::string getShader(asl::string_view loc)
         {
-            return loc;
+            return asl::to_string(loc);
         }
     };
 
@@ -56,14 +56,14 @@ namespace tewi
     public:
         using interface_only = void;
     protected:
-        std::string getShader(gsl::string_span) const;
+        std::string getShader(asl::string_view) const;
     };
 
     template <typename APIType>
     class TEWI_EXPORT SubstitutionFindPolicy<VertexShader<APIType>>
     {
     protected:
-        std::string getShader(gsl::string_span path) const
+        std::string getShader(asl::string_view path) const
         {
             const auto finalPath = IO::findCorrectFile(path, shaderExts).second;
             return IO::readFileContents(finalPath);
@@ -85,7 +85,7 @@ namespace tewi
     class TEWI_EXPORT SubstitutionFindPolicy<FragmentShader<APIType>>
     {
     protected:
-        std::string getShader(gsl::string_span path) const
+        std::string getShader(asl::string_view path) const
         {
             const auto finalPath = IO::findCorrectFile(path, shaderExts).second;
             return IO::readFileContents(finalPath);
@@ -213,20 +213,20 @@ namespace tewi
         /** Returns the index of an uniform.
          *
          */
-        asl::u32 getUniformLocation(gsl::string_span uniformName);
+        asl::u32 getUniformLocation(asl::string_view uniformName);
 
         /** Returns an array of indices of various uniforms.
          *
          */
         template <asl::sizei N>
-        std::array<asl::u32, N> getUniformLocation(const std::array<gsl::string_span, N>& uniformName);
+        std::array<asl::u32, N> getUniformLocation(const std::array<asl::string_view, N>& uniformName);
 
         /** Returns an array of indices of various uniforms.
          *
          */
         template <typename Container,
                      std::enable_if_t<
-                         !std::is_same<Container, gsl::string_span>::value
+                         !std::is_same<Container, asl::string_view>::value
                      >
                  >
         std::vector<asl::mut_u32> getUniformLocation(const Container& uniformName);
@@ -247,6 +247,27 @@ namespace tewi
     {
         return { attribs, std::forward<Shaders>(pack)... };
     }
+
+    struct VertexLayout
+    {
+        enum class Types : asl::mut_i8
+        {
+            Float32, Float64,
+            UInt8, Int8,
+            UInt16, Int16,
+            UInt32, Int32
+        };
+
+        asl::mut_i8 index;
+        Types type;
+        asl::mut_i8 count;
+        bool normalized = false;
+        asl::mut_i16 stride;
+        asl::mut_i16 offset;
+    };
+
+    template <typename APITag>
+    auto translateVertexLayoutType(VertexLayout::Types type) = delete;
 
     /** \example shader_creation.cpp
      *
