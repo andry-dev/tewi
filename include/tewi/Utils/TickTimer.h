@@ -9,6 +9,7 @@
 
 namespace tewi
 {
+#ifdef TEWI_OLD_TICK_TIMER_IMPL
     /** \brief A timer that keeps track of the various ticks.
      *
      * Its main use is to keep track of delta time and the FPSs at which the game is running.
@@ -54,4 +55,16 @@ namespace tewi
         Clock m_clock;
         Clock m_deltaClock;
     };
+#else
+
+    struct TEWI_EXPORT TickTimer
+    {
+    public:
+        float getDeltaTime() noexcept;
+    private:
+
+        float delta = 0.0f;
+        float lastFrame = 0.0f;
+    };
+#endif
 } // namespace tewi

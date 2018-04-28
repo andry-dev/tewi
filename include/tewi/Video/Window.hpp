@@ -48,7 +48,7 @@ namespace tewi
 
             windowPtr = glfwCreateWindow(width.value(), height.value(), windowName.data(), nullptr, nullptr);
             TEWI_ENSURES(windowPtr != nullptr, "Window not initialized");
-
+            glfwSetInputMode(windowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
             glfwMakeContextCurrent(windowPtr);
 
             glfwSetWindowSizeCallback(windowPtr, windowResizeCallback);
