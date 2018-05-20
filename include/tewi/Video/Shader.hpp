@@ -65,7 +65,7 @@ namespace tewi
     protected:
         std::string getShader(asl::string_view path) const
         {
-            const auto finalPath = IO::findCorrectFile(path, shaderExts).second;
+            const auto finalPath = IO::findCorrectFile(asl::to_string(path), shaderExts).second;
             return IO::readFileContents(finalPath);
         }
 
@@ -87,7 +87,7 @@ namespace tewi
     protected:
         std::string getShader(asl::string_view path) const
         {
-            const auto finalPath = IO::findCorrectFile(path, shaderExts).second;
+            const auto finalPath = IO::findCorrectFile(asl::to_string(path), shaderExts).second;
             return IO::readFileContents(finalPath);
         }
 
