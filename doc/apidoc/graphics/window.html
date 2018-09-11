@@ -1,0 +1,309 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/main_style.css" />
+
+    <title>tewi::Window (doc)</title>
+</head>
+<body>
+    <div class="content">
+        <h1 class="horiz-centered">tewi::Window</h1>
+
+        <div class="horiz-centered">
+            <a class="my-button" href="index.html">Graphics modules</a>
+        </div>
+
+        <hr/>
+
+        <div class="section">
+            <h1>tewi::Window</h1>
+            <h2 class="important">Unstable API</h2>
+            <p>Defined in header <code>tewi/Video/Window.hpp</code></p>
+            <div class="declaration">
+<pre><code>template &lt;typename APIType&gt;
+struct Window;</code></pre>
+            </div>
+
+            <p>This class creates and manages a native window, an <a
+                 href="api.html#context">API context</a>, registers possible
+             callbacks for inputs, etc...</p>
+
+            <div class="section-tut">
+                <h3>Basic example</h3>
+                <pre><code>#include "tewi/Video/Window.hpp"
+#include "tewi/Video/API/API.h"
+#include "tewi/IO/InputManager.h"
+
+void foo()
+{
+    <a href="../io/inputmanager.html">tewi::InputManager</a> manager;
+    tewi::Window&lt;<a href="api.html">tewi::API::OpenGLTag</a>&gt; win{
+        "Test",
+        <a href="../utils/types.html">tewi::Width</a>{1280},
+        <a href="../utils/types.html">tewi::Height</a>{720},
+        &amp;manager
+    };
+
+    tewi::setWindowKeyboardCallback(win,
+        [] (GLFWwindow* win, int key, int scancode, int action, int mods)
+    {
+        auto&amp; inputman = *static_cast&lt;<a
+           href="../io/inputmanager.html">tewi::InputManager</a>*&gt;(glfwGetWindowUserPointer(win));
+        if (action == GLFW_PRESS)
+        {
+            inputman.pressKey(key);
+        }
+        else if (action == GLFW_RELEASE)
+        {
+            inputman.releaseKey(key);
+        }
+    });
+
+    while (!tewi::isWindowClosed(win))
+    {
+        tewi::pollWindowEvents(win);
+        tewi::clearWindow(win);
+
+        // Frame code here
+
+        tewi::postDrawActions(win);
+        tewi::swapWindowBuffers(win);
+    }
+}</code></pre>
+            </div>
+
+            <h3>Motivation</h3>
+            <p>Obviously a game might need a basic window where it should render
+            to (it may be a native OS window, terminals, a fake context or weird
+            interfaces), as such there should be some facility to easily handle
+            basic windowing, from instantiating a context to polling events.</p>
+            <p>Initially this was a proper class, but for some reasons I decided
+            to switch to a simple struct with free functions. I now consider
+            this choice pretty bad and regret it.</p>
+
+
+
+            <h3>Notes and changes</h3>
+            <ul>
+                <li>As of now, the class heavily depends on GLFW for the key callbacks.
+            One day it will provide its own functions without the need to expose
+            GLFW.</li>
+                <li>Transforming the class in a struct was a bad idea because of the
+                    invariant (<code>windowPtr != nullptr</code>). It should
+                    turn back as a class with less free functions.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Template parameters</h3>
+            <table>
+                <tr>
+                    <td><code>APIType</code></td>
+                    <td>The <a href="api.html">API tag</a> that you want to use.<br/>
+                        Must be a valid <a href="api.html">API tag</a>.</td>
+                </tr>
+            </table>
+
+            <h3>Tag specialization status</h3>
+            <p>This class <b>supports</b> API tag specialization. As a matter of
+            fact, <i>it is</i> specialized for
+            <a href="api.html"><code>tewi::API::NullRendererTag</code></a>.</p>
+        </div>
+
+        <div class="section">
+            <h2>Constructor</h2>
+            <pre><code>Window(asl::string_view windowName,
+           <a href="../utils/types.html">tewi::Width</a> width,
+           <a href="../utils/types.html">tewi::Height</a> height,
+           void* usrptr = nullptr); </code></pre>
+
+            <table>
+                <tr>
+                    <td><code>windowName</code></td>
+                    <td>The name of the window.</td>
+                </tr>
+                <tr>
+                    <td><code>width</code></td>
+                    <td>The initial width of the window.</td>
+                </tr>
+                <tr>
+                    <td><code>height</code></td>
+                    <td>The initial height of the window.</td>
+                </tr>
+                <tr>
+                    <td><code>userptr</code> <br/>(optional)</td>
+                    <td>A pointer to an object that should be used for retrieving
+                        inputs and other callbacks. Generally speaking you probably
+                        want to use a pointer to a
+                        <a href="../io/inputmanager.html">
+                        <code>tewi::InputManager</code></a>.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+        <h2>Members</h2>
+        <table>
+            <tr>
+                <td><code>GLFWwindow* windowPtr</code></td>
+                <td>GLFW's window pointer. The window manages its lifetime.</td>
+            </tr>
+            <tr>
+                <td><code><a href="api.html#context">tewi::API::Context</a>
+                    context</code></td>
+                <td>The window context managed by the API.</td>
+            </tr>
+        </table>
+        </div>
+
+        <div class="section">
+        <h2>Free functions</h2>
+        <div class="section-fun">
+            <h2><code>tewi::isWindowClosed</code></h2>
+            <pre><code>template &lt;typename APITag&gt;
+inline bool isWindowClosed(const tewi::Window&lt;APITag&gt;&amp; win) noexcept;</code></pre>
+            <p>Checks if a window is closed.</p>
+
+            <div class="section-tut">
+                <h3>As a game loop</h3>
+
+                <pre><code>while (!tewi::isWindowClosed(win))
+{
+    // ...
+}</code></pre>
+            </div>
+
+            <h3>Pre-conditions</h3>
+            <p><code>win.windowPtr != nullptr</code></p>
+
+            <h3>Returns</h3>
+            <p><code>true</code> if the window is closed.<br/>
+            <code>false</code> if the window is not closed.</p>
+
+        </div>
+
+        <div class="section-fun">
+            <h2><code>tewi::forceCloseWindow</code></h2>
+            <pre><code>template &lt;typename APITag&gt;
+inline void forceCloseWindow(tewi::Window&lt;APITag&gt;&amp; win) noexcept</code></pre>
+
+            <p>Closes a window.</p>
+
+            <h3>Pre-conditions</h3>
+            <p><code>win.windowPtr != nullptr</code></p>
+        </div>
+
+        <div class="section-fun">
+            <h2><code>tewi::pollWindowEvents</code></h2>
+            <pre><code>template &lt;typename APITag&gt;
+inline void pollWindowEvents(tewi::Window&lt;APITag&gt;&amp; win) noexcept</code></pre>
+
+            <p>Polls any window events.</p>
+            <p>This should be done at either the start <b>or</b> the end of a frame. Doing
+            it multiple times is useless if not inefficient.</p>
+        </div>
+
+        <div class="section-fun">
+            <h2><code>tewi::swapWindowBuffers</code></h2>
+            <pre><code>template &lt;typename APITag&gt;
+inline void swapWindowBuffers(tewi::Window&lt;APITag&gt;&amp; win) noexcept</code></pre>
+
+            <p>Swaps the window's buffers.</p>
+            <p>This should be done at the end of a frame.</p>
+        </div>
+
+        <div class="section-fun">
+            <h2><code>tewi::getWindowWidth</code></h2>
+            <pre><code>template &lt;typename APITag&gt;
+inline <a href="../utils/types.html">tewi::Width</a> getWindowWidth(const tewi::Window&lt;APITag&gt;&amp; win) noexcept</code></pre>
+
+            <p>Obtains the window width for the window <code>win</code>.</p>
+
+            <h3>Pre-conditions</h3>
+            <p><code>win.windowPtr != nullptr</code></p>
+        </div>
+
+        <div class="section-fun">
+            <h2><code>tewi::getWindowHeight</code></h2>
+            <pre><code>template &lt;typename APITag&gt;
+inline <a href="../utils/types.html">tewi::Height</a> getWindowHeight(const tewi::Window&lt;APITag&gt;&amp; win) noexcept</code></pre>
+
+            <p>Obtains the window height for the window <code>win</code>.</p>
+
+            <h3>Pre-conditions</h3>
+            <p><code>win.windowPtr != nullptr</code></p>
+        </div>
+
+        <div class="section-fun">
+            <h2><code>tewi::setWindowKeyboardCallback</code></h2>
+            <pre><code>template &lt;typename APITag&gt;
+inline void setWindowKeyboardCallback(tewi::Window&lt;APITag&gt;&amp; win, GLFWkeyfun callback) noexcept</code></pre>
+
+            <p>Sets the GLFW keyboard callback.</p>
+            <p>You need this if you want to handle inputs in your own way or
+            with an <a href="../io/inputmanager.html"><code>tewi::InputManager</code></a>.</p>
+
+            <div class="section-tut">
+                <h3>Example with <a href="../io/inputmanager.html"><code>tewi::InputManager</code></a></h3>
+                <pre><code>{
+    <a href="../io/inputmanager.html">tewi::InputManager</a> manager;
+    tewi::Window&lt;/* ... */&gt; win(/* ... */, &amp;manager);
+    tewi::setWindowKeyboardCallback(win,
+        [] (GLFWwindow* win, int key, int scancode, int action, int mods) {
+        auto&amp; inputman = *static_cast&lt;<a href="../io/inputmanager.html">tewi::InputManager</a>*&gt;(glfwGetWindowUserPointer(win));
+
+        if (action == GLFW_PRESS)
+        {
+            inputman.pressKey(key);
+        }
+        else if (action == GLFW_RELEASE)
+        {
+            inputman.releaseKey(key);
+        }
+    });
+}</code></pre>
+
+                <p>For more information please check
+                    <a href="http://www.glfw.org/docs/latest/input_guide.html#input_keyboard">GLFW's input guide</a>.
+                </p>
+            </div>
+
+            <h3>Parameters</h3>
+            <table>
+                <tr>
+                    <td><code>win</code></td>
+                    <td>The window that you want to bind the callback to.</td>
+                </tr>
+                <tr>
+                    <td><code>callback</code></td>
+                    <td>Callback supplied as a function pointer or stateless
+                        lambda.<br/>
+                        Refer to <a href="http://www.glfw.org/docs/latest/group__input.html#ga0192a232a41e4e82948217c8ba94fdfd">GLFW's documentation</a> for the
+                        function signature.</td>
+                </tr>
+            </table>
+
+            <h3>Pre-conditions</h3>
+            <p><code>win.windowPtr != nullptr</code></p>
+        </div>
+
+        <div class="section-fun">
+            <h2><code>tewi::setWindowMouseButtonCallback</code></h2>
+<pre><code>
+template <typename APITag>
+inline void setWindowMouseButtonCallback(Window<APITag>& win, GLFWmousebuttonfun callback) noexcept
+</code></pre>
+        </div>
+
+        <div class="section-fun">
+            <h2><code>tewi::setWindowMouseCursorPosCallback</code></h2>
+        </div>
+
+        <div class="section-fun">
+            <h2><code>tewi::clearWindow</code></h2>
+        </div>
+        </div>
+
+    </div>
+</body>
+</html>

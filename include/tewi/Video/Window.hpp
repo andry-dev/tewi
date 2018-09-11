@@ -101,6 +101,12 @@ namespace tewi
         win.context.swap(win.windowPtr);
     }
 
+    template <typename APITag>
+    inline void clearWindow(Window<APITag>& win) noexcept
+    {
+        win.context.preDraw();
+    }
+
     /** Returns the width ofthe window
      *
      */

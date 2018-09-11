@@ -1,0 +1,299 @@
+body {
+    background-color: rgb(23, 22, 28);
+    font-family: Helvetica, "Segoe UI", Verdana, Arial, sans-serif;
+    font-size: 1.0em;
+}
+
+h1, h2, h3 {
+    line-height: 1.0em;
+}
+
+.content {
+    margin: 1em auto;
+    max-width: 60%;
+    padding: 0 .50em .50em 0.50em;
+    color: #EEE;
+}
+
+#logo {
+    width: 45%;
+}
+
+
+/* Mobile-fags */
+@media screen and (max-width: 50em) {
+    .content {
+        max-width: 90%;
+
+    }
+
+    #logo {
+        width: 60%;
+    }
+}
+
+.content ul {
+    line-height: 1.4em;
+}
+
+.content ul#table-of-contents {
+    /* list-style-type: none; */
+}
+
+.content a {
+    color: rgb(200, 200, 250);
+}
+
+.content a:link {
+    color: rgb(200, 200, 250);
+}
+
+.content a:visited {
+    color: rgb(250, 200, 200);
+}
+
+.content a:active {
+    background-color: rgb(50, 25, 25);
+}
+
+.content a:hover {
+    color: #FFF;
+}
+
+.content table {
+    width: 100%;
+    color: #EEE;
+}
+
+.content table td, .content table th {
+    font-size: 1.0em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(90, 90, 100, 255);
+}
+
+.content code {
+    background-color: #444;
+    border: 2px solid #444;
+    border-radius: 2px;
+    color: #EEE;
+}
+
+.content .my-button {
+    background-color: #EEE !important;
+    color: rgb(25, 25, 50) !important;
+    border: 5px solid #EEE !important;
+    margin: 2px;
+    line-height: 1.5em;
+}
+
+.content #top-btn {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #EEEEEE !important;
+}
+
+@media screen and (max-width: 50em) {
+    .content #top-btn {
+    font-size: 1em;
+    bottom: 5px;
+    right: 5px;
+    }
+}
+
+.content li > .my-button {
+    line-height: 2.25em;
+}
+
+a#return-to-top {
+    position: relative;
+}
+
+.content .section {
+}
+
+.content .section-generic {
+    background-color: #434;
+    border: 4px solid #434;
+    padding: 0.25em;
+}
+
+.content .section-tut {
+    background-color: #656;
+    border: 4px solid #656;
+    padding: 0.25em;
+}
+
+.content .section-txt {
+    background-color: #443;
+    border: 4px solid #443;
+    padding: 0.25em;
+}
+
+.content .section-fun {
+    background-color: #433;
+    border: 4px solid #433;
+    padding: 0.25em;
+    overflow-x: auto;
+}
+
+.content pre code {
+    display: block;
+    white-space: pre;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow-x: auto;
+
+    background: #DDD;
+    border: solid 4px #DDD;
+    border-radius: 0;
+    color: rgb(0, 0, 0);
+
+    tab-size: 4;
+}
+
+.content pre code span.hl {
+    color: rgb(150, 0, 0);
+    font-weight: bold;
+}
+
+.content pre code a:link {
+    color: rgb(50, 50, 100);
+}
+
+.content pre code a:visited {
+    color: rgb(100, 100, 100);
+}
+
+.content pre code a:active {
+    background-color: #EEE;
+}
+
+.content pre code a:hover {
+    color: #000;
+}
+
+.content .important {
+    color: #FF5555;
+}
+
+/*
+.content .section-fun p a {
+    color: rgb(200, 200, 250);
+}
+
+.content .section-fun p a:hover {
+    color: rgb(250, 250, 250);
+}
+*/
+
+
+
+.section-fun ~ .section-fun,
+.section-tut ~ .section-tut,
+.section-txt ~ .section-txt {
+    margin-top: 0.5em;
+}
+
+.section ~ .section {
+    margin-top: 5em;
+}
+
+@keyframes blink {
+    50% {
+    border-color: rgba(255, 255, 255, 0.0);
+    }
+}
+
+@-webkit-keyframes blink {
+    50% {
+    border-color: rgba(255, 255, 255, 0.0);
+    }
+}
+
+.content .retarded-blink {
+    border-style: solid;
+    border-color: #FF5555;
+    padding: 0 10px 0 10px;
+    animation: blink 512ms step-start 0s infinite;
+    -webkit-animation: blink 512ms step-start 0s infinite;
+}
+
+
+object {
+    overflow: hidden;
+}
+
+iframe {
+    overflow: hidden;
+}
+
+.horiz-centered {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+.vert-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.viewport-centered {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.viewport-centered-absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.content hr {
+    border-top: 1px dashed #EEE;
+    border-bottom: 0px;
+    margin: 1em 0 2em 0;
+}
+
+noscript {
+    background-color: #EEE;
+    color: #cd7a7a;
+    border: 5px solid #EEE;
+}
+
+
+form {
+    line-height: 2.5em;
+}
+
+form label {
+    display: block;
+    float: left;
+    width: 200px;
+    max-width: 200px;
+    word-wrap: break-word;
+}
+
+.cascade-form {
+    transform: translate(200px, -1.75em);
+    line-height: 1em;
+}
+
