@@ -1,4 +1,3 @@
-
 #include "tewi/Video/Window.hpp"
 #include "asl/meta"
 #include "asl/testing"

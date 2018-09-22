@@ -5,6 +5,7 @@ project(tewi)
 include(CheckIPOSupported)
 
 option(TEWI_BUILD_TESTS "Build tewi's tests" OFF)
+option(TEWI_BUILD_EXAMPLES "Build tewi's examples" OFF)
 option(TEWI_ENABLE_VULKAN "Enable Vulkan support" OFF)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -247,6 +248,10 @@ if(CLANG_TIDY_EXE)
         -checks=*,-clang-analyzer-alpha.*,-cppcoreguidelines-pro-type-union-access
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMENT "Checking code with clang-tidy" VERBATIM)
+endif()
+
+if (TEWI_BUILD_EXAMPLES)
+    add_subdirectory(examples)
 endif()
 
 if (TEWI_BUILD_TESTS)

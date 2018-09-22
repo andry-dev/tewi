@@ -12,8 +12,12 @@
 #include "tewi/Utils/Log.h"
 #include "tewi/Utils/GLFWCallbacks.h"
 #include "tewi/Utils/Types.h"
+#include "tewi/Video/WindowEvent.hpp"
+
 
 #include "asl/string_view"
+#include "asl/ring"
+
 
 
 namespace tewi
@@ -44,125 +48,154 @@ namespace tewi
         {
             glfwInit();
 
-            context.setup();
+            m_context.setup();
 
-            windowPtr = glfwCreateWindow(width.value(), height.value(), windowName.data(), nullptr, nullptr);
-            TEWI_ENSURES(windowPtr != nullptr, "Window not initialized");
-            glfwSetInputMode(windowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-            glfwMakeContextCurrent(windowPtr);
+            m_windowPtr = glfwCreateWindow(width.value(), height.value(), windowName.data(), nullptr, nullptr);
+            TEWI_ENSURES(m_windowPtr != nullptr, "Window not initialized");
+            glfwSetInputMode(m_windowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            glfwMakeContextCurrent(m_windowPtr);
 
-            glfwSetWindowSizeCallback(windowPtr, windowResizeCallback);
+            glfwSetWindowSizeCallback(m_windowPtr, windowResizeCallback);
             glfwSetErrorCallback(tewi::glfwErrorCallback);
 
-            context.postInit(windowPtr);
+            if (!usrptr)
+            {
+                glfwSetWindowUserPointer(m_windowPtr, this);
+                glfwSetKeyCallback(m_windowPtr,
+                    [](GLFWwindow* win, int key, int scancode, int action, int mods)
+                {
+                    auto ptr = static_cast<tewi::Window<APIType>*>(glfwGetWindowUserPointer(win));
 
-            glfwSetWindowUserPointer(windowPtr, usrptr);
+                    WindowEvent event;
+
+
+                    switch (key)
+                    {
+                    case GLFW_KEY_UNKNOWN:
+                        event.type = WindowEvent::Type::Unknown;
+                        break;
+                    default:
+                        event.type = static_cast<WindowEvent::Type>(key);
+                    }
+
+                    switch (action)
+                    {
+                    case GLFW_PRESS:
+                        event.action = WindowEvent::Action::Press;
+                        break;
+
+                    case GLFW_RELEASE:
+                        event.action = WindowEvent::Action::Release;
+                        break;
+
+                    case GLFW_REPEAT:
+                        event.action = WindowEvent::Action::Repeat;
+                        break;
+                    default:
+                        event.action = WindowEvent::Action::None;
+                    }
+
+                    switch (mods)
+                    {
+                    case GLFW_MOD_SHIFT:
+                        event.mod = WindowEvent::Modifier::Shift;
+                        break;
+                    case GLFW_MOD_ALT:
+                        event.mod = WindowEvent::Modifier::Alt;
+                        break;
+                    case GLFW_MOD_CONTROL:
+                        event.mod = WindowEvent::Modifier::Ctrl;
+                        break;
+                    case GLFW_MOD_SUPER:
+                        event.mod = WindowEvent::Modifier::Super;
+                        break;
+                    default:
+                        event.mod = WindowEvent::Modifier::None;
+                    }
+
+                    ptr->m_events.push(event);
+                });
+            }
+            else
+            {
+                glfwSetWindowUserPointer(m_windowPtr, usrptr);
+            }
+
+            m_context.postInit(m_windowPtr);
+
         }
 
         ~Window()
         {
             glfwMakeContextCurrent(0);
-            glfwDestroyWindow(windowPtr);
+            glfwDestroyWindow(m_windowPtr);
             glfwTerminate();
         }
 
         Window(const Window& rhs) = delete;
         Window& operator=(const Window& rhs) = delete;
 
+        bool isClosed() noexcept
+        {
+            return glfwWindowShouldClose(m_windowPtr);
+        }
 
-        GLFWwindow* windowPtr;
-        API::Context<APIType> context;
+        void forceClose() noexcept
+        {
+            glfwSetWindowShouldClose(m_windowPtr, true);
+        }
+
+        void pollEvents() noexcept
+        {
+            glfwPollEvents();
+        }
+
+        void swapBuffers() noexcept
+        {
+            m_context.swap(m_windowPtr);
+        }
+
+        void clear() noexcept
+        {
+            m_context.preDraw();
+        }
+
+        tewi::Width getWidth() noexcept
+        {
+            tewi::Width w(0);
+            glfwGetWindowSize(m_windowPtr, &w.value(), 0);
+
+            return w;
+        }
+
+        tewi::Height getHeight() noexcept
+        {
+            tewi::Height h(0);
+            glfwGetWindowSize(m_windowPtr, 0, &h.value());
+
+            return h;
+        }
+
+        GLFWwindow* ptr() noexcept
+        {
+            return m_windowPtr;
+        }
+
+        WindowEvent lastEvent()
+        {
+            return m_events.front();
+        }
+
+        WindowEvent consumeEvent()
+        {
+            return m_events.read();
+        }
+
+    private:
+        GLFWwindow* m_windowPtr;
+        API::Context<APIType> m_context;
+        asl::static_ring<WindowEvent, 32> m_events;
     };
-
-    template <typename APITag>
-    inline bool isWindowClosed(const Window<APITag>& win) noexcept
-    {
-        return glfwWindowShouldClose(win.windowPtr);
-    }
-
-    template <typename APITag>
-    inline void forceCloseWindow(Window<APITag>& win) noexcept
-    {
-        glfwSetWindowShouldClose(win.windowPtr, true);
-    }
-
-    template <typename APITag>
-    inline void pollWindowEvents(Window<APITag>& win) noexcept
-    {
-        glfwPollEvents();
-    }
-
-    /** Swaps the window buffers
-     *
-     */
-    template <typename APITag>
-    inline void swapWindowBuffers(Window<APITag>& win) noexcept
-    {
-        win.context.swap(win.windowPtr);
-    }
-
-    template <typename APITag>
-    inline void clearWindow(Window<APITag>& win) noexcept
-    {
-        win.context.preDraw();
-    }
-
-    /** Returns the width ofthe window
-     *
-     */
-    template <typename APITag>
-    inline tewi::Width getWindowWidth(const Window<APITag>& win) noexcept
-    {
-        tewi::Width w(0);
-        glfwGetWindowSize(win.windowPtr, &w.value(), 0);
-
-        return w;
-    }
-
-    /** Returns the height of the window
-     *
-     */
-    template <typename APITag>
-    inline tewi::Height getWindowHeight(const Window<APITag>& win) noexcept
-    {
-        tewi::Height h(0);
-        glfwGetWindowSize(win.windowPtr, 0, &h.value());
-
-        return h;
-    }
-
-    /** Sets the window keyboard callback
-     *
-     */
-    template <typename APITag>
-    inline void setWindowKeyboardCallback(Window<APITag>& win, GLFWkeyfun callback) noexcept
-    {
-        glfwSetKeyCallback(win.windowPtr, callback);
-    }
-
-    /** Sets the window mouse button callback
-     *
-     */
-    template <typename APITag>
-    inline void setWindowMouseButtonCallback(Window<APITag>& win, GLFWmousebuttonfun callback) noexcept
-    {
-        glfwSetMouseButtonCallback(win.windowPtr, callback);
-    }
-
-    /** Sets the window mouse cursor callback
-     *
-     */
-    template <typename APITag>
-    inline void setWindowMouseCursorPosCallback(Window<APITag>& win, GLFWcursorposfun callback) noexcept
-    {
-        glfwSetCursorPosCallback(win.windowPtr, callback);
-    }
-
-
-    /** \example window_usage.cpp
-     *
-     * Shows the usage of the Window class.
-     */
 }
 
 // well
