@@ -35,8 +35,8 @@ namespace tewi
     class ShaderProgram<API::OpenGLTag>
     {
     public:
-        ShaderProgram(gsl::span<ShaderDescription> descriptions,
-                      gsl::span<asl::string_view> attributes);
+        ShaderProgram(gsl::span<const ShaderDescription> descriptions,
+                      gsl::span<const asl::string_view> attributes);
 
         ~ShaderProgram();
 
@@ -51,8 +51,8 @@ namespace tewi
     };
 
     ShaderProgram<API::OpenGLTag>::ShaderProgram(
-            gsl::span<ShaderDescription> shaderDescriptions,
-            gsl::span<asl::string_view> attributes)
+            gsl::span<const ShaderDescription> shaderDescriptions,
+            gsl::span<const asl::string_view> attributes)
         : m_id(glCreateProgram())
         , m_attributeNum(attributes.size())
     {
@@ -137,7 +137,7 @@ namespace tewi
     void ShaderProgram<API::OpenGLTag>::enable()
     {
         glUseProgram(m_id);
-        for (asl::sizei i = 0; i < m_attributeNum; ++i)
+        for (asl::i32 i = 0; i < m_attributeNum; ++i)
         {
             glEnableVertexAttribArray(i);
         }
@@ -145,7 +145,7 @@ namespace tewi
 
     void ShaderProgram<API::OpenGLTag>::disable()
     {
-        for (asl::sizei i = 0; i < m_attributeNum; ++i)
+        for (asl::i32 i = 0; i < m_attributeNum; ++i)
         {
             glDisableVertexAttribArray(i);
         }
@@ -165,5 +165,7 @@ namespace tewi
         case VertexLayout::Types::UInt32: return GL_UNSIGNED_INT;
         case VertexLayout::Types::Int32: return GL_INT;
         };
+
+        return -1;
     }
 } // namespace tewi

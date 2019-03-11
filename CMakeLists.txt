@@ -33,6 +33,7 @@ set(SRC
     src/Platform/OpenGL/Shader.cpp
     src/Platform/OpenGL/Swapchain.cpp
     src/Platform/OpenGL/TextureCache.cpp
+    src/Platform/NullRenderer/Shader.cpp
     )
 
 
@@ -83,14 +84,13 @@ set(PUBLIC_HEADERS
 
 set(PRIVATE_HEADERS
     # Null Renderer
-    ${IN_INCLUDE_DIR}/Platform/NullRenderer/BatchRenderer2D.hpp
-    ${IN_INCLUDE_DIR}/Platform/NullRenderer/Context.hpp
-    ${IN_INCLUDE_DIR}/Platform/NullRenderer/Device.hpp
-    ${IN_INCLUDE_DIR}/Platform/NullRenderer/GameCommon.hpp
-    ${IN_INCLUDE_DIR}/Platform/NullRenderer/Instance.hpp
-    ${IN_INCLUDE_DIR}/Platform/NullRenderer/Shader.hpp
-    ${IN_INCLUDE_DIR}/Platform/NullRenderer/Swapchain.hpp
-    ${IN_INCLUDE_DIR}/Platform/NullRenderer/Window.hpp
+    #${IN_INCLUDE_DIR}/Platform/NullRenderer/BatchRenderer2D.hpp
+    #${IN_INCLUDE_DIR}/Platform/NullRenderer/Context.hpp
+    #${IN_INCLUDE_DIR}/Platform/NullRenderer/Device.hpp
+    #${IN_INCLUDE_DIR}/Platform/NullRenderer/GameCommon.hpp
+    #${IN_INCLUDE_DIR}/Platform/NullRenderer/Instance.hpp
+    #${IN_INCLUDE_DIR}/Platform/NullRenderer/Swapchain.hpp
+    #${IN_INCLUDE_DIR}/Platform/NullRenderer/Window.hpp
 
     # OpenGL
     #${IN_INCLUDE_DIR}/Platform/OpenGL/BatchRenderer2D.hpp

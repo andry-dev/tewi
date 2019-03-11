@@ -18,7 +18,6 @@
 #include "asl/ring"
 
 
-
 namespace tewi
 {
     namespace details

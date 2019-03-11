@@ -297,7 +297,13 @@ namespace tewi
                 color = fragmentColor * textureColor;
             })";
 
-            constexpr const std::array<asl::string_view, 4> attribs
+            constexpr std::array<ShaderDescription, 2> shaders
+            {
+                ShaderDescription{ vertstr, ShaderType::Vertex },
+                ShaderDescription{ fragstr, ShaderType::Fragment },
+            };
+
+            constexpr std::array<asl::string_view, 4> attribs
             {
                 "vertexPosition",
                 "vertexUV",
@@ -305,10 +311,7 @@ namespace tewi
                 "vertexColor"
             };
 
-            Shader<API::OpenGLTag, VertexShader, ShaderFromMemoryPolicy> vert(API::Device<API::OpenGLTag>{}, vertstr);
-            Shader<API::OpenGLTag, FragmentShader, ShaderFromMemoryPolicy> frag(API::Device<API::OpenGLTag>{}, fragstr);
-
-            return ShaderProgram<API::OpenGLTag>( attribs, vert, frag );
+            return ShaderProgram<API::OpenGLTag>({ shaders }, { attribs });
 
         }
 

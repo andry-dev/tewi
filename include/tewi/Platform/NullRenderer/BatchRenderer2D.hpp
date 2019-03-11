@@ -30,12 +30,7 @@ namespace tewi
 
         static ShaderProgram<API::NullRendererTag> createShaderProgram()
         {
-            using Sh = Shader<API::NullRendererTag, VertexShader>;
-            using Dev = API::Device<API::NullRendererTag>;
-            Sh vert(Dev{}, "");
-            std::array<const char*, 1> arr = {{ "" }};
-            return {arr, vert};
-
+            return ShaderProgram<API::NullRendererTag>{ { }, { } };
         }
     };
 } // namespace tewi

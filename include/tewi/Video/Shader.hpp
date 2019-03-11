@@ -49,10 +49,11 @@ namespace tewi
     template <typename APITag>
     class ShaderProgram
     {
+    public:
         using interface_only = void;
 
-        ShaderProgram(gsl::span<ShaderDescription> descriptions,
-                      gsl::span<asl::string_view> attributes);
+        ShaderProgram(gsl::span<const ShaderDescription> descriptions,
+                      gsl::span<const asl::string_view> attributes);
 
         ~ShaderProgram();
 
@@ -61,12 +62,8 @@ namespace tewi
     };
 
     template <typename APITag>
-    auto translateVertexLayoutType(VertexLayout::Types type) = delete;
+    auto translateVertexLayoutType(APITag tag, VertexLayout::Types type);
 
-    template <typename APITag>
-    auto makeShaderProgram(APITag tag,
-                           gsl::span<ShaderDescription> shaderDescriptions,
-                           gsl::span<asl::string_view> attribPointers);
 
     /** \example shader_creation.cpp
      *
@@ -74,5 +71,5 @@ namespace tewi
      */
 }
 
-#include "tewi/Platform/Vulkan/Shader.hpp"
-#include "tewi/Platform/NullRenderer/Shader.hpp"
+//#include "tewi/Platform/Vulkan/Shader.hpp"
+//#include "tewi/Platform/NullRenderer/Shader.hpp"
