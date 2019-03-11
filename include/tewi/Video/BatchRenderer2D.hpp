@@ -40,5 +40,4 @@ namespace tewi
     };
 } // namespace tewi
 
-#include "tewi/Platform/OpenGL/BatchRenderer2D.hpp"
 #include "tewi/Platform/NullRenderer/BatchRenderer2D.hpp"

@@ -1,18 +1,13 @@
-#pragma once
-
-#include "tewi/Video/API/Device.hpp"
+#include "tewi/Video/API/Instance.hpp"
 
 namespace tewi
 {
     namespace API
     {
         template <>
-        class TEWI_EXPORT Device<OpenGLTag>
+        class TEWI_EXPORT Instance<OpenGLTag>
         {
         public:
-            Device() {}
         };
-
-
     } // namespace API
 } // namespace tewi

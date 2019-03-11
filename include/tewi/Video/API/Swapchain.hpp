@@ -39,5 +39,4 @@ namespace tewi
     }
 }
 
-#include "tewi/Platform/OpenGL/Swapchain.hpp"
 #include "tewi/Platform/NullRenderer/Swapchain.hpp"

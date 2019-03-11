@@ -20,10 +20,10 @@ namespace tewi
         {
         }
 
-        asl::mut_u8 r;
-        asl::mut_u8 g;
-        asl::mut_u8 b;
-        asl::mut_u8 a;
+        asl::u8 r;
+        asl::u8 g;
+        asl::u8 b;
+        asl::u8 a;
     };
 
 #ifdef TEWI_OLD_VERTEX_IMPLEMENTATION

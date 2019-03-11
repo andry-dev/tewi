@@ -8,13 +8,13 @@ namespace tewi
     public:
         using interface_only = void;
 
-        template <typename T>
-        IndexBuffer(const std::vector<T>& buffer);
-        
+        template <typename Container>
+        IndexBuffer(const Container& buffer);
+
+        ~IndexBuffer();
+
         void bind();
 
         void unbind();
     };
 } // namespace tewi
-
-#include "tewi/Platform/OpenGL/IndexBuffer.hpp"

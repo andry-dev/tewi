@@ -1,5 +1,3 @@
-#pragma once
-
 #include <array>
 #include <memory>
 #include <cstddef>
@@ -134,11 +132,11 @@ namespace tewi
             if (tid > 0)
             {
                 bool foundTextureID = false;
-                for (asl::mut_sizei i = 0; i < m_textureSlots.size(); ++i)
+                for (asl::sizei i = 0; i < m_textureSlots.size(); ++i)
                 {
                     if (m_textureSlots[i] == tid)
                     {
-                        ts = static_cast<float>(i + 1);
+                        ts = static_cast<asl::f32>(i + 1);
                         foundTextureID = true;
                         break;
                     }
@@ -154,7 +152,7 @@ namespace tewi
                     }
 
                     m_textureSlots.push_back(tid);
-                    ts = static_cast<float>(m_textureSlots.size() - 1);
+                    ts = static_cast<asl::f32>(m_textureSlots.size() - 1);
                 }
             }
 
@@ -231,7 +229,7 @@ namespace tewi
          */
         void draw()
         {
-            for (asl::mut_sizei i = 0; i < m_textureSlots.size(); ++i)
+            for (asl::sizei i = 0; i < m_textureSlots.size(); ++i)
             {
                 glActiveTexture(GL_TEXTURE0 + i);
                 glBindTexture(GL_TEXTURE_2D, m_textureSlots[i]);
@@ -350,7 +348,7 @@ namespace tewi
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             std::vector<GLuint> indices(g_indicesSize);
-            for (asl::mut_sizei i = 0, offset = 0; i < indices.size(); i += 6, offset += 4)
+            for (asl::sizei i = 0, offset = 0; i < indices.size(); i += 6, offset += 4)
             {
                 indices[  i  ] = offset + 0;
                 indices[i + 1] = offset + 1;
@@ -371,13 +369,13 @@ namespace tewi
         tewi::Vertex* m_buffer;
         std::vector<GLuint> m_textureSlots;
         std::unique_ptr<tewi::IndexBuffer<API::OpenGLTag>> m_IBO;
-        asl::mut_sizei m_indexCount;
+        asl::i64 m_indexCount;
 
-        static constexpr asl::sizei g_maxTextures = 64000;
-        static constexpr asl::sizei g_vertexSize = sizeof(Vertex);
-        static constexpr asl::sizei g_spriteSize = g_vertexSize * 4;
-        static constexpr asl::sizei g_bufferSize = g_spriteSize * g_maxTextures;
-        static constexpr asl::sizei g_indicesSize = g_maxTextures * 6;
+        static constexpr asl::i64 g_maxTextures = 64000;
+        static constexpr asl::i64 g_vertexSize = sizeof(Vertex);
+        static constexpr asl::i64 g_spriteSize = g_vertexSize * 4;
+        static constexpr asl::i64 g_bufferSize = g_spriteSize * g_maxTextures;
+        static constexpr asl::i64 g_indicesSize = g_maxTextures * 6;
 
         static constexpr std::array<int, 16> g_texIndices =
         {

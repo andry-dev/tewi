@@ -29,7 +29,7 @@ namespace tewi
         void enable() { }
         void disable() { }
 
-        asl::u32 getUniformLocation(const std::string& uniformName)
+        const asl::u32 getUniformLocation(const std::string& uniformName)
         {
             return 0;
         }
@@ -39,13 +39,13 @@ namespace tewi
                          !std::is_same<Container, gsl::string_span>::value
                      >
                  >
-        std::vector<asl::mut_u32> getUniformLocation(const Container& uniformName)
+        std::vector<asl::u32> getUniformLocation(const Container& uniformName)
         {
             return { 0 };
         }
 
-        template <asl::sizei N, typename StringType>
-        std::array<asl::u32, N> getUniformLocation(const std::array<gsl::string_span, N>& uniformName)
+        template <const asl::sizei N, typename StringType>
+        std::array<const asl::u32, N> getUniformLocation(const std::array<gsl::string_span, N>& uniformName)
         {
             return { 0 };
         }

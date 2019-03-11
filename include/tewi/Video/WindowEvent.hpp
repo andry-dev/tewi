@@ -8,7 +8,7 @@ namespace tewi
 {
     struct WindowEvent
     {
-        enum class Type : asl::mut_i16
+        enum class Type : asl::i16
         {
             Unknown = 0,
 
@@ -117,7 +117,7 @@ namespace tewi
             Mouse8 = GLFW_KEY_LAST + 8,
         };
 
-        enum class Action : asl::mut_i8
+        enum class Action : asl::i8
         {
             None,
             Press,
@@ -125,7 +125,7 @@ namespace tewi
             Repeat,
         };
 
-        enum class Modifier : asl::mut_i8
+        enum class Modifier : asl::i8
         {
             None,
             Shift,

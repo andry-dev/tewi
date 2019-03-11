@@ -21,47 +21,47 @@ namespace tewi
     }
 
     template<typename T>
-    /* TEWI_EXPORT */ void setUniform(std::int32_t, T)
+    /* TEWI_EXPORT */ void setUniform(asl::i32, T)
     {
         static_assert(detail::disable_type<T>::value, "Tried to pass an unsupported value");
     }
 
     template<>
-    /* TEWI_EXPORT */ void setUniform<float>(std::int32_t uniformID, float uniformVal)
+    /* TEWI_EXPORT */ void setUniform<asl::f32>(asl::i32 uniformID, asl::f32 uniformVal)
     {
         glUniform1f(uniformID, uniformVal);
     }
 
     template<>
-    /* TEWI_EXPORT */ void setUniform<double>(std::int32_t uniformID, double uniformVal)
+    /* TEWI_EXPORT */ void setUniform<asl::f64>(asl::i32 uniformID, asl::f64 uniformVal)
     {
         glUniform1d(uniformID, uniformVal);
     }
 
     template<>
-    /* TEWI_EXPORT */ void setUniform<std::uint32_t>(std::int32_t uniformID, std::uint32_t uniformVal)
+    /* TEWI_EXPORT */ void setUniform<asl::u32>(asl::i32 uniformID, asl::u32 uniformVal)
     {
         glUniform1ui(uniformID, uniformVal);
     }
 
     template<>
-    /* TEWI_EXPORT */ void setUniform<std::int32_t>(std::int32_t uniformID, std::int32_t uniformVal)
+    /* TEWI_EXPORT */ void setUniform<asl::i32>(asl::i32 uniformID, asl::i32 uniformVal)
     {
         glUniform1i(uniformID, uniformVal);
     }
 
-    /* TEWI_EXPORT */ void setUniform(std::int32_t uniformID, const glm::mat4& matrix)
+    /* TEWI_EXPORT */ void setUniform(asl::i32 uniformID, const glm::mat4& matrix)
     {
         glUniformMatrix4fv(uniformID, 1, GL_FALSE, &matrix[0][0]);
     }
 
-    /* TEWI_EXPORT */ void setUniform(std::int32_t uniformID, const std::vector<int>& vec)
+    /* TEWI_EXPORT */ void setUniform(asl::i32 uniformID, const std::vector<asl::num>& vec)
     {
         glUniform1iv(uniformID, vec.size(), vec.data());
     }
 
-    template <asl::sizei N> 
-    /* TEWI_EXPORT */ void setUniform(std::int32_t uniformID, const std::array<int, N>& arr)
+    template <const asl::sizei N> 
+    /* TEWI_EXPORT */ void setUniform(asl::i32 uniformID, const std::array<asl::num, N>& arr)
     {
         glUniform1iv(uniformID, arr.size(), arr.data());
     }

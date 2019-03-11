@@ -1,5 +1,3 @@
-#pragma once
-
 #include "tewi/Video/API/Swapchain.hpp"
 #include "tewi/Video/API/API.h"
 

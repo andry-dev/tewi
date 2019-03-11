@@ -26,5 +26,4 @@ namespace tewi
     }
 } // namespace API
 
-#include "tewi/Platform/OpenGL/Device.hpp"
 #include "tewi/Platform/NullRenderer/Device.hpp"

@@ -221,7 +221,7 @@ namespace tewi
 
         bool m_isWindowClosed = false;
 
-        InputManager m_inputManager;
+        tewi::InputManager m_inputManager;
         API::Instance<APINum> m_instance;
         API::Swapchain<APINum> m_swapchain;
         API::Device<APINum> m_device;

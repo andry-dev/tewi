@@ -1,5 +1,3 @@
-#pragma once
-
 #include <GL/glew.h>
 
 #include "tewi/Video/API/API.h"
@@ -11,12 +9,12 @@ namespace tewi
     class IndexBuffer<API::OpenGLTag>
     {
     public:
-        template <typename T>
-        IndexBuffer(const std::vector<T>& buffer)
+        template <typename Container>
+        IndexBuffer(const Container& buffer)
         {
             glGenBuffers(1, &m_bufferID);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_bufferID);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, buffer.size() * sizeof(T), buffer.data(), GL_STATIC_DRAW);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, buffer.size() * sizeof(typename Container::value_type), buffer.data(), GL_STATIC_DRAW);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 

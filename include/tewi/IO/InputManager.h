@@ -48,24 +48,24 @@ namespace tewi
         /** Registers a key in the keymap
          *
          */
-        void pressKey(asl::u32 keycode);
+        void pressKey(const asl::i32 keycode);
 
         /** Releases a key in the keymap
          *
          */
-        void releaseKey(asl::u32 keycode);
+        void releaseKey(const asl::i32 keycode);
         
         /** Checks if the a key is down or not
          *
          * \return true if the key associated to the keycode is pressed.
          */
-        bool isKeyDown(asl::u32 keycode);
+        bool isKeyDown(const asl::i32 keycode);
 
         /** Checks if a key is released
          *
          * \return true if the key associated to the keycode is released.
          */
-        bool isKeyReleased(asl::u32 keycode);
+        bool isKeyReleased(const asl::i32 keycode);
 
         void setMouseCoords(const glm::vec2& coords)
         {
@@ -80,6 +80,6 @@ namespace tewi
     private:
 
         glm::vec2 m_mouseCoords;
-        std::unordered_map<std::uint32_t, bool> m_keymap;
+        std::unordered_map<asl::i32, bool> m_keymap;
     };
 } // namespace tewi

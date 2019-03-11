@@ -1,5 +1,3 @@
-#pragma once
-
 #include <GL/glew.h>
 
 #include "tewi/Video/API/API.h"
@@ -11,7 +9,7 @@ namespace tewi
     namespace API
     {
         template <>
-        void genAPITexture(Texture<API::OpenGLTag>& tex, asl::mut_u8* imagePtr, asl::num width, asl::num height)
+        void genAPITexture(Texture<API::OpenGLTag>& tex, asl::u8* imagePtr, asl::num width, asl::num height)
         {
             TEWI_EXPECTS(imagePtr != nullptr, "[genAPITexture<OGL>] The loaded image points to nothing!");
 

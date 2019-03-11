@@ -2,17 +2,17 @@
 
 namespace tewi
 {
-    void InputManager::pressKey(asl::u32 keycode)
+    void InputManager::pressKey(asl::i32 keycode)
     {
         m_keymap[keycode] = true;
     }
 
-    void InputManager::releaseKey(asl::u32 keycode)
+    void InputManager::releaseKey(asl::i32 keycode)
     {
         m_keymap[keycode] = false;
     }
 
-    bool InputManager::isKeyDown(asl::u32 keycode)
+    bool InputManager::isKeyDown(asl::i32 keycode)
     {
         const auto it = m_keymap.find(keycode);
         if (it != m_keymap.end())
@@ -24,7 +24,7 @@ namespace tewi
     }
 
     // TODO(andry): Implement this.
-    bool InputManager::isKeyReleased(asl::u32 keycode)
+    bool InputManager::isKeyReleased(asl::i32 keycode)
     {
         return false;
     }

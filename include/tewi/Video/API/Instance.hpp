@@ -29,5 +29,4 @@ namespace tewi
 } // namespace tewi
 
 #include "tewi/Platform/NullRenderer/Instance.hpp"
-#include "tewi/Platform/OpenGL/Instance.hpp"
 #include "tewi/Platform/Vulkan/Instance.hpp"

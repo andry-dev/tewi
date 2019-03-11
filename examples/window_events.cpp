@@ -9,8 +9,6 @@ int main()
 {
     tewi::Window<def_api> win("Test", tewi::Width{800}, tewi::Height{600});
 
-    asl::mut_i32 cnt = 0;
-
     while (!win.isClosed())
     {
         win.pollEvents();
@@ -20,12 +18,10 @@ int main()
         {
             win.forceClose();
         }
-        tewi::Log::info(std::to_string((asl::mut_i16)(event).type));
+        tewi::Log::info(std::to_string(static_cast<asl::i16>(event.type)));
 
 
         win.clear();
         win.swapBuffers();
-
-        ++cnt;
     }
 }

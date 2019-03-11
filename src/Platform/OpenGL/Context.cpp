@@ -1,5 +1,3 @@
-#pragma once
-
 #include <GL/glew.h>
 #include "GLFW/glfw3.h"
 #include "asl/debug_only"
@@ -25,7 +23,6 @@ namespace tewi
         public:
             Context()
             {
-
             }
 
             void setup()
@@ -40,7 +37,7 @@ namespace tewi
                 glfwSwapInterval(0);
             }
 
-            void postInit(GLFWwindow* window)
+            void postInit(GLFWwindow*)
             {
                 asl::debug_only<GLenum> error = glewInit();
                 TEWI_ENSURES(error == GLEW_OK, "Failed GLEW initialization");

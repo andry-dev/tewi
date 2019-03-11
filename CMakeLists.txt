@@ -24,7 +24,19 @@ set(SRC
 	src/Physics/Collidable2D.cpp
 	src/Utils/Clock.cpp
 	src/Utils/TickTimer.cpp
-	src/Video/Camera2D.cpp)
+	src/Video/Camera2D.cpp
+    src/Platform/OpenGL/BatchRenderer2D.cpp
+    src/Platform/OpenGL/Context.cpp
+    src/Platform/OpenGL/Device.cpp
+    src/Platform/OpenGL/IndexBuffer.cpp
+    src/Platform/OpenGL/Instance.cpp
+    src/Platform/OpenGL/Shader.cpp
+    src/Platform/OpenGL/Swapchain.cpp
+    src/Platform/OpenGL/TextureCache.cpp
+    )
+
+
+
 
 set(IN_INCLUDE_DIR
     ${PROJECT_SOURCE_DIR}/include/tewi)
@@ -81,14 +93,14 @@ set(PRIVATE_HEADERS
     ${IN_INCLUDE_DIR}/Platform/NullRenderer/Window.hpp
 
     # OpenGL
-    ${IN_INCLUDE_DIR}/Platform/OpenGL/BatchRenderer2D.hpp
-    ${IN_INCLUDE_DIR}/Platform/OpenGL/Context.hpp
-    ${IN_INCLUDE_DIR}/Platform/OpenGL/Device.hpp
-    ${IN_INCLUDE_DIR}/Platform/OpenGL/IndexBuffer.hpp
-    ${IN_INCLUDE_DIR}/Platform/OpenGL/Instance.hpp
-    ${IN_INCLUDE_DIR}/Platform/OpenGL/Shader.hpp
-    ${IN_INCLUDE_DIR}/Platform/OpenGL/Swapchain.hpp
-    ${IN_INCLUDE_DIR}/Platform/OpenGL/TextureCache.hpp
+    #${IN_INCLUDE_DIR}/Platform/OpenGL/BatchRenderer2D.hpp
+    #${IN_INCLUDE_DIR}/Platform/OpenGL/Context.hpp
+    #${IN_INCLUDE_DIR}/Platform/OpenGL/Device.hpp
+    #${IN_INCLUDE_DIR}/Platform/OpenGL/IndexBuffer.hpp
+    #${IN_INCLUDE_DIR}/Platform/OpenGL/Instance.hpp
+    #${IN_INCLUDE_DIR}/Platform/OpenGL/Shader.hpp
+    #${IN_INCLUDE_DIR}/Platform/OpenGL/Swapchain.hpp
+    #${IN_INCLUDE_DIR}/Platform/OpenGL/TextureCache.hpp
 
     # Vulkan
     ${IN_INCLUDE_DIR}/Platform/Vulkan/Callbacks.h
@@ -125,14 +137,14 @@ else()
 	# Common
 	target_compile_options(${PROJECT_NAME}
 		PRIVATE
-        -Wall -Wextra -pedantic -pipe -Wno-pragma-once-outside-header
-        -Weffc++ -Wno-c++98-compat -Wno-unused-const-variable
-        -Wno-missing-prototypes -fno-rtti)
+        -Wall -Wextra -pedantic -Wpedantic
+        -Weffc++ -Wno-unused-const-variable
+         -pipe -fno-rtti)
 
     if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         target_compile_options(${PROJECT_NAME}
             PRIVATE
-            -Weverything)
+            -Weverything -Wno-missing-prototypes)
     endif()
 
 	# Release
@@ -210,11 +222,15 @@ else()
 endif()
 
 target_include_directories(${PROJECT_NAME}
+    SYSTEM
 	PUBLIC
 	${PROJECT_SOURCE_DIR}/lib/universal/asl/include
 	${PROJECT_SOURCE_DIR}/lib/universal/glfw/include
 	${PROJECT_SOURCE_DIR}/lib/universal/glm
-	${PROJECT_SOURCE_DIR}/lib/universal/stb
+    ${PROJECT_SOURCE_DIR}/lib/universal/stb)
+
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
 	${PROJECT_SOURCE_DIR}/include)
 
 target_link_libraries(${PROJECT_NAME}
