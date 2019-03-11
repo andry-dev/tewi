@@ -51,8 +51,8 @@ namespace tewi
         void swapBuffers() noexcept;
         void clear() noexcept;
 
-        tewi::Width getWidth() noexcept;
-        tewi::Height getHeight() noexcept;
+        tewi::Width getWidth() const noexcept;
+        tewi::Height getHeight() const noexcept;
 
         tewi::WindowEvent lastEvent();
         tewi::WindowEvent consumeEvent();
@@ -149,7 +149,7 @@ namespace tewi
     }
 
     template <typename APIType>
-    tewi::Width Window<APIType>::getWidth() noexcept
+    tewi::Width Window<APIType>::getWidth() const noexcept
     {
         tewi::Width w(0);
         glfwGetWindowSize(m_windowPtr, &w.value(), 0);
@@ -158,7 +158,7 @@ namespace tewi
     }
 
     template <typename APIType>
-    tewi::Height Window<APIType>::getHeight() noexcept
+    tewi::Height Window<APIType>::getHeight() const noexcept
     {
         tewi::Height h(0);
         glfwGetWindowSize(m_windowPtr, 0, &h.value());
