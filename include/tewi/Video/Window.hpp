@@ -3,15 +3,14 @@
 #include <utility>
 
 #include <GL/glew.h>
-
 #include "GLFW/glfw3.h"
 
 #include "tewi/Common.h"
-#include "tewi/Platform/Vulkan/Context.hpp"
 #include "tewi/Utils/Log.h"
 #include "tewi/Utils/GLFWCallbacks.h"
 #include "tewi/Utils/Types.h"
 #include "tewi/Video/WindowEvent.hpp"
+#include "tewi/Video/API/Context.hpp"
 
 
 #include "asl/string_view"
@@ -91,7 +90,7 @@ namespace tewi
         glfwSetInputMode(m_windowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         glfwMakeContextCurrent(m_windowPtr);
 
-        glfwSetWindowSizeCallback(m_windowPtr, windowResizeCallback);
+        glfwSetWindowSizeCallback(m_windowPtr, tewi::windowResizeCallback);
         glfwSetErrorCallback(tewi::glfwErrorCallback);
 
         if (!usrptr)
@@ -247,6 +246,3 @@ namespace tewi
     }
 
 }
-
-// well
-#include "tewi/Platform/NullRenderer/Window.hpp"

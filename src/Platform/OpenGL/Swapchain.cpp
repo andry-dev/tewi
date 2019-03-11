@@ -1,6 +1,9 @@
 #include "tewi/Video/API/Swapchain.hpp"
 #include "tewi/Video/API/API.h"
 
+#include "tewi/Video/Window.hpp"
+#include "tewi/Video/API/Instance.hpp"
+
 namespace tewi
 {
     namespace API
@@ -10,16 +13,6 @@ namespace tewi
         {
         public:
             Swapchain(Instance<API::OpenGLTag>&, Window<API::OpenGLTag>&) {  }
-
-            void secondPhaseInit(Device<API::OpenGLTag>&) {  }
-
-            template <typename... Shaders>
-            void createPipeline(ShaderPack<Shaders...>& shaders) {  }
-
-            void recreate() {  }
-
-            template <typename... Shaders>
-            void replaceShaders(ShaderPack<Shaders...>& shaders) {  }
         };
     } // namespace API
 } // namespace tewi

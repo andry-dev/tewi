@@ -1,12 +1,10 @@
-#ifndef VERTEX_H
-#define VERTEX_H
+#pragma once
 
 #include <array>
 #include <cstdint>
 
 #ifndef TEWI_OLD_VERTEX_IMPLEMENTATION
 #include <glm/glm.hpp>
-#include <GL/glew.h>
 #endif
 
 #include "tewi/Common.h"
@@ -104,6 +102,3 @@ namespace tewi
     template <typename T>
     constexpr TEWI_EXPORT std::array<std::uint8_t, 4> getColors(T) = delete;
 }
-
-
-#endif /* VERTEX_H */

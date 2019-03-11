@@ -25,5 +25,3 @@ namespace tewi
         };
     }
 } // namespace API
-
-#include "tewi/Platform/NullRenderer/Device.hpp"

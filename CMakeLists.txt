@@ -34,6 +34,11 @@ set(SRC
     src/Platform/OpenGL/Swapchain.cpp
     src/Platform/OpenGL/TextureCache.cpp
     src/Platform/NullRenderer/Shader.cpp
+    src/Platform/NullRenderer/BatchRenderer2D.cpp
+    src/Platform/NullRenderer/Context.cpp
+    src/Platform/NullRenderer/Swapchain.cpp
+    src/Platform/NullRenderer/Window.cpp
+    src/Platform/NullRenderer/Device.cpp
     )
 
 
@@ -44,7 +49,7 @@ set(IN_INCLUDE_DIR
 
 set(PUBLIC_HEADERS
     ${IN_INCLUDE_DIR}/Common.h
-    ${IN_INCLUDE_DIR}/GameCommon.hpp
+    #${IN_INCLUDE_DIR}/GameCommon.hpp
 
     # Events
     ${IN_INCLUDE_DIR}/EventSystem/Event.h
@@ -103,17 +108,18 @@ set(PRIVATE_HEADERS
     #${IN_INCLUDE_DIR}/Platform/OpenGL/TextureCache.hpp
 
     # Vulkan
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/Callbacks.h
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/Common.h
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/Context.hpp
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/Device.hpp
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/Instance.hpp
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/QueueFamily.h
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/Shader.hpp
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/Swapchain.hpp
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/SwapchainDetails.h
-    ${IN_INCLUDE_DIR}/Platform/Vulkan/ValidationLayers.h
-    ${IN_INCLUDE_DIR}/Utils/GLFWCallbacks.h)
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/Callbacks.h
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/Common.h
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/Context.hpp
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/Device.hpp
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/Instance.hpp
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/QueueFamily.h
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/Shader.hpp
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/Swapchain.hpp
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/SwapchainDetails.h
+    #${IN_INCLUDE_DIR}/Platform/Vulkan/ValidationLayers.h
+    #${IN_INCLUDE_DIR}/Utils/GLFWCallbacks.h
+    )
 
 add_library(${PROJECT_NAME} ${SRC})
 

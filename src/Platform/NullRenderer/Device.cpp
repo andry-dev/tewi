@@ -1,5 +1,3 @@
-#pragma once
-
 #include "tewi/Video/API/Device.hpp"
 
 namespace tewi

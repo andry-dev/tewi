@@ -1,5 +1,3 @@
-#pragma once
-
 #include "tewi/Video/BatchRenderer2D.hpp"
 #include "tewi/Video/API/API.h"
 

@@ -1,5 +1,3 @@
-#pragma once
-
 #include "tewi/Video/API/API.h"
 #include "tewi/Common.h"
 
@@ -15,7 +13,7 @@ namespace tewi
     struct TEWI_EXPORT Window<API::NullRendererTag>
     {
     public:
-        Window(asl::string_view windowName, Width width, Height height, void* usrptr)
+        Window(asl::string_view, Width, Height, void*)
         {
         }
 

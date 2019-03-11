@@ -39,5 +39,3 @@ namespace tewi
         static ShaderProgram<APIType> createShaderProgram();
     };
 } // namespace tewi
-
-#include "tewi/Platform/NullRenderer/BatchRenderer2D.hpp"

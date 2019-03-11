@@ -1,10 +1,9 @@
 #pragma once
 
-//#include <GL/glew.h>
 
 #include "tewi/Video/API/API.h"
-#include "tewi/Common.h"
-#include "GLFW/glfw3.h"
+
+struct GLFWwindow;
 
 namespace tewi
 {
@@ -64,5 +63,3 @@ namespace tewi
 
     }
 }
-
-#include "tewi/Platform/NullRenderer/Context.hpp"
