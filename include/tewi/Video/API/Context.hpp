@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "tewi/Video/API/API.h"
 
 struct GLFWwindow;
@@ -58,7 +57,7 @@ namespace tewi
             /** Returns API information
              *
              */
-            const auto getAPIVersion();
+            auto getAPIVersion();
         };
 
     }

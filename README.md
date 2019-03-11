@@ -65,10 +65,12 @@ Strict engine stuff:
 
  * [x] Finish the Vulkan port so I can fix bugs (See [reisen](https://github.com/andry-dev/reisen))
  * [x] Implement GLFW mouse support (again)
+ * [ ] Fix the template abuse
+ * [ ] Documentation (Working on this right now)
  * [ ] Implement basic 2D stuff (like rotations)
  * [ ] Basic event system
  * [ ] Basic sound system
- * [ ] GUI (probably a wrapper around [nuklear](https://github.com/vurtun/nuklear))
+ * [ ] GUI (probably a wrapper around
  * [ ] Particle system
  * [ ] VFS
  * [ ] 3D (?)

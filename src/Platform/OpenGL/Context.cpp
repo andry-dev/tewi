@@ -66,7 +66,7 @@ namespace tewi
         }
 
         template<>
-        const auto Context<tewi::API::OpenGLTag>::getAPIVersion()
+        auto Context<tewi::API::OpenGLTag>::getAPIVersion()
         {
             return glGetString(GL_VERSION);
         }

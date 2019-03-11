@@ -1,604 +1,1939 @@
 [
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Platform/OpenGL/Swapchain.cpp.o", 
-            "../src/Platform/OpenGL/Swapchain.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Platform/OpenGL/Swapchain.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Platform/OpenGL/TextureCache.cpp.o", 
-            "../src/Platform/OpenGL/TextureCache.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Platform/OpenGL/TextureCache.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Platform/OpenGL/Device.cpp.o", 
-            "../src/Platform/OpenGL/Device.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Platform/OpenGL/Device.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-std=c++98", 
-            "-o", 
-            "CMakeFiles/cmTC_3d053.dir/feature_tests.cxx.o", 
-            "../feature_tests.cxx"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../feature_tests.cxx"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Utils/Clock.cpp.o", 
-            "../src/Utils/Clock.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Utils/Clock.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/IO/InputManager.cpp.o", 
-            "../src/IO/InputManager.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/IO/InputManager.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/cc", 
-            "-c", 
-            "-std=c99", 
-            "-o", 
-            "CMakeFiles/cmTC_bf225.dir/feature_tests.c.o", 
-            "../feature_tests.c"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../feature_tests.c"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Platform/OpenGL/BatchRenderer2D.cpp.o", 
-            "../src/Platform/OpenGL/BatchRenderer2D.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Platform/OpenGL/BatchRenderer2D.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/cc", 
-            "-c", 
-            "-flto=thin", 
-            "-o", 
-            "CMakeFiles/foo.dir/foo.c.o", 
-            "../src/foo.c"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/_CMakeLTOTest-C/bin", 
-        "file": "../src/foo.c"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Platform/OpenGL/Instance.cpp.o", 
-            "../src/Platform/OpenGL/Instance.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Platform/OpenGL/Instance.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-std=c++11", 
-            "-o", 
-            "CMakeFiles/cmTC_586c7.dir/feature_tests.cxx.o", 
-            "../feature_tests.cxx"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../feature_tests.cxx"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Video/Camera2D.cpp.o", 
-            "../src/Video/Camera2D.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Video/Camera2D.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-std=c++2a", 
-            "-o", 
-            "CMakeFiles/cmTC_5423d.dir/feature_tests.cxx.o", 
-            "../feature_tests.cxx"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../feature_tests.cxx"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Platform/OpenGL/Context.cpp.o", 
-            "../src/Platform/OpenGL/Context.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Platform/OpenGL/Context.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Physics/Collidable2D.cpp.o", 
-            "../src/Physics/Collidable2D.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Physics/Collidable2D.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Platform/OpenGL/Shader.cpp.o", 
-            "../src/Platform/OpenGL/Shader.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Platform/OpenGL/Shader.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Platform/OpenGL/IndexBuffer.cpp.o", 
-            "../src/Platform/OpenGL/IndexBuffer.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Platform/OpenGL/IndexBuffer.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-std=c++14", 
-            "-o", 
-            "CMakeFiles/cmTC_7817c.dir/feature_tests.cxx.o", 
-            "../feature_tests.cxx"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../feature_tests.cxx"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-flto", 
-            "-fno-fat-lto-objects", 
-            "-o", 
-            "CMakeFiles/foo.dir/foo.cpp.o", 
-            "../src/foo.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/_CMakeLTOTest-CXX/bin", 
-        "file": "../src/foo.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-DGLEW_STATIC", 
-            "-DTEWI_STATIC_LIB=1", 
-            "-I/usr/include/libdrm", 
-            "-I../include", 
-            "-isystem", 
-            "../lib/universal/asl/include", 
-            "-isystem", 
-            "../lib/universal/glfw/include", 
-            "-isystem", 
-            "../lib/universal/glm", 
-            "-isystem", 
-            "../lib/universal/stb", 
-            "-Wall", 
-            "-Wextra", 
-            "-pedantic", 
-            "-Wpedantic", 
-            "-Weffc++", 
-            "-Wno-unused-const-variable", 
-            "-pipe", 
-            "-fno-rtti", 
-            "-std=gnu++14", 
-            "-o", 
-            "CMakeFiles/tewi.dir/src/Utils/TickTimer.cpp.o", 
-            "../src/Utils/TickTimer.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build", 
-        "file": "../src/Utils/TickTimer.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/cc", 
-            "-c", 
-            "CMakeCCompilerId.c"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/3.13.4/CompilerIdC", 
-        "file": "CMakeCCompilerId.c"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/cc", 
-            "-c", 
-            "-flto=thin", 
-            "-o", 
-            "CMakeFiles/boo.dir/main.c.o", 
-            "../src/main.c"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/_CMakeLTOTest-C/bin", 
-        "file": "../src/main.c"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-std=c++17", 
-            "-o", 
-            "CMakeFiles/cmTC_47829.dir/feature_tests.cxx.o", 
-            "../feature_tests.cxx"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../feature_tests.cxx"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "CMakeCXXCompilerId.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/3.13.4/CompilerIdCXX", 
-        "file": "CMakeCXXCompilerId.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/cc", 
-            "-c", 
-            "-std=c11", 
-            "-o", 
-            "CMakeFiles/cmTC_9b354.dir/feature_tests.c.o", 
-            "../feature_tests.c"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../feature_tests.c"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-flto", 
-            "-fno-fat-lto-objects", 
-            "-o", 
-            "CMakeFiles/boo.dir/main.cpp.o", 
-            "../src/main.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/_CMakeLTOTest-CXX/bin", 
-        "file": "../src/main.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/c++", 
-            "-c", 
-            "-o", 
-            "CMakeFiles/cmTC_5e714.dir/CMakeCXXCompilerABI.cpp.o", 
-            "../../../../../../../../../usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../../../../../../../../../usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/cc", 
-            "-c", 
-            "-std=c90", 
-            "-o", 
-            "CMakeFiles/cmTC_04a87.dir/feature_tests.c.o", 
-            "../feature_tests.c"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../feature_tests.c"
-    }, 
-    {
-        "arguments": [
-            "/usr/bin/cc", 
-            "-c", 
-            "-o", 
-            "CMakeFiles/cmTC_7fd2b.dir/CMakeCCompilerABI.c.o", 
-            "../../../../../../../../../usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c"
-        ], 
-        "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/CMakeFiles/CMakeTmp", 
-        "file": "../../../../../../../../../usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c"
-    }
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/IO/InputManager.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/IO/InputManager.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/IO/InputManager.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Physics/Collidable2D.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Physics/Collidable2D.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Physics/Collidable2D.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Utils/Clock.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Utils/Clock.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Utils/Clock.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Utils/TickTimer.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Utils/TickTimer.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Utils/TickTimer.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Video/Camera2D.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Video/Camera2D.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Video/Camera2D.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/OpenGL/BatchRenderer2D.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/BatchRenderer2D.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/BatchRenderer2D.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/OpenGL/Context.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Context.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Context.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/OpenGL/Device.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Device.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Device.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/OpenGL/IndexBuffer.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/IndexBuffer.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/IndexBuffer.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/OpenGL/Instance.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Instance.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Instance.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/OpenGL/Shader.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Shader.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Shader.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/OpenGL/Swapchain.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Swapchain.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/Swapchain.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/OpenGL/TextureCache.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/TextureCache.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/OpenGL/TextureCache.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/NullRenderer/Shader.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Shader.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Shader.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/NullRenderer/BatchRenderer2D.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/BatchRenderer2D.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/BatchRenderer2D.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/NullRenderer/Context.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Context.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Context.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/NullRenderer/Swapchain.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Swapchain.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Swapchain.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/NullRenderer/Window.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Window.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Window.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -o CMakeFiles/tewi.dir/src/Platform/NullRenderer/Device.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Device.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/src/Platform/NullRenderer/Device.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/context.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/context.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/context.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/init.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/init.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/init.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/input.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/input.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/input.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/monitor.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/monitor.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/monitor.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/vulkan.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/vulkan.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/window.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/window.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/window.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/x11_init.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/x11_init.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/x11_monitor.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/x11_monitor.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/x11_window.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/x11_window.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/xkb_unicode.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/xkb_unicode.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/posix_time.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/posix_time.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/posix_tls.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/posix_tls.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/posix_tls.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/glx_context.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/glx_context.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/egl_context.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/egl_context.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/osmesa_context.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/osmesa_context.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -o lib/universal/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/linux_joystick.c",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/linux_joystick.c"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -o lib/universal/glm/glm/CMakeFiles/glm_dummy.dir/detail/dummy.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/dummy.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/dummy.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -o lib/universal/glm/glm/CMakeFiles/glm_dummy.dir/detail/glm.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/glm.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/glm.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -std=gnu++14 -o examples/CMakeFiles/window-events.dir/window_events.cpp.o -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/examples/window_events.cpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/examples/window_events.cpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec4.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec4.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/x11_platform.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/x11_platform.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_square_root.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_square_root.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/log_base.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/log_base.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x3.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x3.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat4x4.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat4x4.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/fwd.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/fwd.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/Clock.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/Clock.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_encoding.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_encoding.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/std_based_type.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/std_based_type.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/quaternion.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/quaternion.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/Callbacks.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/Callbacks.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/bit.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/bit.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_trigonometric.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_trigonometric.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x2.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x2.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/GLFWCallbacks.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/GLFWCallbacks.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_packing_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_packing_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/wgl_context.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/wgl_context.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/geometric.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/geometric.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/normal.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/normal.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/constants.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/constants.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x4_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x4_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/win32_platform.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/win32_platform.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/integer.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/integer.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/gradient_paint.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/gradient_paint.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/egl_context.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/egl_context.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/projection.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/projection.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/norm.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/norm.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/build/lib/universal/glfw/src/glfw_config.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build/lib/universal/glfw/src/glfw_config.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat2x4.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat2x4.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/packing.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/packing.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x4.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x4.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/mixed_product.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/mixed_product.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/integer.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/integer.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Uniform.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Uniform.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vec_swizzle.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vec_swizzle.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/orthonormalize.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/orthonormalize.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/matrix.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/matrix.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_common.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_common.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/normalize_dot.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/normalize_dot.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/Device.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/Device.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_trigonometry.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_trigonometry.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/component_wise.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/component_wise.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_matrix_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_matrix_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/extend.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/extend.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/Instance.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/Instance.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/vector_relational.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/vector_relational.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/posix_time.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/posix_time.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/mir_platform.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/mir_platform.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat4x3.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat4x3.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x4.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x4.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/rotate_vector.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/rotate_vector.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/associated_min_max.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/associated_min_max.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/mixed_product.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/mixed_product.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/Common.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/Common.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/bitfield.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/bitfield.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x3.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x3.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/constants.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/constants.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_precision.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_precision.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/cocoa_platform.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/cocoa_platform.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_major_storage.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_major_storage.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/dual_quaternion.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/dual_quaternion.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat3x4.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat3x4.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/compatibility.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/compatibility.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/handed_coordinate_space.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/handed_coordinate_space.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/reciprocal.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/reciprocal.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/exponential.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/exponential.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat2x2.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat2x2.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/ValidationLayers.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/ValidationLayers.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x4.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x4.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/vec3.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/vec3.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/round.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/round.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/closest_point.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/closest_point.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_integer.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_integer.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/std_based_type.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/std_based_type.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_exponential.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_exponential.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/color_space.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/color_space.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/Types.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/Types.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_major_storage.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_major_storage.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat3x2.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat3x2.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_vector_relational_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_vector_relational_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat4x2.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat4x2.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/vec2.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/vec2.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/log_base.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/log_base.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/color_space.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/color_space.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/functions.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/functions.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_geometric.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_geometric.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_transform.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_transform.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/ulp.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/ulp.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/polar_coordinates.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/polar_coordinates.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_space_YCoCg.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_space_YCoCg.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_transform.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_transform.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/quaternion.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/quaternion.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/TickTimer.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/TickTimer.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/extend.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/extend.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/extended_min_max.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/extended_min_max.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_noise.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_noise.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_access.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_access.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_square_root.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_square_root.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/IndexBuffer.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/IndexBuffer.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/Swapchain.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/Swapchain.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Renderer2D.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Renderer2D.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/packing.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/packing.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/projection.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/projection.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_matrix.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_matrix.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Common.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Common.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/euler_angles.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/euler_angles.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_trigonometric.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_trigonometric.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_int.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_int.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/win32_joystick.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/win32_joystick.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_geometric.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_geometric.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_space.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_space.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/handed_coordinate_space.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/handed_coordinate_space.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/bit.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/bit.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/random.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/random.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_geometric_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_geometric_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_space_YCoCg.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_space_YCoCg.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x2.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x2.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/epsilon.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/epsilon.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/transform2.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/transform2.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/nsgl_context.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/nsgl_context.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/integer.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/integer.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_query.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_query.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec1.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec1.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/Instance.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/Instance.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec3.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec3.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_aligned.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_aligned.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/dual_quaternion.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/dual_quaternion.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/TextureCache.hxx",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/TextureCache.hxx"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_operation.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_operation.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Texture.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Texture.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/posix_tls.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/posix_tls.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/precision.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/precision.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Camera2D.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Camera2D.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/norm.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/norm.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_float.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_float.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/number_precision.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/number_precision.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/API.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/API.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x4.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x4.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/number_precision.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/number_precision.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/string_cast.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/string_cast.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/integer.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/integer.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec4_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec4_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/linux_joystick.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/linux_joystick.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/compatibility.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/compatibility.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/gradient_paint.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/gradient_paint.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_trigonometry.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_trigonometry.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/SwapchainDetails.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/SwapchainDetails.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/transform.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/transform.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_space.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_space.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/Context.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/API/Context.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_vector_relational.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_vector_relational.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/euler_angles.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/euler_angles.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/include/GLFW/glfw3.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/include/GLFW/glfw3.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/string_cast.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/string_cast.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/setup.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/setup.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_exponential.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_exponential.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/null_joystick.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/null_joystick.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_vector_relational.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_vector_relational.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/ulp.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/ulp.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_inverse.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_inverse.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/intersect.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/intersect.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/optimum_pow.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/optimum_pow.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec3.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec3.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_swizzle_func.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_swizzle_func.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/polar_coordinates.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/polar_coordinates.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_common_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_common_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/reciprocal.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/reciprocal.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_ptr.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_ptr.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/round.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/round.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_matrix.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_matrix.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/closest_point.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/closest_point.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/extended_min_max.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/extended_min_max.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/matrix.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/matrix.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/quaternion_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/quaternion_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/perpendicular.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/perpendicular.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/raw_data.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/raw_data.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/cocoa_joystick.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/cocoa_joystick.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_integer.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_integer.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/exponential.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/exponential.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_vectorize.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_vectorize.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec2.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec2.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/null_platform.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/null_platform.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/NullRenderer/Instance.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/NullRenderer/Instance.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/transform.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/transform.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/spline.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/spline.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/IO/InputManager.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/IO/InputManager.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/epsilon.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/epsilon.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/common.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/common.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/intersect.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/intersect.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Vertex.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Vertex.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_exponential.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/fast_exponential.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_exponential.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_exponential.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_precision.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_precision.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/vec1.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/vec1.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/integer.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/integer.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_fixes.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_fixes.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x2.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x2.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x4.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x4.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_cross_product.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_cross_product.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/WindowEvent.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/WindowEvent.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_inverse.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_inverse.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec1.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec1.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/rotate_vector.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/rotate_vector.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Physics/Collidable2D.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Physics/Collidable2D.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_packing.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_packing.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Shader.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Shader.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/raw_data.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/raw_data.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/platform.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/simd/platform.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/scalar_multiplication.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/scalar_multiplication.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_interpolation.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_interpolation.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/ext.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/ext.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_trigonometric_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_trigonometric_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/glm.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/glm.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/wl_platform.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/wl_platform.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_query.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_query.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x3.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x3.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat3x3.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat3x3.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_encoding.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/color_encoding.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/xkb_unicode.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/xkb_unicode.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_exponential_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_exponential_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/wrap.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/wrap.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/range.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/range.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/integer.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/integer.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x3.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x3.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/internal.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/internal.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_access.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/matrix_access.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/quaternion.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/quaternion.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/QueueFamily.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Platform/Vulkan/QueueFamily.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x2.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x2.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x2.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat2x2.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vector_query.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vector_query.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vector_angle.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vector_angle.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_packing.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_packing.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/bitfield.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/bitfield.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_ptr.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/type_ptr.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/quaternion.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/quaternion.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x3.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x3.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/random.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/random.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/associated_min_max.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/associated_min_max.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_half.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_half.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/wrap.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/wrap.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/perpendicular.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/perpendicular.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/normalize_dot.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/normalize_dot.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec2.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec2.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_swizzle.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/_swizzle.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_interpolation.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_interpolation.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec4.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_vec4.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/transform2.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/transform2.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/spline.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/spline.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/optimum_pow.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/optimum_pow.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/common.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/common.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_operation.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_operation.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/normal.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/normal.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x4.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat3x4.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/vec1.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/vec1.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/vec4.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/vec4.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x3.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x3.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_integer.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_integer.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/orthonormalize.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/orthonormalize.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/packing.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/packing.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_half.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_half.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x2.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/type_mat4x2.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/noise.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/noise.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Renderable2D.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Renderable2D.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat2x3.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/mat2x3.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/geometric.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/geometric.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/Log.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Utils/Log.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Window.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/Window.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_common.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_common.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vector_query.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vector_query.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/TextureCache.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/TextureCache.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/osmesa_context.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/osmesa_context.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/BatchRenderer2D.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/Video/BatchRenderer2D.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -DTEWI_STATIC_LIB=1 -I/usr/include/libdrm -I../include -isystem ../lib/universal/asl/include -isystem ../lib/universal/glfw/include -isystem ../lib/universal/glm -isystem ../lib/universal/stb -Wall -Wextra -pedantic -Wpedantic -Weffc++ -Wno-unused-const-variable -pipe -fno-rtti -std=gnu++14 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/IO/BasicIO.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/include/tewi/IO/BasicIO.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/trigonometric.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/trigonometric.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/functions.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/functions.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I../lib/universal/glfw/include -I../lib/universal/glfw/src -Ilib/universal/glfw/src -fPIC -Wall -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/glx_context.h",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glfw/src/glx_context.h"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/noise.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtc/noise.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/component_wise.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/component_wise.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vector_angle.hpp",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/vector_angle.hpp"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_integer_simd.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/detail/func_integer_simd.inl"
+},
+
+{
+  "directory": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/build",
+  "command": "/usr/bin/c++ -D_CRT_SECURE_NO_WARNINGS -I../lib/universal/glm -I../lib/universal/glm/test/external -I../lib/universal/glm/glm/.. -pedantic -O2 -c /mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_cross_product.inl",
+  "file": "/mnt/prj/Programming/CPP/sdl-scratch/tewi/lib/universal/glm/glm/gtx/matrix_cross_product.inl"
+}
 ]
