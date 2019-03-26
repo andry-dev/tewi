@@ -1,5 +1,7 @@
 #include "tewi/Video/Window.hpp"
 #include "tewi/Video/API/API.h"
+#include "tewi/Input/InputBuffer.hpp"
+#include "tewi/Utils/Log.h"
 
 #include <string>
 
@@ -9,17 +11,19 @@ int main()
 {
     tewi::Window<def_api> win("Test", tewi::Width{800}, tewi::Height{600});
 
+    tewi::InputBuffer buff;
+    win.bindTo(buff);
+
     while (!win.isClosed())
     {
-        win.pollEvents();
+        win.pollEvents(buff);
 
-        auto event = win.lastEvent();
-        if ((event).type == tewi::WindowEvent::Type::KeyEscape)
+        auto events = buff.queryEvents();
+
+        for (const auto& x : events)
         {
-            win.forceClose();
+            tewi::Log::info(std::to_string(static_cast<asl::i16>(x.type)));
         }
-        tewi::Log::info(std::to_string(static_cast<asl::i16>(event.type)));
-
 
         win.clear();
         win.swapBuffers();

@@ -63,7 +63,7 @@ namespace tewi
         /** Non-macro debug-only version of \a info().
          *
          */
-        inline void debugInfo(const std::string& str)
+        inline TEWI_EXPORT void debugInfo(const std::string& str)
         {
 #ifndef NDEBUG
             info(str);
@@ -96,11 +96,10 @@ namespace tewi
         }
 
 #else
-#define Expects(cond, msg)
-#define Ensures(cond, msg)
 
 #define TEWI_EXPECTS(cond, msg)
 #define TEWI_ENSURES(cond, msg)
+
 #endif
     }
 }

@@ -35,32 +35,48 @@ namespace tewi
     {
         Window(asl::string_view windowName,
                tewi::Width width,
-               tewi::Height height,
-               void* usrptr = nullptr);
+               tewi::Height height);
 
         ~Window();
 
         Window(const Window& rhs) = delete;
         Window& operator=(const Window& rhs) = delete;
 
+        Window(Window&& rhs)
+            : m_windowPtr(std::exchange(rhs.m_windowPtr, nullptr))
+        {
+
+        }
+
+        Window& operator=(Window&& rhs) = default;
+
         GLFWwindow* ptr() noexcept;
 
         bool isClosed() noexcept;
         void forceClose() noexcept;
-        void pollEvents() noexcept;
+
+        template <typename InputManagerType>
+        void pollEvents(InputManagerType& inputManager) noexcept;
         void swapBuffers() noexcept;
         void clear() noexcept;
 
         tewi::Width getWidth() const noexcept;
         tewi::Height getHeight() const noexcept;
 
+        template <typename InputManagerType>
+        void bindTo(InputManagerType& inputManager);
+
+        /*
         tewi::WindowEvent lastEvent();
         tewi::WindowEvent consumeEvent();
+        */
+
+        template <typename InputManager>
+        bool giveInputControl(const InputManager& manager);
 
     private:
         GLFWwindow* m_windowPtr;
         tewi::API::Context<APIType> m_context;
-        asl::static_ring<WindowEvent, 32> m_events;
 
         friend
         void tewi::details::windowKeyCallback<APIType>(GLFWwindow* win,
@@ -74,8 +90,7 @@ namespace tewi
     template <typename APIType>
     Window<APIType>::Window(asl::string_view windowName,
                             tewi::Width width,
-                            tewi::Height height,
-                            void* usrptr)
+                            tewi::Height height)
     {
         glfwInit();
 
@@ -92,20 +107,6 @@ namespace tewi
 
         glfwSetWindowSizeCallback(m_windowPtr, tewi::windowResizeCallback);
         glfwSetErrorCallback(tewi::glfwErrorCallback);
-
-        if (!usrptr)
-        {
-            glfwSetWindowUserPointer(m_windowPtr, this);
-
-            glfwSetKeyCallback(m_windowPtr,
-                               tewi::details::windowKeyCallback<APIType>);
-
-                       
-        }
-        else
-        {
-            glfwSetWindowUserPointer(m_windowPtr, usrptr);
-        }
 
         m_context.postInit(m_windowPtr);
     }
@@ -131,9 +132,11 @@ namespace tewi
     }
 
     template <typename APIType>
-    void Window<APIType>::pollEvents() noexcept
+    template <typename InputManagerType>
+    void Window<APIType>::pollEvents(InputManagerType& inputManager) noexcept
     {
         glfwPollEvents();
+        inputManager.preFrame();
     }
 
     template <typename APIType>
@@ -169,19 +172,17 @@ namespace tewi
     template <typename APIType>
     GLFWwindow* Window<APIType>::ptr() noexcept
     {
+        TEWI_EXPECTS(m_windowPtr, "The internal window pointer is null");
         return m_windowPtr;
     }
 
     template <typename APIType>
-    tewi::WindowEvent Window<APIType>::lastEvent()
+    template <typename InputManagerType>
+    void Window<APIType>::bindTo(InputManagerType& inputManager)
     {
-        return m_events.front();
-    }
+        glfwSetWindowUserPointer(m_windowPtr, &inputManager);
 
-    template <typename APIType>
-    tewi::WindowEvent Window<APIType>::consumeEvent()
-    {
-        return m_events.read();
+        glfwSetKeyCallback(m_windowPtr, &InputManagerType::keyCallback);
     }
 
     namespace details
@@ -193,55 +194,6 @@ namespace tewi
                                              int action,
                                              int mods)
         {
-            auto ptr = static_cast<tewi::Window<APIType>*>(glfwGetWindowUserPointer(win));
-
-            tewi::WindowEvent event;
-
-            switch (key)
-            {
-            case GLFW_KEY_UNKNOWN:
-                event.type = WindowEvent::Type::Unknown;
-                break;
-            default:
-                event.type = static_cast<WindowEvent::Type>(key);
-            }
-
-            switch (action)
-            {
-            case GLFW_PRESS:
-                event.action = WindowEvent::Action::Press;
-                break;
-
-            case GLFW_RELEASE:
-                event.action = WindowEvent::Action::Release;
-                break;
-
-            case GLFW_REPEAT:
-                event.action = WindowEvent::Action::Repeat;
-                break;
-            default:
-                event.action = WindowEvent::Action::None;
-            }
-
-            switch (mods)
-            {
-            case GLFW_MOD_SHIFT:
-                event.mod = WindowEvent::Modifier::Shift;
-                break;
-            case GLFW_MOD_ALT:
-                event.mod = WindowEvent::Modifier::Alt;
-                break;
-            case GLFW_MOD_CONTROL:
-                event.mod = WindowEvent::Modifier::Ctrl;
-                break;
-            case GLFW_MOD_SUPER:
-                event.mod = WindowEvent::Modifier::Super;
-                break;
-            default:
-                event.mod = WindowEvent::Modifier::None;
-            }
-
-            ptr->m_events.push(event);
         }
     }
 

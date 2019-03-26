@@ -41,8 +41,12 @@ endif()
 find_program(COMPDB_EXE NAMES "compdb" DOC "Path to compdb executable")
 if(COMPDB_EXE)
     message(STATUS "[tewi] compdb found: ${COMPDB_EXE}")
-    add_custom_target(regendb
-        COMMAND ${COMPDB_EXE} -p ${CMAKE_BINARY_DIR} list > compile_commands.json
+    add_custom_command(OUTPUT ${PROJECT_SOURCE_DIR}/compile_commands.json
+        COMMAND ${COMPDB_EXE} -p ${PROJECT_BINARY_DIR} list > compile_commands.json
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${PROJECT_SOURCE_DIR}/compile_commands.json
+            ${PROJECT_BINARY_DIR}/compile_commands.json
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         COMMENT "[tewi] Generating compile_commands for header files" VERBATIM)
+    add_custom_target(regendb DEPENDS ${PROJECT_SOURCE_DIR}/compile_commands.json)
 endif()

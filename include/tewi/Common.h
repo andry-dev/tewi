@@ -3,11 +3,6 @@
 #include "asl/types"
 #include "asl/meta"
 
-/** \file 
- * This is a common file used all over the project.
- * 
- */
-
 #ifdef _WIN32
     #ifdef TEWI_STATIC_LIB
         #define TEWI_EXPORT
