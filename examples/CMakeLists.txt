@@ -13,11 +13,11 @@ set_target_properties(window-events
     RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_BINARY_DIR}/bin")
 target_link_libraries(window-events PUBLIC tewi)
 
-add_executable(imgui imgui.cpp)
-set_target_properties(imgui
+add_executable(imgui-example imgui.cpp)
+set_target_properties(imgui-example
 	PROPERTIES
 	CXX_STANDARD 14
     RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin"
     RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_BINARY_DIR}/bin"
     RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_BINARY_DIR}/bin")
-target_link_libraries(imgui PUBLIC tewi)
+target_link_libraries(imgui-example PUBLIC tewi)

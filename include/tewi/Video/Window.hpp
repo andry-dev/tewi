@@ -71,9 +71,6 @@ namespace tewi
         tewi::WindowEvent consumeEvent();
         */
 
-        template <typename InputManager>
-        bool giveInputControl(const InputManager& manager);
-
     private:
         GLFWwindow* m_windowPtr;
         tewi::API::Context<APIType> m_context;
@@ -102,7 +99,7 @@ namespace tewi
                                        nullptr,
                                        nullptr);
         TEWI_ENSURES(m_windowPtr != nullptr, "Window not initialized");
-        glfwSetInputMode(m_windowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        //glfwSetInputMode(m_windowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         glfwMakeContextCurrent(m_windowPtr);
 
         glfwSetWindowSizeCallback(m_windowPtr, tewi::windowResizeCallback);

@@ -10,3 +10,6 @@
 [submodule "lib/universal/asl"]
 	path = lib/universal/asl
 	url = https://github.com/andry-dev/asl
+[submodule "lib/universal/imgui"]
+	path = lib/universal/imgui
+	url = https://github.com/ocornut/imgui

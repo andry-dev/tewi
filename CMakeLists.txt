@@ -17,15 +17,16 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_subdirectory(lib/universal/glfw)
 add_subdirectory(lib/universal/asl)
 add_subdirectory(lib/universal/glm)
+add_subdirectory(lib/universal)
 add_subdirectory(doc)
 
 
 set(SRC
-	src/IO/InputManager.cpp
-	src/Physics/Collidable2D.cpp
-	src/Utils/Clock.cpp
-	src/Utils/TickTimer.cpp
-	src/Video/Camera2D.cpp
+    src/Input/InputBuffer.cpp
+    src/Physics/Collidable2D.cpp
+    src/Utils/Clock.cpp
+    src/Utils/TickTimer.cpp
+    src/Video/Camera2D.cpp
     src/Platform/OpenGL/BatchRenderer2D.cpp
     src/Platform/OpenGL/Context.cpp
     src/Platform/OpenGL/Device.cpp
@@ -34,6 +35,9 @@ set(SRC
     src/Platform/OpenGL/Shader.cpp
     src/Platform/OpenGL/Swapchain.cpp
     src/Platform/OpenGL/TextureCache.cpp
+    src/Platform/OpenGL/ImGuiBindings.cpp
+    src/Platform/OpenGL/imgui_impl_opengl3.cpp
+    src/Platform/OpenGL/imgui_impl_glfw.cpp
     src/Platform/NullRenderer/Shader.cpp
     src/Platform/NullRenderer/BatchRenderer2D.cpp
     src/Platform/NullRenderer/Context.cpp
@@ -59,6 +63,9 @@ set(PUBLIC_HEADERS
     ${IN_INCLUDE_DIR}/IO/BasicIO.h
     ${IN_INCLUDE_DIR}/IO/InputManager.h
 
+    # Input systems
+    ${IN_INCLUDE_DIR}/Input/InputBuffer.hpp
+
     # Physics
     ${IN_INCLUDE_DIR}/Physics/Collidable2D.h
 
@@ -66,7 +73,7 @@ set(PUBLIC_HEADERS
     ${IN_INCLUDE_DIR}/Utils/Clock.h
     ${IN_INCLUDE_DIR}/Utils/Log.h
     ${IN_INCLUDE_DIR}/Utils/TickTimer.h
-    
+
     # Drawing
     ${IN_INCLUDE_DIR}/Video/API/API.h
     ${IN_INCLUDE_DIR}/Video/API/Context.hpp
@@ -199,23 +206,27 @@ endif()
 
 target_include_directories(${PROJECT_NAME}
     SYSTEM
-	PUBLIC
-	${PROJECT_SOURCE_DIR}/lib/universal/asl/include
-	${PROJECT_SOURCE_DIR}/lib/universal/glfw/include
-	${PROJECT_SOURCE_DIR}/lib/universal/glm
-    ${PROJECT_SOURCE_DIR}/lib/universal/stb)
+    PUBLIC
+    ${PROJECT_SOURCE_DIR}/lib/universal/asl/include
+    ${PROJECT_SOURCE_DIR}/lib/universal/glfw/include
+    ${PROJECT_SOURCE_DIR}/lib/universal/glm
+    ${PROJECT_SOURCE_DIR}/lib/universal/stb
+    ${PROJECT_SOURCE_DIR}/lib/universal/imgui)
+
+
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-	${PROJECT_SOURCE_DIR}/include)
+    ${PROJECT_SOURCE_DIR}/include)
 
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
-	${GLEW_LIBRARIES}
-	${WIN32_OPENGL_LIBS}
-	glm
-	glfw
-	asl)
+    ${GLEW_LIBRARIES}
+    ${WIN32_OPENGL_LIBS}
+    glm
+    glfw
+    asl
+    ImGui)
 
 if (TEWI_ENABLE_VULKAN)
     target_link_libraries(${PROJECT_NAME}
