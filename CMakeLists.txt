@@ -26,6 +26,7 @@ set(SRC
     src/Physics/Collidable2D.cpp
     src/Utils/Clock.cpp
     src/Utils/TickTimer.cpp
+    src/Utils/stb.cpp
     src/Video/Camera2D.cpp
     src/Platform/OpenGL/BatchRenderer2D.cpp
     src/Platform/OpenGL/Context.cpp

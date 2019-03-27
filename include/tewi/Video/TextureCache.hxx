@@ -1,9 +1,10 @@
+#pragma once
+
 #include "tewi/Video/TextureCache.h"
 
 #include <vector>
 #include <cstdlib>
 
-#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
 #include "tewi/IO/BasicIO.h"
@@ -18,7 +19,8 @@ namespace tewi
     namespace API
     {
         template <typename APIType>
-        void genAPITexture(Texture<APIType>& tex, asl::u8* imagePtr, asl::num width, asl::num height)
+        void genAPITexture(Texture<APIType>& tex, asl::u8* imagePtr, asl::num width, asl::num height);
+        #if 0
         {
             static_assert(asl::disable_type_v<APIType>, "\n"
                     "You need to override this function to load textures. The correct and only way to do so is to specialize it with the following signature: \n"
@@ -31,6 +33,7 @@ namespace tewi
                     "Yes, this sucks.");
 
         }
+        #endif
     } // namespace API
 
     template <typename APIType>
