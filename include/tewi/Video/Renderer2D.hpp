@@ -127,7 +127,6 @@ namespace tewi
             RenderPolicyImpl::draw();
         }
 
-        
         static ShaderProgram<APIType> createShaderProgram()
         {
             return RenderPolicyImpl::createShaderProgram();

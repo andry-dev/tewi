@@ -1,6 +1,6 @@
 #include "tewi/Video/API/Context.hpp"
 
-#include <GL/glew.h>
+#include <tewi/Platform/OpenGL/Glew.h>
 #include "GLFW/glfw3.h"
 #include "asl/debug_only"
 

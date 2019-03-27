@@ -2,10 +2,10 @@
 
 #include <utility>
 
-#include <GL/glew.h>
-#include "GLFW/glfw3.h"
-
 #include "tewi/Common.h"
+
+#include <tewi/Utils/Glfw.h>
+
 #include "tewi/Utils/Log.h"
 #include "tewi/Utils/GLFWCallbacks.h"
 #include "tewi/Utils/Types.h"

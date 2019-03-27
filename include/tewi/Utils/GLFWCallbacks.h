@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <GL/glew.h>
+#include <tewi/Platform/OpenGL/Glew.h>
 
 #include "GLFW/glfw3.h"
 

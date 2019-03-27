@@ -18,3 +18,5 @@ namespace tewi
         void unbind();
     };
 } // namespace tewi
+
+#include <tewi/Platform/OpenGL/IndexBuffer.h>

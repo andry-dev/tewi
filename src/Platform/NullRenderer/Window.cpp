@@ -29,41 +29,4 @@ namespace tewi
         bool windowClosed = false;
     };
 
-    inline bool isWindowClosed(const Window<API::NullRendererTag>& win) noexcept
-    {
-        return win.windowClosed;
-    }
-
-    inline void forceCloseWindow(Window<API::NullRendererTag>& win) noexcept
-    {
-        win.windowClosed = true;
-    }
-
-    inline void pollWindowEvents(Window<API::NullRendererTag>&) noexcept
-    { }
-
-    inline void swapWindowBuffers(Window<API::NullRendererTag>&) noexcept
-    { }
-
-    inline tewi::Width getWindowWidth(const Window<API::NullRendererTag>&) noexcept
-    {
-        return tewi::Width{0};
-    }
-
-    inline tewi::Height getWindowHeight(const Window<API::NullRendererTag>&) noexcept
-    {
-        return tewi::Height{0};
-    }
-
-    void setWindowKeyboardCallback(Window<API::NullRendererTag>&, GLFWkeyfun) noexcept
-    { }
-
-    void setWindowMouseButtonCallback(Window<API::NullRendererTag>&, GLFWmousebuttonfun) noexcept
-    { }
-
-    void setWindowMouseCursorPosCallback(Window<API::NullRendererTag>&, GLFWcursorposfun) noexcept
-    { }
-
-
-
 } // namespace tewi

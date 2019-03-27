@@ -4,8 +4,8 @@
 #include <cstdint>
 #include <type_traits>
 #include <vector>
-#include <GL/glew.h>
 
+#include <tewi/Platform/OpenGL/Glew.h>
 #include "glm/glm.hpp"
 
 #include "tewi/Common.h"

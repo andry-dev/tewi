@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+#include <tewi/Platform/OpenGL/Glew.h>
 
 #include "tewi/Video/API/API.h"
 #include "tewi/Video/TextureCache.h"

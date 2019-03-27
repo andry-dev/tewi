@@ -38,4 +38,7 @@ namespace tewi
 
         static ShaderProgram<APIType> createShaderProgram();
     };
+
 } // namespace tewi
+
+#include <tewi/Platform/OpenGL/BatchRenderer2D.hpp>

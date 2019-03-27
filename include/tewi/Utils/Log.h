@@ -4,7 +4,7 @@
 #include <string>
 #include <cstdio>
 
-#include <GLFW/glfw3.h>
+#include <tewi/Utils/Glfw.h>
 
 #include "tewi/Common.h"
 
@@ -79,7 +79,6 @@ namespace tewi
         if (!(cond)) { \
             tewi::Log::error(msg); \
             std::printf("Assertion failed at line %d : %s\n", __LINE__, __FILE__); \
-            glfwTerminate();  \
             std::terminate(); \
         }
 
@@ -91,7 +90,6 @@ namespace tewi
         if (!(cond)) { \
             tewi::Log::error(msg); \
             std::printf("Assertion failed at line %d : %s\n", __LINE__, __FILE__); \
-            glfwTerminate();  \
             std::terminate(); \
         }
 
