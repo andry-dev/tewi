@@ -132,8 +132,8 @@ namespace tewi
     template <typename InputManagerType>
     void Window<APIType>::pollEvents(InputManagerType& inputManager) noexcept
     {
-        glfwPollEvents();
         inputManager.preFrame();
+        glfwPollEvents();
     }
 
     template <typename APIType>

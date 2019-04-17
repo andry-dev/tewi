@@ -56,8 +56,6 @@ namespace tewi
         m_IBO->unbind();
         glBindVertexArray(0);
 
-        glBindTexture(GL_TEXTURE_2D, 0);
-
         m_indexCount = 0;
     }
 
@@ -65,7 +63,8 @@ namespace tewi
     {
         constexpr asl::string_view vertstr =
         R"(
-        #version 430 core
+        #version 410 core
+        #extension GL_ARB_explicit_uniform_location : enable
 
         layout(location = 0) in vec2 vertexPosition;
         layout(location = 1) in vec2 vertexUV;
@@ -93,7 +92,8 @@ namespace tewi
 
         constexpr asl::string_view fragstr =
         R"(
-        #version 430 core
+        #version 410 core
+        #extension GL_ARB_explicit_uniform_location : enable
 
         in vec2 fragmentPosition;
         in vec2 fragmentUV;
@@ -136,25 +136,25 @@ namespace tewi
         glBindVertexArray(m_VAO);
         glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
         glBufferData(GL_ARRAY_BUFFER, g_bufferSize, 0, GL_DYNAMIC_DRAW);
-
     }
 
     void BatchRenderer2D<tewi::API::OpenGLTag>::bindAttribPointers()
     {
-        // Position
         glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+        glEnableVertexAttribArray(2);
+        glEnableVertexAttribArray(3);
+
+        // Position
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex), (const void*)(0));
 
         // UV
-        glEnableVertexAttribArray(1);
         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex), (const void*)(offsetof(Vertex, uv)));
 
         // TID
-        glEnableVertexAttribArray(2);
         glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex), (const void*)(offsetof(Vertex, textureID)));
 
         // Color
-        glEnableVertexAttribArray(3);
         glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(tewi::Vertex), (const void*)(offsetof(Vertex, color)));
     }
 

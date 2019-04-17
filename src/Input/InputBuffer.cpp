@@ -63,6 +63,11 @@ namespace tewi
 
     gsl::span<tewi::WindowEvent> InputBuffer::queryEvents()
     {
+        if (m_queue.empty())
+        {
+            return { gsl::null_span{} };
+        }
+
         return gsl::span<tewi::WindowEvent>{m_queue.begin(), m_queue.end()};
     }
 }

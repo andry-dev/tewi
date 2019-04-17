@@ -31,25 +31,6 @@ namespace tewi
         }
     }
 
-    template <>
-    class ShaderProgram<API::OpenGLTag>
-    {
-    public:
-        ShaderProgram(gsl::span<const ShaderDescription> descriptions,
-                      gsl::span<const asl::string_view> attributes);
-
-        ~ShaderProgram();
-
-        void enable();
-        void disable();
-
-        // void setUniform(...)
-
-    private:
-        asl::u32 m_id;
-        asl::i32 m_attributeNum;
-    };
-
     ShaderProgram<API::OpenGLTag>::ShaderProgram(
             gsl::span<const ShaderDescription> shaderDescriptions,
             gsl::span<const asl::string_view> attributes)
@@ -127,6 +108,7 @@ namespace tewi
         }
 
         TEWI_ENSURES(m_id != 0, "Shader Program ID reset! THIS IS A BUG");
+        TEWI_ENSURES(m_attributeNum == attributes.size(), "Something Something");
     }
 
     ShaderProgram<API::OpenGLTag>::~ShaderProgram()
@@ -137,7 +119,7 @@ namespace tewi
     void ShaderProgram<API::OpenGLTag>::enable()
     {
         glUseProgram(m_id);
-        for (asl::i32 i = 0; i < m_attributeNum; ++i)
+        for (asl::sizei i = 0; i < m_attributeNum; ++i)
         {
             glEnableVertexAttribArray(i);
         }
@@ -145,11 +127,21 @@ namespace tewi
 
     void ShaderProgram<API::OpenGLTag>::disable()
     {
-        for (asl::i32 i = 0; i < m_attributeNum; ++i)
+        for (asl::sizei i = 0; i < m_attributeNum; ++i)
         {
             glDisableVertexAttribArray(i);
         }
         glUseProgram(0);
+    }
+
+    asl::i32 ShaderProgram<API::OpenGLTag>::getUniformLocation(asl::string_view str)
+    {
+        return glGetUniformLocation(m_id, str.data());
+    }
+
+    void ShaderProgram<API::OpenGLTag>::setUniform(asl::i32 uniform, const glm::mat4& mat)
+    {
+        glUniformMatrix4fv(uniform, 1, GL_FALSE, &mat[0][0]);
     }
 
     auto translateVertexLayoutType(API::OpenGLTag, VertexLayout::Types type)

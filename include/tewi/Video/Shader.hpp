@@ -12,6 +12,9 @@
 
 #include "tewi/Video/API/Device.hpp"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 namespace tewi
 {
     enum class ShaderType : asl::i8
@@ -59,6 +62,8 @@ namespace tewi
 
         void enable();
         void disable();
+        asl::i32 getUniformLocation(asl::string_view str);
+        void setUniform(asl::i32 uniform, const glm::mat4& mat);
     };
 
     template <typename APITag>
@@ -73,3 +78,4 @@ namespace tewi
 
 //#include "tewi/Platform/Vulkan/Shader.hpp"
 //#include "tewi/Platform/NullRenderer/Shader.hpp"
+#include <tewi/Platform/OpenGL/Shader.hpp>
