@@ -1,8 +1,5 @@
-cmake_minimum_required(VERSION 3.9)
-cmake_policy(SET CMP0069 NEW)
+cmake_minimum_required(VERSION 3.12)
 project(tewi)
-
-include(CheckIPOSupported)
 
 option(TEWI_BUILD_TESTS "Build tewi's tests" OFF)
 option(TEWI_BUILD_EXAMPLES "Build tewi's examples" OFF)
@@ -14,11 +11,14 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_subdirectory(lib/universal/glfw)
+#add_subdirectory(lib/universal/glfw)
 add_subdirectory(lib/universal/asl)
-add_subdirectory(lib/universal/glm)
-add_subdirectory(lib/universal)
+#add_subdirectory(lib/universal/glm)
+#add_subdirectory(lib/universal)
 add_subdirectory(doc)
+
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
 
 
 set(SRC
@@ -107,19 +107,19 @@ target_sources(${PROJECT_NAME}
     ${PRIVATE_HEADERS})
 
 if(MSVC)
-	# Common
-	target_compile_options(${PROJECT_NAME}
-		PRIVATE
+    # Common
+    target_compile_options(${PROJECT_NAME}
+        PRIVATE
         /W4 /std:c++latest /permissive- /GR-)
 
     # Release
-	target_compile_options(${PROJECT_NAME}
-		PRIVATE
-	 	$<$<CONFIG:RELEASE>:/Ob2 /Ot /GL /sdl- /LTCG>)
+    target_compile_options(${PROJECT_NAME}
+        PRIVATE
+        $<$<CONFIG:RELEASE>:/Ob2 /Ot /GL /sdl- /LTCG>)
 else()
-	# Common
-	target_compile_options(${PROJECT_NAME}
-		PRIVATE
+    # Common
+    target_compile_options(${PROJECT_NAME}
+        PRIVATE
         -Wall -Wextra -pedantic -Wpedantic
         -Weffc++ -Wno-unused-const-variable
          -pipe -fno-rtti)
@@ -130,10 +130,10 @@ else()
             -Weverything -Wno-missing-prototypes)
     endif()
 
-	# Release
-	target_compile_options(${PROJECT_NAME}
-		PRIVATE
-		$<$<CONFIG:RELEASE>:-O3>)
+    # Release
+    target_compile_options(${PROJECT_NAME}
+        PRIVATE
+        $<$<CONFIG:RELEASE>:-O3>)
 
     # Debug
     target_compile_options(${PROJECT_NAME}
@@ -149,13 +149,13 @@ set_target_properties(${PROJECT_NAME}
 
 
 if (BUILD_SHARED_LIBS)
-	message(STATUS "[tewi] Building as DLL/so")
+    message(STATUS "[tewi] Building as DLL/so")
     target_compile_definitions(${PROJECT_NAME}
         PUBLIC
         TEWI_SHARED_LIB=1 GLEW_BUILD)
     #add_definitions(-DGLEW_BUILD)
 else()
-	message(STATUS "[tewi] Building as LIB/a")
+    message(STATUS "[tewi] Building as LIB/a")
     target_compile_definitions(${PROJECT_NAME}
         PUBLIC
         TEWI_STATIC_LIB=1
@@ -175,10 +175,10 @@ endif()
 
 if(WIN32)
     # Add GLEW
-	set(GLEW_LIBRARIES
-		${PROJECT_SOURCE_DIR}/lib/msvc/glew/lib/Release/x64/glew32.lib)
+    set(GLEW_LIBRARIES
+        ${PROJECT_SOURCE_DIR}/lib/msvc/glew/lib/Release/x64/glew32.lib)
 
-	target_include_directories(${PROJECT_NAME}
+    target_include_directories(${PROJECT_NAME}
         PUBLIC
         ${PROJECT_SOURCE_DIR}/lib/msvc/glew/include)
 
@@ -189,20 +189,14 @@ if(WIN32)
             ${PROJECT_SOURCE_DIR}/lib/msvc/vulkan/include)
     endif()
 
-	set(VULKAN_LIBS
-		${PROJECT_SOURCE_DIR}/lib/msvc/vulkan/lib/vulkan-1.lib)
+    set(VULKAN_LIBS
+        ${PROJECT_SOURCE_DIR}/lib/msvc/vulkan/lib/vulkan-1.lib)
 
-	set(WIN32_OPENGL_LIBS
-		opengl32.lib)
+    set(WIN32_OPENGL_LIBS
+        opengl32.lib)
 
 else()
-	include(FindPkgConfig)
-
-	pkg_search_module(GLEW REQUIRED glew)
-	target_include_directories(${PROJECT_NAME} PUBLIC ${GLEW_INCLUDE_DIRS})
-
-	set(VULKAN_LIBS
-		vulkan)
+    set(VULKAN_LIBS vulkan)
 endif()
 
 target_include_directories(${PROJECT_NAME}
@@ -222,12 +216,13 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
-    ${GLEW_LIBRARIES}
     ${WIN32_OPENGL_LIBS}
-    glm
-    glfw
-    asl
-    ImGui)
+    CONAN_PKG::glew
+    CONAN_PKG::glm
+    CONAN_PKG::glfw
+    CONAN_PKG::imgui
+    CONAN_PKG::stb
+    asl)
 
 if (TEWI_ENABLE_VULKAN)
     target_link_libraries(${PROJECT_NAME}
@@ -244,6 +239,6 @@ if (TEWI_BUILD_EXAMPLES)
 endif()
 
 if (TEWI_BUILD_TESTS)
-	enable_testing()
-	add_subdirectory(tests)
+    enable_testing()
+    add_subdirectory(tests)
 endif()
