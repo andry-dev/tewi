@@ -5,21 +5,15 @@ option(TEWI_BUILD_TESTS "Build tewi's tests" OFF)
 option(TEWI_BUILD_EXAMPLES "Build tewi's examples" OFF)
 option(TEWI_ENABLE_VULKAN "Enable Vulkan support" OFF)
 option(TEWI_USE_TOOLS "Enable use of various tools on tewi's code" OFF)
+option(TEWI_INTEGRATE_IMGUI "Integrate ImGui in the build" ON)
 
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-#add_subdirectory(lib/universal/glfw)
-add_subdirectory(lib/universal/asl)
-#add_subdirectory(lib/universal/glm)
-#add_subdirectory(lib/universal)
+add_subdirectory(external)
 add_subdirectory(doc)
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+include(${PROJECT_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
-
 
 set(SRC
     src/Input/InputBuffer.cpp
@@ -95,28 +89,21 @@ set(PUBLIC_HEADERS
     ${IN_INCLUDE_DIR}/Video/Vertex.h
     ${IN_INCLUDE_DIR}/Video/Window.hpp)
 
-set(PRIVATE_HEADERS
-    )
-
 add_library(${PROJECT_NAME} ${SRC})
 
 target_sources(${PROJECT_NAME}
     PUBLIC
-    ${PUBLIC_HEADERS}
-    PRIVATE
-    ${PRIVATE_HEADERS})
+    ${PUBLIC_HEADERS})
 
 if(MSVC)
     # Common
     target_compile_options(${PROJECT_NAME}
         PRIVATE
-        /W4 /std:c++latest /permissive- /GR-)
-
-    # Release
-    target_compile_options(${PROJECT_NAME}
-        PRIVATE
+        /W4 /std:c++latest /permissive- /GR-
         $<$<CONFIG:RELEASE>:/Ob2 /Ot /GL /sdl- /LTCG>)
+
 else()
+
     # Common
     target_compile_options(${PROJECT_NAME}
         PRIVATE
@@ -130,14 +117,9 @@ else()
             -Weverything -Wno-missing-prototypes)
     endif()
 
-    # Release
     target_compile_options(${PROJECT_NAME}
         PRIVATE
-        $<$<CONFIG:RELEASE>:-O3>)
-
-    # Debug
-    target_compile_options(${PROJECT_NAME}
-        PRIVATE
+        $<$<CONFIG:RELEASE>:-O3>
         $<$<CONFIG:DEBUG>:-fno-omit-frame-pointer>)
 endif()
 
@@ -147,20 +129,18 @@ set_target_properties(${PROJECT_NAME}
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON)
 
-
 if (BUILD_SHARED_LIBS)
     message(STATUS "[tewi] Building as DLL/so")
     target_compile_definitions(${PROJECT_NAME}
         PUBLIC
-        TEWI_SHARED_LIB=1 GLEW_BUILD)
-    #add_definitions(-DGLEW_BUILD)
+        TEWI_SHARED_LIB=1
+        GLEW_BUILD)
 else()
     message(STATUS "[tewi] Building as LIB/a")
     target_compile_definitions(${PROJECT_NAME}
         PUBLIC
         TEWI_STATIC_LIB=1
         GLEW_STATIC)
-    #add_definitions(-DGLEW_STATIC)
 endif()
 
 if (TEWI_ENABLE_VULKAN)
@@ -169,46 +149,17 @@ if (TEWI_ENABLE_VULKAN)
         PUBLIC
         GLFW_INCLUDE_VULKAN
         TEWI_ENABLE_VULKAN)
+
+    find_package(Vulkan REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PUBLIC Vulkan::Vulkan)
 else()
     message(STATUS "[tewi] Vulkan disabled")
 endif()
 
 if(WIN32)
-    # Add GLEW
-    set(GLEW_LIBRARIES
-        ${PROJECT_SOURCE_DIR}/lib/msvc/glew/lib/Release/x64/glew32.lib)
-
-    target_include_directories(${PROJECT_NAME}
-        PUBLIC
-        ${PROJECT_SOURCE_DIR}/lib/msvc/glew/include)
-
-    if (TEWI_ENABLE_VULKAN)
-        target_include_directories(
-            ${PROJECT_NAME}
-            PUBLIC
-            ${PROJECT_SOURCE_DIR}/lib/msvc/vulkan/include)
-    endif()
-
-    set(VULKAN_LIBS
-        ${PROJECT_SOURCE_DIR}/lib/msvc/vulkan/lib/vulkan-1.lib)
-
     set(WIN32_OPENGL_LIBS
         opengl32.lib)
-
-else()
-    set(VULKAN_LIBS vulkan)
 endif()
-
-target_include_directories(${PROJECT_NAME}
-    SYSTEM
-    PUBLIC
-    ${PROJECT_SOURCE_DIR}/lib/universal/asl/include
-    ${PROJECT_SOURCE_DIR}/lib/universal/glfw/include
-    ${PROJECT_SOURCE_DIR}/lib/universal/glm
-    ${PROJECT_SOURCE_DIR}/lib/universal/stb
-    ${PROJECT_SOURCE_DIR}/lib/universal/imgui)
-
-
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
@@ -216,19 +167,14 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
+    SYSTEM
     ${WIN32_OPENGL_LIBS}
     CONAN_PKG::glew
     CONAN_PKG::glm
     CONAN_PKG::glfw
-    CONAN_PKG::imgui
+    ImGui
     CONAN_PKG::stb
     asl)
-
-if (TEWI_ENABLE_VULKAN)
-    target_link_libraries(${PROJECT_NAME}
-    PUBLIC
-    ${VULKAN_LIBS})
-endif()
 
 if (TEWI_USE_TOOLS)
     include(cmake/include-tools.cmake)
