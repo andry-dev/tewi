@@ -174,7 +174,7 @@ target_link_libraries(${PROJECT_NAME}
     CONAN_PKG::glfw
     ImGui
     CONAN_PKG::stb
-    asl)
+    CONAN_PKG::asl)
 
 if (TEWI_USE_TOOLS)
     include(cmake/include-tools.cmake)

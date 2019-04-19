@@ -1,13 +1,5 @@
 include(FetchContent)
 
-FetchContent_Declare(
-  asl
-  GIT_REPOSITORY https://github.com/andry-dev/asl.git
-)
-
-FetchContent_MakeAvailable(asl)
-#add_subdirectory(asl)
-
 if (TEWI_INTEGRATE_IMGUI)
 
     FetchContent_Declare(
