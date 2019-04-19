@@ -1,8 +1,8 @@
 #pragma once
 
-#include "asl/types"
+#include <asl/types>
 
-#include "GLFW/glfw3.h"
+#include <tewi/Utils/Glfw.h>
 
 namespace tewi
 {

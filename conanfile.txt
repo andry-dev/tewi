@@ -1,9 +1,0 @@
-[requires]
-glfw/3.2.1@bincrafters/stable
-glew/2.1.0@bincrafters/stable
-glm/0.9.9.4@g-truc/stable
-stb/20180214@conan/stable
-imgui/1.66@bincrafters/stable
-
-[generators]
-cmake
