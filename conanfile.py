@@ -29,7 +29,7 @@ class TewiConan(ConanFile):
     )
 
 
-    generators = "cmake"
+    generators = "cmake", "pkg_config"
     exports_sources = "*",
 
     def configure(self):
