@@ -167,14 +167,13 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
-    SYSTEM
     ${WIN32_OPENGL_LIBS}
     CONAN_PKG::glew
     CONAN_PKG::glm
     CONAN_PKG::glfw
+    CONAN_PKG::asl
     ImGui
-    CONAN_PKG::stb
-    CONAN_PKG::asl)
+    CONAN_PKG::stb)
 
 if (TEWI_USE_TOOLS)
     include(cmake/include-tools.cmake)

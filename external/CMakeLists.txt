@@ -1,20 +1,9 @@
-include(FetchContent)
-
 if (TEWI_INTEGRATE_IMGUI)
-
-    FetchContent_Declare(
-      imgui
-      GIT_REPOSITORY https://github.com/ocornut/imgui.git
-    )
-
-    FetchContent_MakeAvailable(imgui)
-
-    add_library(ImGui
-                ${imgui_SOURCE_DIR}/imgui.cpp
-                ${imgui_SOURCE_DIR}/imgui_draw.cpp
-                ${imgui_SOURCE_DIR}/imgui_widgets.cpp
-                ${imgui_SOURCE_DIR}/misc/cpp/imgui_stdlib.cpp)
-            target_include_directories(ImGui SYSTEM PUBLIC ${imgui_SOURCE_DIR} ${imgui_SOURCE_DIR}/misc/cpp/)
-
+    add_library(ImGui STATIC
+                imgui/imgui.cpp
+                imgui/imgui_draw.cpp
+                imgui/imgui_widgets.cpp
+                imgui/misc/cpp/imgui_stdlib.cpp)
+    target_include_directories(ImGui SYSTEM PUBLIC imgui/ imgui/misc/cpp/)
 endif()
 

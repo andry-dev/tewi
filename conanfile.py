@@ -30,13 +30,17 @@ class TewiConan(ConanFile):
 
 
     generators = "cmake"
-    exports_sources = "include/*", "src/*"
+    exports_sources = "*",
+
+    def configure(self):
+        if self.options.integrate_imgui:
+            self.exports_sources += "external/imgui/*",
 
     def build(self):
         cmake = CMake(self)
         imgui = "-DTEWI_INTEGRATE_IMGUI=1" if self.options.integrate_imgui else "-DTEWI_INTEGRATE_IMGUI=0"
         vulkan = "-DTEWI_ENABLE_VULKAN=1" if self.options.enable_vulkan else "-DTEWI_ENABLE_VULKAN=0"
-        self.run("cmake .. %s %s %s" % (cmake.command_line, imgui, vulkan))
+        self.run("cmake . %s %s %s" % (cmake.command_line, imgui, vulkan))
         self.run("cmake --build . %s" % cmake.build_config)
         #cmake.configure(source_folder=".")
         #self.run("cmake --build .")
@@ -46,6 +50,10 @@ class TewiConan(ConanFile):
         self.copy("*.h", dst="include", src="include")
         self.copy("*.hpp", dst="include", src="include")
         self.copy("*.hxx", dst="include", src="include")
+
+        if self.options.integrate_imgui:
+            self.copy("*.h", dst="include", src="external/imgui")
+
         self.copy("*libtewi.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
@@ -53,4 +61,4 @@ class TewiConan(ConanFile):
         self.copy("*.a", dst="lib", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = ["tewi"]
+        self.cpp_info.libs = ["tewi", "ImGui"]
