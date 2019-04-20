@@ -47,17 +47,21 @@ While you _can_ compile the library as a dynamic library I advise you to _not_ d
 
 ## Dependencies
 
-Required runtime:
+You can use conan to build the library as a package and get all the dependencies.
 
- * GLEW (only for Linux)
+Required:
+ * [asl](https://github.com/andry-dev/asl)
+ * GLFW
+ * GLEW
+ * glm
+ * stb
 
 Resolved by git submodules:
+ * [ImGui](https://github.com/ocornut/imgui) (optional)
 
- * [asl](https://github.com/andry-dev/asl)
- * [GLFW](https://github.com/glfw/glfw)
- * [glm](https://github.com/g-truc/glm)
- * [stb](https://github.com/nothings/stb)
- * [Catch](https://github.com/philsquared/Catch)
+## Building
+
+Look at the wiki page.
 
 ## TODO / Broken stuff
 
@@ -65,12 +69,12 @@ Strict engine stuff:
 
  * [x] Finish the Vulkan port so I can fix bugs (See [reisen](https://github.com/andry-dev/reisen))
  * [x] Implement GLFW mouse support (again)
- * [ ] Fix the template abuse
+ * [X] Fix the template abuse
  * [ ] Documentation (Working on this right now)
  * [ ] Implement basic 2D stuff (like rotations)
  * [ ] Basic event system
  * [ ] Basic sound system
- * [ ] GUI (probably a wrapper around
+ * [ ] GUI integration
  * [ ] Particle system
  * [ ] VFS
  * [ ] 3D (?)

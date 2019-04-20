@@ -3,6 +3,7 @@ project(tewi)
 
 option(TEWI_BUILD_TESTS "Build tewi's tests" OFF)
 option(TEWI_BUILD_EXAMPLES "Build tewi's examples" OFF)
+option(TEWI_BUILD_DOC "Build tewi's documentation" OFF)
 option(TEWI_ENABLE_VULKAN "Enable Vulkan support" OFF)
 option(TEWI_USE_TOOLS "Enable use of various tools on tewi's code" OFF)
 option(TEWI_INTEGRATE_IMGUI "Integrate ImGui in the build" ON)
@@ -10,10 +11,8 @@ option(TEWI_INTEGRATE_IMGUI "Integrate ImGui in the build" ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(external)
-add_subdirectory(doc)
 
-include(${PROJECT_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup(TARGETS)
+include(cmake/resolve-dependencies.cmake)
 
 set(SRC
     src/Input/InputBuffer.cpp
@@ -123,7 +122,6 @@ else()
         $<$<CONFIG:DEBUG>:-fno-omit-frame-pointer>)
 endif()
 
-
 set_target_properties(${PROJECT_NAME}
     PROPERTIES
     CXX_STANDARD 17
@@ -143,37 +141,12 @@ else()
         GLEW_STATIC)
 endif()
 
-if (TEWI_ENABLE_VULKAN)
-    message(STATUS "[tewi] Vulkan enabled")
-    target_compile_definitions(${PROJECT_NAME}
-        PUBLIC
-        GLFW_INCLUDE_VULKAN
-        TEWI_ENABLE_VULKAN)
-
-    find_package(Vulkan REQUIRED)
-    target_link_libraries(${PROJECT_NAME} PUBLIC Vulkan::Vulkan)
-else()
-    message(STATUS "[tewi] Vulkan disabled")
-endif()
-
-if(WIN32)
-    set(WIN32_OPENGL_LIBS
-        opengl32.lib)
-endif()
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
     ${PROJECT_SOURCE_DIR}/include)
 
-target_link_libraries(${PROJECT_NAME}
-    PUBLIC
-    ${WIN32_OPENGL_LIBS}
-    CONAN_PKG::glew
-    CONAN_PKG::glm
-    CONAN_PKG::glfw
-    CONAN_PKG::asl
-    ImGui
-    CONAN_PKG::stb)
+include(cmake/link-deps.cmake)
 
 if (TEWI_USE_TOOLS)
     include(cmake/include-tools.cmake)
@@ -186,4 +159,8 @@ endif()
 if (TEWI_BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
+endif()
+
+if (TEWI_BUILD_DOC)
+    add_subdirectory(doc)
 endif()
