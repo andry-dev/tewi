@@ -4,7 +4,7 @@ Wannabe extensible, easy to use and somewhat fast engine.
 
 Alpha-grade software, API may change and I need to refactor some horrible code.
 
-Examples can be found in `doc/examples`.
+Examples can be found in `examples`.
 
 ## Feature list
 
@@ -19,35 +19,17 @@ Nonetheless, the intended scope is to create a (mostly) header-only framework th
 
 But honestly, at the end of the day I'm just experimenting with C++14 and CMake.
 
-## Why should I even use this library?
-
-You may choose to use this if:
-
- * You want to painlessly include a drawing framework in your project
- * You despise OOP concepts such as inheritance, runtime polymorphism, etc...
- * You don't like exceptions
- * You want to code something quickly for many APIs and OSes
- * You optionally want to change _anything_ about _any_ implementation
- * You are a masochist
-
-You may choose **not** to use this if:
-
- * You want mature and stable frameworks
- * You want a sane API
- * You _really_ like OOP as done in Java
- * You think templates make an API unnecessary convoluted
-
 ## Design choices
 
 This library avoids inheritance and `virtual` by using templates.
 It tries to delegate most runtime decisions to compile-time via policy classes, concepts, occasional CRTP and template specialization abuse.
-While it's not a compiler turture test (like Boost is), it's still not easy on the compiler.
+While it's not a compiler torture test, it's still not easy on the compiler.
 
-While you _can_ compile the library as a dynamic library I advise you to _not_ do it because it can get in the way of LTO and, generally speaking, there is no reason to use dynamic linking.
+While you _can_ compile the library as a dynamic library I advise you to _not_ do it because it can get in the way of LTO.
 
 ## Dependencies
 
-You can use conan to build the library as a package and get all the dependencies.
+You can use `conan` to build the library as a package and get all the dependencies.
 
 Required:
  * [asl](https://github.com/andry-dev/asl)
@@ -59,6 +41,9 @@ Required:
 Resolved by git submodules:
  * [ImGui](https://github.com/ocornut/imgui) (optional)
 
+Optional:
+ * [standardese](https://github.com/foonathan/standardese) for generating docs
+
 ## Building
 
 Look at the wiki page.
@@ -67,7 +52,6 @@ Look at the wiki page.
 
 Strict engine stuff:
 
- * [x] Finish the Vulkan port so I can fix bugs (See [reisen](https://github.com/andry-dev/reisen))
  * [x] Implement GLFW mouse support (again)
  * [X] Fix the template abuse
  * [ ] Documentation (Working on this right now)
