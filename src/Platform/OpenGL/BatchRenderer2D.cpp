@@ -124,7 +124,8 @@ namespace tewi
             "vertexColor"
         };
 
-        return ShaderProgram<API::OpenGLTag>({ shaders }, { attribs });
+        return ShaderProgram<API::OpenGLTag>({ shaders.data(), shaders.size() },
+                                             { attribs.data(), attribs.size() });
 
     }
 

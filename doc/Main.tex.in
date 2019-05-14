@@ -1,0 +1,70 @@
+\documentclass[a4paper,oneside,openany,10pt]{memoir}
+
+\usepackage[american]{babel}
+\usepackage[iso,american]{isodate}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{lmodern}
+\usepackage{relsize}
+\usepackage[bookmarks=true,
+            bookmarksnumbered=true,
+            pdfpagelabels=true,
+            pdfpagemode=UseOutlines,
+            pdfstartview=FitH,
+            linktocpage=true,
+            colorlinks=true,
+            linkcolor=blue,
+            plainpages=false
+           ]{hyperref}
+\usepackage{memhfixc}
+\usepackage[outputdir=@PROJECT_BINARY_DIR@/doc]{minted}
+\usepackage{mdframed}
+\usepackage{enumitem}
+
+\usemintedstyle{xcode}
+\setminted{frame=single}
+
+\input{setup}
+
+\makeindex[generalindex]
+\makeindex[headerindex]
+\makeindex[libraryindex]
+\makeindex[grammarindex]
+\makeindex[impldefindex]
+\makeglossary[xrefindex]
+\makeglossary[xrefdelta]
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{4}
+\begin{document}
+
+\title{tewi documentation}
+\author{andry}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\chapterstyle{cppstd}
+\pagestyle{cpppage}
+
+\include{intro}
+
+\part{API reference}
+
+\input{apidoc/apidoc}
+
+\part{Tutorial}
+
+\part{How-to}
+
+\part{Design motivation}
+
+
+
+\end{document}

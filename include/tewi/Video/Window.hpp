@@ -16,7 +16,6 @@
 #include "asl/string_view"
 #include "asl/ring"
 
-
 namespace tewi
 {
     namespace details
@@ -28,7 +27,6 @@ namespace tewi
                                              int action,
                                              int mods);
     }
-
 
     template <typename APIType>
     struct TEWI_EXPORT Window
@@ -44,32 +42,45 @@ namespace tewi
 
         Window(Window&& rhs)
             : m_windowPtr(std::exchange(rhs.m_windowPtr, nullptr))
-        {
-
-        }
+        { }
 
         Window& operator=(Window&& rhs) = default;
 
+        /// \returns A pointer to the internal GLFW window pointer.
+        /// \requires The pointer shall not be freed, that's UB.
         GLFWwindow* ptr() noexcept;
 
+        /// \returns true if the window is closed, false otherwise.
         bool isClosed() noexcept;
+
+        /// \effects Force closes the window.
         void forceClose() noexcept;
 
+        /// \effects Polls any event to the input manager
+        /// \requires `InputManagerType` shall model an `InputManager`.
         template <typename InputManagerType>
         void pollEvents(InputManagerType& inputManager) noexcept;
-        void swapBuffers() noexcept;
+
+        /// \effects Clears the screen for a new frame.
+        /// \notes This function shall be called before any rendering,
+        ///        otherwise you'll just see a blank screen.
         void clear() noexcept;
 
+        /// \effects Swaps the window buffers.
+        void swapBuffers() noexcept;
+
+        /// \returns The current width of the window.
         tewi::Width getWidth() const noexcept;
+
+        /// \returns The current height of the window.
         tewi::Height getHeight() const noexcept;
 
+        /// \effects Binds the window to an [`InputManager`](<> "tewi::InputManager").
+        ///          This will set the GLFW user pointer to `inputManager`
+        ///          and set all the callbacks for `InputManager`.
+        /// \requires `InputManagerType` shall model an [`InputManager`](<> "tewi::InputManager")
         template <typename InputManagerType>
         void bindTo(InputManagerType& inputManager);
-
-        /*
-        tewi::WindowEvent lastEvent();
-        tewi::WindowEvent consumeEvent();
-        */
 
     private:
         GLFWwindow* m_windowPtr;

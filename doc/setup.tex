@@ -1,0 +1,250 @@
+%!TEX root = std.tex
+%% layout.tex -- set overall page appearance
+
+\newlist{indenthelper}{itemize}{1}
+\setlist[indenthelper]{parsep=\parskip, partopsep=0pt, itemsep=0pt, topsep=0pt, label={}}
+
+\newenvironment{indented}[1][]
+{\vspace{-0.5em}\begin{indenthelper}[#1]\item\relax}
+{\end{indenthelper}\vspace{2em}}
+
+\newenvironment{itemdescr}
+{
+ \begin{indented}[beginpenalty=3000, endpenalty=-300]}
+{
+ \end{indented}
+}
+
+%%--------------------------------------------------
+%%  set page size, type block size, type block position
+
+\setlrmarginsandblock{2.245cm}{2.245cm}{*}
+\setulmarginsandblock{2.5cm}{2.5cm}{*}
+
+%%--------------------------------------------------
+%%  set header and footer positions and sizes
+
+\setheadfoot{\onelineskip}{2\onelineskip}
+\setheaderspaces{*}{2\onelineskip}{*}
+
+%%--------------------------------------------------
+%%  make miscellaneous adjustments, then finish the layout
+\setmarginnotes{7pt}{7pt}{0pt}
+\checkandfixthelayout
+
+%%--------------------------------------------------
+%% If there is insufficient stretchable vertical space on a page,
+%% TeX will not properly consider penalties for a good page break,
+%% even if \raggedbottom (default) is in effect.
+\addtolength{\topskip}{0pt plus 20pt}
+
+%%--------------------------------------------------
+%% Place footnotes at the bottom of the page, rather
+%% than immediately following the main text.
+\feetatbottom
+
+%%--------------------------------------------------
+%%  set heading styles for main matter
+\newcommand{\beforeskip}{-.7\onelineskip plus -1ex}
+\newcommand{\afterskip}{.3\onelineskip minus .2ex}
+
+%%--------------------------------------------------
+%% States and operators
+\newcommand{\state}[2]{\tcode{#1}\ensuremath{_{#2}}}
+\newcommand{\bitand}{\ensuremath{\mathbin{\mathsf{bitand}}}}
+\newcommand{\bitor}{\ensuremath{\mathbin{\mathsf{bitor}}}}
+\newcommand{\xor}{\ensuremath{\mathbin{\mathsf{xor}}}}
+\newcommand{\rightshift}{\ensuremath{\mathbin{\mathsf{rshift}}}}
+\newcommand{\leftshift}[1]{\ensuremath{\mathbin{\mathsf{lshift}_{#1}}}}
+
+%% Notes and examples
+\newcommand{\noteintro}[1]{[\textit{#1}:\space}
+\newcommand{\noteoutro}[1]{\textit{\,---\,end #1}\kern.5pt]}
+\newenvironment{note}[1][Note]{\noteintro{#1}}{\noteoutro{note}\space}
+\newenvironment{example}[1][Example]{\noteintro{#1}}{\noteoutro{example}\space}
+
+%% Library function descriptions
+\newcommand{\Fundescx}[1]{\textit{#1}}
+\newcommand{\Fundesc}[1]{\Fundescx{#1:}\space}
+\newcommand{\required}{\Fundesc{Required behavior}}
+\newcommand{\requires}{\Fundesc{Requires}}
+\newcommand{\constraints}{\Fundesc{Constraints}}
+\newcommand{\mandates}{\Fundesc{Mandates}}
+\newcommand{\expects}{\Fundesc{Expects}}
+\newcommand{\effects}{\Fundesc{Effects}}
+\newcommand{\ensures}{\Fundesc{Ensures}}
+\newcommand{\returns}{\Fundesc{Returns}}
+\newcommand{\throws}{\Fundesc{Throws}}
+\newcommand{\default}{\Fundesc{Default behavior}}
+\newcommand{\complexity}{\Fundesc{Complexity}}
+\newcommand{\remarks}{\Fundesc{Remarks}}
+\newcommand{\errors}{\Fundesc{Error conditions}}
+\newcommand{\sync}{\Fundesc{Synchronization}}
+\newcommand{\implimits}{\Fundesc{Implementation limits}}
+\newcommand{\replaceable}{\Fundesc{Replaceable}}
+\newcommand{\returntype}{\Fundesc{Return type}}
+\newcommand{\cvalue}{\Fundesc{Value}}
+\newcommand{\ctype}{\Fundesc{Type}}
+\newcommand{\ctypes}{\Fundesc{Types}}
+\newcommand{\dtype}{\Fundesc{Default type}}
+\newcommand{\ctemplate}{\Fundesc{Class template}}
+\newcommand{\templalias}{\Fundesc{Alias template}}
+\newcommand{\param}{\Fundesc{Parameter}}
+\newcommand{\tparam}{\Fundesc{Template parameter}}
+
+%% Cross reference
+\newcommand{\addxref}[1]{%
+ \glossary[xrefindex]{#1}{(\ref{#1})}%
+}
+\newcommand{\xref}[1]{\textsc{See also: \nameref{#1}}\space}
+\newcommand{\xrefu}[2]{\textsc{See also: \href{#1}{#2}}\space}
+\newcommand{\xrefc}[1]{\xref{} ISO C #1}
+
+%% Inline parenthesized reference
+\newcommand{\iref}[1]{\nolinebreak[3] (\ref{#1})}
+
+%% Inline non-parenthesized table reference (override memoir's \tref)
+\renewcommand{\tref}[1]{\tablerefname \nolinebreak[3] \ref{tab:#1}}
+
+
+%% Code annotations
+\newcommand{\EXPO}[1]{\textit{#1}}
+\newcommand{\expos}{\EXPO{exposition only}}
+\newcommand{\impdef}{\EXPO{implementation-defined}}
+\newcommand{\impdefnc}{\EXPO{implementation-defined\nocorr}}
+\newcommand{\impdefx}[1]{\indeximpldef{#1}\EXPO{implementation-defined}}
+\newcommand{\notdef}{\EXPO{not defined}}
+
+\newcommand{\UNSP}[1]{\textit{\texttt{#1}}}
+\newcommand{\UNSPnc}[1]{\textit{\texttt{#1}\nocorr}}
+\newcommand{\unspec}{\UNSP{unspecified}}
+\newcommand{\unspecnc}{\UNSPnc{unspecified}}
+\newcommand{\unspecbool}{\UNSP{unspecified-bool-type}}
+\newcommand{\seebelow}{\UNSP{see below}}
+\newcommand{\seebelownc}{\UNSPnc{see below}}
+\newcommand{\seeref}[1]{\UNSP{see~\ref{#1}}}
+\newcommand{\seerefnc}[1]{\UNSPnc{see~\ref{#1}}}
+\newcommand{\seeurl}[2]{\UNSP{see~\href{#1}{#2}}}
+\newcommand{\unspecuniqtype}{\UNSP{unspecified unique type}}
+\newcommand{\unspecalloctype}{\UNSP{unspecified allocator type}}
+
+%% Manual insertion of italic corrections, for aligning in the presence
+%% of the above annotations.
+\newlength{\itcorrwidth}
+\newlength{\itletterwidth}
+\newcommand{\itcorr}[1][]{%
+ \settowidth{\itcorrwidth}{\textit{x\/}}%
+ \settowidth{\itletterwidth}{\textit{x\nocorr}}%
+ \addtolength{\itcorrwidth}{-1\itletterwidth}%
+ \makebox[#1\itcorrwidth]{}%
+}
+
+%% Double underscore
+\newcommand{\ungap}{\kern.5pt}
+\newcommand{\unun}{\textunderscore\ungap\textunderscore}
+\newcommand{\xname}[1]{\tcode{\unun\ungap#1}}
+\newcommand{\mname}[1]{\tcode{\unun\ungap#1\ungap\unun}}
+
+%% An elided code fragment, /* ... */, that is formatted as code.
+%% (By default, listings typeset comments as body text.)
+%% Produces 9 output characters.
+\newcommand{\commentellip}{\tcode{/* ...\ */}}
+
+%% Concepts
+\newcommand{\oldconcept}[1]{\textit{Cpp17#1}}
+\newcommand{\oldconceptdefn}[1]{\defn{Cpp17#1}}
+\newcommand{\idxoldconcept}[1]{Cpp17#1@\textit{Cpp17#1}}
+\newcommand{\libconcept}[1]{\tcode{#1}}
+
+%% Ranges
+\newcommand{\Range}[4]{\tcode{#1#3,\penalty2000{} #4#2}}
+\newcommand{\crange}[2]{\Range{[}{]}{#1}{#2}}
+\newcommand{\brange}[2]{\Range{(}{]}{#1}{#2}}
+\newcommand{\orange}[2]{\Range{(}{)}{#1}{#2}}
+\newcommand{\range}[2]{\Range{[}{)}{#1}{#2}}
+
+
+%% Miscellaneous
+\newcommand{\stage}[1]{\item[Stage #1:]}
+\newcommand{\doccite}[1]{\textit{#1}}
+\newcommand{\cvqual}[1]{\textit{#1}}
+\newcommand{\cv}{\ifmmode\mathit{cv}\else\cvqual{cv}\fi}
+\newcommand{\numconst}[1]{\textsl{#1}}
+\newcommand{\logop}[1]{{\footnotesize #1}}
+\newcommand{\Cpp}{\texorpdfstring{C\kern-0.05em\protect\raisebox{.35ex}{\textsmaller[2]{+\kern-0.05em+}}}{C++}}
+
+\makechapterstyle{cppstd}{%
+  \renewcommand{\beforechapskip}{\onelineskip}
+  \renewcommand{\afterchapskip}{\onelineskip}
+  \renewcommand{\chapternamenum}{}
+  \renewcommand{\chaptername}{}
+  \renewcommand{\chapnamefont}{\chaptitlefont}
+  \renewcommand{\chapnumfont}{\chaptitlefont}
+  \renewcommand{\printchapternum}{\chapnumfont\thechapter\quad}
+  \renewcommand{\afterchapternum}{}
+}
+
+\makepagestyle{cpppage}
+\makeevenhead{cpppage}{}{}{}
+\makeoddhead{cpppage}{}{}{}
+\makeevenfoot{cpppage}{\leftmark}{}{\thepage}
+\makeoddfoot{cpppage}{\leftmark}{}{\thepage}
+
+\newcounter{Paras}
+\counterwithin{Paras}{chapter}
+\counterwithin{Paras}{section}
+\counterwithin{Paras}{subsection}
+\counterwithin{Paras}{subsubsection}
+\counterwithin{Paras}{paragraph}
+\counterwithin{Paras}{subparagraph}
+
+\newcounter{Bullets1}[Paras]
+\newcounter{Bullets2}[Bullets1]
+\newcounter{Bullets3}[Bullets2]
+\newcounter{Bullets4}[Bullets3]
+
+\makeatletter
+\newcommand{\parabullnum}[2]{%
+\stepcounter{#1}%
+\noindent\makebox[0pt][l]{\makebox[#2][r]{%
+\scriptsize\raisebox{.7ex}%
+{%
+\ifnum \value{Paras}>0
+\ifnum \value{Bullets1}>0 (\fi%
+                          \arabic{Paras}%
+\ifnum \value{Bullets1}>0 .\arabic{Bullets1}%
+\ifnum \value{Bullets2}>0 .\arabic{Bullets2}%
+\ifnum \value{Bullets3}>0 .\arabic{Bullets3}%
+\fi\fi\fi%
+\ifnum \value{Bullets1}>0 )\fi%
+\fi%
+}%
+\hspace{\@totalleftmargin}\quad%
+}}}
+\makeatother
+
+\def\pnum{\parabullnum{Paras}{0pt}}
+
+%%--------------------------------------------------
+%% Environments for code listings.
+
+% We use the 'listings' package, with some small customizations.  The
+% most interesting customization: all TeX commands are available
+% within comments.  Comments are set in italics, keywords and strings
+% don't get special treatment.
+
+\def\Chap[#1]#2{\chapter[#2]{#2\hfill[#1]}\label{#1}\addxref{#1}}
+\def\Sec[#1]#2{\section[#2]{#2\hfill[#1]}\label{#1}\addxref{#1}}
+\def\SSec[#1]#2{\subsection[#2]{#2\hfill[#1]}\label{#1}\addxref{#1}}
+\def\SSSec[#1]#2{\subsubsection[#2]{#2\hfill[#1]}\label{#1}\addxref{#1}}
+\def\Par[#1]#2{\paragraph[#2]{#2\hfill[#1]}\label{#1}\addxref{#1}}
+\def\SPar[#1]#2{\subparagraph[#2]{#2\hfill[#1]}\label{#1}\addxref{#1}}
+
+\def\tewi{\texttt{tewi}}
+\newcommand{\tewiref}[1]{\hyperref[#1]{[#1] (\nameref{#1})}}
+\newcommand{\tewinref}[2]{\hyperref[#1]{#2 ([#1])}}
+\newcommand{\tewiaref}[1]{\hyperref[#1]{[#1]}}
+
+\newenvironment{tewicode}[1]
+    {\VerbatimEnvironment \label{#1} \begin{minted}{cpp}}
+    {\end{minted}}

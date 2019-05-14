@@ -55,7 +55,6 @@ set(PUBLIC_HEADERS
 
     # Input/Output
     ${IN_INCLUDE_DIR}/IO/BasicIO.h
-    ${IN_INCLUDE_DIR}/IO/InputManager.h
 
     # Input systems
     ${IN_INCLUDE_DIR}/Input/InputBuffer.hpp

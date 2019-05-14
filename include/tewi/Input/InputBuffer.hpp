@@ -7,15 +7,23 @@
 
 namespace tewi
 {
-
+    /// An [InputManager](<> "tewi::InputManager") which can hold more than one
+    /// event at a time.
+    ///
+    /// \module Input-Management
     class InputBuffer
     {
     public:
 
+        /// \exclude
         static void keyCallback(GLFWwindow* win, int key, int scancode, int action, int mods);
 
+        /// \exclude
         void preFrame();
 
+        /// Queries the stored events for the current frame.
+        ///
+        /// \returns A span referencing the events.
         gsl::span<tewi::WindowEvent> queryEvents();
 
     private:

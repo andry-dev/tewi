@@ -1,0 +1,155 @@
+\Chap[window.syn]{Windowing}
+
+Synopsis of header \texttt{<tewi/Video/Window.hpp>}:
+
+\begin{tewicode}{window.syn.code}
+namespace tewi
+{
+    template <typename APITag>
+    class Window
+    {
+    public:
+        Window(asl::string_view windowName, tewi::Width width, tewi::Height height);
+
+        ~Window();
+
+        Window(const Window& rhs) = delete;
+        Window& operator=(const Window& rhs) = delete;
+
+        Window(Window&& rhs);
+        Window& operator=(Window&& rhs) = default;
+
+        GLFWwindow* ptr() noexcept;
+
+        bool isClosed() noexcept;
+
+        void forceClose() noexcept;
+
+        template <typename InputManagerType>
+        void pollEvents(InputManagerType& inputManager) noexcept;
+
+        void clear() noexcept;
+
+        void swapBuffers() noexcept;
+
+        tewi::Width getWidth() const noexcept;
+
+        tewi::Height getHeight() const noexcept;
+
+        template <typename InputManagerType>
+        void bindTo(InputManagerType& inputManager);
+    };
+}
+\end{tewicode}
+
+\Sec[window]{Class template \texttt{tewi::Window}}
+\SSec[window.overview]{Overview}
+
+The header \texttt{<tewi/Video/Window.hpp>} defines a class template for
+managing basic windowing facilities. The class supports template API Tag
+specialization.
+
+\begin{tewicode}{window.overview.def}
+template <typename APITag>
+class Window;
+\end{tewicode}
+
+\begin{itemdescr}
+\pnum
+\tparam
+\texttt{APITag} is any \tewinref{api.tags.def}{API Tag}.
+\end{itemdescr}
+
+
+\SSec[window.cons]{Constructor}
+
+\begin{tewicode}{window.cons.def}
+Window(asl::string_view windowName, tewi::Width width, tewi::Height height);
+\end{tewicode}
+\begin{itemdescr}
+\pnum
+\effects
+Constructs a Window with the specified \texttt{windowName}, \texttt{width} and \texttt{height}.
+\end{itemdescr}
+
+\SSec[window.members]{Member functions}
+
+\begin{tewicode}{window.mem.ptr}
+GLFWwindow* ptr() noexcept;
+\end{tewicode}
+\begin{itemdescr}
+\pnum
+\returns
+The internal \texttt{GLFWwindow} pointer.
+
+\pnum
+\requires
+You shall not delete the pointer or call other cleanup functions, else it's UB.
+This function is provided just so you can call GLFW functions not yet implemented in \tewi.
+
+\xrefu{https://www.glfw.org/docs/latest/window_guide.html\#window_object}{\texttt{GLFWwindow}}
+\end{itemdescr}
+
+\begin{tewicode}{window.mem.isclosed}
+bool isClosed() noexcept;
+\end{tewicode}
+\begin{itemdescr}
+\pnum
+\returns
+\texttt{true} if the Window is currently closed, \texttt{false} otherwise.
+\end{itemdescr}
+
+\begin{tewicode}{window.mem.forceclose}
+void forceClose() noexcept;
+\end{tewicode}
+\begin{itemdescr}
+\pnum
+\effects Force closes a Window.
+\end{itemdescr}
+
+\begin{tewicode}{window.mem.pollevents}
+template <typename InputManagerType>
+void pollEvents(InputManagerType& inputManager) noexcept;
+\end{tewicode}
+\begin{itemdescr}
+\pnum
+\effects
+Polls any event and forwards them to the \textit{inputManager}.
+
+\pnum
+\requires
+\texttt{InputManagerType} shall model an \nameref{concepts.inputmanager}.
+\end{itemdescr}
+
+\begin{tewicode}{window.mem.clear}
+void clear() noexcept;
+\end{tewicode}
+\begin{itemdescr}
+\pnum
+\effects
+Clears the screen for a new frame.
+
+\pnum
+\remarks
+This function shall be called before any rendering happens, otherwise you'll
+just see a blank screen.
+\end{itemdescr}
+
+\begin{tewicode}{window.mem.swapbuffers}
+void swapBuffers() noexcept;
+\end{tewicode}
+\begin{itemdescr}
+\pnum
+\effects
+Swaps internal window buffers.
+
+\pnum
+\remarks
+This function shall be called at the end of a frame, after rendering anything.
+\end{itemdescr}
+
+
+
+
+
+\Chap[windowevents.syn]{Window events}

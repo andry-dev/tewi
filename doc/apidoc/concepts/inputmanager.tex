@@ -1,0 +1,30 @@
+\Chap[concepts.inputmanager]{\texttt{InputManager}}
+
+\pnum
+An \texttt{InputManager} is a concept dedicated to receiving events from a \tewinref{window}{\texttt{Window}}.
+
+\pnum
+\remarks Any function used to retrieve events from an \texttt{InputManager} is
+implementation-defined.
+
+\Sec[concepts.inputmanager.fun]{Member functions}
+
+\begin{tewicode}{concepts.inputmanager.keycb}
+static void keyCallback(GLFWwindow* win, int key, int scancode, int action, int mods);
+\end{tewicode}
+
+\pnum
+The function to be called by GLFW when key inputs are received.
+
+\xrefu{https://www.glfw.org/docs/latest/group\_\_input.html\#ga0192a232a41e4e82948217c8ba94fdfd}{GLFW's docs}
+
+\pnum
+\remarks You can query a pointer to your object by using \href{https://www.glfw.org/docs/latest/group__window.html\#ga17807ce0f45ac3f8bb50d6dcc59a4e06}{\texttt{glfwGetWindowUserPointer}}.
+
+\begin{tewicode}{concepts.inputmanager.preframe}
+void preFrame();
+\end{tewicode}
+
+\pnum
+Function called before a new frame starts, can be empty.
+

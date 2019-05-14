@@ -1,0 +1,55 @@
+\Chap[api.ref]{API specification}
+
+\Sec[api.syn]{Synopsis of \texttt{<tewi/Video/API/API.h>}}
+
+\begin{tewicode}{api.syn.code}
+namespace tewi
+{
+    struct NoBase;
+
+    namespace API
+    {
+        struct OpenGLTag;
+
+        struct VulkanTag;
+
+        struct NullRendererTag;
+    }
+}
+
+\end{tewicode}
+
+\Chap[api.tags.def]{API Tags}
+
+An \textit{API Tag} is any type (included in \tewi{} or user-provided) which
+is used to specialize any class and function in \tewiref{video} for a specific
+graphics API or setting.
+User-defined API Tags can be used instead of an already-defined one in any code.
+
+\Sec[api.tags.gl]{\texttt{tewi::API::OpenGLTag}}
+
+\begin{tewicode}{api.tags.gl.def}
+struct OpenGLTag;
+\end{tewicode}
+
+Defined in header \texttt{<tewi/Video/API/API.h>}, provides a generic OpenGL 4+
+API Tag. All of \tewi{} implements every function and class with this
+specialization.
+
+\Sec[api.tags.vk]{\texttt{tewi::API::VulkanTag}}
+
+\begin{tewicode}{api.tags.vk.def}
+struct VulkanTag;
+\end{tewicode}
+
+Defined in header \texttt{<tewi/Video/API/API.h>}, provides a generic Vulkan API
+Tag. Support is incomplete.
+
+\Sec[api.tags.null]{\texttt{tewi::API::NullRendererTag}}
+
+\begin{tewicode}{api.tags.null.def}
+struct NullRendererTag;
+\end{tewicode}
+
+Defined in header \texttt{<tewi/Video/API/API.h>}, provides an API Tag for
+headless operations without a GUI (ie: server code).
