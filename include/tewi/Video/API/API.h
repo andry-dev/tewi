@@ -4,7 +4,9 @@
 
 namespace tewi
 {
-    struct NoBase {};
+    struct NoBase
+    {
+    };
 
     namespace API
     {

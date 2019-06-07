@@ -5,9 +5,9 @@
 #include "Platform/Vulkan/Common.h"
 
 #include <array>
-#include <vector>
 #include <cstdint>
 #include <cstring>
+#include <vector>
 
 namespace tewi
 {
@@ -15,16 +15,15 @@ namespace tewi
     {
         namespace Vulkan
         {
-            const std::array<const char*, 1> g_validationLayerList =
-            {
+            const std::array<const char*, 1> g_validationLayerList = {
                 "VK_LAYER_LUNARG_standard_validation"
             };
 
-            #ifdef NDEBUG
-                constexpr bool g_validationLayersEnabled = false;
-            #else
-                constexpr bool g_validationLayersEnabled = true;
-            #endif
+#ifdef NDEBUG
+            constexpr bool g_validationLayersEnabled = false;
+#else
+            constexpr bool g_validationLayersEnabled = true;
+#endif
 
             inline bool checkValidationLayersAvaibility()
             {
@@ -32,7 +31,8 @@ namespace tewi
                 vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
 
                 std::vector<VkLayerProperties> avaibleLayers(layerCount);
-                vkEnumerateInstanceLayerProperties(&layerCount, avaibleLayers.data());
+                vkEnumerateInstanceLayerProperties(&layerCount,
+                                                   avaibleLayers.data());
 
                 for (const auto& layer : g_validationLayerList)
                 {
@@ -53,8 +53,8 @@ namespace tewi
 
                 return true;
             }
-        }
-    }
-}
+        } // namespace Vulkan
+    }     // namespace Platform
+} // namespace tewi
 
 #endif /* TEWI_ENABLE_VULKAN */

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <vector>
-#include <string>
 #include <fstream>
+#include <string>
+#include <vector>
 
 #include "tewi/Utils/Log.h"
 
@@ -39,7 +39,8 @@ namespace tewi
         using Path = std::pair<bool, std::string>;
 
         template <typename Container>
-        inline TEWI_EXPORT Path findCorrectFile(const std::string& path, const Container& acceptedExtensions)
+        inline TEWI_EXPORT Path findCorrectFile(
+            const std::string& path, const Container& acceptedExtensions)
         {
             // TODO: This is too slow 07-01-2017
             // Even if we optimized for the best case (path is generic, so
@@ -65,7 +66,7 @@ namespace tewi
                         return { true, pathWithNewExt };
                     }
                 }
-                
+
                 // If it fails we just try to append the extension
                 for (const auto& ext : acceptedExtensions)
                 {
@@ -88,7 +89,9 @@ namespace tewi
         }
 
         template <typename Container1, typename Container2>
-        inline TEWI_EXPORT Path findCorrectFile(const std::string& path, const Container1& acceptedExtensions, const Container2& regexHelpers)
+        inline TEWI_EXPORT Path findCorrectFile(
+            const std::string& path, const Container1& acceptedExtensions,
+            const Container2& regexHelpers)
         {
             auto res = findCorrectFile(path, acceptedExtensions);
 

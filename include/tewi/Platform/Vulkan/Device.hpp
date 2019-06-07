@@ -4,12 +4,12 @@
 
 #include "Platform/Vulkan/Common.h"
 
-#include "Platform/Vulkan/Instance.hpp"
 #include "Log.h"
+#include "Platform/Vulkan/Instance.hpp"
 
 namespace tewi
 {
     namespace API
     {
     }
-}
+} // namespace tewi

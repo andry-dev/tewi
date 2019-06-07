@@ -8,5 +8,5 @@ namespace tewi
         {
 
         }
-    }
-}
+    } // namespace Platform
+} // namespace tewi

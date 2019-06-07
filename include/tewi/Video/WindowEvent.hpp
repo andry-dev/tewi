@@ -42,7 +42,6 @@ namespace tewi
             Key9 = GLFW_KEY_9,
             Key0 = GLFW_KEY_0,
 
-
             KeyQ = GLFW_KEY_Q,
             KeyW = GLFW_KEY_W,
             KeyR = GLFW_KEY_R,
@@ -139,11 +138,10 @@ namespace tewi
             , action(Action::None)
             , mod(Modifier::None)
         {
-
         }
 
         Type type;
         Action action;
         Modifier mod;
     };
-}
+} // namespace tewi

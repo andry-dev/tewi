@@ -3,10 +3,10 @@
 #include <array>
 #include <string>
 
-#include "tewi/Common.h"
 #include "asl/types"
-#include "gsl/string_span"
 #include "gsl/span"
+#include "gsl/string_span"
+#include "tewi/Common.h"
 
 #include "tewi/IO/BasicIO.h"
 
@@ -35,10 +35,14 @@ namespace tewi
     {
         enum class Types : asl::i8
         {
-            Float32, Float64,
-            UInt8, Int8,
-            UInt16, Int16,
-            UInt32, Int32
+            Float32,
+            Float64,
+            UInt8,
+            Int8,
+            UInt16,
+            Int16,
+            UInt32,
+            Int32
         };
 
         asl::i8 index;
@@ -52,7 +56,7 @@ namespace tewi
     template <typename APITag>
     class ShaderProgram
     {
-    public:
+      public:
         using interface_only = void;
 
         ShaderProgram(gsl::span<const ShaderDescription> descriptions,
@@ -69,12 +73,11 @@ namespace tewi
     template <typename APITag>
     auto translateVertexLayoutType(APITag tag, VertexLayout::Types type);
 
-
     /** \example shader_creation.cpp
      *
      * Shows how to create a shader program.
      */
-}
+} // namespace tewi
 
 //#include "tewi/Platform/Vulkan/Shader.hpp"
 //#include "tewi/Platform/NullRenderer/Shader.hpp"

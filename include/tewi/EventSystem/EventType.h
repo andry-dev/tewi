@@ -12,7 +12,7 @@ namespace tewi
             Mouse_moved,
             Mouse_button_pressed,
             Mouse_wheel_moved,
-            
+
             Key_pressed,
 
             Object_collided,
@@ -20,6 +20,6 @@ namespace tewi
             Last_event
         };
     }
-}
+} // namespace tewi
 
 #endif /* EVENT_SYSTEM_EVENT_TYPE_H */

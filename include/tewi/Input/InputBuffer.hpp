@@ -13,10 +13,10 @@ namespace tewi
     /// \module Input-Management
     class InputBuffer
     {
-    public:
-
+      public:
         /// \exclude
-        static void keyCallback(GLFWwindow* win, int key, int scancode, int action, int mods);
+        static void keyCallback(GLFWwindow* win, int key, int scancode,
+                                int action, int mods);
 
         /// \exclude
         void preFrame();
@@ -26,9 +26,8 @@ namespace tewi
         /// \returns A span referencing the events.
         gsl::span<tewi::WindowEvent> queryEvents();
 
-    private:
-
+      private:
         asl::static_ring<tewi::WindowEvent, 32> m_queue;
     };
 
-}
+} // namespace tewi

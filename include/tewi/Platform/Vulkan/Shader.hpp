@@ -7,7 +7,6 @@
 
 #include "IO/BasicIO.h"
 
-
 #include <vulkan/vulkan.h>
 
 namespace tewi

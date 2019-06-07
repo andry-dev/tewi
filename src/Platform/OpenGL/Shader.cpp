@@ -2,13 +2,14 @@
 
 #include "tewi/Common.h"
 
-#include "tewi/Video/Shader.hpp"
-#include "tewi/Video/API/API.h"
 #include "tewi/Utils/Log.h"
+#include "tewi/Video/API/API.h"
+#include "tewi/Video/Shader.hpp"
 
 namespace tewi
 {
-    inline TEWI_EXPORT void compileGLSL(asl::string_view shadertext, asl::u32 id)
+    inline TEWI_EXPORT void compileGLSL(asl::string_view shadertext,
+                                        asl::u32 id)
     {
         auto str_ptr = shadertext.data();
 
@@ -32,8 +33,8 @@ namespace tewi
     }
 
     ShaderProgram<API::OpenGLTag>::ShaderProgram(
-            gsl::span<const ShaderDescription> shaderDescriptions,
-            gsl::span<const asl::string_view> attributes)
+        gsl::span<const ShaderDescription> shaderDescriptions,
+        gsl::span<const asl::string_view> attributes)
         : m_id(glCreateProgram())
         , m_attributeNum(attributes.size())
     {
@@ -108,7 +109,8 @@ namespace tewi
         }
 
         TEWI_ENSURES(m_id != 0, "Shader Program ID reset! THIS IS A BUG");
-        TEWI_ENSURES(m_attributeNum == attributes.size(), "Something Something");
+        TEWI_ENSURES(m_attributeNum == attributes.size(),
+                     "Something Something");
     }
 
     ShaderProgram<API::OpenGLTag>::~ShaderProgram()
@@ -134,12 +136,14 @@ namespace tewi
         glUseProgram(0);
     }
 
-    asl::i32 ShaderProgram<API::OpenGLTag>::getUniformLocation(asl::string_view str)
+    asl::i32
+    ShaderProgram<API::OpenGLTag>::getUniformLocation(asl::string_view str)
     {
         return glGetUniformLocation(m_id, str.data());
     }
 
-    void ShaderProgram<API::OpenGLTag>::setUniform(asl::i32 uniform, const glm::mat4& mat)
+    void ShaderProgram<API::OpenGLTag>::setUniform(asl::i32 uniform,
+                                                   const glm::mat4& mat)
     {
         glUniformMatrix4fv(uniform, 1, GL_FALSE, &mat[0][0]);
     }
@@ -148,14 +152,22 @@ namespace tewi
     {
         switch (type)
         {
-        case VertexLayout::Types::Float32: return GL_FLOAT;
-        case VertexLayout::Types::Float64: return GL_DOUBLE;
-        case VertexLayout::Types::UInt8: return GL_UNSIGNED_BYTE;
-        case VertexLayout::Types::Int8: return GL_BYTE;
-        case VertexLayout::Types::UInt16: return GL_UNSIGNED_SHORT;
-        case VertexLayout::Types::Int16: return GL_SHORT;
-        case VertexLayout::Types::UInt32: return GL_UNSIGNED_INT;
-        case VertexLayout::Types::Int32: return GL_INT;
+        case VertexLayout::Types::Float32:
+            return GL_FLOAT;
+        case VertexLayout::Types::Float64:
+            return GL_DOUBLE;
+        case VertexLayout::Types::UInt8:
+            return GL_UNSIGNED_BYTE;
+        case VertexLayout::Types::Int8:
+            return GL_BYTE;
+        case VertexLayout::Types::UInt16:
+            return GL_UNSIGNED_SHORT;
+        case VertexLayout::Types::Int16:
+            return GL_SHORT;
+        case VertexLayout::Types::UInt32:
+            return GL_UNSIGNED_INT;
+        case VertexLayout::Types::Int32:
+            return GL_INT;
         };
 
         return -1;

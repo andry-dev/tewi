@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <tewi/Platform/OpenGL/Glew.h>
 
 #include "GLFW/glfw3.h"
@@ -14,14 +13,16 @@
 namespace tewi
 {
 
-    inline static TEWI_EXPORT void windowResizeCallback(GLFWwindow*, int width, int height)
+    inline static TEWI_EXPORT void windowResizeCallback(GLFWwindow*, int width,
+                                                        int height)
     {
         glViewport(0, 0, width, height);
     }
 
-    inline static TEWI_EXPORT void glfwErrorCallback(int error, const char* description)
+    inline static TEWI_EXPORT void glfwErrorCallback(int error,
+                                                     const char* description)
     {
         Log::error(std::to_string(error) + " " + description);
     }
 
-}
+} // namespace tewi

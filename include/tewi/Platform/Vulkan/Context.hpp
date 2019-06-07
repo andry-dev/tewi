@@ -10,6 +10,6 @@ namespace tewi
     namespace API
     {
     }
-}
+} // namespace tewi
 
 #endif /* TEWI_VULKAN_CONTEXT_H */

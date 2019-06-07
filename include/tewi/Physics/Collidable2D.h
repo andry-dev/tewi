@@ -22,12 +22,18 @@ namespace tewi
             float radius;
         };
 
-        extern TEWI_EXPORT bool checkAABB(const Collidable2D& first, const Collidable2D& second);
+        extern TEWI_EXPORT bool checkAABB(const Collidable2D& first,
+                                          const Collidable2D& second);
 
-        extern TEWI_EXPORT bool checkAABB(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup);
+        extern TEWI_EXPORT bool
+        checkAABB(const std::vector<Collidable2D>& firstGroup,
+                  const std::vector<Collidable2D>& secondGroup);
 
-        extern TEWI_EXPORT bool checkRadius(const Collidable2D& first, const Collidable2D& second);
+        extern TEWI_EXPORT bool checkRadius(const Collidable2D& first,
+                                            const Collidable2D& second);
 
-        extern TEWI_EXPORT bool checkRadius(const std::vector<Collidable2D>& firstGroup, const std::vector<Collidable2D>& secondGroup);
-    }
-}
+        extern TEWI_EXPORT bool
+        checkRadius(const std::vector<Collidable2D>& firstGroup,
+                    const std::vector<Collidable2D>& secondGroup);
+    } // namespace Physics
+} // namespace tewi

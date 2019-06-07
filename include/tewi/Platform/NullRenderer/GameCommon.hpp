@@ -1,7 +1,7 @@
 #pragma once
 
-#include "tewi/Video/API/API.h"
 #include "tewi/Common.h"
+#include "tewi/Video/API/API.h"
 
 #include "tewi/GameCommon.hpp"
 
@@ -10,11 +10,11 @@ namespace tewi
     template <class Derived>
     class TEWI_EXPORT GameCommon<Derived, API::NullRendererTag>
     {
-    public:
+      public:
         GameCommon(const std::string& windowName, int width, int height)
             : m_swapchain(m_instance, *m_window)
             , m_window(std::make_unique<Window<API::NullRendererTag>>(
-                        windowName, width, height, this))
+                  windowName, width, height, this))
         {
         }
 
@@ -22,8 +22,8 @@ namespace tewi
         {
             run();
         }
-    protected:
 
+      protected:
         void init()
         {
             impl().init();
@@ -44,14 +44,32 @@ namespace tewi
             impl().draw();
         }
 
-        auto& getTimer() { return m_tickTimer; }
-        auto& getWindow() { return *m_window.get(); }
-        auto& getInputManager() { return m_inputManager; }
-        auto& getAPIInstance() { return m_instance; }
-        auto& getSwapchain() { return m_swapchain; }
-        auto& getDevice() { return m_device; }
+        auto& getTimer()
+        {
+            return m_tickTimer;
+        }
+        auto& getWindow()
+        {
+            return *m_window.get();
+        }
+        auto& getInputManager()
+        {
+            return m_inputManager;
+        }
+        auto& getAPIInstance()
+        {
+            return m_instance;
+        }
+        auto& getSwapchain()
+        {
+            return m_swapchain;
+        }
+        auto& getDevice()
+        {
+            return m_device;
+        }
 
-    private:
+      private:
         inline Derived& impl()
         {
             return *static_cast<Derived*>(this);
@@ -79,7 +97,6 @@ namespace tewi
         API::Device<API::NullRendererTag> m_device;
         std::unique_ptr<Window<API::NullRendererTag>> m_window;
         bool m_isWindowClosed = false;
-
     };
 
-}
+} // namespace tewi

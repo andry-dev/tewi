@@ -1,6 +1,5 @@
 #include "tewi/Video/API/Context.hpp"
 
-
 namespace tewi
 {
     namespace API
@@ -8,7 +7,7 @@ namespace tewi
         template <>
         class TEWI_EXPORT Context<API::NullRendererTag> final
         {
-        public:
+          public:
             Context() {}
             void setup() {}
             void postInit(GLFWwindow*) {}
@@ -20,5 +19,5 @@ namespace tewi
                 return "Null Renderer";
             }
         };
-    }
-}
+    } // namespace API
+} // namespace tewi

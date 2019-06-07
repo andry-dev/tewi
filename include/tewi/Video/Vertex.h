@@ -14,7 +14,10 @@ namespace tewi
     struct TEWI_EXPORT Color
     {
         Color(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a)
-            : r(r), g(g), b(b), a(a)
+            : r(r)
+            , g(g)
+            , b(b)
+            , a(a)
         {
         }
 
@@ -51,7 +54,8 @@ namespace tewi
             position.y = y;
         }
 
-        void setColors(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a)
+        void setColors(std::uint8_t r, std::uint8_t g, std::uint8_t b,
+                       std::uint8_t a)
         {
             color.r = r;
             color.g = g;
@@ -74,10 +78,12 @@ namespace tewi
         float textureID;
     };
 
-    static_assert(sizeof(Vertex) <= 24, "Don't add other useless stuff that this may kill the cache");
+    static_assert(sizeof(Vertex) <= 24,
+                  "Don't add other useless stuff that this may kill the cache");
 #endif
 
-    constexpr TEWI_EXPORT std::uint32_t setColors(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a)
+    constexpr TEWI_EXPORT std::uint32_t
+    setColors(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a)
     {
         return r << 24 | g << 16 | b << 8 | a;
     }
@@ -86,19 +92,21 @@ namespace tewi
     template <typename T>
     constexpr TEWI_EXPORT std::uint32_t setColors(T, T, T, T) = delete;
 
-    constexpr TEWI_EXPORT std::array<std::uint8_t, 4> getColors(std::uint32_t color)
+    constexpr TEWI_EXPORT std::array<std::uint8_t, 4>
+    getColors(std::uint32_t color)
     {
         // This may not seem obvious at first
-        // Basically, it bit-manipulates the 'hard-coded' colors into an array of single channels
-        return {{
-            static_cast<std::uint8_t> ((color >> 24) & 0xFF), // R
-            static_cast<std::uint8_t> ((color >> 16) & 0xFF), // G
-            static_cast<std::uint8_t> ((color >> 8) & 0xFF), // B
-            static_cast<std::uint8_t> (color & 0xFF) // A
-        }};
+        // Basically, it bit-manipulates the 'hard-coded' colors into an array
+        // of single channels
+        return { {
+            static_cast<std::uint8_t>((color >> 24) & 0xFF), // R
+            static_cast<std::uint8_t>((color >> 16) & 0xFF), // G
+            static_cast<std::uint8_t>((color >> 8) & 0xFF),  // B
+            static_cast<std::uint8_t>(color & 0xFF)          // A
+        } };
     }
 
     // Same as above
     template <typename T>
     constexpr TEWI_EXPORT std::array<std::uint8_t, 4> getColors(T) = delete;
-}
+} // namespace tewi

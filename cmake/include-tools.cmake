@@ -1,6 +1,6 @@
 find_program(CLANG_TIDY_EXE NAMES "clang-tidy" DOC "Path to clang-tidy executable")
 if(CLANG_TIDY_EXE)
-	message(STATUS "[tewi] clang-tidy found: ${CLANG_TIDY_EXE}")
+    message(STATUS "[tewi] clang-tidy found: ${CLANG_TIDY_EXE}")
 
     file(GLOB_RECURSE
         ALL_SOURCES
@@ -9,7 +9,7 @@ if(CLANG_TIDY_EXE)
         ${PROJECT_SOURCE_DIR}/include/*.hxx
         ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
-	add_custom_target(clang-tidy
+    add_custom_target(clang-tidy
         COMMAND ${CLANG_TIDY_EXE} ${ALL_SOURCES}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMENT "[tewi] Checking code with clang-tidy" VERBATIM)
@@ -26,16 +26,20 @@ if (CLANG_FORMAT_EXE)
 
     file(GLOB_RECURSE
         ALL_SOURCES
-        ${PROJECT_SOURCE_DIR}/include/*.h
-        ${PROJECT_SOURCE_DIR}/include/*.hpp
-        ${PROJECT_SOURCE_DIR}/include/*.hxx
-        ${PROJECT_SOURCE_DIR}/src/*.cpp)
+        ${PROJECT_SOURCE_DIR}/include/*
+        ${PROJECT_SOURCE_DIR}/src/*)
 
     add_custom_target(clang-format
         COMMAND
         ${CLANG_FORMAT_EXE} -i -style=file ${ALL_SOURCES}
-        WORKING_DIRECTORY ${CMAKE_PROJECT_DIR}
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         COMMENT "[tewi] Formatting code with clang-format" VERBATIM)
+
+    add_custom_command(TARGET tewi PRE_BUILD
+        COMMAND
+        ${CLANG_FORMAT_EXE} -i -style=file ${ALL_SOURCES}
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+        COMMENT "[tewi] (PRE_BUILD) Formatting code with clang-format" VERBATIM)
 endif()
 
 find_program(COMPDB_EXE NAMES "compdb" DOC "Path to compdb executable")

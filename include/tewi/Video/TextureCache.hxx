@@ -2,8 +2,8 @@
 
 #include "tewi/Video/TextureCache.h"
 
-#include <vector>
 #include <cstdlib>
+#include <vector>
 
 #include "stb_image.h"
 
@@ -19,8 +19,9 @@ namespace tewi
     namespace API
     {
         template <typename APIType>
-        void genAPITexture(Texture<APIType>& tex, asl::u8* imagePtr, asl::num width, asl::num height);
-        #if 0
+        void genAPITexture(Texture<APIType>& tex, asl::u8* imagePtr,
+                           asl::num width, asl::num height);
+#if 0
         {
             static_assert(asl::disable_type_v<APIType>, "\n"
                     "You need to override this function to load textures. The correct and only way to do so is to specialize it with the following signature: \n"
@@ -33,7 +34,7 @@ namespace tewi
                     "Yes, this sucks.");
 
         }
-        #endif
+#endif
     } // namespace API
 
     template <typename APIType>
@@ -62,11 +63,11 @@ namespace tewi
         asl::num height = 0;
         asl::num chan = 0;
 
-        asl::u8* imagePtr = stbi_load(path.c_str(), &width, &height,
-                                         &chan, STBI_rgb_alpha);
+        asl::u8* imagePtr =
+            stbi_load(path.c_str(), &width, &height, &chan, STBI_rgb_alpha);
 
-
-        TEWI_ENSURES(imagePtr != nullptr, "[TextureCache<T>::load] Can't decode PNG " + path);
+        TEWI_ENSURES(imagePtr != nullptr,
+                     "[TextureCache<T>::load] Can't decode PNG " + path);
 
         tex.size = glm::vec2(width, height);
 

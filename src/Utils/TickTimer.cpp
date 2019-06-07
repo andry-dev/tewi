@@ -15,7 +15,7 @@ namespace tewi
             reset = true;
             m_clock.restartTimer();
         }
-        
+
         ++m_ticks;
 
         return reset;

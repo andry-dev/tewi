@@ -1,7 +1,7 @@
 #include "tewi/Video/API/Swapchain.hpp"
 #include "tewi/Video/API/API.h"
-#include "tewi/Video/Window.hpp"
 #include "tewi/Video/API/Instance.hpp"
+#include "tewi/Video/Window.hpp"
 
 namespace tewi
 {
@@ -10,9 +10,10 @@ namespace tewi
         template <>
         class TEWI_EXPORT Swapchain<NullRendererTag>
         {
-        private:
+          private:
             using api = NullRendererTag;
-        public:
+
+          public:
             Swapchain(Instance<NullRendererTag>&, Window<NullRendererTag>&) {}
         };
     } // namespace API

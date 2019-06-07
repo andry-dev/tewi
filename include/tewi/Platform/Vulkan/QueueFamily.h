@@ -20,29 +20,34 @@ namespace tewi
                 }
             };
 
-
-            inline QueueFamilyIndices findQueueFamilies(VkPhysicalDevice dev, VkSurfaceKHR surface)
+            inline QueueFamilyIndices findQueueFamilies(VkPhysicalDevice dev,
+                                                        VkSurfaceKHR surface)
             {
                 QueueFamilyIndices indices;
 
                 std::uint32_t queueFamilyCount = 0;
-                vkGetPhysicalDeviceQueueFamilyProperties(dev, &queueFamilyCount, 0);
+                vkGetPhysicalDeviceQueueFamilyProperties(dev, &queueFamilyCount,
+                                                         0);
 
-                std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
-                vkGetPhysicalDeviceQueueFamilyProperties(dev, &queueFamilyCount, queueFamilies.data());
+                std::vector<VkQueueFamilyProperties> queueFamilies(
+                    queueFamilyCount);
+                vkGetPhysicalDeviceQueueFamilyProperties(dev, &queueFamilyCount,
+                                                         queueFamilies.data());
 
                 {
                     int index = 0;
                     for (const auto& queueFamily : queueFamilies)
                     {
 
-                        if ((queueFamily.queueCount > 0) && (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT))
+                        if ((queueFamily.queueCount > 0) &&
+                            (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT))
                         {
                             indices.graphicsFamily = index;
                         }
 
                         VkBool32 presentationSupport = false;
-                        vkGetPhysicalDeviceSurfaceSupportKHR(dev, index, surface, &presentationSupport);
+                        vkGetPhysicalDeviceSurfaceSupportKHR(
+                            dev, index, surface, &presentationSupport);
 
                         if ((queueFamily.queueCount > 0) && presentationSupport)
                         {
@@ -60,9 +65,9 @@ namespace tewi
 
                 return indices;
             }
-        }
-    }
+        } // namespace Vulkan
+    }     // namespace Platform
 
-}
+} // namespace tewi
 
 #endif /* TEWI_ENABLE_VULKAN */

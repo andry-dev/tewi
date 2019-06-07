@@ -7,13 +7,13 @@
 namespace tewi
 {
     /** \brief Simple timer class.
-     *  
+     *
      * There isn't much to say.
      *
      */
     class TEWI_EXPORT Clock
     {
-    public:
+      public:
         Clock() = default;
         ~Clock() = default;
 
@@ -31,8 +31,12 @@ namespace tewi
         /* Gets the current time.
          *
          */
-        inline double getCurrTime() const { return glfwGetTime() - m_startTime; }
-    private:
+        inline double getCurrTime() const
+        {
+            return glfwGetTime() - m_startTime;
+        }
+
+      private:
         double m_startTime = glfwGetTime();
     };
 } // namespace tewi

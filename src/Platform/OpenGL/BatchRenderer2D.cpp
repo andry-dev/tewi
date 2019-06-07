@@ -1,14 +1,14 @@
 #include "tewi/Platform/OpenGL/BatchRenderer2D.hpp"
 
+#include <algorithm>
 #include <array>
 #include <cstddef>
-#include <algorithm>
 
 #include <glm/glm.hpp>
 
 #include "tewi/Common.h"
-#include "tewi/Video/Renderable2D.hpp"
 #include "tewi/Utils/Log.h"
+#include "tewi/Video/Renderable2D.hpp"
 
 #include "asl/types"
 
@@ -31,7 +31,8 @@ namespace tewi
     {
         glUniform1iv(1, g_texIndices.size(), g_texIndices.data());
         glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-        m_buffer = reinterpret_cast<Vertex*>(glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
+        m_buffer = reinterpret_cast<Vertex*>(
+            glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
     }
 
     void BatchRenderer2D<tewi::API::OpenGLTag>::end()
@@ -59,10 +60,11 @@ namespace tewi
         m_indexCount = 0;
     }
 
-    ShaderProgram<API::OpenGLTag> BatchRenderer2D<tewi::API::OpenGLTag>::createShaderProgram()
+    ShaderProgram<API::OpenGLTag>
+    BatchRenderer2D<tewi::API::OpenGLTag>::createShaderProgram()
     {
         constexpr asl::string_view vertstr =
-        R"(
+            R"(
         #version 410 core
         #extension GL_ARB_explicit_uniform_location : enable
 
@@ -91,7 +93,7 @@ namespace tewi
         })";
 
         constexpr asl::string_view fragstr =
-        R"(
+            R"(
         #version 410 core
         #extension GL_ARB_explicit_uniform_location : enable
 
@@ -110,23 +112,18 @@ namespace tewi
             color = fragmentColor * textureColor;
         })";
 
-        constexpr std::array<ShaderDescription, 2> shaders
-        {
-            ShaderDescription{ vertstr, ShaderType::Vertex },
-            ShaderDescription{ fragstr, ShaderType::Fragment },
+        constexpr std::array<ShaderDescription, 2> shaders {
+            ShaderDescription { vertstr, ShaderType::Vertex },
+            ShaderDescription { fragstr, ShaderType::Fragment },
         };
 
-        constexpr std::array<asl::string_view, 4> attribs
-        {
-            "vertexPosition",
-            "vertexUV",
-            "vertexTID",
-            "vertexColor"
+        constexpr std::array<asl::string_view, 4> attribs {
+            "vertexPosition", "vertexUV", "vertexTID", "vertexColor"
         };
 
-        return ShaderProgram<API::OpenGLTag>({ shaders.data(), shaders.size() },
-                                             { attribs.data(), attribs.size() });
-
+        return ShaderProgram<API::OpenGLTag>(
+            { shaders.data(), shaders.size() },
+            { attribs.data(), attribs.size() });
     }
 
     void BatchRenderer2D<tewi::API::OpenGLTag>::initBuffers()
@@ -147,16 +144,21 @@ namespace tewi
         glEnableVertexAttribArray(3);
 
         // Position
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex), (const void*)(0));
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex),
+                              (const void*)(0));
 
         // UV
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex), (const void*)(offsetof(Vertex, uv)));
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex),
+                              (const void*)(offsetof(Vertex, uv)));
 
         // TID
-        glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex), (const void*)(offsetof(Vertex, textureID)));
+        glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(tewi::Vertex),
+                              (const void*)(offsetof(Vertex, textureID)));
 
         // Color
-        glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(tewi::Vertex), (const void*)(offsetof(Vertex, color)));
+        glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE,
+                              sizeof(tewi::Vertex),
+                              (const void*)(offsetof(Vertex, color)));
     }
 
     void tewi::BatchRenderer2D<tewi::API::OpenGLTag>::finalInit()
@@ -164,9 +166,10 @@ namespace tewi
         glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         std::vector<GLuint> indices(g_indicesSize);
-        for (asl::sizei i = 0, offset = 0; i < indices.size(); i += 6, offset += 4)
+        for (asl::sizei i = 0, offset = 0; i < indices.size();
+             i += 6, offset += 4)
         {
-            indices[  i  ] = offset + 0;
+            indices[i] = offset + 0;
             indices[i + 1] = offset + 1;
             indices[i + 2] = offset + 2;
 
@@ -179,6 +182,4 @@ namespace tewi
 
         glBindVertexArray(0);
     }
-}
-
-
+} // namespace tewi

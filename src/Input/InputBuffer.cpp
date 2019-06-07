@@ -3,7 +3,8 @@
 namespace tewi
 {
 
-    void InputBuffer::keyCallback(GLFWwindow* win, int key, int scancode, int action, int mods)
+    void InputBuffer::keyCallback(GLFWwindow* win, int key, int scancode,
+                                  int action, int mods)
     {
         auto ptr = static_cast<InputBuffer*>(glfwGetWindowUserPointer(win));
 
@@ -65,9 +66,9 @@ namespace tewi
     {
         if (m_queue.empty())
         {
-            return { gsl::null_span{} };
+            return { gsl::null_span {} };
         }
 
-        return gsl::span<tewi::WindowEvent>{m_queue.begin(), m_queue.end()};
+        return gsl::span<tewi::WindowEvent> { m_queue.begin(), m_queue.end() };
     }
-}
+} // namespace tewi

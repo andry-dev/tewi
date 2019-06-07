@@ -1,6 +1,8 @@
 #include "tewi/Video/API/Context.hpp"
 
+// Should come before GLFW
 #include <tewi/Platform/OpenGL/Glew.h>
+
 #include "GLFW/glfw3.h"
 #include "asl/debug_only"
 
@@ -19,9 +21,11 @@ namespace tewi
          * **Internal use only.**
          */
         template <>
-        Context<tewi::API::OpenGLTag>::Context() { }
+        Context<tewi::API::OpenGLTag>::Context()
+        {
+        }
 
-        template<>
+        template <>
         void Context<tewi::API::OpenGLTag>::setup()
         {
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -32,7 +36,7 @@ namespace tewi
             glfwSwapInterval(0);
         }
 
-        template<>
+        template <>
         void Context<tewi::API::OpenGLTag>::postInit(GLFWwindow*)
         {
             asl::debug_only<GLenum> error = glewInit();
@@ -42,35 +46,34 @@ namespace tewi
 
             glEnable(GL_BLEND);
             glEnable(GL_DEPTH_TEST);
-            //glEnable(GL_CULL_FACE);
+            // glEnable(GL_CULL_FACE);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         }
 
-        template<>
+        template <>
         void Context<tewi::API::OpenGLTag>::preDraw()
         {
             glClearDepth(1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         }
 
-        template<>
+        template <>
         void Context<tewi::API::OpenGLTag>::postDraw()
         {
-
         }
 
-        template<>
+        template <>
         void Context<tewi::API::OpenGLTag>::swap(GLFWwindow* m_window)
         {
             glfwSwapBuffers(m_window);
         }
 
-        template<>
+        template <>
         auto Context<tewi::API::OpenGLTag>::getAPIVersion()
         {
             return glGetString(GL_VERSION);
         }
 
         using GLContext = Context<API::OpenGLTag>;
-    }
-}
+    } // namespace API
+} // namespace tewi

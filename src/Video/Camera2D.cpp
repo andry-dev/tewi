@@ -8,23 +8,24 @@
 namespace tewi
 {
     Camera2D::Camera2D(int screenWidth, int screenHeight)
-        : m_needsMatUpdate(true),
-        m_screenWidth(screenWidth),
-        m_screenHeight(screenHeight),
-        m_scale(1.0f),
-        m_pos(0.0f, 0.0f),
-        m_ortho(1.0f),
-        m_cameraMat(1.0f)
+        : m_needsMatUpdate(true)
+        , m_screenWidth(screenWidth)
+        , m_screenHeight(screenHeight)
+        , m_scale(1.0f)
+        , m_pos(0.0f, 0.0f)
+        , m_ortho(1.0f)
+        , m_cameraMat(1.0f)
     {
-        m_ortho = glm::ortho(0.0f, static_cast<float>(screenWidth), 0.0f, static_cast<float>(screenHeight));
+        m_ortho = glm::ortho(0.0f, static_cast<float>(screenWidth), 0.0f,
+                             static_cast<float>(screenHeight));
     }
-
 
     void Camera2D::update()
     {
         if (m_needsMatUpdate)
         {
-            glm::vec3 translation(-m_pos.x + m_screenWidth / 2, -m_pos.y + m_screenWidth / 2, 0.0f);
+            glm::vec3 translation(-m_pos.x + m_screenWidth / 2,
+                                  -m_pos.y + m_screenWidth / 2, 0.0f);
             m_cameraMat = glm::translate(m_ortho, translation);
 
             glm::vec3 scaling(m_scale, m_scale, 0.0f);

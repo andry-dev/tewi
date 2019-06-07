@@ -6,15 +6,18 @@ struct GLFWwindow;
 
 namespace tewi
 {
-    /** Common namespace for Graphic API related stuff like context, renderers, etc...
+    /** Common namespace for Graphic API related stuff like context, renderers,
+     * etc...
      *
      *
      */
     namespace API
     {
-        /** \brief Context initialization; initializes a graphic API for the window.
+        /** \brief Context initialization; initializes a graphic API for the
+         window.
          *
-         * You should *not* instantiate this class without a valid API, only the Window uses this.
+         * You should *not* instantiate this class without a valid API, only the
+         Window uses this.
          *
          * \tparam APIType The type of the API you want to use. Use one of the
          * structs in API.h or create your own.
@@ -24,7 +27,7 @@ namespace tewi
         template <typename APIType>
         class TEWI_EXPORT Context final
         {
-        public:
+          public:
             using interface_only = void;
 
             Context();
@@ -43,7 +46,7 @@ namespace tewi
              *
              */
             void preDraw();
-            
+
             /** Steps after drawing
              *
              */
@@ -60,5 +63,5 @@ namespace tewi
             auto getAPIVersion();
         };
 
-    }
-}
+    } // namespace API
+} // namespace tewi

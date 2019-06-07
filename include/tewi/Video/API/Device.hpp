@@ -1,8 +1,8 @@
 #pragma once
 
+#include "tewi/Video/API/API.h"
 #include "tewi/Video/API/Context.hpp"
 #include "tewi/Video/API/Instance.hpp"
-#include "tewi/Video/API/API.h"
 
 #include "tewi/Common.h"
 
@@ -13,10 +13,10 @@ namespace tewi
         template <typename APINum>
         class TEWI_EXPORT Device
         {
-        public:
+          public:
             using interface_only = void;
 
             Device();
         };
-    }
-} // namespace API
+    } // namespace API
+} // namespace tewi

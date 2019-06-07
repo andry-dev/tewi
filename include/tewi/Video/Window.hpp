@@ -6,33 +6,29 @@
 
 #include <tewi/Utils/Glfw.h>
 
-#include "tewi/Utils/Log.h"
 #include "tewi/Utils/GLFWCallbacks.h"
+#include "tewi/Utils/Log.h"
 #include "tewi/Utils/Types.h"
-#include "tewi/Video/WindowEvent.hpp"
 #include "tewi/Video/API/Context.hpp"
+#include "tewi/Video/WindowEvent.hpp"
 
-
-#include "asl/string_view"
 #include "asl/ring"
+#include "asl/string_view"
 
 namespace tewi
 {
     namespace details
     {
         template <typename APIType>
-        inline static void windowKeyCallback(GLFWwindow* win,
-                                             int key,
-                                             int scancode,
-                                             int action,
+        inline static void windowKeyCallback(GLFWwindow* win, int key,
+                                             int scancode, int action,
                                              int mods);
     }
 
     template <typename APIType>
     struct TEWI_EXPORT Window
     {
-        Window(asl::string_view windowName,
-               tewi::Width width,
+        Window(asl::string_view windowName, tewi::Width width,
                tewi::Height height);
 
         ~Window();
@@ -42,7 +38,8 @@ namespace tewi
 
         Window(Window&& rhs)
             : m_windowPtr(std::exchange(rhs.m_windowPtr, nullptr))
-        { }
+        {
+        }
 
         Window& operator=(Window&& rhs) = default;
 
@@ -75,42 +72,35 @@ namespace tewi
         /// \returns The current height of the window.
         tewi::Height getHeight() const noexcept;
 
-        /// \effects Binds the window to an [`InputManager`](<> "tewi::InputManager").
+        /// \effects Binds the window to an [`InputManager`](<>
+        /// "tewi::InputManager").
         ///          This will set the GLFW user pointer to `inputManager`
         ///          and set all the callbacks for `InputManager`.
-        /// \requires `InputManagerType` shall model an [`InputManager`](<> "tewi::InputManager")
+        /// \requires `InputManagerType` shall model an [`InputManager`](<>
+        /// "tewi::InputManager")
         template <typename InputManagerType>
         void bindTo(InputManagerType& inputManager);
 
-    private:
+      private:
         GLFWwindow* m_windowPtr;
         tewi::API::Context<APIType> m_context;
 
-        friend
-        void tewi::details::windowKeyCallback<APIType>(GLFWwindow* win,
-                                                       int key,
-                                                       int scancode,
-                                                       int action,
-                                                       int mods);
+        friend void tewi::details::windowKeyCallback<APIType>(
+            GLFWwindow* win, int key, int scancode, int action, int mods);
     };
 
-
     template <typename APIType>
-    Window<APIType>::Window(asl::string_view windowName,
-                            tewi::Width width,
+    Window<APIType>::Window(asl::string_view windowName, tewi::Width width,
                             tewi::Height height)
     {
         glfwInit();
 
         m_context.setup();
 
-        m_windowPtr = glfwCreateWindow(width.value(),
-                                       height.value(),
-                                       windowName.data(),
-                                       nullptr,
-                                       nullptr);
+        m_windowPtr = glfwCreateWindow(width.value(), height.value(),
+                                       windowName.data(), nullptr, nullptr);
         TEWI_ENSURES(m_windowPtr != nullptr, "Window not initialized");
-        //glfwSetInputMode(m_windowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        // glfwSetInputMode(m_windowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         glfwMakeContextCurrent(m_windowPtr);
 
         glfwSetWindowSizeCallback(m_windowPtr, tewi::windowResizeCallback);
@@ -196,13 +186,10 @@ namespace tewi
     namespace details
     {
         template <typename APIType>
-        inline static void windowKeyCallback(GLFWwindow* win,
-                                             int key,
-                                             int scancode,
-                                             int action,
-                                             int mods)
+        inline static void windowKeyCallback(GLFWwindow* win, int key,
+                                             int scancode, int action, int mods)
         {
         }
-    }
+    } // namespace details
 
-}
+} // namespace tewi

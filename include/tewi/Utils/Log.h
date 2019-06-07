@@ -1,8 +1,8 @@
 #pragma once
 
+#include <cstdio>
 #include <exception>
 #include <string>
-#include <cstdio>
 
 #include <tewi/Utils/Glfw.h>
 
@@ -16,82 +16,72 @@ namespace tewi
     namespace Log
     {
 
-        /** Prints a warning.
-         *
-         */
         inline TEWI_EXPORT void warning(const std::string& str)
         {
             std::printf("[W] %s\n", str.c_str());
         }
 
-        /** Prints an error.
-         *
-         */
         inline TEWI_EXPORT void error(const std::string& str)
         {
             std::printf("[E] %s\n", str.c_str());
         }
 
-        /** Prints an informational message.
-         *
-         */
         inline TEWI_EXPORT void info(const std::string& str)
         {
             std::printf("[I] %s\n", str.c_str());
         }
 
-        /** Non-macro debug-only version of \a warning().
-         *
-         */
+#ifndef NDEBUG
         inline TEWI_EXPORT void debugWarning(const std::string& str)
         {
-#ifndef NDEBUG
             warning(str);
-#endif
         }
+#else
+        inline TEWI_EXPORT void debugWarning(const std::string&) {}
+#endif
 
-        /** Non-macro debug-only version of \a error().
-         *
-         */
+#ifndef NDEBUG
         inline TEWI_EXPORT void debugError(const std::string& str)
         {
-#ifndef NDEBUG
             error(str);
-#endif
         }
+#else
+        inline TEWI_EXPORT void debugError(const std::string&) {}
+#endif
 
-        /** Non-macro debug-only version of \a info().
-         *
-         */
+#ifndef NDEBUG
         inline TEWI_EXPORT void debugInfo(const std::string& str)
         {
-#ifndef NDEBUG
             info(str);
-#endif
         }
+#else
+        inline TEWI_EXPORT void debugInfo(const std::string&) {}
+#endif
 
 #ifndef NDEBUG
         /** Define for my version of GSL's Expects.
          *
          * I should probably change it.
          */
-#define TEWI_EXPECTS(cond, msg) \
-        if (!(cond)) { \
-            tewi::Log::error(msg); \
-            std::printf("Assertion failed at line %d : %s\n", __LINE__, __FILE__); \
-            std::terminate(); \
-        }
+#define TEWI_EXPECTS(cond, msg)                                                \
+    if (!(cond))                                                               \
+    {                                                                          \
+        tewi::Log::error(msg);                                                 \
+        std::printf("Assertion failed at line %d : %s\n", __LINE__, __FILE__); \
+        std::terminate();                                                      \
+    }
 
         /** Define for my version of GSL's Ensures.
          *
          * I should probably change it.
          */
-#define TEWI_ENSURES(cond, msg) \
-        if (!(cond)) { \
-            tewi::Log::error(msg); \
-            std::printf("Assertion failed at line %d : %s\n", __LINE__, __FILE__); \
-            std::terminate(); \
-        }
+#define TEWI_ENSURES(cond, msg)                                                \
+    if (!(cond))                                                               \
+    {                                                                          \
+        tewi::Log::error(msg);                                                 \
+        std::printf("Assertion failed at line %d : %s\n", __LINE__, __FILE__); \
+        std::terminate();                                                      \
+    }
 
 #else
 
@@ -99,5 +89,5 @@ namespace tewi
 #define TEWI_ENSURES(cond, msg)
 
 #endif
-    }
-}
+    } // namespace Log
+} // namespace tewi

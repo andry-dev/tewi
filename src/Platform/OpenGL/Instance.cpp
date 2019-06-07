@@ -7,7 +7,7 @@ namespace tewi
         template <>
         class TEWI_EXPORT Instance<OpenGLTag>
         {
-        public:
+          public:
         };
     } // namespace API
 } // namespace tewi

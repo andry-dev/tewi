@@ -14,7 +14,7 @@ namespace tewi
          */
         namespace Vulkan
         {
-            
+
         }
-    }
-}
+    } // namespace Platform
+} // namespace tewi

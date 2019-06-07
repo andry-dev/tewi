@@ -6,12 +6,11 @@
 #include "tewi/Common.h"
 #include "tewi/Utils/Log.h"
 
-
 namespace tewi
 {
     class TEWI_EXPORT Camera2D
     {
-    public:
+      public:
         Camera2D(int screenWidth, int screenHeight);
         ~Camera2D() = default;
 
@@ -25,9 +24,18 @@ namespace tewi
 
         void getWorldCoordsFromScreenCoords(glm::vec2& coords);
 
-        inline auto getScale() const { return m_scale; }
-        inline auto getPosition() const { return m_pos; }
-        inline auto getMatrix() const { return m_cameraMat; }
+        inline auto getScale() const
+        {
+            return m_scale;
+        }
+        inline auto getPosition() const
+        {
+            return m_pos;
+        }
+        inline auto getMatrix() const
+        {
+            return m_cameraMat;
+        }
 
         inline void setScale(float scale)
         {
@@ -40,7 +48,8 @@ namespace tewi
             m_pos = pos;
             m_needsMatUpdate = true;
         }
-    private:
+
+      private:
         bool m_needsMatUpdate;
         int m_screenWidth;
         int m_screenHeight;

@@ -3,7 +3,6 @@
 #include <imgui.h>
 #include <misc/cpp/imgui_stdlib.h>
 
-
 namespace tewi
 {
     template <typename APIType>
@@ -20,4 +19,4 @@ namespace tewi
 
     template <typename APIType>
     void renderImGui(APIType, tewi::Window<APIType>& win, ImDrawData* data);
-}
+} // namespace tewi
