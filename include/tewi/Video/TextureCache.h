@@ -2,6 +2,7 @@
 #define TEWI_TEXTURE_CACHE_H
 
 #include <map>
+#include <string>
 
 #include "tewi/Common.h"
 #include "tewi/Video/Texture.h"

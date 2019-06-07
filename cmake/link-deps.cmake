@@ -17,7 +17,7 @@ endif()
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
     ${WIN32_OPENGL_LIBS}
-    GLEW::GLEW
+    glew::glew
     glm::glm
     glfw::glfw
     asl::asl

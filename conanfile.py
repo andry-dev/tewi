@@ -30,7 +30,7 @@ class TewiConan(ConanFile):
 
 
     generators = "cmake", "cmake_find_package", "pkg_config"
-    exports_sources = "*",
+    exports_sources = "*", "!build/*", "!doc/*", "!tests/*", "!examples/*"
 
     def configure(self):
         if self.options.integrate_imgui:
