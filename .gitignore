@@ -2,3 +2,4 @@ tags
 build/
 doc/Main.tex
 Netrw*
+compile_commands.json

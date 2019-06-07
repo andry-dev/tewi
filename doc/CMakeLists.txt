@@ -17,4 +17,6 @@ if (XELATEX_EXE)
         COMMAND ${XELATEX_EXE} -shell-escape -output-directory=${PROJECT_BINARY_DIR}/doc Main.tex
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/doc
         COMMENT "[tewi] Generating documentation with xelatex" VERBATIM)
+else()
+    message(STATUS "[tewi] Can't find xelatex, docs will not be built")
 endif()

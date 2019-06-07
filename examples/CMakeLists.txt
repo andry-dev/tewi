@@ -3,10 +3,12 @@ cmake_minimum_required(VERSION 3.9)
 project(tewi_examples)
 
 message(STATUS "[tewi] Building examples")
+set(TEWI_EXAMPLES_BUILD_DIR "${PROJECT_BINARY_DIR}/bin")
 
 function(new_target target_name)
     add_executable(${target_name} ${ARGV1})
-    target_compile_options(${target_name} PRIVATE -Werror -Wall -Wextra -pedantic -Wpedantic)
+
+    #target_compile_options(${target_name} PRIVATE -Werror -Wall -Wextra -pedantic -Wpedantic)
     if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
         target_compile_options(${target_name} PRIVATE -Weverything -Wno-missing-prototypes)
     endif()
@@ -14,9 +16,9 @@ function(new_target target_name)
     set_target_properties(${target_name}
         PROPERTIES
         CXX_STANDARD 17
-        RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin"
-        RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_BINARY_DIR}/bin"
-        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_BINARY_DIR}/bin")
+	RUNTIME_OUTPUT_DIRECTORY "${TEWI_EXAMPLES_BUILD_DIR}"
+	RUNTIME_OUTPUT_DIRECTORY_DEBUG "${TEWI_EXAMPLES_BUILD_DIR}"
+        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${TEWI_EXAMPLES_BUILD_DIR}")
     target_link_libraries(${target_name} PUBLIC tewi)
 endfunction()
 

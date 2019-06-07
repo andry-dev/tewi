@@ -38,7 +38,7 @@ set(SRC
     src/Platform/NullRenderer/Swapchain.cpp
     src/Platform/NullRenderer/Window.cpp
     src/Platform/NullRenderer/Device.cpp
-    )
+)
 
 
 
@@ -98,7 +98,7 @@ if(MSVC)
     target_compile_options(${PROJECT_NAME}
         PRIVATE
         /W4 /std:c++latest /permissive- /GR-
-        $<$<CONFIG:RELEASE>:/Ob2 /Ot /GL /sdl- /LTCG>)
+        $<$<CONFIG:RELEASE>:/Ob2 /Ot /GL /sdl->)
 
 else()
 
@@ -163,3 +163,5 @@ endif()
 if (TEWI_BUILD_DOC)
     add_subdirectory(doc)
 endif()
+
+include(cmake/install-target.cmake)
