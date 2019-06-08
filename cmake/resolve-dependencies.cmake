@@ -1,6 +1,6 @@
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_BINARY_DIR})
 
-find_package(GLEW REQUIRED)
+find_package(glew REQUIRED)
 
 if (NOT FOUND_LOCAL_GLFW)
     find_package(glfw REQUIRED)
