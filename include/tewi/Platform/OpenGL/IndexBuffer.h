@@ -4,10 +4,12 @@
 #include <tewi/Video/API/API.h>
 #include <tewi/Video/IndexBuffer.hpp>
 
+#include <tewi/Common.h>
+
 namespace tewi
 {
     template <>
-    class IndexBuffer<API::OpenGLTag>
+    class TEWI_EXPORT IndexBuffer<API::OpenGLTag>
     {
       public:
         template <typename Container>

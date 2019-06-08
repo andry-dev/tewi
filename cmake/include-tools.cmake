@@ -35,11 +35,13 @@ if (CLANG_FORMAT_EXE)
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         COMMENT "[tewi] Formatting code with clang-format" VERBATIM)
 
-    add_custom_command(TARGET tewi PRE_BUILD
-        COMMAND
-        ${CLANG_FORMAT_EXE} -i -style=file ${ALL_SOURCES}
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        COMMENT "[tewi] (PRE_BUILD) Formatting code with clang-format" VERBATIM)
+    if (TEWI_CLANG_FORMAT_PRE_BUILD)
+        add_custom_command(TARGET tewi PRE_BUILD
+            COMMAND
+            ${CLANG_FORMAT_EXE} -i -style=file ${ALL_SOURCES}
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+            COMMENT "[tewi] Formatting code with clang-format" VERBATIM)
+    endif()
 endif()
 
 find_program(COMPDB_EXE NAMES "compdb" DOC "Path to compdb executable")

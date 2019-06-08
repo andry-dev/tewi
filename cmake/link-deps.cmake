@@ -14,6 +14,13 @@ if(WIN32)
         opengl32.lib)
 endif()
 
+add_library(stb_impl STATIC
+    src/Utils/stb.cpp)
+
+target_link_libraries(stb_impl
+    PUBLIC
+    stb::stb)
+
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
     ${WIN32_OPENGL_LIBS}
@@ -21,7 +28,7 @@ target_link_libraries(${PROJECT_NAME}
     glm::glm
     glfw::glfw
     asl::asl
-    stb::stb)
+    stb_impl)
 
 if (TARGET ImGui)
     target_link_libraries(${PROJECT_NAME}

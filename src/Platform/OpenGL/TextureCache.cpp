@@ -9,7 +9,7 @@ namespace tewi
     namespace API
     {
         template <>
-        void genAPITexture(Texture<API::OpenGLTag>& tex, asl::u8* imagePtr,
+        void TEWI_EXPORT genAPITexture(Texture<API::OpenGLTag>& tex, asl::u8* imagePtr,
                            asl::num width, asl::num height)
         {
             TEWI_EXPECTS(

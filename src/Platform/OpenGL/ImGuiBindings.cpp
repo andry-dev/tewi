@@ -9,7 +9,7 @@
 namespace tewi
 {
     template <>
-    void initImGui(tewi::API::OpenGLTag,
+    void TEWI_EXPORT initImGui(tewi::API::OpenGLTag,
                    tewi::Window<tewi::API::OpenGLTag>& win)
     {
         ImGui_ImplGlfw_InitForOpenGL(win.ptr(), true);
@@ -17,22 +17,22 @@ namespace tewi
     }
 
     template <>
-    void shutdownImGui(tewi::API::OpenGLTag)
+    void TEWI_EXPORT shutdownImGui(tewi::API::OpenGLTag)
     {
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
     }
 
     template <>
-    void newFrameImGui(tewi::API::OpenGLTag,
-                       tewi::Window<tewi::API::OpenGLTag>& win)
+    void TEWI_EXPORT newFrameImGui(tewi::API::OpenGLTag,
+                       tewi::Window<tewi::API::OpenGLTag>&)
     {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
     }
 
     template <>
-    void renderImGui(tewi::API::OpenGLTag, tewi::Window<tewi::API::OpenGLTag>&,
+    void TEWI_EXPORT renderImGui(tewi::API::OpenGLTag, tewi::Window<tewi::API::OpenGLTag>&,
                      ImDrawData* data)
     {
         ImGui_ImplOpenGL3_RenderDrawData(data);

@@ -80,5 +80,5 @@ namespace tewi
 } // namespace tewi
 
 //#include "tewi/Platform/Vulkan/Shader.hpp"
-//#include "tewi/Platform/NullRenderer/Shader.hpp"
+#include <tewi/Platform/NullRenderer/Shader.hpp>
 #include <tewi/Platform/OpenGL/Shader.hpp>

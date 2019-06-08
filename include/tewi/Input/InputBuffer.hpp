@@ -4,14 +4,11 @@
 #include <gsl/span>
 
 #include "tewi/Video/WindowEvent.hpp"
+#include <tewi/Common.h>
 
 namespace tewi
 {
-    /// An [InputManager](<> "tewi::InputManager") which can hold more than one
-    /// event at a time.
-    ///
-    /// \module Input-Management
-    class InputBuffer
+    class TEWI_EXPORT InputBuffer
     {
       public:
         /// \exclude

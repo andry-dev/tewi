@@ -13,13 +13,13 @@
 namespace tewi
 {
 
-    inline static TEWI_EXPORT void windowResizeCallback(GLFWwindow*, int width,
+    inline TEWI_EXPORT void windowResizeCallback(GLFWwindow*, int width,
                                                         int height)
     {
         glViewport(0, 0, width, height);
     }
 
-    inline static TEWI_EXPORT void glfwErrorCallback(int error,
+    inline TEWI_EXPORT void glfwErrorCallback(int error,
                                                      const char* description)
     {
         Log::error(std::to_string(error) + " " + description);

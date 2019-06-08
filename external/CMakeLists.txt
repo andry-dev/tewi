@@ -7,7 +7,14 @@ if (TEWI_INTEGRATE_IMGUI)
                     imgui/imgui_draw.cpp
                     imgui/imgui_widgets.cpp
                     imgui/misc/cpp/imgui_stdlib.cpp)
-        target_include_directories(ImGui SYSTEM PUBLIC imgui/ imgui/misc/cpp/)
+
+        target_include_directories(ImGui
+            SYSTEM
+            PUBLIC
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/imgui/>
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/imgui/misc/cpp/>
+            $<INSTALL_INTERFACE:imgui/>
+            $<INSTALL_INTERFACE:imgui/misc/cpp/>)
 
         message(STATUS "[tewi] Found local imgui in external/imgui")
     else()
@@ -51,7 +58,10 @@ file(GLOB test-stbdir stb/stb*)
 if (test-stbdir)
     SET(FOUND_LOCAL_STB 1 PARENT_SCOPE)
     add_library(stb INTERFACE)
-    target_include_directories(stb INTERFACE stb/)
+    target_include_directories(stb
+        INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/stb/>
+        $<INSTALL_INTERFACE:stb/>)
     add_library(stb::stb ALIAS stb)
 
     message(STATUS "[tewi] Found local stb in external/stb")

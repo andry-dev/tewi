@@ -3,20 +3,22 @@
 #include <imgui.h>
 #include <misc/cpp/imgui_stdlib.h>
 
+#include <tewi/Common.h>
+
 namespace tewi
 {
     template <typename APIType>
-    class Window;
+    struct Window;
 
     template <typename APIType>
-    void initImGui(APIType, tewi::Window<APIType>& win);
+    void TEWI_EXPORT initImGui(APIType, tewi::Window<APIType>& win);
 
     template <typename APIType>
-    void shutdownImGui(APIType);
+    void TEWI_EXPORT shutdownImGui(APIType);
 
     template <typename APIType>
-    void newFrameImGui(APIType, tewi::Window<APIType>& win);
+    void TEWI_EXPORT newFrameImGui(APIType, tewi::Window<APIType>& win);
 
     template <typename APIType>
-    void renderImGui(APIType, tewi::Window<APIType>& win, ImDrawData* data);
+    void TEWI_EXPORT renderImGui(APIType, tewi::Window<APIType>& win, ImDrawData* data);
 } // namespace tewi
