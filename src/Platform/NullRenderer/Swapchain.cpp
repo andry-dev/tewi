@@ -10,10 +10,10 @@ namespace tewi
         template <>
         class TEWI_EXPORT Swapchain<NullRendererTag>
         {
-          private:
+        private:
             using api = NullRendererTag;
 
-          public:
+        public:
             Swapchain(Instance<NullRendererTag>&, Window<NullRendererTag>&) {}
         };
     } // namespace API

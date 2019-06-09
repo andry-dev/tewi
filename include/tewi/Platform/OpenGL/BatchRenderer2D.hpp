@@ -15,7 +15,7 @@ namespace tewi
     template <>
     struct TEWI_EXPORT BatchRenderer2D<API::OpenGLTag>
     {
-      protected:
+    protected:
         BatchRenderer2D();
 
         ~BatchRenderer2D();
@@ -40,7 +40,7 @@ namespace tewi
 
         static ShaderProgram<API::OpenGLTag> createShaderProgram();
 
-      private:
+    private:
         void initBuffers();
 
         void bindAttribPointers();

@@ -22,7 +22,7 @@ namespace tewi
     template <typename APIType>
     class TEWI_EXPORT Sprite
     {
-      public:
+    public:
         Sprite(const glm::vec2& pos, const std::string& path)
             : m_renderable(
                   pos,
@@ -96,7 +96,7 @@ namespace tewi
             return m_collidable;
         }
 
-      protected:
+    protected:
         Renderable2D<APIType> m_renderable;
         Physics::Collidable2D m_collidable;
     };

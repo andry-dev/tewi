@@ -19,7 +19,7 @@ namespace tewi
      */
     class TEWI_EXPORT TickTimer
     {
-      public:
+    public:
         TickTimer() = default;
         ~TickTimer() = default;
 
@@ -53,7 +53,7 @@ namespace tewi
             return m_tickRate;
         }
 
-      private:
+    private:
         std::size_t m_ticks = 0;
         std::size_t m_tickRate = 0;
 
@@ -64,10 +64,10 @@ namespace tewi
 
     struct TEWI_EXPORT TickTimer
     {
-      public:
+    public:
         float getDeltaTime() noexcept;
 
-      private:
+    private:
         float delta = 0.0f;
         float lastFrame = 0.0f;
     };

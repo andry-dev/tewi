@@ -13,7 +13,7 @@ namespace tewi
      */
     class TEWI_EXPORT Clock
     {
-      public:
+    public:
         Clock() = default;
         ~Clock() = default;
 
@@ -36,7 +36,7 @@ namespace tewi
             return glfwGetTime() - m_startTime;
         }
 
-      private:
+    private:
         double m_startTime = glfwGetTime();
     };
 } // namespace tewi

@@ -7,7 +7,7 @@ namespace tewi
         template <>
         class TEWI_EXPORT Context<API::NullRendererTag> final
         {
-          public:
+        public:
             Context() {}
             void setup() {}
             void postInit(GLFWwindow*) {}

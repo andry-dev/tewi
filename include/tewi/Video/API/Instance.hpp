@@ -20,7 +20,7 @@ namespace tewi
         template <typename APINum>
         class TEWI_EXPORT Instance
         {
-          public:
+        public:
             using interface_only = void;
 
             Instance();

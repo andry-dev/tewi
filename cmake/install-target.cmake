@@ -16,7 +16,13 @@ if (TEWI_BUILD_EXAMPLES)
             DESTINATION share/examples)
 endif()
 
-install(TARGETS tewi asl stb_impl stb ImGui
+set(additional_exports "")
+
+if (FOUND_LOCAL_ASL)
+    set(additional_exports ${additional_exports} asl)
+endif()
+
+install(TARGETS tewi ${additional_exports} stb_impl stb ImGui
         EXPORT tewi-targets
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib

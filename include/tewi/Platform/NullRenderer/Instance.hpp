@@ -9,7 +9,7 @@ namespace tewi
         template <>
         class TEWI_EXPORT Instance<NullRendererTag>
         {
-          public:
+        public:
         };
     } // namespace API
 } // namespace tewi

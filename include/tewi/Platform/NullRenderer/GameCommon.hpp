@@ -10,7 +10,7 @@ namespace tewi
     template <class Derived>
     class TEWI_EXPORT GameCommon<Derived, API::NullRendererTag>
     {
-      public:
+    public:
         GameCommon(const std::string& windowName, int width, int height)
             : m_swapchain(m_instance, *m_window)
             , m_window(std::make_unique<Window<API::NullRendererTag>>(
@@ -23,7 +23,7 @@ namespace tewi
             run();
         }
 
-      protected:
+    protected:
         void init()
         {
             impl().init();
@@ -69,7 +69,7 @@ namespace tewi
             return m_device;
         }
 
-      private:
+    private:
         inline Derived& impl()
         {
             return *static_cast<Derived*>(this);

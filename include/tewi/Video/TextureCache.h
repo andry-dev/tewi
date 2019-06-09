@@ -20,10 +20,10 @@ namespace tewi
     template <typename APIType>
     class TextureCache
     {
-      public:
+    public:
         Texture<APIType> get(const std::string& path);
 
-      private:
+    private:
         Texture<APIType> load(const std::string& path);
 
         std::map<std::string, Texture<APIType>> m_map;

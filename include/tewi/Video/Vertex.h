@@ -8,6 +8,7 @@
 #endif
 
 #include "tewi/Common.h"
+#include <asl/types>
 
 namespace tewi
 {
@@ -82,10 +83,11 @@ namespace tewi
                   "Don't add other useless stuff that this may kill the cache");
 #endif
 
-    constexpr TEWI_EXPORT std::uint32_t
-    setColors(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a)
+    constexpr TEWI_EXPORT asl::u32 setColors(asl::u8 r, asl::u8 g, asl::u8 b,
+                                             asl::u8 a)
     {
-        return r << 24 | g << 16 | b << 8 | a;
+        return (asl::u32 { r } << 24) | (asl::u32 { g } << 16) |
+               (asl::u32 { b } << 8) | asl::u32 { a };
     }
 
     // You really shouldn't use this function with other types

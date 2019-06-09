@@ -5,7 +5,7 @@ namespace tewi
     template <typename APITag>
     class IndexBuffer
     {
-      public:
+    public:
         using interface_only = void;
 
         template <typename Container>

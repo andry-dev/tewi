@@ -13,10 +13,10 @@ namespace tewi
     template <typename APIType>
     struct TEWI_EXPORT BatchRenderer2D
     {
-      public:
+    public:
         using interface_only = void;
 
-      protected:
+    protected:
         BatchRenderer2D() = default;
         BatchRenderer2D(const BatchRenderer2D& rhs) = delete;
         BatchRenderer2D& operator=(const BatchRenderer2D& rhs) = delete;

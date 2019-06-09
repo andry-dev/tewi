@@ -27,7 +27,7 @@ namespace tewi
         template <typename APIType>
         class TEWI_EXPORT Context final
         {
-          public:
+        public:
             using interface_only = void;
 
             Context();

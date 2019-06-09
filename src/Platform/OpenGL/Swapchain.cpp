@@ -11,7 +11,7 @@ namespace tewi
         template <>
         class TEWI_EXPORT Swapchain<API::OpenGLTag>
         {
-          public:
+        public:
             Swapchain(Instance<API::OpenGLTag>&, Window<API::OpenGLTag>&) {}
         };
     } // namespace API

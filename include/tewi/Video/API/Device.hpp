@@ -13,7 +13,7 @@ namespace tewi
         template <typename APINum>
         class TEWI_EXPORT Device
         {
-          public:
+        public:
             using interface_only = void;
 
             Device();

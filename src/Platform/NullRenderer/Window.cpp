@@ -11,7 +11,7 @@ namespace tewi
     template <>
     struct TEWI_EXPORT Window<API::NullRendererTag>
     {
-      public:
+    public:
         Window(asl::string_view, Width, Height, void*) {}
 
         ~Window() = default;

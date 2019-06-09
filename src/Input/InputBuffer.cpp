@@ -3,7 +3,7 @@
 namespace tewi
 {
 
-    void InputBuffer::keyCallback(GLFWwindow* win, int key, int scancode,
+    void InputBuffer::keyCallback(GLFWwindow* win, int key, int /* scancode */,
                                   int action, int mods)
     {
         auto ptr = static_cast<InputBuffer*>(glfwGetWindowUserPointer(win));

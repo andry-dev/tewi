@@ -11,7 +11,7 @@ namespace tewi
     template <>
     class TEWI_EXPORT IndexBuffer<API::OpenGLTag>
     {
-      public:
+    public:
         template <typename Container>
         IndexBuffer(const Container& buffer);
 
@@ -21,7 +21,7 @@ namespace tewi
 
         void unbind();
 
-      private:
+    private:
         GLuint m_bufferID;
     };
 

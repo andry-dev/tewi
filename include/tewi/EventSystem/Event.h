@@ -11,19 +11,19 @@ namespace tewi
     {
         class Event
         {
-          public:
+        public:
             auto getType()
             {
                 return m_eventType;
             }
 
-          protected:
+        protected:
             Event(std::uint32_t eventType)
                 : m_eventType(eventType)
             {
             }
 
-          private:
+        private:
             std::uint32_t m_eventType = EventType::Null_event;
         };
     } // namespace EventSystem

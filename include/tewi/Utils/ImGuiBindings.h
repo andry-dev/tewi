@@ -20,5 +20,6 @@ namespace tewi
     void TEWI_EXPORT newFrameImGui(APIType, tewi::Window<APIType>& win);
 
     template <typename APIType>
-    void TEWI_EXPORT renderImGui(APIType, tewi::Window<APIType>& win, ImDrawData* data);
+    void TEWI_EXPORT renderImGui(APIType, tewi::Window<APIType>& win,
+                                 ImDrawData* data);
 } // namespace tewi

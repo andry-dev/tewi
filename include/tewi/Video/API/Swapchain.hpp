@@ -9,7 +9,7 @@ namespace tewi
         template <typename APIType>
         class TEWI_EXPORT Swapchain
         {
-          public:
+        public:
             using interface_only = void;
         };
     } // namespace API

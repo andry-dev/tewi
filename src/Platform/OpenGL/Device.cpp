@@ -7,7 +7,7 @@ namespace tewi
         template <>
         class TEWI_EXPORT Device<OpenGLTag>
         {
-          public:
+        public:
             Device() {}
         };
 

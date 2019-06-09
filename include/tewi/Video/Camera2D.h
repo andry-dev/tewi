@@ -10,7 +10,7 @@ namespace tewi
 {
     class TEWI_EXPORT Camera2D
     {
-      public:
+    public:
         Camera2D(int screenWidth, int screenHeight);
         ~Camera2D() = default;
 
@@ -49,7 +49,7 @@ namespace tewi
             m_needsMatUpdate = true;
         }
 
-      private:
+    private:
         bool m_needsMatUpdate;
         int m_screenWidth;
         int m_screenHeight;

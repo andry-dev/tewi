@@ -7,15 +7,26 @@ if(MSVC)
 else()
     # Common
     target_compile_options(${PROJECT_NAME}
-        PRIVATE
+        INTERFACE
         -Wall -Wextra -pedantic -Wpedantic
         -Wno-effc++ -Wno-unused-const-variable
         -pipe -fno-rtti)
 
     if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         target_compile_options(${PROJECT_NAME}
-            PRIVATE
-            -Weverything -Wno-missing-prototypes)
+            INTERFACE
+            -Weverything
+            -Wno-missing-prototypes
+            -Wno-c++98-compat
+            -Wno-c++98-compat-pedantic
+            -Wno-undefined-func-template
+            -Wno-documentation
+            -Wno-documentation-unknown-command
+            -Wno-extra-semi-stmt
+            -Wno-exit-time-destructors
+            -Wno-global-constructors
+            -Wno-padded
+            -Wno-shadow-field-in-constructor)
     endif()
 
     target_compile_options(${PROJECT_NAME}

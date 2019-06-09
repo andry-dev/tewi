@@ -19,12 +19,13 @@ namespace tewi
         {
             FILE* shaderFile = std::fopen(path.c_str(), "r");
             std::fseek(shaderFile, 0, SEEK_END);
-            const asl::sizei length = std::ftell(shaderFile);
+            const asl::sizes length = std::ftell(shaderFile);
 
-            std::string content(length, '\0');
+            std::string content(static_cast<const asl::sizei>(length), '\0');
 
             std::fseek(shaderFile, 0, SEEK_SET);
-            std::fread(&content[0], 1, length, shaderFile);
+            std::fread(&content[0], 1, static_cast<const asl::sizei>(length),
+                       shaderFile);
             std::fclose(shaderFile);
 
             return content;
@@ -89,9 +90,9 @@ namespace tewi
         }
 
         template <typename Container1, typename Container2>
-        inline TEWI_EXPORT Path findCorrectFile(
-            const std::string& path, const Container1& acceptedExtensions,
-            const Container2& regexHelpers)
+        inline TEWI_EXPORT Path
+        findCorrectFile(const std::string& path,
+                        const Container1& acceptedExtensions, const Container2&)
         {
             auto res = findCorrectFile(path, acceptedExtensions);
 

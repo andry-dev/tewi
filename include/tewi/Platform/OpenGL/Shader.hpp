@@ -7,7 +7,7 @@ namespace tewi
     template <>
     class ShaderProgram<API::OpenGLTag>
     {
-      public:
+    public:
         ShaderProgram(gsl::span<const ShaderDescription> descriptions,
                       gsl::span<const asl::string_view> attributes);
 
@@ -19,7 +19,7 @@ namespace tewi
         asl::i32 getUniformLocation(asl::string_view str);
         void setUniform(asl::i32 uniform, const glm::mat4& mat);
 
-      private:
+    private:
         asl::u32 m_id { 0 };
         asl::sizei m_attributeNum { 0 };
     };

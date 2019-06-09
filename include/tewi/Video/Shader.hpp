@@ -56,7 +56,7 @@ namespace tewi
     template <typename APITag>
     class ShaderProgram
     {
-      public:
+    public:
         using interface_only = void;
 
         ShaderProgram(gsl::span<const ShaderDescription> descriptions,

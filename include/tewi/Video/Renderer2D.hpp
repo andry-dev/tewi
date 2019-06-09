@@ -15,7 +15,7 @@ namespace tewi
     {
         using RenderPolicyImpl = RenderPolicy<APIType>;
 
-      public:
+    public:
         Renderer2D()
             : RenderPolicyImpl()
         {
@@ -70,7 +70,7 @@ namespace tewi
             return RenderPolicyImpl::createShaderProgram();
         }
 
-      private:
+    private:
     };
 
     /** \example renderer2D_usage.cpp

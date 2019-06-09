@@ -76,10 +76,10 @@ namespace tewi
     template <typename APIType, template <typename> class CacheType>
     class ResourceManager
     {
-      public:
+    public:
         static auto getResource(const std::string& path);
 
-      private:
+    private:
         static CacheType<APIType> m_cache;
     };
 
