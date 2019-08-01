@@ -1,6 +1,6 @@
 #pragma once
 
-#include <tewi/Platform/OpenGL/Glew.h>
+#include <tewi/Platform/OpenGL/GL.h>
 #include <tewi/Video/API/API.h>
 #include <tewi/Video/IndexBuffer.hpp>
 

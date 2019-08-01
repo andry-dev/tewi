@@ -108,8 +108,8 @@
 //  another loader/header of your choice (glext, glLoadGen, etc.), or chose to
 //  manually implement your own.
 
-#define IMGUI_IMPL_OPENGL_LOADER_GLEW
-#include <GL/glew.h> // Needs to be initialized with glewInit() in user's code
+#define IMGUI_IMPL_OPENGL_LOADER_GLAD
+#include <glad/glad.h> // Needs to be initialized with glewInit() in user's code
 #endif
 
 // OpenGL Data

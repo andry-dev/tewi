@@ -22,12 +22,10 @@ class TewiConan(ConanFile):
 
     requires = (
         ("glfw/3.2.1@bincrafters/stable"),
-        ("glew/2.1.0@bincrafters/stable"),
         ("glm/0.9.9.4@g-truc/stable"),
         ("stb/20180214@conan/stable"),
         ("asl/0.1@andry/dev")
     )
-
 
     generators = "cmake", "cmake_find_package", "pkg_config"
     exports_sources = "*", "!build/*", "!doc/*", "!tests/*", "!examples/*"

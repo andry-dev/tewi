@@ -1,4 +1,4 @@
-#include "GL/glew.h"
+#include <tewi/Platform/OpenGL/GL.h>
 
 #include "tewi/Common.h"
 

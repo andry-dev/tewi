@@ -34,6 +34,7 @@ set(SRC
     src/Platform/OpenGL/ImGuiBindings.cpp
     src/Platform/OpenGL/imgui_impl_opengl3.cpp
     src/Platform/OpenGL/imgui_impl_glfw.cpp
+    src/Platform/OpenGL/glad.c
     src/Platform/NullRenderer/BatchRenderer2D.cpp
     src/Platform/NullRenderer/Context.cpp
     src/Platform/NullRenderer/Swapchain.cpp

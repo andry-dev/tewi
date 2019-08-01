@@ -3,7 +3,7 @@
 #include "tewi/Video/BatchRenderer2D.hpp"
 #include <tewi/Video/API/API.h>
 
-#include <tewi/Platform/OpenGL/Glew.h>
+#include <tewi/Platform/OpenGL/GL.h>
 
 #include <memory>
 

@@ -1,4 +1,4 @@
-#include <tewi/Platform/OpenGL/Glew.h>
+#include <tewi/Platform/OpenGL/GL.h>
 
 #include "tewi/Utils/Log.h"
 #include "tewi/Video/API/API.h"

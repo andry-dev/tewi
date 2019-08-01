@@ -19,12 +19,12 @@ namespace tewi
         {
             FILE* shaderFile = std::fopen(path.c_str(), "r");
             std::fseek(shaderFile, 0, SEEK_END);
-            const asl::sizes length = std::ftell(shaderFile);
+            const asl::ssize length = std::ftell(shaderFile);
 
-            std::string content(static_cast<const asl::sizei>(length), '\0');
+            std::string content(static_cast<const asl::usize>(length), '\0');
 
             std::fseek(shaderFile, 0, SEEK_SET);
-            std::fread(&content[0], 1, static_cast<const asl::sizei>(length),
+            std::fread(&content[0], 1, static_cast<const asl::usize>(length),
                        shaderFile);
             std::fclose(shaderFile);
 

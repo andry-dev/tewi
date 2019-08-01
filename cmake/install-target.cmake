@@ -10,7 +10,7 @@ if (TEWI_BUILD_DOC)
 endif()
 
 if (TEWI_BUILD_EXAMPLES)
-    file(GLOB ALL_EXAMPLES "${PROJECT_BINARY_DIR}/examples/bin/*.exe")
+    file(GLOB ALL_EXAMPLES "${PROJECT_BINARY_DIR}/examples/bin/*")
     file(GLOB SRC_EXAMPLES "${PROJECT_SOURCE_DIR}/examples/*.cpp")
     install(PROGRAMS ${ALL_EXAMPLES} ${SRC_EXAMPLES}
             DESTINATION share/examples)
@@ -22,7 +22,7 @@ if (FOUND_LOCAL_ASL)
     set(additional_exports ${additional_exports} asl)
 endif()
 
-install(TARGETS tewi ${additional_exports} stb_impl stb ImGui
+install(TARGETS tewi ${additional_exports} stb_impl stb ImGui glad
         EXPORT tewi-targets
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
