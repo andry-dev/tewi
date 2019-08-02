@@ -22,7 +22,7 @@ if (FOUND_LOCAL_ASL)
     set(additional_exports ${additional_exports} asl)
 endif()
 
-install(TARGETS tewi ${additional_exports} stb_impl stb ImGui glad
+install(TARGETS tewi ${additional_exports} stb_impl stb ImGui tewi-glloader
         EXPORT tewi-targets
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib

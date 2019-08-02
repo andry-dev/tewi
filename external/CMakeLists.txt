@@ -79,3 +79,5 @@ if (test-asldir)
 else()
     SET(FOUND_LOCAL_ASL 0 PARENT_SCOPE)
 endif()
+
+add_subdirectory(tewi_loader)

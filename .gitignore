@@ -1,5 +1,6 @@
 tags
 build/
+build32/
 doc/Main.tex
 Netrw*
 compile_commands.json

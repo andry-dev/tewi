@@ -108,8 +108,8 @@
 //  another loader/header of your choice (glext, glLoadGen, etc.), or chose to
 //  manually implement your own.
 
-#define IMGUI_IMPL_OPENGL_LOADER_GLAD
-#include <glad/glad.h> // Needs to be initialized with glewInit() in user's code
+#define IMGUI_IMPL_OPENGL_LOADER_GL3W
+#include <GL/gl3w.h>
 #endif
 
 // OpenGL Data
@@ -266,6 +266,7 @@ void ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data)
     glUniform1i(g_AttribLocationTex, 0);
     glUniformMatrix4fv(g_AttribLocationProjMtx, 1, GL_FALSE,
                        &ortho_projection[0][0]);
+
 #ifdef GL_SAMPLER_BINDING
     glBindSampler(0, 0); // We use combined texture/sampler state. Applications
                          // using GL 3.3 may set that otherwise.
@@ -280,6 +281,7 @@ void ImGui_ImplOpenGL3_RenderDrawData(ImDrawData* draw_data)
     glGenVertexArrays(1, &vao_handle);
     glBindVertexArray(vao_handle);
 #endif
+
     glBindBuffer(GL_ARRAY_BUFFER, g_VboHandle);
     glEnableVertexAttribArray(g_AttribLocationPosition);
     glEnableVertexAttribArray(g_AttribLocationUV);

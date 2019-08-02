@@ -28,7 +28,7 @@ class TewiConan(ConanFile):
     )
 
     generators = "cmake", "cmake_find_package", "pkg_config"
-    exports_sources = "*", "!build/*", "!doc/*", "!tests/*", "!examples/*"
+    exports_sources = "include/*", "src/*", "external/*", "cmake/*", "CMakeLists.txt"
 
     def configure(self):
         if self.options.integrate_imgui:
@@ -48,15 +48,16 @@ class TewiConan(ConanFile):
         self.copy("*.h", dst="include", src="include")
         self.copy("*.hpp", dst="include", src="include")
         self.copy("*.hxx", dst="include", src="include")
+        self.copy("*.h", dst="include", src="external/tewi_loader/include")
 
         if self.options.integrate_imgui:
             self.copy("*.h", dst="include", src="external/imgui")
 
-        self.copy("*libtewi.lib", dst="lib", keep_path=False)
+        self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
         self.copy("*.dylib", dst="lib", keep_path=False)
         self.copy("*.a", dst="lib", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = ["tewi", "ImGui"]
+        self.cpp_info.libs = ["tewi", "ImGui", "stb_impl", "tewi-glloader"]

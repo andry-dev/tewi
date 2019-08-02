@@ -7,10 +7,21 @@
 #include "asl/debug_only"
 
 #include "tewi/Common.h"
-#include "tewi/Utils/Log.h"
 
 namespace tewi
 {
+    static void GLAPIENTRY MessageCallback(GLenum source, GLenum type,
+                                           GLuint id, GLenum severity,
+                                           GLsizei length,
+                                           const GLchar* message,
+                                           const void* userParam)
+    {
+        fprintf(stderr,
+                "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
+                (type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""), type,
+                severity, message);
+    }
+
     namespace API
     {
         /** \brief OpenGL Context.
@@ -39,12 +50,15 @@ namespace tewi
         template <>
         void Context<tewi::API::OpenGLTag>::postInit(GLFWwindow*)
         {
-            asl::debug_only<GLenum> error = gladLoadGLLoader(
-                reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
-
-            TEWI_ENSURES(error, "Failed GLAD initialization");
+            if (gl3wInit())
+            {
+                TEWI_ENSURES(false, "Failed GLAD initialization");
+            }
 
             glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+            // glEnable(GL_DEBUG_OUTPUT);
+            // glDebugMessageCallback(MessageCallback, 0);
 
             glEnable(GL_BLEND);
             glEnable(GL_DEPTH_TEST);
@@ -65,13 +79,14 @@ namespace tewi
         }
 
         template <>
-        void Context<tewi::API::OpenGLTag>::swap(GLFWwindow* m_window)
+        void TEWI_EXPORT
+        Context<tewi::API::OpenGLTag>::swap(GLFWwindow* m_window)
         {
             glfwSwapBuffers(m_window);
         }
 
         template <>
-        auto Context<tewi::API::OpenGLTag>::getAPIVersion()
+        auto TEWI_EXPORT Context<tewi::API::OpenGLTag>::getAPIVersion()
         {
             return glGetString(GL_VERSION);
         }
