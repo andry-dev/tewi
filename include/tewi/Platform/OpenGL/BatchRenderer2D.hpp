@@ -87,9 +87,9 @@ namespace tewi
         if (tid > 0)
         {
             bool foundTextureID = false;
-            for (asl::sizei i = 0; i < m_textureSlots.size(); ++i)
+            for (asl::isize i = 0; i < asl::ssize(m_textureSlots); ++i)
             {
-                if (m_textureSlots[i] == tid)
+                if (asl::saccess(m_textureSlots, i) == tid)
                 {
                     ts = static_cast<asl::f32>(i + 1);
                     foundTextureID = true;

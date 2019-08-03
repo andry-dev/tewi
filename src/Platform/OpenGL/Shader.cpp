@@ -121,7 +121,7 @@ namespace tewi
     void ShaderProgram<API::OpenGLTag>::enable()
     {
         glUseProgram(m_id);
-        for (asl::sizei i = 0; i < m_attributeNum; ++i)
+        for (asl::isize i = 0; i < m_attributeNum; ++i)
         {
             glEnableVertexAttribArray(i);
         }
@@ -129,7 +129,7 @@ namespace tewi
 
     void ShaderProgram<API::OpenGLTag>::disable()
     {
-        for (asl::sizei i = 0; i < m_attributeNum; ++i)
+        for (asl::isize i = 0; i < m_attributeNum; ++i)
         {
             glDisableVertexAttribArray(i);
         }

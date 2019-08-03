@@ -19,7 +19,7 @@ namespace tewi
         {
             FILE* shaderFile = std::fopen(path.c_str(), "r");
             std::fseek(shaderFile, 0, SEEK_END);
-            const asl::ssize length = std::ftell(shaderFile);
+            const asl::isize length = std::ftell(shaderFile);
 
             std::string content(static_cast<const asl::usize>(length), '\0');
 
@@ -33,8 +33,7 @@ namespace tewi
 
         inline TEWI_EXPORT std::string removeExtension(const std::string& str)
         {
-            const asl::sizei index = str.find_last_of('.');
-            return str.substr(0, index);
+            return str.substr(0, str.find_last_of('.'));
         }
 
         using Path = std::pair<bool, std::string>;

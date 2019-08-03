@@ -8,6 +8,8 @@
 
 #include "tewi/Common.h"
 
+#include <tewi/Utils/Log.h>
+
 namespace tewi
 {
     static void GLAPIENTRY MessageCallback(GLenum source, GLenum type,
@@ -52,7 +54,7 @@ namespace tewi
         {
             if (gl3wInit())
             {
-                TEWI_ENSURES(false, "Failed GLAD initialization");
+                TEWI_ENSURES(false, "OpenGL initialization failed");
             }
 
             glClearColor(1.0f, 1.0f, 1.0f, 1.0f);

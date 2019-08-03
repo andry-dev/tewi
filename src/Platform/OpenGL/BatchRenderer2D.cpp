@@ -43,7 +43,7 @@ namespace tewi
 
     void BatchRenderer2D<tewi::API::OpenGLTag>::draw()
     {
-        for (asl::sizei i = 0; i < m_textureSlots.size(); ++i)
+        for (asl::isize i = 0; i < m_textureSlots.size(); ++i)
         {
             glActiveTexture(GL_TEXTURE0 + i);
             glBindTexture(GL_TEXTURE_2D, m_textureSlots[i]);
@@ -166,7 +166,7 @@ namespace tewi
         glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         std::vector<GLuint> indices(g_indicesSize);
-        for (asl::sizei i = 0, offset = 0; i < indices.size();
+        for (asl::isize i = 0, offset = 0; i < indices.size();
              i += 6, offset += 4)
         {
             indices[i] = offset + 0;

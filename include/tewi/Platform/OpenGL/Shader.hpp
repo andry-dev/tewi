@@ -21,6 +21,6 @@ namespace tewi
 
     private:
         asl::u32 m_id { 0 };
-        asl::sizei m_attributeNum { 0 };
+        asl::isize m_attributeNum { 0 };
     };
 } // namespace tewi
