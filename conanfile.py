@@ -60,4 +60,4 @@ class TewiConan(ConanFile):
         self.copy("*.a", dst="lib", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = ["tewi", "ImGui", "stb_impl", "tewi-glloader"]
+        self.cpp_info.libs = ["tewi", "ImGui", "tewi-stb", "tewi-glloader"]
