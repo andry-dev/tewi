@@ -1,7 +1,8 @@
-tags
-build/
-build32/
+build*/
+.vs/
+.clangd/
+CMakeSettings.json
 doc/Main.tex
 Netrw*
 compile_commands.json
-.clangd/
+tags
