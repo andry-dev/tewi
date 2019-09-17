@@ -11,11 +11,12 @@ option(TEWI_CLANG_FORMAT_PRE_BUILD "Run clang-format before building tewi" OFF)
 option(TEWI_INTEGRATE_IMGUI "Integrate ImGui tewi" ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})
 
 add_subdirectory(external)
 
+include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 include(CheckIPOSupported)
-include(cmake/resolve-dependencies.cmake)
 
 set(SRC
     src/Input/InputBuffer.cpp

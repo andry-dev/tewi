@@ -1,4 +1,4 @@
-from conans import ConanFile, CMake, tools
+from conans import ConanFile, CMake
 
 class TewiConan(ConanFile):
     name = "tewi"
@@ -27,7 +27,7 @@ class TewiConan(ConanFile):
         ("asl/0.1@andry/dev")
     )
 
-    generators = "cmake", "cmake_find_package", "pkg_config"
+    generators = "cmake_paths", "cmake_find_package", "pkg_config"
     exports_sources = "include/*", "src/*", "external/*", "cmake/*", "CMakeLists.txt"
 
     def configure(self):

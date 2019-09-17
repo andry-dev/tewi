@@ -1,7 +1,7 @@
 #pragma once
 
-#include "asl/meta"
-#include "asl/types"
+#include <asl/meta>
+#include <asl/types>
 
 #ifdef _WIN32
 #ifdef TEWI_STATIC_LIB

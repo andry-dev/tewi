@@ -4,3 +4,4 @@ build32/
 doc/Main.tex
 Netrw*
 compile_commands.json
+.clangd/
